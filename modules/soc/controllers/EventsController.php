@@ -52,13 +52,13 @@ class EventsController extends Controller
      */
     public function actionIndex()
     {
-        // $searchModel = new EventsSearch();
-        // $dataProvider = $searchModel->search($this->request->queryParams);
+        $searchModel = new EventsSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
 
-        // return $this->render('index', [
-        //     'searchModel' => $searchModel,
-        //     'dataProvider' => $dataProvider,
-        // ]);
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
     }
 
     /**
