@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\tsd\models;
+namespace app\modules\soc\models;
 
 use Yii;
 use yii\helpers\Json;

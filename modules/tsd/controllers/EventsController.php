@@ -1,9 +1,9 @@
 <?php
 
-namespace app\modules\tsd\controllers;
+namespace app\modules\soc\controllers;
 
 use Yii;
-use app\modules\tsd\models\Events;
+use app\modules\soc\models\Events;
 use app\models\Uploads;
 use app\models\EventsSearch;
 use yii\web\Controller;

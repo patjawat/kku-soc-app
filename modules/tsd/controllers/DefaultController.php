@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\tsd\controllers;
+namespace app\modules\soc\controllers;
 
 use yii\web\Controller;
 

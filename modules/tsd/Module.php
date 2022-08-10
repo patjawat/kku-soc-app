@@ -1,6 +1,6 @@
 <?php
 
-namespace app\modules\tsd;
+namespace app\modules\soc;
 
 /**
  * cctv module definition class
@@ -10,7 +10,7 @@ class Module extends \yii\base\Module
     /**
      * {@inheritdoc}
      */
-    public $controllerNamespace = 'app\modules\tsd\controllers';
+    public $controllerNamespace = 'app\modules\soc\controllers';
 
     /**
      * {@inheritdoc}
