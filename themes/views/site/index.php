@@ -149,4 +149,4 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
         </div>
     </div>
 </div>
-<?=$this->render('event')?>
+<?php // $this->render('event')?>
