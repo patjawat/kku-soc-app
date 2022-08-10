@@ -2,7 +2,6 @@
 
 $params = require __DIR__ . '/params.php';
 $db = require __DIR__ . '/db.php';
-$db_hr = require __DIR__ . '/db_hr.php';
 $modules = require __DIR__ . '/add_modules.php';
 
 
