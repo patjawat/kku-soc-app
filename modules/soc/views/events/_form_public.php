@@ -23,8 +23,8 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME,'language' => 'th',];
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?php //  $form->field($model, 'ref')->hiddenInput()->label(false); ?>
-    <?= $form->field($model, 'ref')->textInput()->label(false); ?>
+    <?=$form->field($model, 'ref')->hiddenInput()->label(false); ?>
+    <?php // $form->field($model, 'ref')->textInput()->label(false); ?>
 
     <div class="info-box shadow-sm">
 <div class="info-box-content ">
