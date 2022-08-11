@@ -19,6 +19,7 @@ use yii\web\Response;
 use yii\helpers\BaseFileHelper;
 use yii\helpers\Json;
 use app\components\SystemHelper;
+use dominus77\sweetalert2\Alert;
 
 
 
@@ -136,13 +137,30 @@ class EventsController extends Controller
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save(false)) {
-                return $this->redirect(['view', 'id' => $model->id]);
+                
+                return $this->redirect(['success', 'id' => $model->id]);
             }
         } else {
             $model->loadDefaultValues();
         }
 
         return $this->render('_form_public', [
+            'model' => $model,
+        ]);
+    }
+
+    public function actionSuccess($id)
+    {
+        $this->layout = 'blank';
+        Yii::$app->session->setFlash(Alert::TYPE_SUCCESS, [
+            'title' => 'บันทึกสำเร็จ!',
+            'text' => 'กองป้องกันและรักษาความปลอดภัย',
+            'showConfirmButton' => false,
+            'timer' => 1500
+
+        ]);
+        $model = $this->findModel($id);
+        return $this->render('success', [
             'model' => $model,
         ]);
     }

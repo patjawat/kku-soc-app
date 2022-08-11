@@ -34,6 +34,33 @@ $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\ha
 <body class="hold-transition sidebar-mini">
 <?php $this->beginBody() ?>
 
+<style>
+    .alert-success {
+    color: #155724;
+    background-color: #d4edda;
+    border-color: #c3e6cb;
+}
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+.alert-danger {
+    color: #721c24;
+    background-color: #f8d7da;
+    border-color: #f5c6cb;
+}
+.alert-warning {
+    color: #856404;
+    background-color: #fff3cd;
+    border-color: #ffeeba;
+}
+</style>
 <?php
         Modal::begin([
             'id' => 'main-modal',
@@ -44,6 +71,7 @@ $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\ha
         ]);
         Modal::end();
         ?>
+<?php \dominus77\sweetalert2\Alert::widget(['useSessionFlash' => true]); ?>
 
 
 

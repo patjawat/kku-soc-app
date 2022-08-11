@@ -13,34 +13,52 @@ use mihaildev\ckeditor\CKEditor;
 <div class="events-form">
 
     <?php $form = ActiveForm::begin(); ?>
+    <div class="alert alert-info" role="alert">
+        <strong>ข้อมูลพื้นฐาน</strong>
+    </div>
+    
+    <div class="row">
+        <div class="col-3">
+            <?= $form->field($model, 'fname')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-3">
+            <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-6">
+            <?= $form->field($model, 'person_type')->textInput(['maxlength' => true]) ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'fname')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-3">
+            <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+        </div>
+        <div class="col-3">
+            <?= $form->field($model, 'department')->textInput(['maxlength' => true])->label('คณะ/หน่วยงาน'); ?>
+        </div>
+        <div class="col-3">
+            <?= $form->field($model, 'event_type')->textInput() ?>
+        </div>
+    </div>
 
-    <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'fullname')->textInput(['maxlength' => true]) ?>
+    <div class="row">
+        <div class="col-6">
+            <?= $form->field($model, 'address')->textArea(['maxlength' => true,'rows' => 5]) ?>
+        </div>
+        <div class="col-6">
+          
+        </div>
+    </div>
 
-    <?= $form->field($model, 'person_type')->textInput() ?>
-
-    <?= $form->field($model, 'department')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'address')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
+    <div class="alert alert-info" role="alert">
+        <strong>รายละเอียดเหตุการ์</strong>
+    </div>
     <?= $form->field($model, 'event_date')->textInput() ?>
-
-    <?= $form->field($model, 'event_type')->textInput() ?>
-
-    <?= $form->field($model, 'orther')->textArea() ?>
-
+            <?= $form->field($model, 'orther')->textArea() ?>
     <?= $form->field($model, 'event_location_note')->textInput(['maxlength' => true]) ?>
-
-
     <?= $form->field($model, 'work_img')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'docs')->textInput(['maxlength' => true]) ?>
-
     <?= $form->field($model, 'result')->inline()->radioList([
         1 => 'พบเหตุการณ์',
         2 => 'ไม่พบเหตุการณ์'
@@ -52,7 +70,7 @@ use mihaildev\ckeditor\CKEditor;
         'inline' => false, //по умолчанию false
     ],
 ]) ?>
-    
+
 
     <?= $form->field($model, 'backup_to')->textInput() ?>
 
@@ -71,9 +89,9 @@ use mihaildev\ckeditor\CKEditor;
     <?= $form->field($model, 'updated_by')->textInput() ?>
 
     <div class="form-group field-upload_files">
-      <label class="control-label" for="upload_files[]"> ภาพถ่าย </label>
-    <div>
-    <?= FileInput::widget([
+        <label class="control-label" for="upload_files[]"> ภาพถ่าย </label>
+        <div>
+            <?= FileInput::widget([
                    'name' => 'upload_ajax[]',
                    'options' => ['multiple' => true,'accept' => ['image/*','video/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
                     'pluginOptions' => [
@@ -89,11 +107,11 @@ use mihaildev\ckeditor\CKEditor;
                     ]
                 ]);
     ?>
-    </div>
+        </div>
     </div>
 
     <div class="form-group">
-    <?= Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

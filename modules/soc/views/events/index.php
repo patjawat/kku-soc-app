@@ -13,6 +13,7 @@ use app\models\Events;
 $this->title = 'Events';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
 <style>
     thead th {
     border-bottom-width: 2px;

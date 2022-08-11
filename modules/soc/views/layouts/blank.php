@@ -31,6 +31,7 @@ $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3
 
     <body class="container" style="min-height: 512.391px;">
         <?php $this->beginBody() ?>
+        <?php \dominus77\sweetalert2\Alert::widget(['useSessionFlash' => true]); ?>
 
           <?= $content ?>
 

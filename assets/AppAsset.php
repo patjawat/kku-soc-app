@@ -26,7 +26,7 @@ class AppAsset extends AssetBundle
     ];
     public $js = [
         'js/main.js',
-        'sweetalert2/dist/sweetalert2.all.min.js',
+        // 'sweetalert2/dist/sweetalert2.all.min.js',
         'js/easy.qrcode.min.js'
     ];
     public $depends = [
