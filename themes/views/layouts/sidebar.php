@@ -41,7 +41,7 @@ use app\components\UserHelper;
                     // ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
                     // ['label' => 'การติดตามผล','url' => ['/tracking'],'icon' => 'truck'],
                     ['label' => 'เหตุหารณ์ create','url' => ['/soc/events/user-request'],'icon' => 'user'],
-                    ['label' => 'เหตุหารณ์','url' => ['/events'],'icon' => 'user'],
+                    ['label' => 'เหตุหารณ์','url' => ['/soc/events'],'icon' => 'user'],
                     ['label' => 'รายงาน','url' => ['/report'],'icon' => 'chart-line'],
                     ['label' => 'บันทึกข้อความขอดูกล้อง','url' => ['/site/qrcode'],'icon' => 'qrcode', 'target' => '_blank'],
                     // ['label' => 'category','url' => ['/category'],'icon' => 'th'],

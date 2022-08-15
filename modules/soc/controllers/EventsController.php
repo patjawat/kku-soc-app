@@ -256,7 +256,7 @@ private function getInitialPreview($ref) {
         array_push($initialPreviewConfig, [
             'caption' => $value->file_name,
             'width' => '120px',
-            'url' => Url::to('index.php?r=document/documentqr/deletefile-ajax'),
+            'url' => Url::to(['/soc/events/deletefile-ajax']),
             'key' => $value->upload_id,
         ]);
     }
@@ -291,20 +291,22 @@ private function createThumbnail($folderName,$fileName,$width=250){
 }
 
 public function actionDeletefileAjax(){
+    Yii::$app->response->format = Response::FORMAT_RAW;
 
-    $model = Uploads::findOne(Yii::$app->request->post('key'));
+    // return Yii::$app->request->post('key');
+    $model = Uploads::findOne(['upload_id' => Yii::$app->request->post('key')]);
     if($model!==NULL){
         $filename  = SystemHelper::getUploadPath().$model->ref.'/'.$model->real_filename;
         $thumbnail = SystemHelper::getUploadPath().$model->ref.'/thumbnail/'.$model->real_filename;
         if($model->delete()){
             @unlink($filename);
             @unlink($thumbnail);
-            echo json_encode(['success'=>true]);
+            return ['success'=>true];
         }else{
-            echo json_encode(['success'=>false]);
+            return ['success'=>false];
         }
     }else{
-      echo json_encode(['success'=>false]);  
+        return ['success'=>false];
     }
 }
 
