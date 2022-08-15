@@ -9,12 +9,24 @@ use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
 use kartik\select2\Select2;
 
+use app\components\SystemHelper;
+
 
 use app\models\Category;
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Events */
 /* @var $form yii\widgets\ActiveForm */
+?>
+
+<?php
+// $real_filename = 'ZQ-OkAx89PYH1PJ2Fs6H0Y/7bd1c1dff29a63fd73ab4e2b7a14df57.png';
+// $file_path = SystemHelper::getUploadPath(). $real_filename;
+// $file_path = "/soc/events/image?file_path=$file_path&width=800&height=800";
+// echo Html::img($file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
+// $a = SystemHelper::getImageUpload(17);
+// echo $a;
+// echo $file_path;
 ?>
 
 <div class="events-form pl-3 pr-3">
@@ -136,7 +148,7 @@ use app\models\Category;
 <div class="form-group field-upload_files">
     <label class="control-label" for="upload_files[]"> ภาพถ่าย </label>
     <div>
-        <?= FileInput::widget([
+        <?php echo  FileInput::widget([
                    'name' => 'upload_ajax[]',
                    'options' => ['multiple' => true,'accept' => ['image/*','video/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
                     'pluginOptions' => [

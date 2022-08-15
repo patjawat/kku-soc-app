@@ -81,14 +81,24 @@ class SystemHelper extends Component {
      * @param string $real_filename
      * @return string
      */
-    public static function getImageUpload($real_filename) {
+    public static function getImageUpload($id) {
+        $model = Uploads::find()->where(['upload_id' => $id])->One();
         //self::setOwner(self::getUploadPath() . $hn);
-        $file_path = self::getUploadPath(). $real_filename;
-        if (file_exists($file_path)) {
-            $file_path = "index.php?r=document/default/image&file_path=$file_path&width=800&height=800";
+        if($model)
+        {
+            $file_path = self::getUploadPath(). $model->ref.'/'.$model->real_filename;
+ if (file_exists($file_path)) {
+            // return $file_path;
+            $file_path = "/soc/events/image?file_path=$file_path&width=800&height=800";
             return Html::img($file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
         }
-        return Html::img('@web/img/image-placeholder.png', ['class' => 'file-preview-image', 'loading' => 'lazy']);
+        }
+        // if (file_exists($file_path)) {
+        //     return $file_path;
+            // $file_path = "/soc/events/image?file_path=$file_path&width=800&height=800";
+            // return Html::img($file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
+        // }
+        // return Html::img('@web/img/image-placeholder.png', ['class' => 'file-preview-image', 'loading' => 'lazy']);
     }
 
     /**
@@ -104,25 +114,19 @@ class SystemHelper extends Component {
         try {
             $file_ = pathinfo($file_path);
             // self::setOwner($file_['dirname']);
-            // if (self::isDocHide($file_)) {
+            // if (EmrHelper::isDocHide($file_)) {
             //     $file_path = Yii::getAlias('@app/web/img/') . 'image-hide.png';
             //     return self::getResizeImage($file_path, $width, $height, \Imagick::FILTER_BOX, 1, true, false);
             // }
-            if (strtolower($file_['extension']) == 'pdf') {
-                self::setOwner($file_path);
-                return self::getPdfImage($file_path);
-            }
-           
-            if (self::isImage($file_path)) {
-                // self::setOwner($file_path);
-                return 
-                [
-                    'type' => $file_['extension'],
-                    'data' => self::getResizeImage($file_path, $width, $height, \Imagick::FILTER_BOX, 1, true, false)
-                ];
-            
-            }
-             $file_path = Yii::getAlias('@app/web/img/') . 'image-placeholder.png';
+            // if (strtolower($file_['extension']) == 'pdf') {
+            //     // self::setOwner($file_path);
+            //     return self::getPdfImage($file_path);
+            // }
+            // if (self::isImage($file_path)) {
+            //     // self::setOwner($file_path);
+            //     return self::getResizeImage($file_path, $width, $height, \Imagick::FILTER_BOX, 1, true, false);
+            // }
+            // $file_path = Yii::getAlias('@app/web/img/') . 'image-placeholder.png';
             return self::getResizeImage($file_path, $width, $height, \Imagick::FILTER_BOX, 1, true, false);
         } catch (Exception $exc) {
             echo $exc->getTraceAsString();

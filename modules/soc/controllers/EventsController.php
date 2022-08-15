@@ -252,7 +252,7 @@ private function getInitialPreview($ref) {
     $initialPreview = [];
     $initialPreviewConfig = [];
     foreach ($datas as $value) {
-        array_push($initialPreview, SystemHelper::getImageUpload($value->real_filename));
+        array_push($initialPreview, SystemHelper::getImageUpload($value->upload_id));
         array_push($initialPreviewConfig, [
             'caption' => $value->file_name,
             'width' => '120px',
@@ -322,11 +322,12 @@ protected function setHttpHeaders() {
 // public function actionImage(string $file_path, int $width = 1080, int $height = 1080) {
 public function actionImage() {
     try {
+    Yii::$app->response->format = Response::FORMAT_RAW;
     $file_path = $this->request->get('file_path');
     $width = 1080;
     $height = 1080;
-    // $this->setHttpHeaders();
-    Yii::$app->response->format = Response::FORMAT_RAW;
+    $this->setHttpHeaders();
+
         $files = SystemHelper::getImage($file_path, $width, $height);
         // if($files['type' == 'png'])
         // {
