@@ -5,53 +5,26 @@ namespace app\modules\soc\models;
 use Yii;
 use yii\helpers\Json;
 use yii\db\Expression;
+use \yii\db\ActiveRecord;
 use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
+use yii\behaviors\AttributeBehavior;
 use app\components\SystemHelper;
 use app\models\Uploads;
+use app\models\Category;
 
-
-/**
- * This is the model class for table "events".
- *
- * @property int $id
- * @property string|null $ref
- * @property string|null $data_json
- * @property string $fname ชื่อ
- * @property string $lname สกุล
- * @property string|null $fullname ชื่อ-สกุล
- * @property int $person_type ประเภทบุคคล
- * @property string|null $department คณะ/หน่วยงาน/สถานที่ทำงาน/สถานศึกษา
- * @property string $address ที่อยู่ตามทะเบียนบ้าน
- * @property string $phone หมายเลขโทรศัพท์
- * @property string $event_date วันและเวลาที่เกิดเหตุ
- * @property int|null $event_type เหตุการณ์
- * @property string|null $orther รายละเอียดเพิ่มเติม
- * @property string $event_location_note บริเวณสถานที่เกิดเหตุ
- * @property string|null $las latitude
- * @property string|null $lng lngitude
- * @property string|null $work_img รูปภาพการปฏิบัติการ
- * @property string|null $docs เอกสารแนบใบคำขอ
- * @property int|null $result ผลการให้บริการดูกล้องวงจรปิด
- * @property string|null $note รายงานการดำเนินการ
- * @property int|null $backup_to การขอสำรองข้อมูลให้
- * @property int|null $backup_type ประเภทไฟล์ข้อมูล
- * @property int|null $reporter ผู้รายงานเหตุ
- * @property string|null $worker ผู้ร่วมปฏิบัติงาน
- * @property string|null $updated_at
- * @property string $created_at
- * @property int|null $created_by ผู้สร้าง
- * @property int|null $updated_by ผู้แก้ไข
- */
-class Events extends \yii\db\ActiveRecord
+class Events extends ActiveRecord
 {
     /**
      * {@inheritdoc}
      */
+    public $q_date;
+
     public static function tableName()
     {
         return 'events';
     }
+
 
     /**
      * {@inheritdoc}
@@ -62,7 +35,7 @@ class Events extends \yii\db\ActiveRecord
             [['data_json', 'worker'], 'string'],
             [['fname', 'lname', 'person_type', 'address', 'phone', 'event_date', 'event_location_note'], 'required'],
             [['person_type', 'event_type', 'result', 'backup_to', 'backup_type', 'reporter', 'created_by', 'updated_by'], 'integer'],
-            [['event_date', 'updated_at', 'created_at'], 'safe'],
+            [['event_date', 'updated_at', 'created_at','q_date'], 'safe'],
             [['ref', 'fname', 'lname', 'fullname', 'department', 'address', 'phone', 'orther', 'event_location_note', 'lat', 'lng', 'work_img', 'docs', 'note'], 'string', 'max' => 255],
         ];
     }
@@ -102,6 +75,33 @@ class Events extends \yii\db\ActiveRecord
             'created_by' => 'ผู้สร้าง',
             'updated_by' => 'ผู้แก้ไข',
         ];
+    }
+
+    public function behaviors() {
+       return [
+//            [
+//                'class' => AttributeBehavior::className(),
+//                'attributes' => [ActiveRecord::EVENT_BEFORE_INSERT => ['id']],
+//                'value' => function() {
+//                    return DateTimeHelper::getDbDateTimeNow();
+//                }
+//            ],
+           [
+               'class' => AttributeBehavior::className(),
+               'attributes' => [ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at']],
+               'value' => new Expression('NOW()'),
+           ],
+           [
+               'class' => AttributeBehavior::className(),
+               'attributes' => [ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at'],
+               'value' => new Expression('NOW()'),
+           ],
+           [
+               'class' => BlameableBehavior::className(),
+               'createdByAttribute' => 'created_by',
+               'updatedByAttribute' => 'updated_by',
+           ]
+       ];
     }
 
     public function afterFind() {

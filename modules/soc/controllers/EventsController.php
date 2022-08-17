@@ -4,8 +4,8 @@ namespace app\modules\soc\controllers;
 
 use Yii;
 use app\modules\soc\models\Events;
+use app\modules\soc\models\EventsSearch;
 use app\models\Uploads;
-use app\models\EventsSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
@@ -56,6 +56,12 @@ class EventsController extends Controller
         $searchModel = new EventsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
+        if ($searchModel->q_date) { // ค้นตามวันเวลาที่ระบบ
+            $date_explode = explode(" - ", $searchModel->q_date);
+            $date1 = trim($date_explode[0]);
+            $date2 = trim($date_explode[1]);
+            $dataProvider->query->andFilterWhere(['between', 'created_at', $date1, $date2]);
+        }
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,

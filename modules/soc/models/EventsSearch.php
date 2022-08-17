@@ -1,6 +1,6 @@
 <?php
 
-namespace app\models;
+namespace app\modules\soc\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
@@ -14,11 +14,12 @@ class EventsSearch extends Events
     /**
      * {@inheritdoc}
      */
+    public $q_date;
     public function rules()
     {
         return [
             [['id', 'person_type', 'event_type', 'orther', 'result', 'note', 'backup_to', 'backup_type', 'reporter', 'created_by', 'updated_by'], 'integer'],
-            [['ref', 'data_json', 'fname', 'lname', 'fullname', 'department', 'address', 'phone', 'event_date', 'event_location_note', 'lat', 'lng', 'work_img', 'docs', 'worker', 'updated_at', 'created_at'], 'safe'],
+            [['ref', 'data_json', 'fname', 'lname', 'fullname', 'department', 'address', 'phone', 'event_date', 'event_location_note', 'lat', 'lng', 'work_img', 'docs', 'worker', 'updated_at', 'created_at','q_date'], 'safe'],
         ];
     }
 

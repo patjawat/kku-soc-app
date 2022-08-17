@@ -19,21 +19,12 @@ use app\models\Category;
 /* @var $form yii\widgets\ActiveForm */
 ?>
 
-<?php
-// $real_filename = 'ZQ-OkAx89PYH1PJ2Fs6H0Y/7bd1c1dff29a63fd73ab4e2b7a14df57.png';
-// $file_path = SystemHelper::getUploadPath(). $real_filename;
-// $file_path = "/soc/events/image?file_path=$file_path&width=800&height=800";
-// echo Html::img($file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
-// $a = SystemHelper::getImageUpload(17);
-// echo $a;
-// echo $file_path;
-?>
 
 <div class="events-form pl-3 pr-3">
 
     <?php $form = ActiveForm::begin(); ?>
     <div class="alert alert-info" role="alert">
-        <strong>ข้อมูลพื้นฐาน</strong>
+        <strong><i class="far fa-edit"></i> ข้อมูลพื้นฐาน</strong>
     </div>
 
     <div class="card">
@@ -83,7 +74,7 @@ use app\models\Category;
 
 
     <div class="alert alert-info" role="alert">
-        <strong>รายละเอียดเหตุการ์</strong>
+        <strong><i class="far fa-edit"></i> รายละเอียดเหตุการ์</strong>
     </div>
     <div class="card">
         <div class="card-body">
@@ -110,7 +101,7 @@ use app\models\Category;
 <!-- End Card -->
 
 <div class="alert alert-info" role="alert">
-    <strong>สรุปผล</strong>
+    <strong><i class="far fa-edit"></i> สรุปผล</strong>
 </div>
 
 <div class="card">
