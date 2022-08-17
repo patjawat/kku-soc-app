@@ -5,117 +5,86 @@ use yii\helpers\Html;
 
 $this->title = 'Login';
 $this->params['breadcrumbs'][] = $this->title;
+
 ?>
+
 <style>
-.form-group {
-    margin-bottom: 0.1px;
+.typed-out {
+    overflow: hidden;
+    border-right: .15em solid orange;
+    white-space: nowrap;
+    animation:
+        typing 2s steps(20, end) forwards;
+    font-size: 1.6rem;
+    width: 0;
 }
 
-.login-logo,
-.register-logo {
-    font-size: 1.5rem !important;
-}
+@keyframes typing {
+    from {
+        width: 0
+    }
 
+    to {
+        width: 100%
+    }
+}
 </style>
+<!-- <div class="typed-out">Web Developer</div> -->
 
-<div class="site-login">
-    <?php //Html::img('@web/img/logo-theptarin-src.png')?>
-    <?php
-$form = ActiveForm::begin([
-    'layout' => 'horizontal',
-    'id' => 'form-asset',
-    'options' => ['enctype' => 'multipart/form-data', 'autocomplete' => 'off'],
-    'fieldConfig' => [
-        'template' => "{label}\n{beginWrapper}\n{input}\n{hint}\n{error}\n{endWrapper}",
-        'horizontalCssClasses' => [
-            'label' => 'col-sm-0',
-            'offset' => 'offset-sm-0',
-            'wrapper' => 'col-sm-12',
-            'error' => '',
-            'hint' => '',
-        ],
-    ],
+<div class="form-login">
+
+
+    <img src="https://i.ibb.co/XWdPc2X/wave-01.png" class="wave" data-aos="fade-right" data-aos-delay="500">
+    <div class="container">
+        <div class="img">
+            <img id="band" src="https://i.ibb.co/JvXP8rW/phone.png" data-aos="fade-down" data-aos-delay="1000">
+        </div>
+        <div class="login-content">
+            <?php
+$form = ActiveForm::begin(['id' => 'form-asset','fieldConfig' => [
+
+    'template' => "{input}",
+
+    'options' => ['tag' => false], // remove wrapper tag
+
+],
 ]);
 ?>
-
-    <div class="login-box">
-        <div class="login-logo">
-            <?php // Html::img('@web/img/Logo-TRH.png');?>
-        </div>
-        <!-- /.login-logo -->
-        <div class="card shadow-lg p-3 mb-5 bg-white rounded">
-
-            <div class="card-body login-card-body">
-                <p class="login-box-msg"><i class="fas fa-user-lock"></i>
-                    <!-- ยืนยันตัวตนเพื่อเข้าใช้งาน -->
-                    Admin-PPS
-                </p>
-                <form action="../../index3.html" method="post">
-
-                    <?=
-$form->field($model, 'username', [
-    'inputTemplate' => '<div class="input-group mb-3">
-            {input}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-user"></span>
-              </div>
+            <img src="https://i.ibb.co/H4f3Hkv/profile.png">
+            <h2 class="title typed-out">กรุณายืนยันตัวตนเพื่อเข้าสู่ระบบ</h2>
+            <div class="input-div one">
+                <div class="i">
+                    <i class="fas fa-user"></i>
+                </div>
+                <div class="div">
+                    <h5>Username</h5>
+                    <?=$form->field($model, 'username')->textInput(['class' => 'input'])->label(false);?>
+                </div>
             </div>
-            </div>',
-    'inputOptions' =>
-    [
-        'autofocus' => 'autofocus',
-        'tabindex' => '1',
-        'autocomplete' => 'off',
-    ],
-]
-)->label(false);
-?>
+            <div class="input-div pass">
+                <div class="i">
+                    <i class="fas fa-lock"></i>
+                </div>
+                <div class="div">
+                    <h5>Password</h5>
+                    <?=$form->field($model, 'password')->passwordInput(['class' => 'input'])->label(false);?>
 
-                    <?=
-$form->field($model, 'password', [
-    'inputTemplate' => '<div class="input-group mb-3">
-            {input}
-            <div class="input-group-append">
-              <div class="input-group-text">
-                <span class="fas fa-lock"></span>
-              </div>
+                </div>
             </div>
-            </div>',
-    'inputOptions' =>
-    [
-        'autofocus' => 'autofocus',
-        'tabindex' => '2',
-        'autocomplete' => 'off',
-    ],
-])->passwordInput()->label(false);
-?>
+            <?=Html::submitButton('Login', ['class' => 'btn btn-block btn-primary', 'name' => 'login-button', 'tabindex' => '3'])?>
 
-
-
-                    <div class="social-auth-links text-center mb-3">
-                        <?=Html::submitButton('Login', ['class' => 'btn btn-block btn-primary', 'name' => 'login-button', 'tabindex' => '3'])?>
-
-                    </div>
-                    <!-- /.social-auth-links -->
-            </div>
-            <!-- /.login-card-body -->
+            <a href="#">Forgot Password?</a>
+            <?php ActiveForm::end();?>
         </div>
     </div>
-    <!-- /.login-box -->
-
-    <?php ActiveForm::end();?>
-
-
 </div>
-
 
 <?php
 $js = <<< JS
 $('#awaitLogin').hide();
 $('#form-asset').on('beforeSubmit', function (e) {
     $('#awaitLogin').show();
-    $('.site-login').hide();
+    $('.form-login').hide();
 	return true;
 });
 JS;

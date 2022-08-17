@@ -42,7 +42,7 @@ use yii\helpers\ArrayHelper;
         <div id="awaitLogin" style="display:none;margin-top:100px">
             <div   class="d-flex justify-content-center">
                 <div style="position:relative;width:10%;">
-                    <?=Html::img('@web/img/logo.png',['style' => 'position: absolute;width: 60px;top: 25px;left: 16px;']);?>
+                    <?=Html::img('@web/images/cctv-logo.svg',['style' => 'position: absolute;width: 60px;top: 25px;left: 16px;']);?>
                     <div class="dbl-spinner"></div>
                     <div class="dbl-spinner"></div>
                     <h6 style="position: absolute;top:115px;left:8%;">กำลังโหลด...</h6>
