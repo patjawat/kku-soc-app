@@ -85,21 +85,21 @@ class Events extends ActiveRecord
 //                    return DateTimeHelper::getDbDateTimeNow();
 //                }
 //            ],
-           [
-               'class' => AttributeBehavior::className(),
-               'attributes' => [ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at']],
-               'value' => new Expression('NOW()'),
-           ],
-           [
-               'class' => AttributeBehavior::className(),
-               'attributes' => [ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at'],
-               'value' => new Expression('NOW()'),
-           ],
-           [
-               'class' => BlameableBehavior::className(),
-               'createdByAttribute' => 'created_by',
-               'updatedByAttribute' => 'updated_by',
-           ]
+        //    [
+        //        'class' => AttributeBehavior::className(),
+        //        'attributes' => [ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at']],
+        //        'value' => new Expression('NOW()'),
+        //    ],
+        //    [
+        //        'class' => AttributeBehavior::className(),
+        //        'attributes' => [ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at'],
+        //        'value' => new Expression('NOW()'),
+        //    ],
+        //    [
+        //        'class' => BlameableBehavior::className(),
+        //        'createdByAttribute' => 'created_by',
+        //        'updatedByAttribute' => 'updated_by',
+        //    ]
        ];
     }
 

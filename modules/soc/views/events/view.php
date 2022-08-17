@@ -85,7 +85,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'reporter',
             'result',
             'backup_to',
-            'worker',
             'note',
         ],
     ]) ?>

@@ -8,6 +8,7 @@ use kartik\widgets\FileInput;
 use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
 use kartik\select2\Select2;
+use app\modules\usermanager\models\User;
 
 use app\components\SystemHelper;
 
@@ -118,7 +119,12 @@ use app\models\Category;
             </div>
             <div class="col-6">
                 <?= $form->field($model, 'backup_to')->textInput() ?>
-                <?= $form->field($model, 'worker')->textInput() ?>
+                <?=$form->field($model, 'worker')->widget(Select2::classname(), [
+                'hideSearch' => true,
+                'data' => ArrayHelper::map(User::find()->all(),'id','fullname'),
+                'options' => ['placeholder' =>'Select','multiple' => true]
+            ])->label(true);
+        ?>
 
             </div>
         </div>

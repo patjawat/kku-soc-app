@@ -106,10 +106,10 @@ $config = [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
             // '*',
-            'soc/events/user-request'
+            'soc/events/user-request',
+            'datecontrol/parse/convert',
             // 'liff/*',
             // 'site/*',
-            // 'datecontrol/parse/convert',
             // 'reception/default/index',
             // 'reception/default/form-upload',
             // 'document/documentqr/upload-ajax',

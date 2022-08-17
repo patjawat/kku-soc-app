@@ -183,7 +183,7 @@ class EventsController extends Controller
         $model = $this->findModel($id);
         list($initialPreview,$initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save()) {
+        if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
