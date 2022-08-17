@@ -81,10 +81,21 @@ $this->params['breadcrumbs'][] = $this->title;
                 },
             ],
             [
-                'attribute' => 'event_type', 
+                'header' => 'เหตุการณ์',
+                'attribute' => 'event_type',
+                'hAlign' => 'center',
+                'vAlign' => 'middle',
+                'width' => '350px',
                 'value' => function ($model) {
                     return $model->eventType ? $model->eventType->name : '';
-                }
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => ArrayHelper::map(Category::find()->where(['category_type' =>2])->all(), 'id', 'name'),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'เลือกประเภทบุคลากร', 'multiple' => false], // allows multiple authors to be chosen
+                'format' => 'raw',
             ],
             [
                 'header' => 'ประเภทบุคลากร',
