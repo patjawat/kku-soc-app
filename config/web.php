@@ -105,7 +105,8 @@ $config = [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            '*',
+            // '*',
+            'soc/events/user-request'
             // 'liff/*',
             // 'site/*',
             // 'datecontrol/parse/convert',
