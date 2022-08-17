@@ -297,13 +297,11 @@ private function createThumbnail($folderName,$fileName,$width=250){
 }
 
 public function actionDeletefileAjax(){
-    Yii::$app->response->format = Response::FORMAT_RAW;
-
-    // return Yii::$app->request->post('key');
+    Yii::$app->response->format = Response::FORMAT_JSON;
     $model = Uploads::findOne(['upload_id' => Yii::$app->request->post('key')]);
     if($model!==NULL){
         $filename  = SystemHelper::getUploadPath().$model->ref.'/'.$model->real_filename;
-        $thumbnail = SystemHelper::getUploadPath().$model->ref.'/thumbnail/'.$model->real_filename;
+        // $thumbnail = SystemHelper::getUploadPath().$model->ref.'/thumbnail/'.$model->real_filename;
         if($model->delete()){
             @unlink($filename);
             @unlink($thumbnail);
