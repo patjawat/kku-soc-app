@@ -15,9 +15,6 @@ use app\components\SystemHelper;
 
 use app\models\Category;
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Events */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
 
@@ -169,5 +166,3 @@ use app\models\Category;
 </div>
 
 <?php ActiveForm::end(); ?>
-
-</div>

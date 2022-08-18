@@ -9,24 +9,9 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 <style>
-.typed-out {
-    overflow: hidden;
-    border-right: .15em solid orange;
-    white-space: nowrap;
-    animation:
-        typing 2s steps(20, end) forwards;
-    font-size: 1.6rem;
-    width: 0;
-}
-
-@keyframes typing {
-    from {
-        width: 0
-    }
-
-    to {
-        width: 100%
-    }
+#typed{
+    font-size:25px;
+    /* color: #6053d2; */
 }
 </style>
 <!-- <div class="typed-out">Web Developer</div> -->
@@ -51,7 +36,16 @@ $form = ActiveForm::begin(['id' => 'form-asset','fieldConfig' => [
 ]);
 ?>
             <img src="https://i.ibb.co/H4f3Hkv/profile.png">
-            <h2 class="title typed-out">กรุณายืนยันตัวตนเพื่อเข้าสู่ระบบ</h2>
+            <!-- <h2 class="title typed-out">กรุณายืนยันตัวตนเพื่อเข้าสู่ระบบ</h2> -->
+    <div>
+    <div id="typed-strings">
+  <h1>Welcome</h1>
+  <h1>กรุณายืนยันตัวตนเพื่อเข้าสู่ระบบ.</h1>
+</div>
+<span id="typed"></span>
+    </div>
+
+            
             <div class="input-div one">
                 <div class="i">
                     <i class="fas fa-user"></i>
@@ -81,6 +75,12 @@ $form = ActiveForm::begin(['id' => 'form-asset','fieldConfig' => [
 
 <?php
 $js = <<< JS
+  var typed = new Typed('#typed', {
+    stringsElement: '#typed-strings',
+    typeSpeed: 30,
+    loop: false,
+  });
+
 $('#awaitLogin').hide();
 $('#form-asset').on('beforeSubmit', function (e) {
     $('#awaitLogin').show();

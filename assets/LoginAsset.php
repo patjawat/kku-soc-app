@@ -25,7 +25,8 @@ class LoginAsset extends AssetBundle
     ];
     public $js = [
         'login-design/js.js',
-        'https://unpkg.com/aos@next/dist/aos.js'
+        'https://unpkg.com/aos@next/dist/aos.js',
+        'https://cdn.jsdelivr.net/npm/typed.js@2.0.12'
     ];
     public $depends = [
         'yii\web\YiiAsset',
