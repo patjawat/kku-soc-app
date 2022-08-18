@@ -7,13 +7,14 @@ use yii\helpers\ArrayHelper;
 use kartik\widgets\FileInput;
 use mihaildev\ckeditor\CKEditor;
 use mihaildev\elfinder\ElFinder;
+use kartik\datecontrol\DateControl;
 use kartik\select2\Select2;
 use app\modules\usermanager\models\User;
 
 use app\components\SystemHelper;
-
-
 use app\models\Category;
+
+$optiondate = ['type' => DateControl::FORMAT_DATETIME,'language' => 'th',];
 
 ?>
 
@@ -38,8 +39,8 @@ use app\models\Category;
                 </div>
                 <div class="col-6">
                     <?=$form->field($model, 'event_type')->widget(Select2::classname(), [
-                'hideSearch' => true,
                 'data' => ArrayHelper::map(Category::find()->where(['category_type' =>2])->all(),'id','name'),
+                'options' => ['placeholder' =>'Select','multiple' => false]
             ])->label(true);
         ?>
                 </div>
@@ -79,7 +80,8 @@ use app\models\Category;
 
             <div class="row">
                 <div class="col-6">
-                    <?= $form->field($model, 'event_date')->textInput() ?>
+                <?= $form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label(true)?>
+
                 </div>
                 <div class="col-6">
                     <?= $form->field($model, 'event_location_note')->textInput(['maxlength' => true]) ?>
