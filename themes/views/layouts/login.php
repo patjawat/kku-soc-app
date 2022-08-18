@@ -20,7 +20,7 @@ $this->registerCssFile('https://fonts.googleapis.com/css2?family=Prompt:ital,wgh
     <link rel="icon" href="./img/medico.ico" type="image/x-icon" />
     <link rel="shortcut icon" href="./img/medico.ico" type="image/x-icon" />
     <?= Html::csrfMetaTags() ?>
-    <title><?= Html::encode($this->title) ?>:PPS</title>
+    <title><?= Html::encode($this->title) ?> | Authentication</title>
     <?php $this->head() ?>
 </head>
 
