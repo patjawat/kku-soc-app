@@ -1,13 +1,26 @@
+@import url('https://fonts.googleapis.com/css2?family=Prompt:ital,wght@0,100;0,200;0,300;0,400;0,500;1,100;1,200;1,300;1,400&family=Sarabun:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;1,100;1,200;1,300;1,400;1,500;1,600;1,700&display=swap');
 html,body{
-    font-family: 'Prompt', sans-serif;
+
     font-weight: 300;
+}
+.wrapper {
+    font-weight: 300 !important;
+    font-family: 'Sarabun', sans-serif;
+}
+body:not(.layout-fixed) .main-sidebar {
+    /* font-family: 'Prompt'; */
+    font-weight: 500 !important;
 }
 main > .container {
     padding: 70px 15px 20px;
+
 }
-h1,h2,h3,h4,h5,h6 {
-    font-weight: 300 !important;
+h1,h2,h3,h4,h5,h6,.btn,.alert,.callout {
+    font-weight: 400 !important;
+    font-family: 'Prompt', sans-serif;
+
 }
+
 
 .footer {
     background-color: #f5f5f5;

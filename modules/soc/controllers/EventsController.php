@@ -152,6 +152,8 @@ class EventsController extends Controller
 
         return $this->render('_form_public', [
             'model' => $model,
+            'initialPreview'=>[],
+            'initialPreviewConfig'=>[]
         ]);
     }
 
@@ -187,6 +189,9 @@ class EventsController extends Controller
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
+   if($model->reporter == ''){
+
+   }
         return $this->render('update', [
             'model' => $model,
             'initialPreview'=>$initialPreview,

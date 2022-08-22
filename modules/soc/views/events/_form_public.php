@@ -1,6 +1,7 @@
 <?php
 
 use yii\helpers\Html;
+use yii\helpers\Url;
 use yii\bootstrap4\ActiveForm;
 use yii\helpers\ArrayHelper;
 use kartik\widgets\DateTimePicker;
@@ -68,6 +69,30 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
     <?= $form->field($model, 'orther')->textArea() ?>
 
     <?= $form->field($model, 'event_location_note')->textInput(['maxlength' => true]) ?>
+
+
+    <div class="form-group field-upload_files">
+    <label class="control-label" for="upload_files[]"> บัตรประชาชน </label>
+    <div>
+        <?php echo  FileInput::widget([
+                   'name' => 'upload_ajax[]',
+                   'options' => ['multiple' => true,'accept' => ['image/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
+                    'pluginOptions' => [
+                        'overwriteInitial'=>false,
+                        'initialPreviewShowDelete'=>true,
+                        'initialPreview'=> $initialPreview,
+                        'initialPreviewConfig'=> $initialPreviewConfig,
+                        'uploadUrl' => Url::to(['/uploads/upload-ajax']),
+                        'uploadExtraData' => [
+                            'ref' => $model->ref,
+                        ],
+                        'maxFileCount' => 1,
+                        'minFileCount'=> 1,
+                    ]
+                ]);
+    ?>
+    </div>
+</div>
 
     <div class="form-group">
         <?= Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-success']) ?>
