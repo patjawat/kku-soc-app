@@ -103,12 +103,6 @@ a.desc:after {
     outline: none;
 }
 
-label:not(.form-check-label):not(.custom-file-label) {
-    font-weight: 300 !important;
-}
-
-
-
 .alert-success {
     color: #155724;
     background-color: #d4edda;
