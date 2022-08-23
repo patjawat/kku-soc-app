@@ -9,17 +9,32 @@ use kartik\datecontrol\DateControl;
 use kartik\widgets\Select2;
 use kartik\widgets\FileInput;
 
-
+echo 'isMobile'.\Yii::$app->device->isMobile();
+echo 'isTablet'.\Yii::$app->device->isTablet();
+echo 'isDesktop'.\Yii::$app->device->isDesktop();
 
 use app\models\Category;
+$this->title = 'ลงทะเบียน';
 
 $optiondate = ['type' => DateControl::FORMAT_DATETIME,'language' => 'th',];
 
-/* @var $this yii\web\View */
-/* @var $model app\models\Events */
-/* @var $form yii\widgets\ActiveForm */
 ?>
 
+<style>
+    label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 400!important;
+}
+.alert-primary {
+    color: #004085;
+    background-color: #cce5ff;
+    border-color: #b8daff;
+}
+.alert-info {
+    color: #0c5460;
+    background-color: #d1ecf1;
+    border-color: #bee5eb;
+}
+</style>
 <div class="container">
 
     <?php $form = ActiveForm::begin(); ?>
@@ -85,6 +100,7 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
                         'uploadUrl' => Url::to(['/uploads/upload-ajax']),
                         'uploadExtraData' => [
                             'ref' => $model->ref,
+                            'category_id' => 15
                         ],
                         'maxFileCount' => 1,
                         'minFileCount'=> 1,
@@ -94,6 +110,18 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
     </div>
 </div>
 
+<div class="alert alert-info" role="alert">
+       <i class="fas fa-user-lock"></i> PDPA
+    </div>
+    
+
+    <?php
+    echo $form->field($model, 'accept_pdpa', 
+    ['options' => ['tag' => 'span'], 
+    'template' => "{input}"]
+)
+->checkbox(['checked' => false, 'required' => true]);
+    ?>
     <div class="form-group">
         <?= Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-success']) ?>
     </div>
@@ -101,3 +129,27 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
     <?php ActiveForm::end(); ?>
 
 </div>
+
+<?php
+$js = <<< JS
+
+// $.getJSON("https://api.ipify.org/?format=json", function(e) {
+//     console.log(e.ip);
+// });
+
+// if (window.matchMedia("(max-width: 767px)").matches)
+//         {
+            
+//             // The viewport is less than 768 pixels wide
+//             document.write("This is a mobile device.");
+//             console.log("This is a mobile device.")
+//         } else {
+            
+//             // The viewport is at least 768 pixels wide
+//             document.write("This is a tablet or desktop.");
+//             console.log("This is a tablet or desktop.")
+//         }
+
+JS;
+$this->registerJs($js);
+?>

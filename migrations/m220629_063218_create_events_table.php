@@ -37,6 +37,7 @@ class m220629_063218_create_events_table extends Migration
             'backup_type' => $this->integer()->comment('ประเภทไฟล์ข้อมูล'),
             'reporter' => $this->integer()->comment('ผู้รายงานเหตุ'),
             'worker' => $this->json()->comment('ผู้ร่วมปฏิบัติงาน'),
+            'accept_pdpa' => $this->string(1)->notNull()->comment('การกำหนดว่า “หากข้าพเจ้าไม่ตกลงยอมรับข้อกำหนดและเงื่อนไขนี้ ผู้ให้บริการสงวนสิทธิไม่ให้บริการแก่ข้าพเจ้าได้”  มีผลเท่ากับเป็นการบังคับว่าเจ้าของข้อมูลส่วนบุคคลจะต้องให้ความยินยอม มิฉะนั้นจะไม่สามารถใช้บริการได้'),
             'updated_at' => $this->timestamp()->defaultValue(null)->append('ON UPDATE CURRENT_TIMESTAMP'),
             'created_at' => $this->timestamp(),   
             'created_by' => $this->integer()->comment('ผู้สร้าง'),

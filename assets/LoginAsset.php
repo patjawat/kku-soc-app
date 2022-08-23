@@ -20,6 +20,7 @@ class LoginAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
+        
         'login-design/style.css',
         'https://unpkg.com/aos@next/dist/aos.css'
     ];

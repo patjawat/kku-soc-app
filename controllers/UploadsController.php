@@ -173,9 +173,11 @@ class UploadsController extends Controller
 
                if($isAjax===true){
                    $ref =Yii::$app->request->post('ref');
+                   $type =Yii::$app->request->post('category_id');
                }else{
                    $Uploads = Yii::$app->request->post('Uploads');
                    $ref = $Uploads['ref'];
+                   $type = $Uploads['type'];
                }
 
                $this->CreateDir($ref);
@@ -194,6 +196,7 @@ class UploadsController extends Controller
                        $model->ref             = $ref;
                        $model->file_name       = $fileName;
                        $model->real_filename   = $realFileName;
+                       $model->type             = $type;
                        $model->save();
 
                        if($isAjax===true){

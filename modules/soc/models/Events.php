@@ -1,7 +1,6 @@
 <?php
 
 namespace app\modules\soc\models;
-
 use Yii;
 use yii\helpers\Json;
 use yii\db\Expression;
@@ -13,7 +12,8 @@ use app\components\SystemHelper;
 use app\models\Uploads;
 use app\models\Category;
 
-class Events extends ActiveRecord
+
+class Events extends \yii\db\ActiveRecord
 {
     /**
      * {@inheritdoc}
@@ -25,17 +25,18 @@ class Events extends ActiveRecord
         return 'events';
     }
 
-
     /**
      * {@inheritdoc}
      */
     public function rules()
     {
         return [
-            [['fname', 'lname', 'person_type', 'address', 'phone', 'event_date', 'event_location_note'], 'required'],
+            [['data_json', 'worker'], 'string'],
+            [['fname', 'lname', 'person_type', 'address', 'phone', 'event_date', 'event_location_note', 'accept_pdpa'], 'required'],
             [['person_type', 'event_type', 'result', 'backup_to', 'backup_type', 'reporter', 'created_by', 'updated_by'], 'integer'],
-            [['event_date', 'updated_at', 'created_at','q_date','data_json','worker'], 'safe'],
+            [['event_date', 'updated_at', 'created_at'], 'safe'],
             [['ref', 'fname', 'lname', 'fullname', 'department', 'address', 'phone', 'orther', 'event_location_note', 'lat', 'lng', 'work_img', 'docs', 'note'], 'string', 'max' => 255],
+            [['accept_pdpa'], 'string', 'max' => 1],
         ];
     }
 
@@ -60,7 +61,7 @@ class Events extends ActiveRecord
             'orther' => 'รายละเอียดเพิ่มเติม',
             'event_location_note' => 'บริเวณสถานที่เกิดเหตุ',
             'lat' => 'latitude',
-            'lng' => 'lngitude',
+            'lng' => 'longitude',
             'work_img' => 'รูปภาพการปฏิบัติการ',
             'docs' => 'เอกสารแนบใบคำขอ',
             'result' => 'ผลการให้บริการดูกล้องวงจรปิด',
@@ -69,6 +70,7 @@ class Events extends ActiveRecord
             'backup_type' => 'ประเภทไฟล์ข้อมูล',
             'reporter' => 'ผู้รายงานเหตุ',
             'worker' => 'ผู้ร่วมปฏิบัติงาน',
+            'accept_pdpa' => 'การกำหนดว่า “หากข้าพเจ้าไม่ตกลงยอมรับข้อกำหนดและเงื่อนไขนี้ ผู้ให้บริการสงวนสิทธิไม่ให้บริการแก่ข้าพเจ้าได้”  มีผลเท่ากับเป็นการบังคับว่าเจ้าของข้อมูลส่วนบุคคลจะต้องให้ความยินยอม มิฉะนั้นจะไม่สามารถใช้บริการได้',
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
             'created_by' => 'ผู้สร้าง',
@@ -76,77 +78,77 @@ class Events extends ActiveRecord
         ];
     }
 
+
     public function behaviors() {
-       return [
-//            [
-//                'class' => AttributeBehavior::className(),
-//                'attributes' => [ActiveRecord::EVENT_BEFORE_INSERT => ['id']],
-//                'value' => function() {
-//                    return DateTimeHelper::getDbDateTimeNow();
-//                }
-//            ],
-           [
-               'class' => AttributeBehavior::className(),
-               'attributes' => [ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at']],
-               'value' => new Expression('NOW()'),
-           ],
-           [
-               'class' => AttributeBehavior::className(),
-               'attributes' => [ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at'],
-               'value' => new Expression('NOW()'),
-           ],
-           [
-               'class' => BlameableBehavior::className(),
-               'createdByAttribute' => 'created_by',
-               'updatedByAttribute' => 'updated_by',
-           ]
-       ];
-    }
-
-    public function afterFind() {
-        $this->data_json = Json::decode($this->data_json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        $this->worker = Json::decode($this->worker, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-        return parent::afterFind();
-    }
-
-    public function beforeSave($insert) {
-        if (parent::beforeSave($insert)) {
-            $this->data_json = Json::encode($this->data_json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-            $this->worker = Json::encode($this->worker, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
-            $this->fullname = $this->fname.' '.$this->lname;
-         
-            return true;
-        } else {
-            return false;
+        return [
+ //            [
+ //                'class' => AttributeBehavior::className(),
+ //                'attributes' => [ActiveRecord::EVENT_BEFORE_INSERT => ['id']],
+ //                'value' => function() {
+ //                    return DateTimeHelper::getDbDateTimeNow();
+ //                }
+ //            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [ActiveRecord::EVENT_BEFORE_INSERT => ['created_at', 'updated_at']],
+                'value' => new Expression('NOW()'),
+            ],
+            [
+                'class' => AttributeBehavior::className(),
+                'attributes' => [ActiveRecord::EVENT_BEFORE_UPDATE => 'updated_at'],
+                'value' => new Expression('NOW()'),
+            ],
+            [
+                'class' => BlameableBehavior::className(),
+                'createdByAttribute' => 'created_by',
+                'updatedByAttribute' => 'updated_by',
+            ]
+        ];
+     }
+ 
+     public function afterFind() {
+         $this->data_json = Json::decode($this->data_json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+         $this->worker = Json::decode($this->worker, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+         return parent::afterFind();
+     }
+ 
+     public function beforeSave($insert) {
+         if (parent::beforeSave($insert)) {
+             $this->data_json = Json::encode($this->data_json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+             $this->worker = Json::encode($this->worker, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+             $this->fullname = $this->fname.' '.$this->lname;
+          
+             return true;
+         } else {
+             return false;
+         }
+     }
+ 
+ 
+     public function getThumbnails($ref,$event_name){
+         $uploadFiles   = Uploads::find()->where(['ref'=>$ref])->all();
+         $preview = [];
+        foreach ($uploadFiles as $file) {
+            $preview[] = [
+                'url'=>SystemHelper::getUploadUrl(true).$ref.'/'.$file->real_filename,
+                'src'=>SystemHelper::getUploadUrl(true).$ref.'/thumbnail/'.$file->real_filename,
+                'options' => ['title' => $event_name]
+            ];
         }
+        return $preview;
     }
-
-
-    public function getThumbnails($ref,$event_name){
-        $uploadFiles   = Uploads::find()->where(['ref'=>$ref])->all();
-        $preview = [];
-       foreach ($uploadFiles as $file) {
-           $preview[] = [
-               'url'=>SystemHelper::getUploadUrl(true).$ref.'/'.$file->real_filename,
-               'src'=>SystemHelper::getUploadUrl(true).$ref.'/thumbnail/'.$file->real_filename,
-               'options' => ['title' => $event_name]
-           ];
-       }
-       return $preview;
-   }
-
-
-    public function getEventType() {
-        return $this->hasOne(Category::className(), ['id' => 'event_type']);
-    }
-
-    public function getPersonType() {
-        return $this->hasOne(Category::className(), ['id' => 'person_type']);
-    }
-    
-
-    public function getUploads() {
-        return $this->hasMany(Uploads::className(), ['ref' => 'ref']);
-    }
-
+ 
+ 
+     public function getEventType() {
+         return $this->hasOne(Category::className(), ['id' => 'event_type']);
+     }
+ 
+     public function getPersonType() {
+         return $this->hasOne(Category::className(), ['id' => 'person_type']);
+     }
+     
+ 
+     public function getUploads() {
+         return $this->hasMany(Uploads::className(), ['ref' => 'ref']);
+     }
 }

@@ -87,10 +87,13 @@ class SystemHelper extends Component {
         if($model)
         {
             $file_path = self::getUploadPath(). $model->ref.'/'.$model->real_filename;
+            $file_ = pathinfo($file_path);
  if (file_exists($file_path)) {
-            // return $file_path;
             $file_path = "/soc/events/image?file_path=$file_path&width=800&height=800";
-            return Html::img($file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
+            if (strtolower($file_['extension']) == 'png') {
+                return Html::img($file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
+            
+            }
         }
         }
         // if (file_exists($file_path)) {

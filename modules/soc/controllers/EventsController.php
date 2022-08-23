@@ -2,25 +2,20 @@
 
 namespace app\modules\soc\controllers;
 
-use Yii;
+use app\components\SystemHelper;
+use app\models\Uploads;
 use app\modules\soc\models\Events;
 use app\modules\soc\models\EventsSearch;
-use app\models\Uploads;
+use dominus77\sweetalert2\Alert;
+use dosamigos\google\maps\LatLng;
+use Yii;
+use yii\filters\VerbFilter;
+use yii\helpers\html;
+use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
-use yii\filters\VerbFilter;
-use dosamigos\google\maps\LatLng;
-
-use yii\helpers\Url;
-use yii\helpers\html;
-use yii\web\UploadedFile;
-
 use yii\web\Response;
-use yii\helpers\BaseFileHelper;
-use yii\helpers\Json;
-use app\components\SystemHelper;
-use dominus77\sweetalert2\Alert;
-
+use buttflattery\videowall\Videowall;
 
 
 /**
@@ -78,24 +73,24 @@ class EventsController extends Controller
     {
         $markers = [];
         //กำหนดพิกัดในประเทศไทยเป็นตัวอย่าง
-                $min_lat = 8;
-                $max_lat = 19;
-                $min_long = 98;
-                $max_long = 105;
-        
-                for($i = 1; $i <= 50; $i++){
-                    
-                    $markers[] = ['place' => 'ทดสอบ '.$i, 'lat_long' => new LatLng(['lat' => rand($min_lat, $max_lat), 'lng' => rand($min_long, $max_long)])];
-                }
+        $min_lat = 8;
+        $max_lat = 19;
+        $min_long = 98;
+        $max_long = 105;
 
-                $model = $this->findModel($id);
-                list($initialPreview,$initialPreviewConfig) = $this->getInitialPreview($model->ref);
+        for ($i = 1; $i <= 50; $i++) {
+
+            $markers[] = ['place' => 'ทดสอบ ' . $i, 'lat_long' => new LatLng(['lat' => rand($min_lat, $max_lat), 'lng' => rand($min_long, $max_long)])];
+        }
+
+        $model = $this->findModel($id);
+        list($initialPreview, $initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
         return $this->render('view', [
             'model' => $model,
-            'initialPreview'=>$initialPreview,
-          'initialPreviewConfig'=>$initialPreviewConfig,
-            'markers' => $markers
+            'initialPreview' => $initialPreview,
+            'initialPreviewConfig' => $initialPreviewConfig,
+            'markers' => $markers,
         ]);
     }
 
@@ -107,7 +102,7 @@ class EventsController extends Controller
     public function actionCreate()
     {
         $model = new Events([
-            'ref' => substr(Yii::$app->getSecurity()->generateRandomString(),10)
+            'ref' => substr(Yii::$app->getSecurity()->generateRandomString(), 10),
         ]);
 
         if ($this->request->isPost) {
@@ -118,14 +113,14 @@ class EventsController extends Controller
             $model->loadDefaultValues();
         }
 
-        if($this->request->isAjax) {
+        if ($this->request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
-            return[
+            return [
                 'title' => '<i class="fas fa-user-plus"></i> สร้างใหม่',
                 'content' => $this->renderAjax('create', ['model' => $model]),
-                'footer' =>''
+                'footer' => '',
             ];
-        }else {
+        } else {
 
             return $this->render('create', [
                 'model' => $model,
@@ -133,17 +128,16 @@ class EventsController extends Controller
         }
     }
 
-
     public function actionUserRequest()
     {
         $this->layout = 'blank';
         $model = new Events([
-            'ref' => substr(Yii::$app->getSecurity()->generateRandomString(),10)
+            'ref' => substr(Yii::$app->getSecurity()->generateRandomString(), 10),
         ]);
 
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save(false)) {
-                
+
                 return $this->redirect(['success', 'id' => $model->id]);
             }
         } else {
@@ -152,8 +146,8 @@ class EventsController extends Controller
 
         return $this->render('_form_public', [
             'model' => $model,
-            'initialPreview'=>[],
-            'initialPreviewConfig'=>[]
+            'initialPreview' => [],
+            'initialPreviewConfig' => [],
         ]);
     }
 
@@ -164,7 +158,7 @@ class EventsController extends Controller
             'title' => 'บันทึกสำเร็จ!',
             'text' => 'กองป้องกันและรักษาความปลอดภัย',
             'showConfirmButton' => false,
-            'timer' => 1500
+            'timer' => 1500,
 
         ]);
         $model = $this->findModel($id);
@@ -183,19 +177,19 @@ class EventsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        list($initialPreview,$initialPreviewConfig) = $this->getInitialPreview($model->ref);
+        list($initialPreview, $initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->id]);
         }
 
-   if($model->reporter == ''){
+        if ($model->reporter == '') {
 
-   }
+        }
         return $this->render('update', [
             'model' => $model,
-            'initialPreview'=>$initialPreview,
-            'initialPreviewConfig'=>$initialPreviewConfig
+            'initialPreview' => $initialPreview,
+            'initialPreviewConfig' => $initialPreviewConfig,
         ]);
     }
 
@@ -228,124 +222,127 @@ class EventsController extends Controller
 
         throw new NotFoundHttpException('The requested page does not exist.');
     }
-//     private function getInitialPreview($ref) {
-//         $datas = Uploads::find()->where(['ref'=>$ref])->all();
-//         $initialPreview = [];
-//         $initialPreviewConfig = [];
-//         foreach ($datas as $key => $value) {
-//             array_push($initialPreview, $this->getTemplatePreview($value));
-//             array_push($initialPreviewConfig, [
-//                 'caption'=> $value->file_name,
-//                 'width'  => '120px',
-//                 'url'    => Url::to(['/photo-library/deletefile-ajax']),
-//                 'key'    => $value->upload_id
-//             ]);
-//         }
-//         return  [$initialPreview,$initialPreviewConfig];
-// }
 
+    private function getInitialPreview($ref)
+    {
 
-
-private function getInitialPreview($ref) {
-    // $visit_ = TCDSHelper::getVisit();
-    // $datas = Documentqr::find()
-    //         ->where(['hn' => $hn, 'document_qr_map_id' => $id])
-    //         ->orderBy([
-    //             // 'created_at' => 'SORT_DESC',
-    //             // 'create_time' => 'SORT_DESC',
-    //             // 'file_name' => 'SORT_ASC',
-    //             'his_an' => 'SORT_DESC',
-    //             'document_qr_map_id' => 'SORT_ASC',
-    //             'file_name' => 'SORT_ASC',
-    //         ])
-    //         ->all();
-    $datas = Uploads::find()->where(['ref'=>$ref])->all();
-    $initialPreview = [];
-    $initialPreviewConfig = [];
-    foreach ($datas as $value) {
-        array_push($initialPreview, SystemHelper::getImageUpload($value->upload_id));
-        array_push($initialPreviewConfig, [
-            'caption' => $value->file_name,
-            'width' => '120px',
-            'url' => Url::to(['/soc/events/deletefile-ajax']),
-            'key' => $value->upload_id,
-        ]);
+        $datas = Uploads::find()->where(['ref' => $ref])->all();
+        $initialPreview = [];
+        $initialPreviewConfig = [];
+        foreach ($datas as $value) {
+            array_push($initialPreview, SystemHelper::getImageUpload($value->upload_id));
+            array_push($initialPreviewConfig, [
+                'caption' => $value->file_name,
+                'width' => '120px',
+                'url' => Url::to(['/soc/events/deletefile-ajax']),
+                'key' => $value->upload_id,
+            ]);
+        }
+        return [$initialPreview, $initialPreviewConfig];
     }
-    return [$initialPreview, $initialPreviewConfig];
-}
 
-
-public function isImage($filePath){
+    public function isImage($filePath)
+    {
         return @is_array(getimagesize($filePath)) ? true : false;
-}
+    }
 
-private function getTemplatePreview(Uploads $model){
-        $filePath = SystemHelper::getUploadUrl().$model->ref.'/thumbnail/'.$model->real_filename;
-        $isImage  = $this->isImage($filePath);
-        if($isImage){
-            $file = Html::img($filePath,['class'=>'file-preview-image', 'alt'=>$model->file_name, 'title'=>$model->file_name]);
-        }else{
-            $file =  "<div class='file-preview-other'> " .
-                     "<h2><i class='glyphicon glyphicon-file'></i></h2>" .
-                     "</div>";
+    private function getTemplatePreview(Uploads $model)
+    {
+        $filePath = SystemHelper::getUploadUrl() . $model->ref . '/thumbnail/' . $model->real_filename;
+        $isImage = $this->isImage($filePath);
+        if ($isImage) {
+            $file = Html::img($filePath, ['class' => 'file-preview-image', 'alt' => $model->file_name, 'title' => $model->file_name]);
+        } else {
+            $file = "<div class='file-preview-other'> " .
+                "<h2><i class='glyphicon glyphicon-file'></i></h2>" .
+                "</div>";
         }
         return $file;
-}
-
-private function createThumbnail($folderName,$fileName,$width=250){
-  $uploadPath   = SystemHelper::getUploadPath().'/'.$folderName.'/';
-  $file         = $uploadPath.$fileName;
-  $image        = Yii::$app->image->load($file);
-  $image->resize($width);
-  $image->save($uploadPath.'thumbnail/'.$fileName);
-  return;
-}
-
-public function actionDeletefileAjax(){
-    Yii::$app->response->format = Response::FORMAT_JSON;
-    $model = Uploads::findOne(['upload_id' => Yii::$app->request->post('key')]);
-    if($model!==NULL){
-        $filename  = SystemHelper::getUploadPath().$model->ref.'/'.$model->real_filename;
-        // $thumbnail = SystemHelper::getUploadPath().$model->ref.'/thumbnail/'.$model->real_filename;
-        if($model->delete()){
-            @unlink($filename);
-            @unlink($thumbnail);
-            return ['success'=>true];
-        }else{
-            return ['success'=>false];
-        }
-    }else{
-        return ['success'=>false];
     }
-}
 
-protected function setHttpHeaders() {
-    Yii::$app->getResponse()->getHeaders()
+    private function createThumbnail($folderName, $fileName, $width = 250)
+    {
+        $uploadPath = SystemHelper::getUploadPath() . '/' . $folderName . '/';
+        $file = $uploadPath . $fileName;
+        $image = Yii::$app->image->load($file);
+        $image->resize($width);
+        $image->save($uploadPath . 'thumbnail/' . $fileName);
+        return;
+    }
+
+    public function actionDeletefileAjax()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model = Uploads::findOne(['upload_id' => Yii::$app->request->post('key')]);
+        if ($model !== null) {
+            $filename = SystemHelper::getUploadPath() . $model->ref . '/' . $model->real_filename;
+            // $thumbnail = SystemHelper::getUploadPath().$model->ref.'/thumbnail/'.$model->real_filename;
+            if ($model->delete()) {
+                @unlink($filename);
+                @unlink($thumbnail);
+                return ['success' => true];
+            } else {
+                return ['success' => false];
+            }
+        } else {
+            return ['success' => false];
+        }
+    }
+
+    protected function setHttpHeaders()
+    {
+        Yii::$app->getResponse()->getHeaders()
             ->set('Pragma', 'public')
             ->set('Expires', '0')
             ->set('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
             ->set('Content-Transfer-Encoding', 'binary')
             ->set('Content-type', 'image/jpg');
-}
+    }
 
 // public function actionImage(string $file_path, int $width = 1080, int $height = 1080) {
-public function actionImage() {
-    try {
-    Yii::$app->response->format = Response::FORMAT_RAW;
-    $file_path = $this->request->get('file_path');
-    $width = 1080;
-    $height = 1080;
-    $this->setHttpHeaders();
+    public function actionImage()
+    {
+            Yii::$app->response->format = Response::FORMAT_RAW;
+            $file_path = $this->request->get('file_path');
+            // $files = SystemHelper::getImage($file_path, $width, $height);
+            $b = explode('png','"'.$file_path."'");
+            print_r($b[1]);
 
-        $files = SystemHelper::getImage($file_path, $width, $height);
-        // if($files['type' == 'png'])
-        // {
-        //     return $files['data'];
+
+        // try {
+        //     Yii::$app->response->format = Response::FORMAT_RAW;
+        //     $file_path = $this->request->get('file_path');
+        //     $width = 1080;
+        //     $height = 1080;
+        //     // $this->setHttpHeaders();
+
+        //     $files = SystemHelper::getImage($file_path, $width, $height);
+
+        //     // return $files;
+        //     $b = explode('/','ss/aa');
+        //     return $b;
+
+        // } catch (\ImagickException$ex) {
+
         // }
-        return $files;
-    
-    } catch (\ImagickException $ex) {
-        
     }
-}
+
+    public function actionVideo()
+    {
+
+        Yii::$app->response->format = Response::FORMAT_RAW;
+        Yii::$app->getResponse()->getHeaders()
+        // ->set('Pragma', 'public')
+        // ->set('Expires', '0')
+        // ->set('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+        // ->set('Content-Transfer-Encoding', 'binary')
+        ->set('Content-type', 'video/mp4');
+        $id = 21;
+        // // $path = 'file.mp4';
+        $model = Uploads::find()->where(['upload_id' => $id])->One();
+        $path = SystemHelper::getUploadPath(). $model->ref.'/'.$model->real_filename;
+        $video_data = file_get_contents($path);
+        return $video_data;
+
+    }
 }

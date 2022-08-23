@@ -14,6 +14,7 @@ use app\modules\usermanager\models\User;
 use app\components\SystemHelper;
 use app\models\Category;
 
+
 $optiondate = ['type' => DateControl::FORMAT_DATETIME,'language' => 'th',];
 
 ?>
@@ -143,6 +144,12 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME,'language' => 'th',];
 
 <div class="form-group field-upload_files">
     <label class="control-label" for="upload_files[]"> ภาพถ่าย </label>
+    <?php 
+    // print_r($initialPreview);
+    // echo '<pre>';
+    // print_r($initialPreviewConfig);
+    // echo '</pre>';
+    ?>
     <div>
         <?php echo  FileInput::widget([
                    'name' => 'upload_ajax[]',
@@ -155,6 +162,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME,'language' => 'th',];
                         'uploadUrl' => Url::to(['/uploads/upload-ajax']),
                         'uploadExtraData' => [
                             'ref' => $model->ref,
+                            'category_id' => 16
                         ],
                         'maxFileCount' => 100
                     ]

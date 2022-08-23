@@ -97,7 +97,9 @@ $config = [
                 ],
             ],
         ],
-        
+        'device' => [
+            'class' => '\i4erkasov\devicedetect\DeviceDetect'
+        ]
         
     ],
     'modules' => $modules,    
@@ -113,7 +115,7 @@ $config = [
             // 'reception/default/index',
             // 'reception/default/form-upload',
             // 'document/documentqr/upload-ajax',
-            // 'gii/*',
+            'gii/*',
             // 'api/*'
         ],
     ],
