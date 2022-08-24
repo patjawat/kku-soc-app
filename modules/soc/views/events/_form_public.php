@@ -119,7 +119,7 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
 ->checkbox(['checked' => false, 'required' => true]);
     ?>
     <div class="form-group">
-        <?= Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-block btn-success']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
