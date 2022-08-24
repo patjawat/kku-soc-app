@@ -5,9 +5,11 @@ use yii\helpers\Url;
 use yii\grid\ActionColumn;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
-use app\models\Events;
+use app\modules\soc\models\Events;
 use app\models\Category;
 use yii\helpers\ArrayHelper;
+use app\components\SystemHelper;
+
 
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\EventsSearch */
@@ -23,6 +25,7 @@ $this->params['breadcrumbs'][] = $this->title;
     font-weight: 300;
 }
 </style>
+
 <div class="events-index">
     <p>
         <?= Html::a('<i class="fas fa-plus"></i> สร้างใหม่', ['create'], ['class' => 'btn btn-success']) ?>

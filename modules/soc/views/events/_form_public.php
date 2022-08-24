@@ -9,10 +9,6 @@ use kartik\datecontrol\DateControl;
 use kartik\widgets\Select2;
 use kartik\widgets\FileInput;
 
-echo 'isMobile'.\Yii::$app->device->isMobile();
-echo 'isTablet'.\Yii::$app->device->isTablet();
-echo 'isDesktop'.\Yii::$app->device->isDesktop();
-
 use app\models\Category;
 $this->title = 'ลงทะเบียน';
 

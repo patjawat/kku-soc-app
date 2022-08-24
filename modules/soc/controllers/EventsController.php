@@ -48,6 +48,7 @@ class EventsController extends Controller
      */
     public function actionIndex()
     {
+        SystemHelper::initialDataSession();
         $searchModel = new EventsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
 
@@ -177,6 +178,7 @@ class EventsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+        SystemHelper::initialsetDataSession($model->ref);
         list($initialPreview, $initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
         if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false)) {
@@ -223,6 +225,7 @@ class EventsController extends Controller
         throw new NotFoundHttpException('The requested page does not exist.');
     }
 
+    // การแสดงภาพ
     private function getInitialPreview($ref)
     {
 
@@ -230,7 +233,7 @@ class EventsController extends Controller
         $initialPreview = [];
         $initialPreviewConfig = [];
         foreach ($datas as $value) {
-            array_push($initialPreview, SystemHelper::getImageUpload($value->upload_id));
+            array_push($initialPreview, SystemHelper::getFileUpload($value->upload_id));
             array_push($initialPreviewConfig, [
                 'caption' => $value->file_name,
                 'width' => '120px',
@@ -246,19 +249,19 @@ class EventsController extends Controller
         return @is_array(getimagesize($filePath)) ? true : false;
     }
 
-    private function getTemplatePreview(Uploads $model)
-    {
-        $filePath = SystemHelper::getUploadUrl() . $model->ref . '/thumbnail/' . $model->real_filename;
-        $isImage = $this->isImage($filePath);
-        if ($isImage) {
-            $file = Html::img($filePath, ['class' => 'file-preview-image', 'alt' => $model->file_name, 'title' => $model->file_name]);
-        } else {
-            $file = "<div class='file-preview-other'> " .
-                "<h2><i class='glyphicon glyphicon-file'></i></h2>" .
-                "</div>";
-        }
-        return $file;
-    }
+    // private function getTemplatePreview(Uploads $model)
+    // {
+    //     $filePath = SystemHelper::getUploadUrl() . $model->ref . '/thumbnail/' . $model->real_filename;
+    //     $isImage = $this->isImage($filePath);
+    //     if ($isImage) {
+    //         $file = Html::img($filePath, ['class' => 'file-preview-image', 'alt' => $model->file_name, 'title' => $model->file_name]);
+    //     } else {
+    //         $file = "<div class='file-preview-other'> " .
+    //             "<h2><i class='glyphicon glyphicon-file'></i></h2>" .
+    //             "</div>";
+    //     }
+    //     return $file;
+    // }
 
     private function createThumbnail($folderName, $fileName, $width = 250)
     {
@@ -299,15 +302,16 @@ class EventsController extends Controller
             ->set('Content-type', 'image/jpg');
     }
 
-// public function actionImage(string $file_path, int $width = 1080, int $height = 1080) {
-    public function actionImage()
-    {
+public function actionImage(string $file_path, int $width, int $height) {
+    // public function actionImage()
+    // {
+        // $width = 1080;
+        //     $height = 1080;
             Yii::$app->response->format = Response::FORMAT_RAW;
             $file_path = $this->request->get('file_path');
-            // $files = SystemHelper::getImage($file_path, $width, $height);
-            $b = explode('png','"'.$file_path."'");
-            print_r($b[1]);
-
+            $files = SystemHelper::getFiles($file_path, $width, $height);
+            
+            return $files;
 
         // try {
         //     Yii::$app->response->format = Response::FORMAT_RAW;
@@ -330,19 +334,40 @@ class EventsController extends Controller
     public function actionVideo()
     {
 
-        Yii::$app->response->format = Response::FORMAT_RAW;
+        Yii::$app->response->format = Response::FORMAT_JSON;
         Yii::$app->getResponse()->getHeaders()
         // ->set('Pragma', 'public')
         // ->set('Expires', '0')
         // ->set('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
         // ->set('Content-Transfer-Encoding', 'binary')
         ->set('Content-type', 'video/mp4');
-        $id = 21;
+        $id = 5;
         // // $path = 'file.mp4';
         $model = Uploads::find()->where(['upload_id' => $id])->One();
         $path = SystemHelper::getUploadPath(). $model->ref.'/'.$model->real_filename;
         $video_data = file_get_contents($path);
         return $video_data;
 
+    }
+
+    public function actionUploadForm(){
+        
+        if($this->request->isAjax)
+        {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+            return [
+                'title' => '<i class="fas fa-cloud-upload-alt"></i> FileUpload',
+                'content' => $this->renderAjax('_form_upload',[
+                    'initialPreview'=>[],
+                    'initialPreviewConfig'=>[]
+                ]),
+            ];
+        }else{
+            return $this->render('_form_upload',[
+                'initialPreview'=>[],
+                'initialPreviewConfig'=>[]
+            ]);
+        }
     }
 }

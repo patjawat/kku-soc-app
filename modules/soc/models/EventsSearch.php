@@ -4,7 +4,7 @@ namespace app\modules\soc\models;
 
 use yii\base\Model;
 use yii\data\ActiveDataProvider;
-use app\models\Events;
+use app\modules\soc\models\Events;
 
 /**
  * EventsSearch represents the model behind the search form of `app\models\Events`.
