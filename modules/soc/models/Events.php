@@ -156,7 +156,7 @@ class Events extends \yii\db\ActiveRecord
   
             }
         }else{
-            Html::img('@web/img/dc_1.png', ['width' => '350px']);
+            return Html::img('@web/img/dc_1.png', ['width' => '350px','style' => 'margin-top: -64px;']);
         }
     }
  
