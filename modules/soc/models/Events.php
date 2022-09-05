@@ -10,8 +10,10 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use app\components\SystemHelper;
+use app\components\UserHelper;
 use app\models\Uploads;
 use app\models\Category;
+use app\modules\usermanager\models\User;
 
 
 class Events extends \yii\db\ActiveRecord
@@ -160,6 +162,10 @@ class Events extends \yii\db\ActiveRecord
         }
     }
  
+    public function getUser(){
+        $model = User::findOne(['id' => $this->reporter]);
+        return $model->fullname;
+    }
      public function getEventType() {
          return $this->hasOne(Category::className(), ['id' => 'event_type']);
      }

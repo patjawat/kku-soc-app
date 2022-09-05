@@ -370,4 +370,18 @@ public function actionImage(string $file_path, int $width, int $height) {
             ]);
         }
     }
+
+    public function actionConfirmJob()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $id = $this->request->get('id');
+        $model = $this->findModel($id);
+        if($model->reporter !== ''){
+            $model->reporter = Yii::$app->user->identity->id;
+        }
+       if($model->save()){
+        return $this->redirect(['view', 'id' => $model->id]);
+       }
+        
+    }
 }

@@ -1,18 +1,25 @@
 <?php
 
 use yii\helpers\Html;
+use yii\web\View;
+use yii\helpers\Url;
 use yii\widgets\DetailView;
 use dosamigos\google\maps\LatLng;
 use dosamigos\google\maps\overlays\InfoWindow;
 use edofre\markerclusterer\Map;
 use edofre\markerclusterer\Marker;
 use app\components\SystemHelper;
+use dominus77\sweetalert2\assets\ThemeAsset;
 
+/** @var yii\web\View $this */
+
+// ThemeAsset::register($this, ThemeAsset::THEME_DARK);
+ThemeAsset::register($this);
 
 /* @var $this yii\web\View */
 /* @var $model app\models\Events */
 
-$this->title = 'แสดงรายละเอียเเหตุการณ์';
+$this->title = $model->reporter == ''? 'ยังไม่ได้รับเรื่อง' : 'ผู้รับเรื่อง : '.$model->getUser();
 $this->params['breadcrumbs'][] = ['label' => 'Events', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
@@ -21,6 +28,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <p>
+    <?= $model->reporter == '' ? Html::a('<i class="far fa-edit"></i> รับเรื่อง', ['confirm-job', 'id' => $model->id], ['class' => 'btn btn-info','id' => 'confirm-job']):'' ?>
     <?= Html::a('<i class="far fa-edit"></i> แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-warning showปป']) ?>
         <?= Html::a('<i class="fas fa-trash"></i> ลบทิ้ง', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -95,5 +103,45 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 <?php foreach($model->uploads as $files):?>
-<p><?php print_r($files)?></p>
+<p><?php // print_r($files)?></p>
 <?php endforeach;?>
+
+<?php
+$ConfirmUrl = Url::to(['/soc/events/confirm-job']);
+$id = $model->id;
+$js = <<< JS
+$('#confirm-job').click(function (e) { 
+    e.preventDefault();
+     
+Swal.fire({
+  title: 'ผู้รับรายงานเหตุ?',
+  text: "นายปัจวัฒน์ ศรีบุญเรือง!",
+  icon: 'warning',
+  showCancelButton: true,
+//   confirmButtonColor: '#3085d6',
+//   cancelButtonColor: '#d33',
+  confirmButtonText: 'ใช่,ยืนยัน!',
+  cancelButtonText: 'ยกเลิก'
+}).then((result) => {
+  if (result.isConfirmed) {
+    $.ajax({
+        type: "get",
+        url: "$ConfirmUrl",
+        data:{id:$id},
+        dataType: "json",
+        success: function (response) {
+            console.log(response)
+        }
+    });
+    // Swal.fire(
+    //   'Deleted!',
+    //   'Your file has been deleted.',
+    //   'success'
+    // )
+  }
+})
+    
+});
+JS;
+$this->registerJs($js,View::POS_END);
+?>
