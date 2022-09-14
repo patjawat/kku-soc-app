@@ -139,7 +139,8 @@ class EventsController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post()) && $model->save(false)) {
 
-                return $this->redirect(['success', 'id' => $model->id]);
+                // return $this->redirect(['success', 'id' => $model->id]);
+                return true;
             }
         } else {
             $model->loadDefaultValues();
@@ -383,5 +384,40 @@ public function actionImage(string $file_path, int $width, int $height) {
         return $this->redirect(['view', 'id' => $model->id]);
        }
         
+    }
+
+    public function actionSaveImage()
+    {
+        
+        if ($this->request->isPost) {
+            $img = $this->request->post('image');
+            $ref = $this->request->post('ref');
+            // $this->CreateDir($ref);
+            
+            Yii::$app->response->format = Response::FORMAT_JSON;
+            
+            $savePath       = Events::UPLOAD_FOLDER.'/'.$ref.'.jpg';
+            $saveFile = file_put_contents($savePath, file_get_contents($img));
+            
+            
+            $model =  Events::findOne(['ref' => $ref]);
+           if($saveFile){
+              
+            Yii::$app->session->setFlash(\dominus77\sweetalert2\Alert::TYPE_SUCCESS, [
+                [
+                    'title' => 'บันทึกสำเร็จ!',
+                    'text' => 'Your message',
+                    'confirmButtonText' => 'เสร็จสิ้น!',
+                    'timer' => 1500,
+                ]
+             ]);
+             
+            //    return $this->redirect(['update', 'id' => $model->id]);
+            return $this->redirect(['success', 'id' => $model->id]);
+           }else{
+               return null;
+           }
+        } 
+
     }
 }

@@ -109,6 +109,9 @@ $config = [
         'allowActions' => [
             // '*',
             'soc/events/user-request',
+            'soc/events/save-image',
+            'soc/events/success',
+            'uploads/upload-ajax',
             'datecontrol/parse/convert',
             // 'liff/*',
             // 'site/*',

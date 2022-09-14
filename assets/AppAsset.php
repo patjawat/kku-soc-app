@@ -20,14 +20,15 @@ class AppAsset extends AssetBundle
     public $basePath = '@webroot';
     public $baseUrl = '@web';
     public $css = [
-        'css/site.css',
+        'css/soc-site.css',
         // 'css/style.css',
         // 'vendors/ti-icons/css/themify-icons.css'
     ];
     public $js = [
-        'js/main.js',
+        'js/soc-main.js',
         // 'sweetalert2/dist/sweetalert2.all.min.js',
-        'js/easy.qrcode.min.js'
+        'js/easy.qrcode.min.js',
+        '/js-signature/signature_pad.min.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',

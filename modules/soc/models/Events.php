@@ -21,6 +21,12 @@ class Events extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    const UPLOAD_FOLDER='signature';
+
+    public static function getUploadPath(){
+        return Yii::getAlias('@webroot').'/'.self::UPLOAD_FOLDER.'/';
+    }
+
     public $q_date;
 
     public static function tableName()

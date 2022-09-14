@@ -20,7 +20,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 ?>
 
-<div class="justify-content-center mt-5">
+<div class="justify-content-center mt-5 card p-3">
 
 <div class="alert alert-success" role="alert">
 <strong>บันทึกข้อมูลสำเร็จ</strong> : เจ้าหน้าที่จะทำการตวจสอบขอบคุณค่ะ

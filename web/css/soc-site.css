@@ -9,7 +9,7 @@ html,body{
 }
 body:not(.layout-fixed) .main-sidebar {
     /* font-family: 'Prompt'; */
-    font-weight: 500 !important;
+    font-weight: 300 !important;
 }
 main > .container {
     padding: 70px 15px 20px;

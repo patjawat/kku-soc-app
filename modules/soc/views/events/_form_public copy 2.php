@@ -20,7 +20,13 @@ $this->registerJsFile('@web/js-signature/modernizr.js', ['depends' => [\yii\web\
 <style type="text/css">
 #signature-pad {
     border: solid 1px blue;
+    /* width: 830px;
+  height: 1024; */
 }
+
+/* .wrapper-draw {
+    height: 30px;
+} */
 
 #signature-pad {
     min-height: 20px;
@@ -31,6 +37,8 @@ $this->registerJsFile('@web/js-signature/modernizr.js', ['depends' => [\yii\web\
     position: absolute;
     left: 0;
     top: 0;
+    /* width: 10%;
+    height: 10% */
 }
 </style>
 
@@ -53,70 +61,59 @@ label:not(.form-check-label):not(.custom-file-label) {
 </style>
 <?php
 ?>
+<br>
+<br>
+<br>
 
-<div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-12">
-
-
-            <?php $form = ActiveForm::begin(['id' => 'form-data']) ?>
-            <?=$form->field($model, 'ref')->hiddenInput(['class' => 'ref'])->label(false); ?>
-
-            <div class="info-box shadow-sm">
-                <div class="info-box-content ">
-                    <div class="row">
-                        <div class="col-6">
-                            <?= $form->field($model, 'fname')->textInput(['maxlength' => true]) ?>
-                        </div>
-                        <div class="col-6">
-                            <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
-                        </div>
-                    </div>
+<div class="container card">
+    <?php $form = ActiveForm::begin(['id' => 'form-data']) ?>
+    <?=$form->field($model, 'ref')->hiddenInput(['class' => 'ref'])->label(false); ?>
+    <div class="info-box shadow-sm">
+        <div class="info-box-content ">
+            <div class="row">
+                <div class="col-6">
+                    <?= $form->field($model, 'fname')->textInput(['maxlength' => true]) ?>
+                </div>
+                <div class="col-6">
+                    <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
                 </div>
             </div>
+        </div>
+    </div>
 
+    <div class="info-box shadow-sm">
+        <div class="info-box-content ">
+            <?= $form->field($model, 'person_type')->radioList(ArrayHelper::map(Category::find()->where(['category_type' => 1])->all(),'id','name')) ?>
+        </div>
+    </div>
+    <?= $form->field($model, 'department')->textInput(['maxlength' => true]) ?>
 
-            <div class="info-box shadow-sm">
-                <div class="info-box-content ">
-                    <?= $form->field($model, 'person_type')->radioList(ArrayHelper::map(Category::find()->where(['category_type' => 1])->all(),'id','name')) ?>
-                </div>
-            </div>
+    <?= $form->field($model, 'address')->textArea(['maxlength' => true]) ?>
 
+    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-            <div class="info-box shadow-sm">
-                <div class="info-box-content ">
-                    <?= $form->field($model, 'department')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label(true)?>
 
-                    <?= $form->field($model, 'address')->textArea(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
-
-                    <?= $form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label(true)?>
-
-                    <?=
+    <?=
 $form->field($model, 'event_type')->widget(Select2::classname(), [
-'data' =>  ArrayHelper::map(Category::find()->where(['category_type' => 2])->all(),'id','name'),
-'options' => ['placeholder' => 'เลือกเหตุการณ์'],
-'pluginOptions' => [
-    'allowClear' => true,
-],
+    'data' =>  ArrayHelper::map(Category::find()->where(['category_type' => 2])->all(),'id','name'),
+    'options' => ['placeholder' => 'เลือกเหตุการณ์'],
+    'pluginOptions' => [
+        'allowClear' => true,
+    ],
 
 ]);
 ?>
 
-                    <?= $form->field($model, 'orther')->textArea() ?>
+    <?= $form->field($model, 'orther')->textArea() ?>
 
-                    <?= $form->field($model, 'event_location_note')->textInput(['maxlength' => true]) ?>
+    <?= $form->field($model, 'event_location_note')->textInput(['maxlength' => true]) ?>
 
-                </div>
-            </div>
 
-            <div class="info-box shadow-sm">
-                <div class="info-box-content ">
-                    <div class="form-group field-upload_files">
-                        <label class="control-label" for="upload_files[]"> บัตรประชาชน </label>
-                        <div>
-                            <?php echo  FileInput::widget([
+    <div class="form-group field-upload_files">
+        <label class="control-label" for="upload_files[]"> บัตรประชาชน </label>
+        <div>
+            <?php echo  FileInput::widget([
                    'name' => 'upload_ajax[]',
                    'options' => ['multiple' => true,'accept' => ['image/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
                     'pluginOptions' => [
@@ -134,45 +131,37 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
                     ]
                 ]);
     ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
+        </div>
+    </div>
+
+    <div class="alert alert-info" role="alert">
+        <i class="fas fa-user-lock"></i> PDPA
+    </div>
 
 
-            <div class="card">
-                <div class="card-header">
-                    <i class="fas fa-user-lock"></i> PDPA
-                </div>
-                <div class="card-body">
-                    <?php
+    <?php
     echo $form->field($model, 'accept_pdpa', 
     ['options' => ['tag' => 'span'], 
     'template' => "{input}"]
 )
 ->checkbox(['checked' => false, 'required' => true]);
     ?>
-                </div>
-            </div>
 
 
-            <div class="wrapper-draw" style="background-color:#dee2e6;">
+
+    <div class="wrapper-draw" style="background-color:#dee2e6;">
         <canvas id="signature-pad" class="signature-pad"></canvas>
     </div>
+    <!-- <div>
+    </div> -->
 
 
-            <div class="form-group">
-                <?= Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-block btn-success']) ?>
-            </div>
-
-            <?php ActiveForm::end(); ?>
-
-
-        </div>
-
-
-
+    <div class="form-group">
+        <?= Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-block btn-success']) ?>
     </div>
+
+    <?php ActiveForm::end(); ?>
+
 </div>
 
 <?php
@@ -187,7 +176,7 @@ if($model->isNewRecord){
 
 $js = <<< JS
 
-var w = 900;
+var w = 924;
 
 var h = 300;
 $('#signature-pad').width(w)

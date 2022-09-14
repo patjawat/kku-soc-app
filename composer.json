@@ -50,7 +50,9 @@
         "mihaildev/yii2-ckeditor": "*",
         "mihaildev/yii2-elfinder": "*",
         "2amigos/yii2-gallery-widget": "~1.0",
-        "wbraganca/yii2-videojs-widget": "~1.0"
+        "wbraganca/yii2-videojs-widget": "~1.0",
+        "inquid/yii2-signature": "dev-master"
+
     },
     "require-dev": {
         "yiisoft/yii2-debug": "~2.1.0",
