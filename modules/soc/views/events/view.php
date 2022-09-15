@@ -105,13 +105,13 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 <div class="col-4">
 <div class="alert alert-info" role="alert">
-        <strong><i class="far fa-edit"></i> ลายเซ็นต์</strong>
+        <strong><i class="fas fa-address-card"></i> บัตรประชาชน</strong>
     </div>
     <div class="view-card-id">
         <?=$model->getIdCart()?>
     </div>
     <div class="alert alert-info" role="alert">
-        <strong><i class="far fa-edit"></i> ลายเซ็นต์</strong>
+        <strong><i class="fas fa-signature"></i> ลายเซ็นต์</strong>
     </div>
     <?=Html::img('@web/signature/'.$model->ref.'.jpg',['style' => 'width:100%'])?>
 </div>
