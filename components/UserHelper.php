@@ -14,7 +14,11 @@ class UserHelper extends Component{
 
     public static function getUser($field){
         $model = User::findOne(['id' => Yii::$app->user->id]);
-        return $model->$field;
+        if($model){
+            return $model->$field;
+        }else{
+            return null;
+        }
     }
     public static function getDoctorIs($id=null){
         if($id){

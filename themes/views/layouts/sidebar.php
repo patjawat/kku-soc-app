@@ -1,7 +1,7 @@
 <?php
 use yii\helpers\Html;
 use app\components\UserHelper;
-
+$module = \Yii::$app->controller->module->id;
 ?>
 <aside class="main-sidebar sidebar-dark-primary elevation-4">
     <!-- Brand Logo -->
@@ -35,6 +35,20 @@ use app\components\UserHelper;
 
         <!-- Sidebar Menu -->
         <nav class="mt-2">
+            <?php if($module =='special'):?>
+                <?php
+            echo \hail812\adminlte\widgets\Menu::widget([
+                'items' => [
+                    // ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
+                    // ['label' => 'การติดตามผล','url' => ['/tracking'],'icon' => 'truck'],
+                    ['label' => 'Dashboard','url' => ['/site'],'icon' => 'tachometer-alt'],
+                    ['label' => 'บันทึกประจำวัน','url' => ['/soc/events/user-request'],'icon' => 'user-edit'],
+                                ],
+            ]);
+            ?>
+                <?php endif;?>
+
+                <?php if($module =='soc'):?>
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
@@ -80,6 +94,7 @@ use app\components\UserHelper;
                                 ],
             ]);
             ?>
+            <?php endif;?>
         </nav>
         <!-- /.sidebar-menu -->
     </div>

@@ -51,6 +51,7 @@ class EventsController extends Controller
         SystemHelper::initialDataSession();
         $searchModel = new EventsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->query->andWhere(['event_group' => 17]);
 
         if ($searchModel->q_date) { // ค้นตามวันเวลาที่ระบบ
             $date_explode = explode(" - ", $searchModel->q_date);

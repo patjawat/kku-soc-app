@@ -75,6 +75,7 @@ $modules['dashbroad'] = ['class' => 'app\modules\dashbroad\Dashbroad']; //กา
 $modules['emr'] = ['class' => 'app\modules\emr\Emr'];
 $modules['his'] = ['class' => 'app\modules\his\Module'];
 $modules['soc'] = ['class' => 'app\modules\soc\Module'];
+$modules['special'] = ['class' => 'app\modules\special\Module'];
 $modules['line'] = ['class' => 'app\modules\line\Module'];
 
 return $modules;
