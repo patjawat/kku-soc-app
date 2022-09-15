@@ -25,11 +25,17 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 ?>
+<style>
+    .table-bordered th {
+    border: 1px solid #dee2e6;
+    font-weight: 300;
+}
+</style>
 
 
     <p>
     <?= $model->reporter == '' ? Html::a('<i class="far fa-edit"></i> รับเรื่อง', ['confirm-job', 'id' => $model->id], ['class' => 'btn btn-info','id' => 'confirm-job']):'' ?>
-    <?= Html::a('<i class="far fa-edit"></i> แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-warning showปป']) ?>
+    <?= $model->reporter == '' ? null : Html::a('<i class="far fa-edit"></i> แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-warning showปป']) ?>
         <?= Html::a('<i class="fas fa-trash"></i> ลบทิ้ง', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
             'data' => [
@@ -100,11 +106,18 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <div class="alert alert-info" role="alert">
     <strong><i class="far fa-edit"></i> รูปภาพ/วีดีโอ</strong>
+    <?php
+    // print_r($model->uploads);
+    ?>
 </div>
 
-<?php foreach($model->uploads as $files):?>
+
+<?php foreach($model->uploads as $file):?>
 <p><?php // print_r($files)?></p>
+<p><?php print_r($file->viewFile())?></p>
+<??>
 <?php endforeach;?>
+
 
 <?php
 $ConfirmUrl = Url::to(['/soc/events/confirm-job']);
@@ -133,11 +146,6 @@ Swal.fire({
             console.log(response)
         }
     });
-    // Swal.fire(
-    //   'Deleted!',
-    //   'Your file has been deleted.',
-    //   'success'
-    // )
   }
 })
     

@@ -167,6 +167,7 @@ class Events extends \yii\db\ActiveRecord
             return Html::img('@web/img/dc_1.png', ['width' => '350px','style' => 'margin-top: -64px;']);
         }
     }
+
  
     public function getUser(){
         $model = User::findOne(['id' => $this->reporter]);

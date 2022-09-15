@@ -50,7 +50,7 @@ use yii\helpers\ArrayHelper;
             </div>
         </div>
             
-    <div class="content">
+    <div class="content pl-3 pr-3">
         <?php if (Yii::$app->session->hasFlash('alert')): ?>
         <?= \yii\bootstrap4\Alert::widget([
         'body' => ArrayHelper::getValue(

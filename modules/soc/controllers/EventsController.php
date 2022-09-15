@@ -335,14 +335,15 @@ public function actionImage(string $file_path, int $width, int $height) {
     public function actionVideo()
     {
 
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        // Yii::$app->response->format = Response::FORMAT_JSON;
+        $id = Yii::$app->request->get('id');
         Yii::$app->getResponse()->getHeaders()
         // ->set('Pragma', 'public')
         // ->set('Expires', '0')
         // ->set('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
         // ->set('Content-Transfer-Encoding', 'binary')
         ->set('Content-type', 'video/mp4');
-        $id = 5;
+        // $id = 8;
         // // $path = 'file.mp4';
         $model = Uploads::find()->where(['upload_id' => $id])->One();
         $path = SystemHelper::getUploadPath(). $model->ref.'/'.$model->real_filename;
