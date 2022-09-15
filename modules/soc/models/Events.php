@@ -171,7 +171,11 @@ class Events extends \yii\db\ActiveRecord
  
     public function getUser(){
         $model = User::findOne(['id' => $this->reporter]);
-        return $model->fullname;
+        if($model){
+            return $model->fullname;
+        }else{
+            return '-';
+        }
     }
      public function getEventType() {
          return $this->hasOne(Category::className(), ['id' => 'event_type']);
