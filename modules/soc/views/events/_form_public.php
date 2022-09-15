@@ -187,9 +187,9 @@ if($model->isNewRecord){
 
 $js = <<< JS
 
-var w = 900;
+var w = 300;
 
-var h = 300;
+var h = 200;
 $('#signature-pad').width(w)
 
 var clearButton = $('#clear');

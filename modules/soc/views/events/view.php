@@ -30,6 +30,14 @@ $this->params['breadcrumbs'][] = $this->title;
     border: 1px solid #dee2e6;
     font-weight: 300;
 }
+.view-card-id{
+    position: relative;
+    width:200px;
+    height:263px;
+}
+.view-card-id > img {
+    position: absolute;
+}
 </style>
 
 
@@ -49,6 +57,9 @@ $this->params['breadcrumbs'][] = $this->title;
             'markers' => $markers
         ]);?>
 
+<div class="row">
+<div class="col-8">
+
 <div class="alert alert-info" role="alert">
         <strong><i class="far fa-edit"></i> ข้อมูลพื้นฐาน</strong>
     </div>
@@ -59,10 +70,7 @@ $this->params['breadcrumbs'][] = $this->title;
         'model' => $model,
         'attributes' => [
             'fullname',
-            [  
-                'label' => 'เหตุการณ์',
-                'value' => $model->eventType ? $model->eventType->name : ''
-            ],
+            
             'phone',
             'department',
             [  
@@ -80,6 +88,10 @@ $this->params['breadcrumbs'][] = $this->title;
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            [  
+                'label' => 'เหตุการณ์',
+                'value' => $model->eventType ? $model->eventType->name : ''
+            ],
             'event_date',
             'event_location_note',
             'orther',
@@ -87,6 +99,25 @@ $this->params['breadcrumbs'][] = $this->title;
             'docs',
         ],
     ]) ?>
+
+
+    
+</div>
+<div class="col-4">
+<div class="alert alert-info" role="alert">
+        <strong><i class="far fa-edit"></i> ลายเซ็นต์</strong>
+    </div>
+    <div class="view-card-id">
+        <?=$model->getIdCart()?>
+    </div>
+    <div class="alert alert-info" role="alert">
+        <strong><i class="far fa-edit"></i> ลายเซ็นต์</strong>
+    </div>
+    <?=Html::img('@web/signature/'.$model->ref.'.jpg',['style' => 'width:100%'])?>
+</div>
+</div>
+
+
 
 
 
@@ -102,7 +133,6 @@ $this->params['breadcrumbs'][] = $this->title;
             'note',
         ],
     ]) ?>
-
 
 <div class="alert alert-info" role="alert">
     <strong><i class="far fa-edit"></i> รูปภาพ/วีดีโอ</strong>

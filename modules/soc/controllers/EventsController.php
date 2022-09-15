@@ -400,7 +400,6 @@ public function actionImage(string $file_path, int $width, int $height) {
             $savePath       = Events::UPLOAD_FOLDER.'/'.$ref.'.jpg';
             $saveFile = file_put_contents($savePath, file_get_contents($img));
             
-            
             $model =  Events::findOne(['ref' => $ref]);
            if($saveFile){
               
