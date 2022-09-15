@@ -113,7 +113,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 <!-- End Card -->
 
 <div class="alert alert-info" role="alert">
-    <strong><i class="far fa-edit"></i> สรุปผล</strong>
+    <strong><i class="far fa-edit"></i> สรุปผล (ผู้รายงานเหตุ : <code><?=$model->getUser()?></code>)</strong>
 </div>
 
 <div class="card">
@@ -121,15 +121,15 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 
         <div class="row">
             <div class="col-6">
-                <?=$form->field($model, 'reporter')->textInput()?>
+                <?=$form->field($model, 'backup_to')->textInput()?>
+                <div class="alert alert-success" role="alert">
                 <?=$form->field($model, 'result')->inline()->radioList([
     1 => 'พบเหตุการณ์',
     2 => 'ไม่พบเหตุการณ์',
 ])?>
-
+            </div>
             </div>
             <div class="col-6">
-                <?=$form->field($model, 'backup_to')->textInput()?>
                 <?=$form->field($model, 'worker')->widget(Select2::classname(), [
     'hideSearch' => true,
     'data' => ArrayHelper::map(User::find()->all(), 'id', 'fullname'),
@@ -144,6 +144,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
     <!-- End Card Body -->
 </div>
 <!-- End Card -->
+
 
 
 <div class="alert alert-info alert-dismissible" role="info">

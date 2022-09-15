@@ -160,6 +160,7 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
         <canvas id="signature-pad" class="signature-pad"></canvas>
     </div>
 
+    <button id="clear" class="btn btn-block btn-danger">เซ็นต์ใหม่</button>
 
             <div class="form-group">
                 <?= Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-block btn-success']) ?>
@@ -186,6 +187,10 @@ if($model->isNewRecord){
 }
 
 $js = <<< JS
+var cancelButton = document.getElementById('clear');
+cancelButton.addEventListener('click', function (event) {
+  signaturePad.clear();
+});
 
 var w = 300;
 

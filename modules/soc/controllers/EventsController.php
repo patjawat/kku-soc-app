@@ -230,7 +230,9 @@ class EventsController extends Controller
     private function getInitialPreview($ref)
     {
 
-        $datas = Uploads::find()->where(['ref' => $ref])->all();
+        $datas = Uploads::find()->where(['ref' => $ref])
+        ->andWhere(['<>','type',15])
+        ->all();
         $initialPreview = [];
         $initialPreviewConfig = [];
         foreach ($datas as $value) {

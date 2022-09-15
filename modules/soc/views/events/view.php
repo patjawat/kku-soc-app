@@ -143,9 +143,9 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 <?php foreach($model->uploads as $file):?>
-<p><?php // print_r($files)?></p>
+    <?php if($file->type != 15):?>
 <p><?php print_r($file->viewFile())?></p>
-<??>
+<?php endif;?>
 <?php endforeach;?>
 
 

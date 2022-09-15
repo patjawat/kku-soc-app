@@ -118,13 +118,55 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
             ],
             'fullname',
-            
             [
-                'class' => ActionColumn::className(),
-                'urlCreator' => function ($action, Events $model, $key, $index, $column) {
-                    return Url::toRoute([$action, 'id' => $model->id]);
-                 }
+                'attribute' =>'result',
+                'header' => 'ผลดำเนินการ',
+                'hAlign' => 'center',
+                'vAlign' => 'middle',
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => [
+                    null => 'รอดำเนินการ',
+                    1 => 'พบเหตุการณ์',
+                    2 => 'ไม่พบเหตุการณ์',
+                ],
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'เลือกผลดำเนินการ', 'multiple' => false], // allows multiple authors to be chosen
+                'format' => 'raw',
+                'value' => function ($model) {
+                    if($model->result == null) {
+                            return '<span class="right badge badge-danger"><i class="fas fa-pause"></i> รอดำเนินการ</span>';
+                    }else{
+                        return $model->result == 1 ? ' <span class="right badge badge-success"><i class="fas fa-check"></i> พบเหตุการณ์</span>' : ' <span class="right badge badge-warning"><i class="fas fa-minus"></i> ไม่พบเหตุการร์</span>';
+                    }
+                }
             ],
+            [
+                'class' => 'kartik\grid\ActionColumn',
+                'dropdown' => false,
+                'vAlign'=>'middle',
+                'header' => 'ดำเนินการ',
+                'urlCreator' => function($action, $model, $key, $index) {
+                        return Url::to([$action,'id'=>$key]);
+                },
+                'viewOptions'=>['role'=>'modal-remote','title'=>'View','data-toggle'=>'tooltip'],
+                'updateOptions'=>['role'=>'modal-remote-x','title'=>'Update', 'data-toggle'=>'tooltip'],
+                'deleteOptions'=>['role'=>'modal-remote','title'=>'Delete',
+                                  'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
+                                  'data-request-method'=>'post',
+                                  'data-toggle'=>'tooltip',
+                                  'data-confirm-title'=>'Are you sure?',
+                                  'data-confirm-message'=>'Are you sure want to delete this item'],
+            ],
+
+            // [
+            //     'class' => ActionColumn::className(),
+            //     'urlCreator' => function ($action, Events $model, $key, $index, $column) {
+            //         return Url::toRoute([$action, 'id' => $model->id]);
+            //      }
+            // ],
+            
         ],
     ]); ?>
 

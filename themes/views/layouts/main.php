@@ -31,7 +31,7 @@ $this->registerJsFile($publishedRes[1].'/control_sidebar.js', ['depends' => '\ha
     font-weight: 300 !important;
 }
 </style>
-<body class="hold-transition sidebar-mini">
+<body class="sidebar-mini sidebar-collapse">
 <?php $this->beginBody() ?>
 
 <style>
