@@ -65,10 +65,10 @@ label:not(.form-check-label):not(.custom-file-label) {
             <div class="info-box shadow-sm">
                 <div class="info-box-content ">
                     <div class="row">
-                        <div class="col-6">
+                        <div class="col-lg-6 col-sm-12">
                             <?= $form->field($model, 'fname')->textInput(['maxlength' => true]) ?>
                         </div>
-                        <div class="col-6">
+                        <div class="col-lg-6 col-sm-12">
                             <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
                         </div>
                     </div>
