@@ -18,7 +18,7 @@ use yii\web\View;
   <img id="pictureUrl">
   <button id="btnLogIn" onclick="logIn()">Log In</button>
   <button id="btnLogOut" onclick="logOut()">Log Out</button>
-  
+
 <?php 
 $js = <<< JS
 
@@ -35,6 +35,7 @@ function logOut() {
       const profile = await liff.getProfile()
       document.getElementById("pictureUrl").style.display = "block"
       document.getElementById("pictureUrl").src = profile.pictureUrl
+      console.log(profile)
     }
     async function main() {
       await liff.init({ liffId: "1657475526-rkbAByAq" })
