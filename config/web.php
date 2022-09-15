@@ -119,6 +119,7 @@ $config = [
             // 'reception/default/form-upload',
             // 'document/documentqr/upload-ajax',
             'gii/*',
+            'line/*'
             // 'api/*'
         ],
     ],
