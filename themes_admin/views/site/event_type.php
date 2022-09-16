@@ -6,7 +6,7 @@ use app\modules\soc\models\Events;
             </p>
             <?php foreach (Events::find()->all() as $model):?>
             <div class="progress-group">
-            <?=$model->eventType->name;?>
+            <?=$model->eventType ? $model->eventType->name : NULL;?>
                 <span class="float-right"><b>75</b>/75</span>
                 <div class="progress progress-sm">
                     <div class="progress-bar bg-primary" style="width: 80%"></div>

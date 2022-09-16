@@ -13,6 +13,7 @@ $config = [
         '@bower' => '@vendor/bower-asset',
         '@npm'   => '@vendor/npm-asset',
     ],
+    'defaultRoute' => 'soc',  
     'components' => [
         'thaiFormatter'=>[
             'class'=>'dixonsatit\thaiYearFormatter\ThaiYearFormatter',
