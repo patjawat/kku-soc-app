@@ -75,25 +75,28 @@ class Uploads extends \yii\db\ActiveRecord
         if (file_exists($file_path)) {
             if($file_['extension'] == 'mp4' || $file_['extension'] == 'mov'){
                 $file_path = "/soc/events/video?id=$this->upload_id&width=500&height=500";
-                return  \wbraganca\videojs\VideoJsWidget::widget([
-                    'options' => [
-                        'class' => 'video-js vjs-default-skin vjs-big-play-centered',
-                        'poster' => "http://www.videojs.com/img/poster.jpg",
-                        'controls' => true,
-                        'preload' => 'auto',
-                        'width' => '970',
-                        'height' => '400',
-                    ],
-                    'tags' => [
-                        'source' => [
-                            ['src' => $file_path, 'type' => 'video/mp4'],
-                            ['src' => $file_path, 'type' => 'video/webm']
-                        ],
-                        'track' => [
-                            ['kind' => 'captions', 'src' => 'http://vjs.zencdn.net/vtt/captions.vtt', 'srclang' => 'en', 'label' => 'English']
-                        ]
-                    ]
-                ]);
+                // return  \wbraganca\videojs\VideoJsWidget::widget([
+                //     'options' => [
+                //         'class' => 'video-js vjs-default-skin vjs-big-play-centered',
+                //         'poster' => "http://www.videojs.com/img/poster.jpg",
+                //         'controls' => true,
+                //         'preload' => 'auto',
+                //         'width' => '970',
+                //         'height' => '400',
+                //     ],
+                //     'tags' => [
+                //         'source' => [
+                //             ['src' => $file_path, 'type' => 'video/mp4'],
+                //             ['src' => $file_path, 'type' => 'video/webm']
+                //         ],
+                //         'track' => [
+                //             ['kind' => 'captions', 'src' => 'http://vjs.zencdn.net/vtt/captions.vtt', 'srclang' => 'en', 'label' => 'English']
+                //         ]
+                //     ]
+                // ]);
+                return '<video width="320" height="240" controls>
+                <source src="'.$file_path.'" type="video/mp4">
+                    </video>';
             }else{
                 // return 'xx';
                 $file_path = "/soc/events/image?file_path=$file_path&width=500&height=500";
