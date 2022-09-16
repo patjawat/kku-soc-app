@@ -48,7 +48,7 @@ $module = \Yii::$app->controller->module->id;
             ?>
                 <?php endif;?>
 
-                <?php if($module =='soc'):?>
+                <?php //if($module =='soc'):?>
             <?php
             echo \hail812\adminlte\widgets\Menu::widget([
                 'items' => [
@@ -94,7 +94,7 @@ $module = \Yii::$app->controller->module->id;
                                 ],
             ]);
             ?>
-            <?php endif;?>
+            <?php // endif;?>
         </nav>
         <!-- /.sidebar-menu -->
     </div>
