@@ -41,8 +41,8 @@ $module = \Yii::$app->controller->module->id;
                 'items' => [
                     // ['label' => 'Simple Link', 'icon' => 'th', 'badge' => '<span class="right badge badge-danger">New</span>'],
                     // ['label' => 'การติดตามผล','url' => ['/tracking'],'icon' => 'truck'],
-                    ['label' => 'Dashboard','url' => ['/site'],'icon' => 'tachometer-alt'],
-                    ['label' => 'บันทึกประจำวัน','url' => ['/soc/events/user-request'],'icon' => 'user-edit'],
+                    ['label' => 'Dashboard','url' => ['/special'],'icon' => 'tachometer-alt'],
+                    ['label' => 'บันทึกประจำวัน','url' => ['/special/special-event'],'icon' => 'user-edit'],
                                 ],
             ]);
             ?>

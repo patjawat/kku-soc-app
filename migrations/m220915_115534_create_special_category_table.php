@@ -14,6 +14,8 @@ class m220915_115534_create_special_category_table extends Migration
     {
         $this->createTable('{{%special_category}}', [
             'id' => $this->primaryKey(),
+            'type_group' => $this->string()->comment('กลุ่ม'),
+            'type_name' => $this->string()->comment('ประเภท'),
             'name' => $this->string()->comment('ชื่อ')
         ]);
     }
