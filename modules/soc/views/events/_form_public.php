@@ -121,7 +121,7 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
                    'name' => 'upload_ajax[]',
                    'options' => ['multiple' => true,'accept' => ['image/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
                     'pluginOptions' => [
-                        'overwriteInitial'=>false,
+                        'overwriteInitial'=>true,
                         'initialPreviewShowDelete'=>true,
                         'initialPreview'=> $initialPreview,
                         'initialPreviewConfig'=> $initialPreviewConfig,
@@ -130,8 +130,8 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
                             'ref' => $model->ref,
                             'category_id' => 15
                         ],
-                        'maxFileCount' => 1,
-                        'minFileCount'=> 1,
+                        // 'maxFileCount' => 1,
+                        // 'minFileCount'=> 1,
                     ]
                 ]);
     ?>
