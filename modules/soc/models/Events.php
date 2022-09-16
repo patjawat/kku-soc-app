@@ -181,9 +181,6 @@ class Events extends \yii\db\ActiveRecord
          return $this->hasOne(Category::className(), ['id' => 'event_type']);
      }
  
-     public function getEventGroup() {
-        return $this->hasOne(Category::className(), ['id' => 'event_type']);
-    }
 
      public function getPersonType() {
          return $this->hasOne(Category::className(), ['id' => 'person_type']);

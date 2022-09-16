@@ -25,7 +25,6 @@ class m220629_063218_create_events_table extends Migration
             'phone' => $this->string()->notNull()->comment('หมายเลขโทรศัพท์'),
             'event_date' => $this->datetime()->notNull()->comment('วันและเวลาที่เกิดเหตุ'),
             'event_type' => $this->integer()->comment('เหตุการณ์'),
-            'event_group' => $this->integer()->comment('กลุ่มของหน่วยงาน'),
             'orther' => $this->string()->comment('รายละเอียดเพิ่มเติม'),
             'event_location_note' => $this->string()->comment('บริเวณสถานที่เกิดเหตุ'),
             'lat' => $this->string()->comment('latitude'),

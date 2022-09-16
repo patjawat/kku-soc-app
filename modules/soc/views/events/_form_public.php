@@ -61,7 +61,6 @@ label:not(.form-check-label):not(.custom-file-label) {
 
             <?php $form = ActiveForm::begin(['id' => 'form-data']) ?>
             <?=$form->field($model, 'ref')->hiddenInput(['class' => 'ref'])->label(false); ?>
-            <?=$form->field($model, 'event_group')->hiddenInput(['value' => 17])->label(false); ?>
             <div class="alert alert-info" role="alert">
     <strong><i class="far fa-edit"></i> บันทึกขอใช้บริการ </strong>
 </div>
