@@ -20,6 +20,8 @@ class SpecialEvent extends \yii\db\ActiveRecord
     /**
      * {@inheritdoc}
      */
+    public $mapcenter;
+    public $mapzoom;
     public static function tableName()
     {
         return 'special_event';

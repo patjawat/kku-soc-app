@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "0faa733a6cb9c1916733a6e2c4aa58f4",
+    "content-hash": "3b636934019eb13ff1be2209f09318df",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -1499,55 +1499,6 @@
                 "source": "https://github.com/hail812/yii2-adminlte3/tree/v1.1.8"
             },
             "time": "2022-04-16T06:46:23+00:00"
-        },
-        {
-            "name": "inquid/yii2-signature",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/inquid/yii2-signature.git",
-                "reference": "3b7468143bbb4ced10e9b4c1b6e6cffa9bf261c2"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/inquid/yii2-signature/zipball/3b7468143bbb4ced10e9b4c1b6e6cffa9bf261c2",
-                "reference": "3b7468143bbb4ced10e9b4c1b6e6cffa9bf261c2",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "*"
-            },
-            "default-branch": true,
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "inquid\\signature\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "inquid",
-                    "email": "contact@inquid.co"
-                }
-            ],
-            "description": "Draw and save signatures in Yii2",
-            "keywords": [
-                "extension",
-                "legal",
-                "signature",
-                "widget",
-                "yii2"
-            ],
-            "support": {
-                "issues": "https://github.com/inquid/yii2-signature/issues",
-                "source": "https://github.com/inquid/yii2-signature/tree/master"
-            },
-            "abandoned": "inquid/yii2-signature",
-            "time": "2021-05-02T06:10:06+00:00"
         },
         {
             "name": "insolita/yii2-adminlte-widgets",
@@ -6253,12 +6204,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "084c304cf376b468fee1cb0c0626ac46a98b6327"
+                "reference": "6c6568262ada02ca317efa06badad34342008293"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/084c304cf376b468fee1cb0c0626ac46a98b6327",
-                "reference": "084c304cf376b468fee1cb0c0626ac46a98b6327",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6c6568262ada02ca317efa06badad34342008293",
+                "reference": "6c6568262ada02ca317efa06badad34342008293",
                 "shasum": ""
             },
             "require": {
@@ -6368,7 +6319,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-07T06:24:35+00:00"
+            "time": "2022-09-16T08:44:07+00:00"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -10559,8 +10510,7 @@
         "kartik-v/yii2-widget-alert": 20,
         "kartik-v/yii2-bootstrap4-dropdown": 20,
         "miloschuman/yii2-highcharts-widget": 20,
-        "chillerlan/php-qrcode": 20,
-        "inquid/yii2-signature": 20
+        "chillerlan/php-qrcode": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

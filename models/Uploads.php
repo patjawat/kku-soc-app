@@ -74,7 +74,7 @@ class Uploads extends \yii\db\ActiveRecord
         $file_ = pathinfo($file_path);
         if (file_exists($file_path)) {
             if($file_['extension'] == 'mp4' || $file_['extension'] == 'mov'){
-                $file_path = "/soc/events/video?id=$this->upload_id&width=500&height=500";
+                $file_path = "/soc/events/video?id=$this->upload_id&width=100%&height=500";
                 // return  \wbraganca\videojs\VideoJsWidget::widget([
                 //     'options' => [
                 //         'class' => 'video-js vjs-default-skin vjs-big-play-centered',

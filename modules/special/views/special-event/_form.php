@@ -11,11 +11,13 @@ use yii\bootstrap4\ActiveForm;
 use yii\helpers\ArrayHelper;
 use yii\helpers\Url;
 use kartik\widgets\FileInput;
+use sjaakp\locator\Locator;
 
 /** @var yii\web\View $this */
 /** @var app\modules\special\models\SpecialEvent $model */
 /** @var yii\widgets\ActiveForm $form */
 ?>
+
 
 
 <div class="container">
@@ -61,7 +63,7 @@ use kartik\widgets\FileInput;
 
     <?php $form = ActiveForm::begin(); ?>
 
-    <?= $form->field($model, 'ref')->textInput(['maxlength' => true]) ?>
+    <?=$form->field($model, 'ref')->hiddenInput(['class' => 'ref'])->label(false); ?>
 
     <?= $form->field($model, 'special_date')->textInput() ?>
 

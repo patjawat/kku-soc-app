@@ -77,7 +77,6 @@ $this->params['breadcrumbs'][] = $this->title;
                 'label' => 'ประเภทบุคคล',
                 'value' => $model->personType ? $model->personType->name : ''
             ],
-            'address'
         ],
     ]) ?>
 
@@ -142,11 +141,34 @@ $this->params['breadcrumbs'][] = $this->title;
 </div>
 
 
-<?php foreach($model->uploads as $file):?>
-    <?php if($file->type != 15):?>
-<p><?php echo $file->viewFile()?></p>
-<?php endif;?>
-<?php endforeach;?>
+
+<div class="row">
+    
+           
+            
+            <?php foreach($model->uploads as $file):?>
+                <?php if($file->type != 15):?>
+                    
+                    <div class="col-md-3">
+              <div class="card mb-4 box-shadow">
+              <?php echo $file->viewFile()?>
+                <div class="card-body">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <div class="btn-group">
+                      <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
+                      <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                    </div>
+                    <small class="text-muted">9 mins</small>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+                    
+                    <?php endif;?>
+                    <?php endforeach;?>
+                </div>
+
 
 
 <?php

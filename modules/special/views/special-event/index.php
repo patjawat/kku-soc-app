@@ -10,7 +10,7 @@ use yii\widgets\Pjax;
 /** @var app\modules\special\models\SpecialEventSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'Special Events';
+$this->title = 'บันทึกประจำวัน';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="special-event-index">

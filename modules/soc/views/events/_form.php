@@ -123,10 +123,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
             <div class="col-6">
                 <?=$form->field($model, 'backup_to')->textInput()?>
                 <div class="alert alert-success" role="alert">
-                <?=$form->field($model, 'result')->inline()->radioList([
-    1 => 'พบเหตุการณ์',
-    2 => 'ไม่พบเหตุการณ์',
-])?>
+                <?=$form->field($model, 'result')->inline()->radioList(ArrayHelper::map(Category::find()->where(['category_type' => 5])->all(), 'id', 'name'))?>
             </div>
             </div>
             <div class="col-6">

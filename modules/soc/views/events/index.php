@@ -124,11 +124,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'hAlign' => 'center',
                 'vAlign' => 'middle',
                 'filterType' => GridView::FILTER_SELECT2,
-                'filter' => [
-                    null => 'รอดำเนินการ',
-                    1 => 'พบเหตุการณ์',
-                    2 => 'ไม่พบเหตุการณ์',
-                ],
+                'filter' => ArrayHelper::map(Category::find()->where(['category_type' =>5])->all(), 'id', 'name'),
                 'filterWidgetOptions' => [
                     'pluginOptions' => ['allowClear' => true],
                 ],
@@ -138,7 +134,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if($model->result == null) {
                             return '<span class="right badge badge-danger"><i class="fas fa-pause"></i> รอดำเนินการ</span>';
                     }else{
-                        return $model->result == 1 ? ' <span class="right badge badge-success"><i class="fas fa-check"></i> พบเหตุการณ์</span>' : ' <span class="right badge badge-warning"><i class="fas fa-minus"></i> ไม่พบเหตุการร์</span>';
+                        return $model->result == 17 ? ' <span class="right badge badge-success"><i class="fas fa-check"></i> พบเหตุการณ์</span>' : ' <span class="right badge badge-warning"><i class="fas fa-minus"></i> ไม่พบเหตุการร์</span>';
                     }
                 }
             ],
