@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "3b636934019eb13ff1be2209f09318df",
+    "content-hash": "4bde2e70431767d1ea4419d2a08d58e1",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -192,7 +192,7 @@
             "version": "v3.4.1",
             "source": {
                 "type": "git",
-                "url": "git@github.com:twbs/bootstrap.git",
+                "url": "https://github.com/twbs/bootstrap.git",
                 "reference": "68b0d231a13201eb14acd3dc84e51543d16e5f7e"
             },
             "dist": {
@@ -231,7 +231,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "git@github.com:RobinHerbots/Inputmask.git",
+                "url": "https://github.com/RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -1047,20 +1047,30 @@
         },
         {
             "name": "ezyang/htmlpurifier",
-            "version": "v4.14.0",
+            "version": "v4.16.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/ezyang/htmlpurifier.git",
-                "reference": "12ab42bd6e742c70c0a52f7b82477fcd44e64b75"
+                "reference": "523407fb06eb9e5f3d59889b3978d5bfe94299c8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/12ab42bd6e742c70c0a52f7b82477fcd44e64b75",
-                "reference": "12ab42bd6e742c70c0a52f7b82477fcd44e64b75",
+                "url": "https://api.github.com/repos/ezyang/htmlpurifier/zipball/523407fb06eb9e5f3d59889b3978d5bfe94299c8",
+                "reference": "523407fb06eb9e5f3d59889b3978d5bfe94299c8",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2"
+                "php": "~5.6.0 || ~7.0.0 || ~7.1.0 || ~7.2.0 || ~7.3.0 || ~7.4.0 || ~8.0.0 || ~8.1.0 || ~8.2.0"
+            },
+            "require-dev": {
+                "cerdic/css-tidy": "^1.7 || ^2.0",
+                "simpletest/simpletest": "dev-master"
+            },
+            "suggest": {
+                "cerdic/css-tidy": "If you want to use the filter 'Filter.ExtractStyleBlocks'.",
+                "ext-bcmath": "Used for unit conversion and imagecrash protection",
+                "ext-iconv": "Converts text to and from non-UTF-8 encodings",
+                "ext-tidy": "Used for pretty-printing HTML"
             },
             "type": "library",
             "autoload": {
@@ -1092,9 +1102,9 @@
             ],
             "support": {
                 "issues": "https://github.com/ezyang/htmlpurifier/issues",
-                "source": "https://github.com/ezyang/htmlpurifier/tree/v4.14.0"
+                "source": "https://github.com/ezyang/htmlpurifier/tree/v4.16.0"
             },
-            "time": "2021-12-25T01:21:49+00:00"
+            "time": "2022-09-18T07:06:19+00:00"
         },
         {
             "name": "guzzlehttp/guzzle",
@@ -4445,12 +4455,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "2481df8dc4eed2f379e486ad9c9435371a378f96"
+                "reference": "264a5085afd6e127daba3f47751fa971d3c29c3d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/2481df8dc4eed2f379e486ad9c9435371a378f96",
-                "reference": "2481df8dc4eed2f379e486ad9c9435371a378f96",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/264a5085afd6e127daba3f47751fa971d3c29c3d",
+                "reference": "264a5085afd6e127daba3f47751fa971d3c29c3d",
                 "shasum": ""
             },
             "conflict": {
@@ -4543,6 +4553,8 @@
                 "enshrined/svg-sanitize": "<0.15",
                 "erusev/parsedown": "<1.7.2",
                 "ether/logs": "<3.0.4",
+                "exceedone/exment": "<4.4.3|>=5,<5.0.3",
+                "exceedone/laravel-admin": "= 3.0.0|<2.2.3",
                 "ezsystems/demobundle": ">=5.4,<5.4.6.1",
                 "ezsystems/ez-support-tools": ">=2.2,<2.2.3",
                 "ezsystems/ezdemo-ls-extension": ">=5.4,<5.4.2.1",
@@ -4581,7 +4593,7 @@
                 "friendsofsymfony/user-bundle": ">=1.2,<1.3.5",
                 "friendsoftypo3/mediace": ">=7.6.2,<7.6.5",
                 "froala/wysiwyg-editor": "<3.2.7",
-                "froxlor/froxlor": "<=0.10.22",
+                "froxlor/froxlor": "<0.10.38",
                 "fuel/core": "<1.8.1",
                 "gaoming13/wechat-php-sdk": "<=1.10.2",
                 "genix/cms": "<=1.1.11",
@@ -4725,7 +4737,7 @@
                 "phpwhois/phpwhois": "<=4.2.5",
                 "phpxmlrpc/extras": "<0.6.1",
                 "pimcore/data-hub": "<1.2.4",
-                "pimcore/pimcore": "<10.4.4",
+                "pimcore/pimcore": "<10.5.6",
                 "pocketmine/bedrock-protocol": "<8.0.2",
                 "pocketmine/pocketmine-mp": "<4.7.2|>= 4.0.0-BETA5, < 4.4.2",
                 "pressbooks/pressbooks": "<5.18",
@@ -4746,6 +4758,8 @@
                 "pusher/pusher-php-server": "<2.2.1",
                 "pwweb/laravel-core": "<=0.3.6-beta",
                 "rainlab/debugbar-plugin": "<3.1",
+                "rankmath/seo-by-rank-math": "<=1.0.95",
+                "react/http": ">=0.7,<1.7",
                 "remdex/livehelperchat": "<3.99",
                 "rmccue/requests": ">=1.6,<1.8",
                 "robrichards/xmlseclibs": "<3.0.4",
@@ -4760,7 +4774,7 @@
                 "shopware/core": "<=6.4.9",
                 "shopware/platform": "<=6.4.9",
                 "shopware/production": "<=6.3.5.2",
-                "shopware/shopware": "<=5.7.13",
+                "shopware/shopware": "<=5.7.14",
                 "shopware/storefront": "<=6.4.8.1",
                 "shopxo/shopxo": "<2.2.6",
                 "showdoc/showdoc": "<2.10.4",
@@ -4784,8 +4798,8 @@
                 "simplesamlphp/simplesamlphp-module-infocard": "<1.0.1",
                 "simplito/elliptic-php": "<1.0.6",
                 "slim/slim": "<2.6",
-                "smarty/smarty": "<3.1.45|>=4,<4.1.1",
-                "snipe/snipe-it": "<6.0.10|>= 6.0.0-RC-1, <= 6.0.0-RC-5",
+                "smarty/smarty": "<3.1.47|>=4,<4.2.1",
+                "snipe/snipe-it": "<6.0.11|>= 6.0.0-RC-1, <= 6.0.0-RC-5",
                 "socalnick/scn-social-auth": "<1.15.2",
                 "socialiteproviders/steam": "<1.1",
                 "spipu/html2pdf": "<5.2.4",
@@ -4847,7 +4861,7 @@
                 "thinkcmf/thinkcmf": "<=5.1.7",
                 "tinymce/tinymce": "<5.10",
                 "titon/framework": ">=0,<9.9.99",
-                "topthink/framework": "<=6.0.12",
+                "topthink/framework": "<=6.0.13",
                 "topthink/think": "<=6.0.9",
                 "topthink/thinkphp": "<=3.2.3",
                 "tribalsystems/zenario": "<9.2.55826",
@@ -4855,7 +4869,7 @@
                 "twig/twig": "<1.38|>=2,<2.14.11|>=3,<3.3.8",
                 "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.32|>=8,<8.7.38|>=9,<9.5.29|>=10,<10.4.32|>=11,<11.5.16",
                 "typo3/cms-backend": ">=7,<=7.6.50|>=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
-                "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<=7.6.57|>=8,<=8.7.47|>=9,<=9.5.36|>=10,<10.4.32|>=11,<11.5.16",
+                "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<7.6.58|>=8,<8.7.48|>=9,<9.5.37|>=10,<10.4.32|>=11,<11.5.16",
                 "typo3/cms-form": ">=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
                 "typo3/flow": ">=1,<1.0.4|>=1.1,<1.1.1|>=2,<2.0.1|>=2.3,<2.3.16|>=3,<3.0.12|>=3.1,<3.1.10|>=3.2,<3.2.13|>=3.3,<3.3.13|>=4,<4.0.6",
                 "typo3/html-sanitizer": ">=1,<1.0.7|>=2,<2.0.16",
@@ -4864,7 +4878,7 @@
                 "typo3/swiftmailer": ">=4.1,<4.1.99|>=5.4,<5.4.5",
                 "typo3fluid/fluid": ">=2,<2.0.8|>=2.1,<2.1.7|>=2.2,<2.2.4|>=2.3,<2.3.7|>=2.4,<2.4.4|>=2.5,<2.5.11|>=2.6,<2.6.10",
                 "ua-parser/uap-php": "<3.8",
-                "unisharp/laravel-filemanager": "<=2.3",
+                "unisharp/laravel-filemanager": "<=2.5.1",
                 "userfrosting/userfrosting": ">=0.3.1,<4.6.3",
                 "usmanhalalit/pixie": "<1.0.3|>=2,<2.0.2",
                 "vanilla/safecurl": "<0.9.2",
@@ -4956,7 +4970,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-15T04:37:09+00:00"
+            "time": "2022-09-16T22:04:31+00:00"
         },
         {
             "name": "select2/select2",
@@ -7025,6 +7039,54 @@
                 }
             ],
             "time": "2022-09-04T10:48:31+00:00"
+        },
+        {
+            "name": "yurkinx/yii2-image",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/yurkinx/yii2-image.git",
+                "reference": "590795d0e94c909c636cba1007a619012e118ac9"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/yurkinx/yii2-image/zipball/590795d0e94c909c636cba1007a619012e118ac9",
+                "reference": "590795d0e94c909c636cba1007a619012e118ac9",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=5.4.0",
+                "yiisoft/yii2": "*"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "autoload": {
+                "psr-0": {
+                    "yii\\image\\": ""
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Yuri Kileev",
+                    "email": "kileev@gmail.com"
+                }
+            ],
+            "description": "Yii2 extension for image manipulating using Kohana Image Library.",
+            "homepage": "https://github.com/yurkinx/yii2-image",
+            "keywords": [
+                "extension",
+                "image",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/yurkinx/yii2-image/issues",
+                "source": "https://github.com/yurkinx/yii2-image/tree/v1.3"
+            },
+            "time": "2019-01-25T01:01:48+00:00"
         }
     ],
     "packages-dev": [
@@ -8030,12 +8092,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "50472880736e7496b35a17d588807600ca45a2b5"
+                "reference": "9a2f381c52b86ba800975beb4d239a95c69ba3ab"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/50472880736e7496b35a17d588807600ca45a2b5",
-                "reference": "50472880736e7496b35a17d588807600ca45a2b5",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9a2f381c52b86ba800975beb4d239a95c69ba3ab",
+                "reference": "9a2f381c52b86ba800975beb4d239a95c69ba3ab",
                 "shasum": ""
             },
             "require": {
@@ -8099,7 +8161,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-10T05:54:34+00:00"
+            "time": "2022-09-19T05:27:04+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -8348,12 +8410,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "a7595ec9cb7912d33bf16503272002dae0831122"
+                "reference": "c65f6058074435d4cf0d36050d600103bb5af4bf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/a7595ec9cb7912d33bf16503272002dae0831122",
-                "reference": "a7595ec9cb7912d33bf16503272002dae0831122",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c65f6058074435d4cf0d36050d600103bb5af4bf",
+                "reference": "c65f6058074435d4cf0d36050d600103bb5af4bf",
                 "shasum": ""
             },
             "require": {
@@ -8442,7 +8504,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-15T05:19:57+00:00"
+            "time": "2022-09-19T05:27:37+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -9305,12 +9367,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "5724c932ade5bc13e5e4f7c9171378a4638c207a"
+                "reference": "33589696a54e5ae179413ec009d79e44ebe577cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/5724c932ade5bc13e5e4f7c9171378a4638c207a",
-                "reference": "5724c932ade5bc13e5e4f7c9171378a4638c207a",
+                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/33589696a54e5ae179413ec009d79e44ebe577cd",
+                "reference": "33589696a54e5ae179413ec009d79e44ebe577cd",
                 "shasum": ""
             },
             "require": {
@@ -9353,7 +9415,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-13T08:08:10+00:00"
+            "time": "2022-09-19T05:28:34+00:00"
         },
         {
             "name": "sebastian/version",
@@ -10510,7 +10572,8 @@
         "kartik-v/yii2-widget-alert": 20,
         "kartik-v/yii2-bootstrap4-dropdown": 20,
         "miloschuman/yii2-highcharts-widget": 20,
-        "chillerlan/php-qrcode": 20
+        "chillerlan/php-qrcode": 20,
+        "yurkinx/yii2-image": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

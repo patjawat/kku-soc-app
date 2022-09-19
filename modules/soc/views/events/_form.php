@@ -19,8 +19,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 ?>
 
 
-<?php $form = ActiveForm::begin([
-    'options'=>['enctype'=>'multipart/form-data']]);?>
+<?php $form = ActiveForm::begin(['options' => ['enctype' => 'multipart/form-data']]); ?>
 
 <div class="alert alert-info" role="alert">
     <strong><i class="far fa-edit"></i> ข้อมูลพื้นฐาน</strong>
@@ -179,7 +178,9 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 //             ],
 // ]);
 ?>
-
+<div class="form-group field-upload_files">
+      <label class="control-label" for="upload_files[]"> ภาพถ่าย </label>
+    <div>
     <?php 
         echo FileInput::widget([
     'name' => 'upload_ajax[]',

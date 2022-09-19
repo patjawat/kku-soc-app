@@ -464,7 +464,7 @@ public function actionImage(string $file_path, int $width, int $height) {
                    $ref =Yii::$app->request->post('ref');
                    $type =Yii::$app->request->post('category_id');
                }else{
-                   $Uploads = Yii::$app->request->post('Uploads');
+                   $Uploads = Yii::$app->request->post('Events');
                    $ref = $Uploads['ref'];
                    $type = $Uploads['type'];
                }
