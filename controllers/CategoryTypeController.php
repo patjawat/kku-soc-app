@@ -3,11 +3,12 @@
 namespace app\controllers;
 
 use app\models\CategoryType;
+use app\models\Category;
+use app\models\CategorySearch;
 use app\models\CategoryTypeSearch;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\filters\VerbFilter;
-
 /**
  * CategoryTypeController implements the CRUD actions for CategoryType model.
  */
@@ -55,8 +56,13 @@ class CategoryTypeController extends Controller
      */
     public function actionView($id)
     {
+        $searchModel = new CategorySearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->query->where(['category_type' => $id]);
         return $this->render('view', [
             'model' => $this->findModel($id),
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
         ]);
     }
 

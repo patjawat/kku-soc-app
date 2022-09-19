@@ -1,5 +1,6 @@
 <?php
 
+use yii\web\View;
 use app\models\Category;
 use app\modules\usermanager\models\User;
 use kartik\datecontrol\DateControl;
@@ -35,6 +36,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
                 <div class="card-img">
           
                     <?=$model->getIdCart()?>
+                    <span class="btn btn-primary btn-block" id="cidSelect">เลือกไฟล์บัตรประชาชน</span>
 
                 </div>
             </div>
@@ -95,7 +97,11 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 
             </div>
             <div class="col-6">
-                <?=$form->field($model, 'event_location_note')->textInput(['maxlength' => true])?>
+            <?=$form->field($model, 'event_location_note')->widget(Select2::classname(), [
+    'data' => ArrayHelper::map(Category::find()->where(['category_type' => 4])->all(), 'id', 'name'),
+    'options' => ['placeholder' => 'Select', 'multiple' => false],
+])->label(true);
+?>
             </div>
         </div>
 
@@ -184,6 +190,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
     <?php 
         echo FileInput::widget([
     'name' => 'upload_ajax[]',
+    'id' => 'input107',
     'options' => ['multiple' => true, 'accept' => ['*']], //'accept' => 'image/*' หากต้องเฉพาะ image
     'pluginOptions' => [
         'overwriteInitial' => true,
@@ -208,3 +215,43 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 </div>
 
 <?php ActiveForm::end();?>
+
+<?php
+
+$formUploadUrl = Url::to(['/soc/events/form-upload','id' => $model->id]);
+$js = <<< JS
+
+$('#cidSelect').click(function (e) { 
+    e.preventDefault();
+    console.log('Click');
+    $.ajax({
+        type: "get",
+        url: "$formUploadUrl",
+        // data: "data",
+        beforeLoad: function () {
+            beforLoadModal();
+        },
+        dataType: "json",
+        success: function (response) {
+            $('#main-modal').modal('show');
+            $('#main-modal-label').html(response.title);
+            $('.modal-body').html(response.content);
+            $('.modal-footer').html(response.footer);
+            $(".modal-dialog").removeClass('modal-sm');
+            $(".modal-dialog").addClass('modal-lg');
+            $('.modal-content').addClass('card-outline card-primary');
+        }
+    });
+    
+});
+
+
+$('#input-id').on('filebatchuploadsuccess', function(event, data) {
+    var form = data.form, files = data.files, extra = data.extra,
+        response = data.response, reader = data.reader;
+    console.log('File batch upload success');
+});
+
+JS;
+$this->registerJs($js,View::POS_END);
+?>

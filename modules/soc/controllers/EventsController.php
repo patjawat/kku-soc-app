@@ -98,6 +98,34 @@ class EventsController extends Controller
         ]);
     }
 
+
+    public function actionFormUpload()
+    {
+        $id = $this->request->get('id');
+
+        $model = $this->findModel($id);
+        SystemHelper::initialsetDataSession($model->ref);
+        list($initialPreview, $initialPreviewConfig) = $this->getInitialPreviewCid($model->ref);
+
+        if ($this->request->isAjax) {
+            Yii::$app->response->format = Response::FORMAT_JSON;
+
+        return [
+            'title' => '',
+            'content' => $this->renderAjax('_form_upload',[
+            'model' => $model,
+            'initialPreview' => $initialPreview,
+            'initialPreviewConfig' => $initialPreviewConfig,
+        ])
+            ];
+    }else{
+        return $this->render('_form_upload',[
+            'model' => $model,
+            'initialPreview' => $initialPreview,
+            'initialPreviewConfig' => $initialPreviewConfig,
+        ]);
+    }
+    }
     /**
      * Creates a new Events model.
      * If creation is successful, the browser will be redirected to the 'view' page.
@@ -195,7 +223,7 @@ class EventsController extends Controller
         if ($model->reporter == '') {
 
         }
-        return $this->render('update', [
+        return $model->reporter == '' ? $this->renderContent('<h1 class="text-center mt-5">ยังไม่มีผู้รับเรื่อง</h1>') : $this->render('update', [
             'model' => $model,
             'initialPreview' => $initialPreview,
             'initialPreviewConfig' => $initialPreviewConfig,
@@ -238,6 +266,27 @@ class EventsController extends Controller
 
         $datas = Uploads::find()->where(['ref' => $ref])
         ->andWhere(['<>','type',15])
+        ->all();
+        $initialPreview = [];
+        $initialPreviewConfig = [];
+        foreach ($datas as $value) {
+            array_push($initialPreview, SystemHelper::getFileUpload($value->upload_id));
+            array_push($initialPreviewConfig, [
+                'caption' => $value->file_name,
+                'width' => '120px',
+                'url' => Url::to(['/soc/events/deletefile-ajax']),
+                'key' => $value->upload_id,
+            ]);
+        }
+        return [$initialPreview, $initialPreviewConfig];
+    }
+
+    //แสดงบัตรประชาชน
+    private function getInitialPreviewCid($ref)
+    {
+
+        $datas = Uploads::find()->where(['ref' => $ref])
+        ->andWhere(['type' => 15])
         ->all();
         $initialPreview = [];
         $initialPreviewConfig = [];
@@ -457,11 +506,13 @@ public function actionImage(string $file_path, int $width, int $height) {
 
     private function Uploads($isAjax=false) {
         if (Yii::$app->request->isPost) {
+            
            $images = UploadedFile::getInstancesByName('upload_ajax');
+         
            if ($images) {
 
                if($isAjax===true){
-                   $ref =Yii::$app->request->post('ref');
+                  $ref =Yii::$app->request->post('ref');
                    $type =Yii::$app->request->post('category_id');
                }else{
                    $Uploads = Yii::$app->request->post('Events');
@@ -472,7 +523,7 @@ public function actionImage(string $file_path, int $width, int $height) {
                $this->CreateDir($ref);
 
                foreach ($images as $file){
-                   $fileName       = $file->baseName . '.' . $file->extension;
+                  $fileName       = $file->baseName . '.' . $file->extension;
                    $realFileName   = md5($file->baseName.time()) . '.' . $file->extension;
                    $savePath       = SystemHelper::UPLOAD_FOLDER.'/'.$ref.'/'. $realFileName;
                    if($file->saveAs($savePath)){

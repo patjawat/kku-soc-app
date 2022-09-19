@@ -4,12 +4,11 @@ use yii\helpers\Html;
 use yii\web\View;
 use yii\helpers\Url;
 use yii\widgets\DetailView;
-use dosamigos\google\maps\LatLng;
-use dosamigos\google\maps\overlays\InfoWindow;
 use edofre\markerclusterer\Map;
 use edofre\markerclusterer\Marker;
 use app\components\SystemHelper;
 use dominus77\sweetalert2\assets\ThemeAsset;
+use app\components\UserHelper;
 
 /** @var yii\web\View $this */
 
@@ -53,9 +52,7 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-    <?php $this->render('map', [
-            'markers' => $markers
-        ]);?>
+
 
 <div class="row">
 <div class="col-8">
@@ -173,6 +170,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 $ConfirmUrl = Url::to(['/soc/events/confirm-job']);
+$userConfirm = UserHelper::getUser('fullname');
 $id = $model->id;
 $js = <<< JS
 $('#confirm-job').click(function (e) { 
@@ -180,7 +178,7 @@ $('#confirm-job').click(function (e) {
      
 Swal.fire({
   title: 'ผู้รับรายงานเหตุ?',
-  text: "นายปัจวัฒน์ ศรีบุญเรือง!",
+  text: "$userConfirm!",
   icon: 'warning',
   showCancelButton: true,
 //   confirmButtonColor: '#3085d6',

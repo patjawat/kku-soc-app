@@ -20,6 +20,7 @@ class m220418_134516_create_category_type_table extends Migration
         $this->insert('category_type',['type_name' => 'person_type','title' => 'ประเภทบุคคล']);
         $this->insert('category_type',['type_name' => 'event_type','title' => 'เหตุการณ์']);
         $this->insert('category_type',['type_name' => 'upload_type','title' => 'ประเภทการอัพโหลด']);
+        $this->insert('category_type',['type_name' => 'event_location','title' => 'สถานที่เกิดเหตุ']);
     }
 
     /**

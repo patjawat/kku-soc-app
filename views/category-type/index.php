@@ -34,7 +34,8 @@ $this->params['breadcrumbs'][] = $this->title;
                 'template'=>'{add}',
                 'buttons'=>[
                   'add' => function($url,$model,$key){
-                      return Html::a('เพิ่ม',['category/create','id' => $model->id]);
+                    //   return Html::a('เพิ่ม',['category/create','id' => $model->id]);
+                      return Html::a('เปิด',['category-type/view','id' => $model->id]);
                     }
                   ]
               ],

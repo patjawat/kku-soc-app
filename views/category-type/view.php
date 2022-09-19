@@ -2,7 +2,11 @@
 
 use yii\helpers\Html;
 use yii\widgets\DetailView;
-
+use yii\helpers\Url;
+use yii\grid\ActionColumn;
+use yii\grid\GridView;
+use yii\widgets\Pjax;
+use app\models\Category;
 /* @var $this yii\web\View */
 /* @var $model app\models\CategoryType */
 
@@ -11,11 +15,13 @@ $this->params['breadcrumbs'][] = ['label' => 'Category Types', 'url' => ['index'
 $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 ?>
+
 <div class="category-type-view">
 
     <h1><?= Html::encode($this->title) ?></h1>
 
     <p>
+       
         <?= Html::a('Update', ['update', 'id' => $model->id], ['class' => 'btn btn-primary']) ?>
         <?= Html::a('Delete', ['delete', 'id' => $model->id], [
             'class' => 'btn btn-danger',
@@ -34,5 +40,37 @@ $this->params['breadcrumbs'][] = $this->title;
             'title',
         ],
     ]) ?>
+
+<div class="category-index">
+
+<p>
+    <?= Html::a('เพิ่ม', ['category/create', 'id' => $model->id], ['class' => 'btn btn-success']) ?>
+</p>
+
+<?php // echo $this->render('_search', ['model' => $searchModel]); ?>
+
+<?= GridView::widget([
+    'dataProvider' => $dataProvider,
+    'filterModel' => $searchModel,
+    'columns' => [
+        ['class' => 'yii\grid\SerialColumn'],
+
+        'id',
+        'category_type',
+        'name',
+        'title',
+        [
+            'class' => ActionColumn::className(),
+            'urlCreator' => function ($action, Category $model, $key, $index, $column) {
+                return Url::toRoute([$action, 'id' => $model->id]);
+             }
+        ],
+    ],
+]); ?>
+
+
+</div>
+
+
 
 </div>
