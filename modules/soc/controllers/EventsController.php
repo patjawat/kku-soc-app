@@ -10,11 +10,14 @@ use dominus77\sweetalert2\Alert;
 use dosamigos\google\maps\LatLng;
 use Yii;
 use yii\filters\VerbFilter;
+use yii\web\UploadedFile;
 use yii\helpers\html;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use yii\helpers\BaseFileHelper;
+use yii\helpers\Json;
 use buttflattery\videowall\Videowall;
 
 
@@ -137,10 +140,11 @@ class EventsController extends Controller
         ]);
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save(false)) {
-
+            if ($model->load($this->request->post())) {
+                $this->Uploads(false);
+                return $model->save(false);
                 // return $this->redirect(['success', 'id' => $model->id]);
-                return true;
+                
             }
         } else {
             $model->loadDefaultValues();
@@ -182,8 +186,11 @@ class EventsController extends Controller
         SystemHelper::initialsetDataSession($model->ref);
         list($initialPreview, $initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
-        if ($this->request->isPost && $model->load($this->request->post()) && $model->save(false)) {
-            return $this->redirect(['view', 'id' => $model->id]);
+        if ($this->request->isPost && $model->load($this->request->post())) {
+            $this->Uploads(false);
+            if($model->save(false)){
+                return $this->redirect(['view', 'id' => $model->id]);
+            }
         }
 
         if ($model->reporter == '') {
@@ -422,4 +429,79 @@ public function actionImage(string $file_path, int $width, int $height) {
         } 
 
     }
+
+
+
+
+    /* |*********************************************************************************|
+      |================================ Upload Ajax ====================================|
+      |*********************************************************************************| */
+
+      public function actionUploadAjax() {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        return $this->Uploads(true);
+    }
+
+    private function CreateDir($folderName) {
+        if ($folderName != null) {
+            $basePath = SystemHelper::getUploadPath();
+            if (BaseFileHelper::createDirectory($basePath . $folderName, 0777)) {
+                // BaseFileHelper::createDirectory($basePath . $folderName . '/thumbnail', 0777);
+            }
+        }
+        return;
+    }
+
+    private function removeUploadDir($dir) {
+        BaseFileHelper::removeDirectory(SystemHelper::getUploadPath() . $dir);
+    }
+
+    private function Uploads($isAjax=false) {
+        if (Yii::$app->request->isPost) {
+           $images = UploadedFile::getInstancesByName('upload_ajax');
+           if ($images) {
+
+               if($isAjax===true){
+                   $ref =Yii::$app->request->post('ref');
+                   $type =Yii::$app->request->post('category_id');
+               }else{
+                   $Uploads = Yii::$app->request->post('Uploads');
+                   $ref = $Uploads['ref'];
+                   $type = $Uploads['type'];
+               }
+
+               $this->CreateDir($ref);
+
+               foreach ($images as $file){
+                   $fileName       = $file->baseName . '.' . $file->extension;
+                   $realFileName   = md5($file->baseName.time()) . '.' . $file->extension;
+                   $savePath       = SystemHelper::UPLOAD_FOLDER.'/'.$ref.'/'. $realFileName;
+                   if($file->saveAs($savePath)){
+
+                       if($this->isImage(Url::base(true).'/'.$savePath)){
+                            $this->createThumbnail($ref,$realFileName);
+                       }
+
+                       $model                  = new Uploads;
+                       $model->ref             = $ref;
+                       $model->file_name       = $fileName;
+                       $model->real_filename   = $realFileName;
+                       $model->type             = $type;
+                       $model->save();
+
+                       if($isAjax===true){
+                           return ['success' => 'true'];
+                       }
+
+                   }else{
+                       if($isAjax===true){
+                           return ['success'=>'false','eror'=>$file->error];
+                       }
+                   }
+
+               }
+           }
+       }
+}
+
 }

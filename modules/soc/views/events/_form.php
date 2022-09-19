@@ -171,7 +171,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
         'initialPreviewShowDelete' => true,
         'initialPreview' => $initialPreview,
         'initialPreviewConfig' => $initialPreviewConfig,
-        'uploadUrl' => Url::to(['/uploads/upload-ajax']),
+        'uploadUrl' => Url::to(['/soc/events/upload-ajax']),
         'uploadExtraData' => [
             'ref' => $model->ref,
             'category_id' => 16,

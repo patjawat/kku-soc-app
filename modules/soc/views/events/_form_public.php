@@ -125,7 +125,7 @@ $form->field($model, 'event_type')->widget(Select2::classname(), [
                         'initialPreviewShowDelete'=>true,
                         'initialPreview'=> $initialPreview,
                         'initialPreviewConfig'=> $initialPreviewConfig,
-                        'uploadUrl' => Url::to(['/uploads/upload-ajax']),
+                        'uploadUrl' => Url::to(['/soc/events/upload-ajax']),
                         'uploadExtraData' => [
                             'ref' => $model->ref,
                             'category_id' => 15
