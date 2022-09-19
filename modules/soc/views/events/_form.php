@@ -19,7 +19,8 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 ?>
 
 
-<?php $form = ActiveForm::begin();?>
+<?php $form = ActiveForm::begin([
+    'options'=>['enctype'=>'multipart/form-data']]);?>
 
 <div class="alert alert-info" role="alert">
     <strong><i class="far fa-edit"></i> ข้อมูลพื้นฐาน</strong>
@@ -160,14 +161,31 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 
 <div class="card">
     <div class="card-body">
-
+<?php
+// echo $form->field($model, 'files[]')->widget(FileInput::classname(), [
+//     'options' => ['multiple' => true, 'accept' => 'image/*'],
+//     // 'pluginOptions' => ['previewFileType' => 'image']
+//     'pluginOptions' => [
+//                 'overwriteInitial' => true,
+//                 'initialPreviewShowDelete' => true,
+//                 'initialPreview' => $initialPreview,
+//                 'initialPreviewConfig' => $initialPreviewConfig,
+//                 'uploadUrl' => Url::to(['/soc/events/upload-ajax']),
+//                 'uploadExtraData' => [
+//                     'ref' => $model->ref,
+//                     'category_id' => 16,
+//                 ],
+//                 'maxFileCount' => 100,
+//             ],
+// ]);
+?>
 
     <?php 
         echo FileInput::widget([
     'name' => 'upload_ajax[]',
-    'options' => ['multiple' => true, 'accept' => ['image/*', 'video/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
+    'options' => ['multiple' => true, 'accept' => ['*']], //'accept' => 'image/*' หากต้องเฉพาะ image
     'pluginOptions' => [
-        'overwriteInitial' => false,
+        'overwriteInitial' => true,
         'initialPreviewShowDelete' => true,
         'initialPreview' => $initialPreview,
         'initialPreviewConfig' => $initialPreviewConfig,
