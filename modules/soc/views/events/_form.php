@@ -67,12 +67,6 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
             <!-- End col-8 -->
         </div>
 
-        <div class="row" style="margin-top:-4px;">
-            <div class="col-12">
-                <?=$form->field($model, 'address')->textArea(['maxlength' => true, 'rows' => 3])?>
-            </div>
-        </div>
-
 </div>
 <!-- End Card Body -->
 </div>
