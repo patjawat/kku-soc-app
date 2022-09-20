@@ -55,11 +55,8 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
                     </div>
                 </div>
                 <div class="row">
-
                     <div class="col-12">
-
                         <?=$form->field($model, 'person_type')->inline()->radioList(ArrayHelper::map(Category::find()->where(['category_type' => 1])->all(), 'id', 'name'))?>
-
                     </div>
                 </div>
 
