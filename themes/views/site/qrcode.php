@@ -18,8 +18,8 @@ $js = <<< JS
 var qrcode = new QRCode(document.getElementById("qrcode"), {
     text: "https://tsd.kku.ac.th/soc/events/user-request",
     logo: "http://localhost:81/img/logo.png",
-    width: 240,
-						height: 240,
+    width: 540,
+						height: 540,
                         correctLevel: QRCode.CorrectLevel.H, // L, M, Q, H
     colorDark: "#000000",
 						colorLight: "#ffffff",
