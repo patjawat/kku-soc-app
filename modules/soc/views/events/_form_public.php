@@ -80,7 +80,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 
                     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-                    <label class="control-label" for="upload_files[]"> บัตรประชาชน </label>
+                    <label class="control-label" for="upload_files[]"> สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประจำตัวประชาชน/สำเนาบัตรข้าราชการ </label>
                         <div>
                             <?php echo  FileInput::widget([
                                     'name' => 'upload_ajax[]',
