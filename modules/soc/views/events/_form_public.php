@@ -65,6 +65,8 @@ label:not(.form-check-label):not(.custom-file-label) {
     <strong><i class="far fa-edit"></i> บันทึกขอใช้บริการ </strong>
 </div>
 
+
+
             <div class="info-box shadow-sm">
                 <div class="info-box-content ">
                     <div class="row">
@@ -75,71 +77,99 @@ label:not(.form-check-label):not(.custom-file-label) {
                             <?= $form->field($model, 'lname')->textInput(['maxlength' => true]) ?>
                         </div>
                     </div>
+
+                    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+
+                    <label class="control-label" for="upload_files[]"> บัตรประชาชน </label>
+                        <div>
+                            <?php echo  FileInput::widget([
+                                    'name' => 'upload_ajax[]',
+                                    'options' => ['multiple' => true,'accept' => ['image/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
+                                        'pluginOptions' => [
+                                            'overwriteInitial'=>true,
+                                            'initialPreviewShowDelete'=>true,
+                                            'initialPreview'=> $initialPreview,
+                                            'initialPreviewConfig'=> $initialPreviewConfig,
+                                            'uploadUrl' => Url::to(['/soc/events/upload-ajax']),
+                                            'uploadExtraData' => [
+                                                'ref' => $model->ref,
+                                                'category_id' => 15
+                                            ],
+                                            // 'maxFileCount' => 1,
+                                            // 'minFileCount'=> 1,
+                                        ]
+                                        ]);
+                            ?>
+                        </div>
+
                 </div>
             </div>
 
 
+            <div class="info-box shadow-sm">
+                <div class="info-box-content">
+            <label class="control-label" for="upload_files[]"> เอกสารอื่นๆหรือหลักฐานที่เกี่ยวข้อง เช่น ใบบันทึกแจ้งความ </label>
+                        <div>
+                            <?php echo  FileInput::widget([
+                                    'name' => 'upload_ajax[]',
+                                    'options' => ['multiple' => true,'accept' => ['image/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
+                                        'pluginOptions' => [
+                                            'overwriteInitial'=>true,
+                                            'initialPreviewShowDelete'=>true,
+                                            'initialPreview'=> $initialPreview,
+                                            'initialPreviewConfig'=> $initialPreviewConfig,
+                                            'uploadUrl' => Url::to(['/soc/events/upload-ajax']),
+                                            'uploadExtraData' => [
+                                                'ref' => $model->ref,
+                                                'category_id' => 16
+                                            ],
+                                            // 'maxFileCount' => 1,
+                                            // 'minFileCount'=> 1,
+                                        ]
+                                        ]);
+                            ?>
+                        </div>
+                        </div>
+                        </div>
+
+
+                        
             <div class="info-box shadow-sm">
                 <div class="info-box-content ">
                     <?= $form->field($model, 'person_type')->radioList(ArrayHelper::map(Category::find()->where(['category_type' => 1])->all(),'id','name')) ?>
                 </div>
             </div>
+            
+            
+            <div class="info-box shadow-sm">
+                <div class="info-box-content">
+                    <?= $form->field($model, 'department')->textInput(['maxlength' => true]) ?>
+                    
+                </div>
+            </div>
 
-
+            <div class="alert alert-info" role="alert">
+    <i class="far fa-edit"></i>  บรรยายเหตุการณ์
+</div>
             <div class="info-box shadow-sm">
                 <div class="info-box-content ">
-                    <?= $form->field($model, 'department')->textInput(['maxlength' => true]) ?>
 
-                    <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
+                    
+                <?= $form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label(true)?>
 
-                    <?= $form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label(true)?>
-
-                    <?php 
-$form->field($model, 'event_type')->widget(Select2::classname(), [
+<?php 
+echo $form->field($model, 'event_type')->widget(Select2::classname(), [
 'data' =>  ArrayHelper::map(Category::find()->where(['category_type' => 2])->all(),'id','name'),
 'options' => ['placeholder' => 'เลือกเหตุการณ์'],
 'pluginOptions' => [
-    'allowClear' => true,
+'allowClear' => true,
 ],
 
 ]);
 ?>
-
-                    <?php //  $form->field($model, 'orther')->textArea() ?>
-
-                    <?php //  $form->field($model, 'event_location_note')->textInput(['maxlength' => true]) ?>
-
+<?=$form->field($model, 'orther')->textArea()->label('บรรยายเหตุการณ์')?>
                 </div>
             </div>
-
-            <div class="info-box shadow-sm">
-                <div class="info-box-content ">
-                    <div class="form-group field-upload_files">
-                        <label class="control-label" for="upload_files[]"> บัตรประชาชน </label>
-                        <div>
-                            <?php echo  FileInput::widget([
-                   'name' => 'upload_ajax[]',
-                   'options' => ['multiple' => true,'accept' => ['image/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
-                    'pluginOptions' => [
-                        'overwriteInitial'=>true,
-                        'initialPreviewShowDelete'=>true,
-                        'initialPreview'=> $initialPreview,
-                        'initialPreviewConfig'=> $initialPreviewConfig,
-                        'uploadUrl' => Url::to(['/soc/events/upload-ajax']),
-                        'uploadExtraData' => [
-                            'ref' => $model->ref,
-                            'category_id' => 15
-                        ],
-                        // 'maxFileCount' => 1,
-                        // 'minFileCount'=> 1,
-                    ]
-                ]);
-    ?>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
 
             <div class="card">
                 <div class="card-header">

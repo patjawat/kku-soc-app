@@ -169,6 +169,17 @@ class Events extends \yii\db\ActiveRecord
         }
     }
 
+
+    public function countPercen(){
+        $total  = self::find()->where(['not',['event_type' => null]])->count();
+        $countThis = self::find()->where(['not',['event_type' => null]])->andwhere(['event_type' => $this->event_type])->count();
+
+        $result = number_format((($countThis * 100) / $total),0);
+        return [
+            'total' => $total,
+            'result' => $result,
+        ];
+    }
  
     public function getUser(){
         $model = User::findOne(['id' => $this->reporter]);

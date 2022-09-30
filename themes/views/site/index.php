@@ -1,6 +1,7 @@
 <?php
 $this->title = 'Dashboard';
 use yii\helpers\Html;
+
 $this->title = '<i class="fas fa-tachometer-alt"></i> Dashboard';
 use miloschuman\highcharts\Highcharts;
 $this->params['breadcrumbs'] = [['label' => $this->title]];
@@ -16,62 +17,9 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
 </style>
 <div class="container-fluid">
 
-    <div class="row">
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box">
-                <span class="info-box-icon bg-info elevation-1"><i class="fas fa-cog"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">ติดตามตรวจสอบ ยานพาหนะ</span>
-                    <span class="info-box-number">
-                        75
-                    </span>
-                </div>
 
-            </div>
-
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-                <span class="info-box-icon bg-danger elevation-1"><i class="fas fa-thumbs-up"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">ติดตามตรวจสอบ เหตุการณ์</span>
-                    <span class="info-box-number">75</span>
-                </div>
-
-            </div>
-
-        </div>
-
-
-        <div class="clearfix hidden-md-up"></div>
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-                <span class="info-box-icon bg-success elevation-1"><i class="fas fa-shopping-cart"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">โจรกรรมทรัพย์สิน</span>
-                    <span class="info-box-number">7</span>
-                </div>
-
-            </div>
-
-        </div>
-
-        <div class="col-12 col-sm-6 col-md-3">
-            <div class="info-box mb-3">
-                <span class="info-box-icon bg-warning elevation-1"><i class="fas fa-users"></i></span>
-                <div class="info-box-content">
-                    <span class="info-box-text">อื่นๆ</span>
-                    <span class="info-box-number">20</span>
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-
+<?=$this->render('counter-style1')?>
+<?php $this->render('counter-style2')?>
     <div class="row">
         <div class="col-8">
            <?=$this->render('map', [

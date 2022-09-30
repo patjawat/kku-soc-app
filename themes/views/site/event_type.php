@@ -4,15 +4,19 @@ use app\modules\soc\models\Events;
 <p class="text-center">
                 <strong>สถานะการขอยื่น</strong>
             </p>
-            <?php foreach (Events::find()->all() as $model):?>
+            <?php foreach (Events::find()->where(['not',['event_type' => null]])->groupBy('event_type')->all() as $model):?>
             <div class="progress-group">
             <?=$model->eventType ? $model->eventType->name : null;?>
-                <span class="float-right"><b>75</b>/75</span>
+            <?php
+            $result = $model->countPercen();
+            ?>
+                <span class="float-right"><b><?=$result['result']?></b>/<?=$result['total']?></span>
                 <div class="progress progress-sm">
-                    <div class="progress-bar bg-primary" style="width: 80%"></div>
+                    <div class="progress-bar bg-primary" style="width: <?=$result['result']?>%"></div>
                 </div>
             </div>
             <?php endforeach;?>
+        
 <!-- 
             <div class="progress-group">
             บุคลากร

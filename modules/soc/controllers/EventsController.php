@@ -239,9 +239,14 @@ class EventsController extends Controller
      */
     public function actionDelete($id)
     {
-        $this->findModel($id)->delete();
-
+        $model =  $this->findModel($id);
+        if($model->reporter ==  Yii::$app->user->id){
+        $model->delete();
         return $this->redirect(['index']);
+        }else{
+            throw new NotFoundHttpException('ไมาสามารถลบข้อมูลของคนอื่นได้');
+        }
+
     }
 
     /**

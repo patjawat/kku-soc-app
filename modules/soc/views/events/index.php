@@ -139,29 +139,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 }
             ],
             [
-                'class' => 'kartik\grid\ActionColumn',
-                'dropdown' => false,
-                'vAlign'=>'middle',
-                'header' => 'ดำเนินการ',
-                'urlCreator' => function($action, $model, $key, $index) {
-                        return Url::to([$action,'id'=>$key]);
-                },
-                'viewOptions'=>['role'=>'modal-remote','title'=>'View','data-toggle'=>'tooltip'],
-                'updateOptions'=>['role'=>'modal-remote-x','title'=>'Update', 'data-toggle'=>'tooltip'],
-                'deleteOptions'=>['role'=>'modal-remote','title'=>'Delete',
-                                  'data-confirm'=>false, 'data-method'=>false,// for overide yii data api
-                                  'data-request-method'=>'post',
-                                  'data-toggle'=>'tooltip',
-                                  'data-confirm-title'=>'Are you sure?',
-                                  'data-confirm-message'=>'Are you sure want to delete this item'],
+                'class' => ActionColumn::className(),
+                'urlCreator' => function ($action, Events $model, $key, $index, $column) {
+                    return Url::toRoute([$action, 'id' => $model->id]);
+                 }
             ],
-
-            // [
-            //     'class' => ActionColumn::className(),
-            //     'urlCreator' => function ($action, Events $model, $key, $index, $column) {
-            //         return Url::toRoute([$action, 'id' => $model->id]);
-            //      }
-            // ],
             
         ],
     ]); ?>

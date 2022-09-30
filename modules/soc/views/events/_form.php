@@ -76,6 +76,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 
 <div class="card">
     <div class="card-body">
+        <?=$form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label('วันเวลาเกิดเหตุ')?>
         <?=$form->field($model, 'event_type')->widget(Select2::classname(), [
     'data' => ArrayHelper::map(Category::find()->where(['category_type' => 2])->all(), 'id', 'name'),
     'options' => ['placeholder' => 'Select', 'multiple' => false],
@@ -84,7 +85,6 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
         <div class="row">
             <div class="col-6">
 
-                <?=$form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label(true)?>
 
             </div>
             <div class="col-6">
