@@ -92,9 +92,9 @@ use yii\bootstrap4\ActiveForm;
                     <?= $form->field($model, 'password')->passwordInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'confirm_password')->passwordInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'fullname')->textInput(['maxlength' => true]) ?>
-                    <?= $form->field($model, 'fullname_en')->textInput(['maxlength' => true]) ?>
-                    <?= $form->field($model, 'doctor_id')->textInput(['maxlength' => true]) ?>
-                    <?= $form->field($model, 'license_number')->textInput(['maxlength' => true]) ?>
+                    <?php //  $form->field($model, 'fullname_en')->textInput(['maxlength' => true]) ?>
+                    <?php //  $form->field($model, 'doctor_id')->textInput(['maxlength' => true]) ?>
+                    <?php //  $form->field($model, 'license_number')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'status')->inline()->radioList($model->getItemStatus()) ?>
 
