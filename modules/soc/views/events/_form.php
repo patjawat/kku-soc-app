@@ -77,22 +77,21 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 <div class="card">
     <div class="card-body">
         <?=$form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label('วันเวลาเกิดเหตุ')?>
-        <?=$form->field($model, 'event_type')->widget(Select2::classname(), [
-    'data' => ArrayHelper::map(Category::find()->where(['category_type' => 2])->all(), 'id', 'name'),
-    'options' => ['placeholder' => 'Select', 'multiple' => false],
-])->label(true);
-?>
+       
         <div class="row">
             <div class="col-6">
-
-
+            <?=$form->field($model, 'event_type')->widget(Select2::classname(), [
+                    'data' => ArrayHelper::map(Category::find()->where(['category_type' => 2])->all(), 'id', 'name'),
+                    'options' => ['placeholder' => 'เลือก'.$model->getAttributeLabel('event_type').'...', 'multiple' => false],
+                ])->label(true);
+                ?>
             </div>
             <div class="col-6">
             <?=$form->field($model, 'event_location_note')->widget(Select2::classname(), [
-    'data' => ArrayHelper::map(Category::find()->where(['category_type' => 4])->all(), 'id', 'name'),
-    'options' => ['placeholder' => 'Select', 'multiple' => false],
-])->label(true);
-?>
+                'data' => ArrayHelper::map(Category::find()->where(['category_type' => 4])->all(), 'id', 'name'),
+                'options' => ['placeholder' => 'เลือก'.$model->getAttributeLabel('event_location_note').'...', 'multiple' => false],
+            ])->label(true);
+            ?>
             </div>
         </div>
 
@@ -100,8 +99,8 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
         <div class="row">
             <div class="col-12">
                 <?=$form->field($model, 'orther')->textArea()?>
-                <?=$form->field($model, 'work_img')->textInput(['maxlength' => true])?>
-                <?=$form->field($model, 'docs')->textInput(['maxlength' => true])?>
+                <?php // $form->field($model, 'work_img')->textInput(['maxlength' => true])?>
+                <?php // $form->field($model, 'docs')->textInput(['maxlength' => true])?>
             </div>
         </div>
     </div>
@@ -120,16 +119,17 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
             <div class="col-6">
                 <?=$form->field($model, 'backup_to')->textInput()?>
                 <div class="alert alert-success" role="alert">
+                    
                 <?=$form->field($model, 'result')->inline()->radioList(ArrayHelper::map(Category::find()->where(['category_type' => 5])->all(), 'id', 'name'))?>
             </div>
             </div>
             <div class="col-6">
                 <?=$form->field($model, 'worker')->widget(Select2::classname(), [
-    'hideSearch' => true,
-    'data' => ArrayHelper::map(User::find()->all(), 'id', 'fullname'),
-    'options' => ['placeholder' => 'Select', 'multiple' => true],
-])->label(true);
-?>
+                    'hideSearch' => true,
+                    'data' => ArrayHelper::map(User::find()->all(), 'id', 'fullname'),
+                    'options' => ['placeholder' => 'เลือก'.$model->getAttributeLabel('worker').'...', 'multiple' => true],
+                ])->label(true);
+                ?>
             </div>
         </div>
         <?php echo $form->field($model, 'note')->widget(CKEditor::className(), ['editorOptions' => ElFinder::ckeditorOptions('elfinder')]) ?>
@@ -142,10 +142,6 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 
 
 <div class="alert alert-info alert-dismissible" role="info">
-    <!-- <strong><i class="far fa-edit"></i> ภาพเหตุการ</strong>
-    <button type="button" class="close" data-dismiss="alert">
-        <span ><i class="fas fa-cloud-upload-alt"></i></span>
-    </button> -->
     <div class="d-flex">
   <div class="p-2"><i class="far fa-edit"></i> ภาพเหตุการ</div>
   <div class="ml-auto p-2">
@@ -157,24 +153,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 
 <div class="card">
     <div class="card-body">
-<?php
-// echo $form->field($model, 'files[]')->widget(FileInput::classname(), [
-//     'options' => ['multiple' => true, 'accept' => 'image/*'],
-//     // 'pluginOptions' => ['previewFileType' => 'image']
-//     'pluginOptions' => [
-//                 'overwriteInitial' => true,
-//                 'initialPreviewShowDelete' => true,
-//                 'initialPreview' => $initialPreview,
-//                 'initialPreviewConfig' => $initialPreviewConfig,
-//                 'uploadUrl' => Url::to(['/soc/events/upload-ajax']),
-//                 'uploadExtraData' => [
-//                     'ref' => $model->ref,
-//                     'category_id' => 16,
-//                 ],
-//                 'maxFileCount' => 100,
-//             ],
-// ]);
-?>
+
 <div class="form-group field-upload_files">
       <label class="control-label" for="upload_files[]"> ภาพถ่าย </label>
     <div>

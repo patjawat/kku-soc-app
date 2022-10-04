@@ -34,6 +34,7 @@ class m220418_131905_create_category_table extends Migration
         $this->insert('category',['category_type' => 2,'name' => 'อื่นๆ','title' =>'อื่นๆ']);
         $this->insert('category',['category_type' => 3,'name' => 'บัตรประชาชน','title' =>'บัตรประชาชน']);
         $this->insert('category',['category_type' => 3,'name' => 'ภาพทั่วไป','title' =>'ภาพทั่วไป']);
+        $this->insert('category',['category_type' => 3,'name' => 'ภาพทั่วไป','title' =>'ภาพทั่วไป']);
 
     }
 
