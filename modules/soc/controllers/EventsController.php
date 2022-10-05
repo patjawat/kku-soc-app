@@ -11,16 +11,12 @@ use dominus77\sweetalert2\Alert;
 use dosamigos\google\maps\LatLng;
 use Yii;
 use yii\filters\VerbFilter;
-use yii\web\UploadedFile;
-use yii\helpers\html;
+use yii\helpers\BaseFileHelper;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
-use yii\helpers\BaseFileHelper;
-use yii\helpers\Json;
-use buttflattery\videowall\Videowall;
-
+use yii\web\UploadedFile;
 
 /**
  * EventsController implements the CRUD actions for Events model.
@@ -62,6 +58,13 @@ class EventsController extends Controller
             $date2 = trim($date_explode[1]);
             $dataProvider->query->andFilterWhere(['between', 'created_at', $date1, $date2]);
         }
+        //*****/ เรียงลำดับวันที่และเวลา
+        $dataProvider->setSort([
+            'defaultOrder' => [
+                'created_at' => SORT_DESC,
+            ],
+        ]);
+
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
@@ -99,7 +102,6 @@ class EventsController extends Controller
         ]);
     }
 
-
     public function actionFormUpload()
     {
         $id = $this->request->get('id');
@@ -111,21 +113,21 @@ class EventsController extends Controller
         if ($this->request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
 
-        return [
-            'title' => '',
-            'content' => $this->renderAjax('_form_upload',[
-            'model' => $model,
-            'initialPreview' => $initialPreview,
-            'initialPreviewConfig' => $initialPreviewConfig,
-        ])
+            return [
+                'title' => '',
+                'content' => $this->renderAjax('_form_upload', [
+                    'model' => $model,
+                    'initialPreview' => $initialPreview,
+                    'initialPreviewConfig' => $initialPreviewConfig,
+                ]),
             ];
-    }else{
-        return $this->render('_form_upload',[
-            'model' => $model,
-            'initialPreview' => $initialPreview,
-            'initialPreviewConfig' => $initialPreviewConfig,
-        ]);
-    }
+        } else {
+            return $this->render('_form_upload', [
+                'model' => $model,
+                'initialPreview' => $initialPreview,
+                'initialPreviewConfig' => $initialPreviewConfig,
+            ]);
+        }
     }
     /**
      * Creates a new Events model.
@@ -173,7 +175,7 @@ class EventsController extends Controller
                 $this->Uploads(false);
                 return $model->save(false);
                 // return $this->redirect(['success', 'id' => $model->id]);
-                
+
             }
         } else {
             $model->loadDefaultValues();
@@ -214,14 +216,14 @@ class EventsController extends Controller
         $model = $this->findModel($id);
 
         $user = UserHelper::getUser('fullname');
-        if($model->reporter !== Yii::$app->user->identity->id){
-            return $this->renderContent('<h1 class="text-center mt-5">'.$user.' ไม่ใช่ผู้รับเรื่อง</h1>');
+        if ($model->reporter !== Yii::$app->user->identity->id) {
+            return $this->renderContent('<h1 class="text-center mt-5">' . $user . ' ไม่ใช่ผู้รับเรื่อง</h1>');
         }
         SystemHelper::initialsetDataSession($model->ref);
         list($initialPreview, $initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
         if ($this->request->isPost && $model->load($this->request->post())) {
-            if($model->save(false)){
+            if ($model->save(false)) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         }
@@ -245,17 +247,17 @@ class EventsController extends Controller
      */
     public function actionDelete($id)
     {
-        $model =  $this->findModel($id);
-        
+        $model = $this->findModel($id);
+
         $user = UserHelper::getUser('fullname');
-        if($model->reporter !== Yii::$app->user->identity->id){
-            return $this->renderContent('<h1 class="text-center mt-5">'.$user.' ไม่ใช่ผู้รับเรื่อง</h1>');
+        if ($model->reporter !== Yii::$app->user->identity->id) {
+            return $this->renderContent('<h1 class="text-center mt-5">' . $user . ' ไม่ใช่ผู้รับเรื่อง</h1>');
         }
 
-        if($model->reporter ==  Yii::$app->user->id){
-        $model->delete();
-        return $this->redirect(['index']);
-        }else{
+        if ($model->reporter == Yii::$app->user->id) {
+            $model->delete();
+            return $this->redirect(['index']);
+        } else {
             throw new NotFoundHttpException('ไมาสามารถลบข้อมูลของคนอื่นได้');
         }
 
@@ -282,8 +284,8 @@ class EventsController extends Controller
     {
 
         $datas = Uploads::find()->where(['ref' => $ref])
-        ->andWhere(['<>','type',15])
-        ->all();
+            ->andWhere(['<>', 'type', 15])
+            ->all();
         $initialPreview = [];
         $initialPreviewConfig = [];
         foreach ($datas as $value) {
@@ -303,8 +305,8 @@ class EventsController extends Controller
     {
 
         $datas = Uploads::find()->where(['ref' => $ref])
-        ->andWhere(['type' => 15])
-        ->all();
+            ->andWhere(['type' => 15])
+            ->all();
         $initialPreview = [];
         $initialPreviewConfig = [];
         foreach ($datas as $value) {
@@ -377,16 +379,17 @@ class EventsController extends Controller
             ->set('Content-type', 'image/jpg');
     }
 
-public function actionImage(string $file_path, int $width, int $height) {
-    // public function actionImage()
-    // {
+    public function actionImage(string $file_path, int $width, int $height)
+    {
+        // public function actionImage()
+        // {
         // $width = 1080;
         //     $height = 1080;
-            Yii::$app->response->format = Response::FORMAT_RAW;
-            $file_path = $this->request->get('file_path');
-            $files = SystemHelper::getFiles($file_path, $width, $height);
-            
-            return $files;
+        Yii::$app->response->format = Response::FORMAT_RAW;
+        $file_path = $this->request->get('file_path');
+        $files = SystemHelper::getFiles($file_path, $width, $height);
+
+        return $files;
 
         // try {
         //     Yii::$app->response->format = Response::FORMAT_RAW;
@@ -412,37 +415,37 @@ public function actionImage(string $file_path, int $width, int $height) {
         Yii::$app->response->format = Response::FORMAT_RAW;
         $id = Yii::$app->request->get('id');
         Yii::$app->getResponse()->getHeaders()
-        ->set('Pragma', 'public')
-        ->set('Expires', '0')
-        ->set('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
-        ->set('Content-Transfer-Encoding', 'binary')
-        ->set('Content-type', 'video/mp4');
+            ->set('Pragma', 'public')
+            ->set('Expires', '0')
+            ->set('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
+            ->set('Content-Transfer-Encoding', 'binary')
+            ->set('Content-type', 'video/mp4');
         // $id = 2;
         // // $path = 'file.mp4';
         $model = Uploads::find()->where(['upload_id' => $id])->One();
-        $path = SystemHelper::getUploadPath(). $model->ref.'/'.$model->real_filename;
+        $path = SystemHelper::getUploadPath() . $model->ref . '/' . $model->real_filename;
         $video_data = file_get_contents($path);
         return $video_data;
 
     }
 
-    public function actionUploadForm(){
-        
-        if($this->request->isAjax)
-        {
+    public function actionUploadForm()
+    {
+
+        if ($this->request->isAjax) {
             Yii::$app->response->format = Response::FORMAT_JSON;
 
             return [
                 'title' => '<i class="fas fa-cloud-upload-alt"></i> FileUpload',
-                'content' => $this->renderAjax('_form_upload',[
-                    'initialPreview'=>[],
-                    'initialPreviewConfig'=>[]
+                'content' => $this->renderAjax('_form_upload', [
+                    'initialPreview' => [],
+                    'initialPreviewConfig' => [],
                 ]),
             ];
-        }else{
-            return $this->render('_form_upload',[
-                'initialPreview'=>[],
-                'initialPreviewConfig'=>[]
+        } else {
+            return $this->render('_form_upload', [
+                'initialPreview' => [],
+                'initialPreviewConfig' => [],
             ]);
         }
     }
@@ -452,62 +455,61 @@ public function actionImage(string $file_path, int $width, int $height) {
         Yii::$app->response->format = Response::FORMAT_JSON;
         $id = $this->request->get('id');
         $model = $this->findModel($id);
-        if($model->reporter !== ''){
+        if ($model->reporter !== '') {
             $model->reporter = Yii::$app->user->identity->id;
         }
-       if($model->save()){
-        return $this->redirect(['view', 'id' => $model->id]);
-       }
-        
+        if ($model->save()) {
+            return $this->redirect(['view', 'id' => $model->id]);
+        }
+
     }
 
     public function actionSaveImage()
     {
-        
+
         if ($this->request->isPost) {
             $img = $this->request->post('image');
             $ref = $this->request->post('ref');
             // $this->CreateDir($ref);
-            
+
             Yii::$app->response->format = Response::FORMAT_JSON;
-            
-            $savePath       = Events::UPLOAD_FOLDER.'/'.$ref.'.jpg';
+
+            $savePath = Events::UPLOAD_FOLDER . '/' . $ref . '.jpg';
             $saveFile = file_put_contents($savePath, file_get_contents($img));
-            
-            $model =  Events::findOne(['ref' => $ref]);
-           if($saveFile){
-              
-            Yii::$app->session->setFlash(\dominus77\sweetalert2\Alert::TYPE_SUCCESS, [
-                [
-                    'title' => 'บันทึกสำเร็จ!',
-                    'text' => 'Your message',
-                    'confirmButtonText' => 'เสร็จสิ้น!',
-                    'timer' => 1500,
-                ]
-             ]);
-             
-            //    return $this->redirect(['update', 'id' => $model->id]);
-            return $this->redirect(['success', 'id' => $model->id]);
-           }else{
-               return null;
-           }
-        } 
+
+            $model = Events::findOne(['ref' => $ref]);
+            if ($saveFile) {
+
+                Yii::$app->session->setFlash(\dominus77\sweetalert2\Alert::TYPE_SUCCESS, [
+                    [
+                        'title' => 'บันทึกสำเร็จ!',
+                        'text' => 'Your message',
+                        'confirmButtonText' => 'เสร็จสิ้น!',
+                        'timer' => 1500,
+                    ],
+                ]);
+
+                //    return $this->redirect(['update', 'id' => $model->id]);
+                return $this->redirect(['success', 'id' => $model->id]);
+            } else {
+                return null;
+            }
+        }
 
     }
 
-
-
-
     /* |*********************************************************************************|
-      |================================ Upload Ajax ====================================|
-      |*********************************************************************************| */
+    |================================ Upload Ajax ====================================|
+    |*********************************************************************************| */
 
-      public function actionUploadAjax() {
+    public function actionUploadAjax()
+    {
         Yii::$app->response->format = Response::FORMAT_JSON;
         return $this->Uploads(true);
     }
 
-    private function CreateDir($folderName) {
+    private function CreateDir($folderName)
+    {
         if ($folderName != null) {
             $basePath = SystemHelper::getUploadPath();
             if (BaseFileHelper::createDirectory($basePath . $folderName, 0777)) {
@@ -517,58 +519,60 @@ public function actionImage(string $file_path, int $width, int $height) {
         return;
     }
 
-    private function removeUploadDir($dir) {
+    private function removeUploadDir($dir)
+    {
         BaseFileHelper::removeDirectory(SystemHelper::getUploadPath() . $dir);
     }
 
-    private function Uploads($isAjax=false) {
+    private function Uploads($isAjax = false)
+    {
         if (Yii::$app->request->isPost) {
-            
-           $images = UploadedFile::getInstancesByName('upload_ajax');
-         
-           if ($images) {
 
-               if($isAjax===true){
-                  $ref =Yii::$app->request->post('ref');
-                   $type =Yii::$app->request->post('category_id');
-               }else{
-                   $Uploads = Yii::$app->request->post('Events');
-                   $ref = $Uploads['ref'];
-                   $type = $Uploads['type'];
-               }
+            $images = UploadedFile::getInstancesByName('upload_ajax');
 
-               $this->CreateDir($ref);
+            if ($images) {
 
-               foreach ($images as $file){
-                  $fileName       = $file->baseName . '.' . $file->extension;
-                   $realFileName   = md5($file->baseName.time()) . '.' . $file->extension;
-                   $savePath       = SystemHelper::UPLOAD_FOLDER.'/'.$ref.'/'. $realFileName;
-                   if($file->saveAs($savePath)){
+                if ($isAjax === true) {
+                    $ref = Yii::$app->request->post('ref');
+                    $type = Yii::$app->request->post('category_id');
+                } else {
+                    $Uploads = Yii::$app->request->post('Events');
+                    $ref = $Uploads['ref'];
+                    $type = $Uploads['type'];
+                }
 
-                       if($this->isImage(Url::base(true).'/'.$savePath)){
-                            $this->createThumbnail($ref,$realFileName);
-                       }
+                $this->CreateDir($ref);
 
-                       $model                  = new Uploads;
-                       $model->ref             = $ref;
-                       $model->file_name       = $fileName;
-                       $model->real_filename   = $realFileName;
-                       $model->type             = $type;
-                       $model->save();
+                foreach ($images as $file) {
+                    $fileName = $file->baseName . '.' . $file->extension;
+                    $realFileName = md5($file->baseName . time()) . '.' . $file->extension;
+                    $savePath = SystemHelper::UPLOAD_FOLDER . '/' . $ref . '/' . $realFileName;
+                    if ($file->saveAs($savePath)) {
 
-                       if($isAjax===true){
-                           return ['success' => 'true'];
-                       }
+                        if ($this->isImage(Url::base(true) . '/' . $savePath)) {
+                            $this->createThumbnail($ref, $realFileName);
+                        }
 
-                   }else{
-                       if($isAjax===true){
-                           return ['success'=>'false','eror'=>$file->error];
-                       }
-                   }
+                        $model = new Uploads;
+                        $model->ref = $ref;
+                        $model->file_name = $fileName;
+                        $model->real_filename = $realFileName;
+                        $model->type = $type;
+                        $model->save();
 
-               }
-           }
-       }
-}
+                        if ($isAjax === true) {
+                            return ['success' => 'true'];
+                        }
+
+                    } else {
+                        if ($isAjax === true) {
+                            return ['success' => 'false', 'eror' => $file->error];
+                        }
+                    }
+
+                }
+            }
+        }
+    }
 
 }
