@@ -16,7 +16,7 @@ use app\components\UserHelper;
 /* @var $searchModel app\models\EventsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
 
-$this->title = 'Events';
+$this->title = 'บันทึกเหตการณ์';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
