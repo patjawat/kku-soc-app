@@ -153,7 +153,7 @@ $this->params['breadcrumbs'][] = $this->title;
                     if($model->reporter == null) {
                         return '<span class="right badge badge-danger"><i class="fas fa-pause"></i> รอดำเนินการ</span>';
                     }else{
-                        return $model->resultType->name;
+                        return $model->resultType ? $model->resultType->name : '-';
                     }
                 }
             ],
