@@ -4,6 +4,7 @@ namespace app\components;
 
 use Yii;
 use yii\base\Component;
+use yii\helpers\ArrayHelper;
 use app\modules\usermanager\models\User;
 use app\modules\usermanager\models\UserSearch;
 
@@ -31,6 +32,19 @@ class UserHelper extends Component{
             return $model;
         }else {
             return '';
+        }
+    }
+
+    public static function getUserAll(){
+        return ArrayHelper::map(User::find()->all(),'id','fullname');
+    }
+
+    public static function getUserById($id){
+        $model = User::findOne(['id' => $id]);
+        if($model){
+            return $model->fullname;
+        }else{
+            return null;
         }
     }
     

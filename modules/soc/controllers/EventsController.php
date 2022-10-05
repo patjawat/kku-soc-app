@@ -3,6 +3,7 @@
 namespace app\modules\soc\controllers;
 
 use app\components\SystemHelper;
+use app\components\UserHelper;
 use app\models\Uploads;
 use app\modules\soc\models\Events;
 use app\modules\soc\models\EventsSearch;
@@ -211,6 +212,11 @@ class EventsController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
+
+        $user = UserHelper::getUser('fullname');
+        if($model->reporter !== Yii::$app->user->identity->id){
+            return $this->renderContent('<h1 class="text-center mt-5">'.$user.' ไม่ใช่ผู้รับเรื่อง</h1>');
+        }
         SystemHelper::initialsetDataSession($model->ref);
         list($initialPreview, $initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
@@ -240,6 +246,12 @@ class EventsController extends Controller
     public function actionDelete($id)
     {
         $model =  $this->findModel($id);
+        
+        $user = UserHelper::getUser('fullname');
+        if($model->reporter !== Yii::$app->user->identity->id){
+            return $this->renderContent('<h1 class="text-center mt-5">'.$user.' ไม่ใช่ผู้รับเรื่อง</h1>');
+        }
+
         if($model->reporter ==  Yii::$app->user->id){
         $model->delete();
         return $this->redirect(['index']);

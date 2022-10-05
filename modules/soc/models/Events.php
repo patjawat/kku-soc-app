@@ -192,12 +192,20 @@ class Events extends \yii\db\ActiveRecord
      public function getEventType() {
          return $this->hasOne(Category::className(), ['id' => 'event_type']);
      }
+
+     public function getReporterName() {
+        return $this->hasOne(Category::className(), ['id' => 'event_type']);
+    }
+
  
 
      public function getPersonType() {
          return $this->hasOne(Category::className(), ['id' => 'person_type']);
      }
      
+     public function getResultType() {
+        return $this->hasOne(Category::className(), ['id' => 'result']);
+    }
  
      public function getUploads() {
          return $this->hasMany(Uploads::className(), ['ref' => 'ref']);

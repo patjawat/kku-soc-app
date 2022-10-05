@@ -9,6 +9,7 @@ use app\modules\soc\models\Events;
 use app\models\Category;
 use yii\helpers\ArrayHelper;
 use app\components\SystemHelper;
+use app\components\UserHelper;
 
 
 /* @var $this yii\web\View */
@@ -119,6 +120,23 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
             'fullname',
             [
+                'header' => 'ผู้รับเรื่อง',
+                'attribute' => 'reporter',
+                'hAlign' => 'center',
+                'vAlign' => 'middle',
+                'width' => '11%',
+                'value' => function ($model) {
+                    return $model->getUser();
+                },
+                'filterType' => GridView::FILTER_SELECT2,
+                'filter' => UserHelper::getUserAll(),
+                'filterWidgetOptions' => [
+                    'pluginOptions' => ['allowClear' => true],
+                ],
+                'filterInputOptions' => ['placeholder' => 'เลือกประเภทบุคลากร', 'multiple' => false], // allows multiple authors to be chosen
+                'format' => 'raw',
+            ],
+            [
                 'attribute' =>'result',
                 'header' => 'ผลดำเนินการ',
                 'hAlign' => 'center',
@@ -131,10 +149,11 @@ $this->params['breadcrumbs'][] = $this->title;
                 'filterInputOptions' => ['placeholder' => 'เลือกผลดำเนินการ', 'multiple' => false], // allows multiple authors to be chosen
                 'format' => 'raw',
                 'value' => function ($model) {
-                    if($model->result == null) {
-                            return '<span class="right badge badge-danger"><i class="fas fa-pause"></i> รอดำเนินการ</span>';
+
+                    if($model->reporter === null) {
+                        return '<span class="right badge badge-danger"><i class="fas fa-pause"></i> รอดำเนินการ</span>';
                     }else{
-                        return $model->result == 17 ? ' <span class="right badge badge-success"><i class="fas fa-check"></i> พบเหตุการณ์</span>' : ' <span class="right badge badge-warning"><i class="fas fa-minus"></i> ไม่พบเหตุการร์</span>';
+                        return $model->resultType->name;
                     }
                 }
             ],
