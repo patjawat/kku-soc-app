@@ -41,10 +41,10 @@ class Events extends \yii\db\ActiveRecord
     public function rules()
     {
         return [
-            [['data_json', 'worker'], 'string'],
-            [['fname', 'lname', 'person_type', 'phone', 'event_date', 'accept_pdpa'], 'required'],
-            [['person_type', 'event_type', 'result', 'backup_to', 'backup_type', 'reporter', 'created_by', 'updated_by'], 'integer'],
-            [['event_date', 'updated_at', 'created_at','event_group','files'], 'safe'],
+            [['data_json'], 'string'],
+            [['fname', 'lname', 'person_type', 'phone', 'event_date', 'accept_pdpa','department','event_type','orther'], 'required'],
+            [['person_type', 'event_type', 'result', 'backup_type', 'reporter', 'created_by', 'updated_by'], 'integer'],
+            [['event_date', 'updated_at', 'created_at','event_group','files','worker'], 'safe'],
             [['ref', 'fname', 'lname', 'fullname', 'department', 'address', 'phone', 'orther', 'event_location_note', 'lat', 'lng', 'work_img', 'docs', 'note'], 'string', 'max' => 255],
             [['accept_pdpa'], 'string', 'max' => 1],
         ];
