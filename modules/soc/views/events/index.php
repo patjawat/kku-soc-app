@@ -150,7 +150,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'format' => 'raw',
                 'value' => function ($model) {
 
-                    if($model->reporter === null) {
+                    if($model->reporter == null) {
                         return '<span class="right badge badge-danger"><i class="fas fa-pause"></i> รอดำเนินการ</span>';
                     }else{
                         return $model->resultType ? $model->resultType->name : '-';
