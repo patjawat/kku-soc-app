@@ -3,7 +3,8 @@
 use yii\helpers\Html;
 use yii\web\View;
 use yii\helpers\Url;
-use yii\widgets\DetailView;
+// use kartik\widgets\DetailView;
+use kartik\detail\DetailView;
 use edofre\markerclusterer\Map;
 use edofre\markerclusterer\Marker;
 use app\components\SystemHelper;
@@ -52,6 +53,145 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
+
+
+    <?php echo DetailView::widget([
+        'model' => $model,
+        'responsive' => true,
+        'mode' => 'edit',
+        'enableEditMode' => true,
+        'buttons1' => '{update}',
+        'panel' => [
+            'type' => 'primary',
+            'heading' => 'Contratto'
+        ],
+        'attributes' => [
+            [
+                'group'=>true,
+                'label'=>'ข้อมูลเบื้องต้น',
+                'rowOptions'=>['class'=>'table-primary']
+            ],
+            [
+                'columns' => [
+                    [
+                        'attribute' => 'fname',
+                        'displayOnly' => true,
+                        'valueColOptions' => ['style' => 'width:30%'],
+                        'value' => $model->fname.' '.$model->lname,
+                    ],
+                    [
+                        'attribute' => 'person_type',
+                        'format' => 'raw',
+                        'valueColOptions' => ['style' => 'width:30%'],
+                        'displayOnly' => true,
+                        'type' => DetailView::INPUT_TEXT,
+                        'value' => $model->personType->name,
+                    ],
+                ],
+            ],
+            [
+                'columns' => [
+                    [
+                        'attribute' => 'phone',
+                        'displayOnly' => true,
+                        'valueColOptions' => ['style' => 'width:30%']
+                    ],
+                    [
+                        'attribute' => 'event_type',
+                        'format' => 'raw',
+                        'valueColOptions' => ['style' => 'width:30%'],
+                        'displayOnly' => true,
+                        'value' => $model->eventType->name
+                    ],
+                ],
+            ],
+            [
+                'columns' => [
+                    [
+                        'attribute' => 'fname',
+                        'displayOnly' => true,
+                        'valueColOptions' => ['style' => 'width:30%'],
+                        'format' => 'raw',
+                        'value' => $model->fname.' '.$model->lname,
+                    ],
+                    [
+                        'attribute' => 'event_date',
+                        'displayOnly' => true,
+                        'format' => 'raw',
+                        'type' => DetailView::INPUT_DATE,
+                        'widgetOptions' => [
+                            'pluginOptions' => ['format' => 'yyyy-mm-dd']
+                        ],
+                    ],
+                ],
+            ],
+            [
+                'columns' => [
+                    
+                    [
+                        'attribute' => 'orther',
+                        'displayOnly' => true,
+                        'valueColOptions' => ['style' => 'width:30%'],
+                        'format' => 'raw',
+                        // 'label' => 'Provincia Nascita'
+                    ],
+                    [
+                        'attribute' => 'orther',
+                        'displayOnly' => true,
+                        'valueColOptions' => ['style' => 'width:30%'],
+                        'format' => 'raw',
+                        // 'label' => 'Provincia Nascita'
+                    ],
+                ],
+            ],
+            [
+                'columns' => [
+                    [
+                        'attribute' => 'orther',
+                        'displayOnly' => true,
+                        'format' => 'raw',
+                    ],
+                ],
+            ],
+            [
+                'group'=>true,
+                'label'=>'สรุปผล',
+                'rowOptions'=>['class'=>'table-primary']
+            ],
+            [
+                'columns' => [
+                    [
+                        'attribute' => 'note',
+                        'displayOnly' => true,
+                        'format' => 'raw',
+                    ],
+                    [
+                        'attribute' => 'worker',
+                        'displayOnly' => true,
+                        'format' => 'raw',
+                        'value' => $model->id
+                    ],
+                    
+                    
+                ],
+                'columns' => [
+                    [
+                        'attribute' => 'note',
+                        'displayOnly' => true,
+                        'format' => 'raw',
+                    ],
+                    [
+                        'attribute' => 'worker',
+                        'displayOnly' => true,
+                        'format' => 'raw',
+                        'value' => $model->id
+                    ],
+                    
+                ],
+            ],
+        ],
+        ]);
+?>
 
 
 <div class="row">

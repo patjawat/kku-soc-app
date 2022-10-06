@@ -51,7 +51,8 @@
         "mihaildev/yii2-elfinder": "*",
         "2amigos/yii2-gallery-widget": "~1.0",
         "wbraganca/yii2-videojs-widget": "~1.0",
-        "yurkinx/yii2-image": "dev-master"
+        "yurkinx/yii2-image": "dev-master",
+        "linslin/yii2-curl": "*"
 
     },
     "require-dev": {

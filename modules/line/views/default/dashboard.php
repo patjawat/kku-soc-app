@@ -17,7 +17,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
 </style>
 <div class="container-fluid">
 
-
+<h1 class="text-center">Dashboard</h1>
 <?=$this->render('counter-style1')?>
 <?php $this->render('counter-style2')?>
     <div class="row">

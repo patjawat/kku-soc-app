@@ -17,6 +17,9 @@ use yii\web\Controller;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
 use yii\web\UploadedFile;
+use linslin\yii2\curl;
+use yii\helpers\Json;
+
 
 /**
  * EventsController implements the CRUD actions for Events model.
@@ -40,6 +43,16 @@ class EventsController extends Controller
             ]
         );
     }
+
+    public function beforeAction($action)
+    {
+        if ($action->id == 'callback') {
+            $this->enableCsrfValidation = false; //ปิดการใช้งาน csrf
+        }
+    
+        return parent::beforeAction($action);
+    }
+
 
     /**
      * Lists all Events models.
@@ -173,6 +186,9 @@ class EventsController extends Controller
         if ($this->request->isPost) {
             if ($model->load($this->request->post())) {
                 $this->Uploads(false);
+                if($model->save(false)) {
+                    $this->Callback($model);
+                }
                 return $model->save(false);
                 // return $this->redirect(['success', 'id' => $model->id]);
 
@@ -186,6 +202,36 @@ class EventsController extends Controller
             'initialPreview' => [],
             'initialPreviewConfig' => [],
         ]);
+    }
+
+
+    private function Callback($model)
+    {
+        // Yii::$app->response->format = Response::FORMAT_JSON;
+
+    $accessToken = "YjWJdP9wvDyfuSnOGB3QPcRY9iDZUjkydzBcXwCB4e6JQGP6JRgufrHP/FhSL/3P9YR1ID09ch6HrWfezByh93J7hd+kgenJPlhebLox9dpw6jszm/tdjfsFfyCdnbpHfwJPXEr9hpHXAPVdnLRMGAdB04t89/1O/w1cDnyilFU=";//copy ข้อความ Channel access token ตอนที่ตั้งค่า
+
+    $arrayHeader = [];
+    $arrayHeader[] = "Content-Type: application/json";
+    $arrayHeader[] = "Authorization: Bearer {$accessToken}";
+    $arrayPostData['to'] = 'Uf1f8aae531d88418c5755f8cc4ba6dd1';
+
+    $arrayPostData['messages'][0]['type'] = "text";
+    $arrayPostData['messages'][0]['text'] = '#ทดสอบเหตุ : '.$model->eventType->name."\n".'#ผู้เจ้งเหตุ : '.$model->fname.' '.$model->lname ."\n".'เป็น ('.$model->personType->name.')'."\n".'#ข้อมูลเบื้องต้น : '.$model->orther;
+    
+
+
+    $strUrl = "https://api.line.me/v2/bot/message/push";
+    $ch = curl_init();
+    curl_setopt($ch, CURLOPT_URL,$strUrl);
+    curl_setopt($ch, CURLOPT_HEADER, false);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_HTTPHEADER, $arrayHeader);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, Json::encode($arrayPostData));
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+    curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+    $result = curl_exec($ch);
+    curl_close ($ch);
     }
 
     public function actionSuccess($id)
@@ -326,19 +372,6 @@ class EventsController extends Controller
         return @is_array(getimagesize($filePath)) ? true : false;
     }
 
-    // private function getTemplatePreview(Uploads $model)
-    // {
-    //     $filePath = SystemHelper::getUploadUrl() . $model->ref . '/thumbnail/' . $model->real_filename;
-    //     $isImage = $this->isImage($filePath);
-    //     if ($isImage) {
-    //         $file = Html::img($filePath, ['class' => 'file-preview-image', 'alt' => $model->file_name, 'title' => $model->file_name]);
-    //     } else {
-    //         $file = "<div class='file-preview-other'> " .
-    //             "<h2><i class='glyphicon glyphicon-file'></i></h2>" .
-    //             "</div>";
-    //     }
-    //     return $file;
-    // }
 
     private function createThumbnail($folderName, $fileName, $width = 250)
     {
@@ -381,32 +414,11 @@ class EventsController extends Controller
 
     public function actionImage(string $file_path, int $width, int $height)
     {
-        // public function actionImage()
-        // {
-        // $width = 1080;
-        //     $height = 1080;
         Yii::$app->response->format = Response::FORMAT_RAW;
         $file_path = $this->request->get('file_path');
         $files = SystemHelper::getFiles($file_path, $width, $height);
 
         return $files;
-
-        // try {
-        //     Yii::$app->response->format = Response::FORMAT_RAW;
-        //     $file_path = $this->request->get('file_path');
-        //     $width = 1080;
-        //     $height = 1080;
-        //     // $this->setHttpHeaders();
-
-        //     $files = SystemHelper::getImage($file_path, $width, $height);
-
-        //     // return $files;
-        //     $b = explode('/','ss/aa');
-        //     return $b;
-
-        // } catch (\ImagickException$ex) {
-
-        // }
     }
 
     public function actionVideo()
@@ -420,8 +432,7 @@ class EventsController extends Controller
             ->set('Cache-Control', 'must-revalidate, post-check=0, pre-check=0')
             ->set('Content-Transfer-Encoding', 'binary')
             ->set('Content-type', 'video/mp4');
-        // $id = 2;
-        // // $path = 'file.mp4';
+
         $model = Uploads::find()->where(['upload_id' => $id])->One();
         $path = SystemHelper::getUploadPath() . $model->ref . '/' . $model->real_filename;
         $video_data = file_get_contents($path);
@@ -574,5 +585,10 @@ class EventsController extends Controller
             }
         }
     }
+
+
+
+
+
 
 }

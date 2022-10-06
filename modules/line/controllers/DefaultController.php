@@ -18,4 +18,10 @@ class DefaultController extends Controller
         $this->layout = 'main';
         return $this->render('index');
     }
+
+    public function actionDashboard()
+    {
+        $this->layout = 'main';
+        return $this->render('dashboard');
+    }
 }
