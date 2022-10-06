@@ -68,7 +68,7 @@ class Events extends \yii\db\ActiveRecord
             'phone' => 'หมายเลขโทรศัพท์',
             'event_date' => 'วันและเวลาที่เกิดเหตุ',
             'event_type' => 'เหตุการณ์',
-            'orther' => 'รายละเอียดเพิ่มเติม',
+            'orther' => 'รายละเอียดเหตการณ์',
             'event_location_note' => 'บริเวณสถานที่เกิดเหตุ',
             'lat' => 'latitude',
             'lng' => 'longitude',
@@ -165,7 +165,7 @@ class Events extends \yii\db\ActiveRecord
   
             }
         }else{
-            return Html::img('@web/img/dc_1.png', ['width' => '350px','style' => 'margin-top: -64px;']);
+            return Html::img('@web/img/dc_1.png');
         }
     }
 

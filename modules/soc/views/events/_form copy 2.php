@@ -22,23 +22,20 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
     text-align: end;
     font-size: 15px;
 }
-
 .form-group {
     margin-bottom: 0.3rem;
 }
 
-.view-cid {
+.view-cid{
     position: relative;
-    height: 190px;
-
+    /* height: 237px; */
 }
-
-.view-cid>img {
+.view-cid > img {
     position: absolute;
-    margin-top: -40px;
+    margin-top: -78px;
     margin-left: 0;
     margin-right: 0;
-    width: 250px;
+    width: 100%;
 }
 </style>
 
@@ -70,7 +67,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
     'options' => ['placeholder' => 'เลือก' . $model->getAttributeLabel('event_type') . '...', 'multiple' => false],
 ])->label(true);
 ?>
-        <?=$form->field($model, 'department')->textInput(['maxlength' => true])->label('คณะ/หน่วยงาน');?>
+    <?=$form->field($model, 'department')->textInput(['maxlength' => true])->label('คณะ/หน่วยงาน');?>
 
         <?=$form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label('วันเวลาเกิดเหตุ')?>
         <?=$form->field($model, 'event_location_note')->widget(Select2::classname(), [
@@ -78,7 +75,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
     'options' => ['placeholder' => 'เลือก' . $model->getAttributeLabel('event_location_note') . '...', 'multiple' => false],
 ])->label(true);
 ?>
-        <?=$form->field($model, 'orther')->textArea()?>
+<?=$form->field($model, 'orther')->textArea()?>
 
     </div>
     <div class="col-4">
@@ -88,21 +85,10 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
             <!-- <button type="button" class="close" data-dismiss="alert" aria-label="Close">
     <span aria-hidden="true">&times;</span>
   </button> -->
-            <span class="btn btn-primary" id="cidSelect">เลือกไฟล์</span>
+  <span class="btn btn-primary" id="cidSelect">เลือกไฟล์บัตรประชาชน</span>
         </div>
         <div class="view-cid">
             <?=$model->getIdCart()?>
-        </div>
-
-        <div class="alert alert-info" role="alert">
-            <strong><i class="fas fa-signature"></i> ลายเซ็นต์</strong>
-        </div>
-        <div class="info-box shadow-none">
-            <div class="info-box-content">
-                <?=Html::img('@web/signature/'.$model->ref.'.jpg',['style' => 'width:207px;'])?>
-
-            </div>
-
         </div>
 
     </div>
@@ -114,25 +100,25 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 
 
 <div class="row">
-
-    <div class="col-8">
-        <?=$form->field($model, 'worker')->widget(Select2::classname(), [
+  
+            <div class="col-8">
+                <?=$form->field($model, 'worker')->widget(Select2::classname(), [
                     'hideSearch' => true,
                     'data' => ArrayHelper::map(User::find()->all(), 'id', 'fullname'),
                     'options' => ['placeholder' => 'เลือก' . $model->getAttributeLabel('worker') . '...', 'multiple' => true],
                     ])->label(true);
                     ?>
-        <?php echo $form->field($model, 'note')->textarea(['rows' => 5])->label(true) ?>
-        <?=$form->field($model, 'backup_to')->textInput()?>
-        <?=$form->field($model, 'result')->inline()->radioList(ArrayHelper::map(Category::find()->where(['category_type' => 5])->all(), 'id', 'name'))->label('ผลดำเนินการ')?>
-    </div>
-    <div class="col-6">
+<?php echo $form->field($model, 'note')->textarea(['rows' => 5])->label(true) ?>
+<?=$form->field($model, 'backup_to')->textInput()?>
+<?=$form->field($model, 'result')->inline()->radioList(ArrayHelper::map(Category::find()->where(['category_type' => 5])->all(), 'id', 'name'))->label('ผลดำเนินการ')?>
+            </div>
+            <div class="col-6">
         <?php // $form->field($model, 'note')->widget(CKEditor::className(), ['editorOptions' => ElFinder::ckeditorOptions('elfinder')]) ?>
-
-    </div>
+        
+            </div>
 </div>
 
-<?php
+                <?php
 echo FileInput::widget([
     'name' => 'upload_ajax[]',
     'id' => 'input107',
@@ -153,13 +139,13 @@ echo FileInput::widget([
 ?>
 
 
-<div class="form-group mt-3">
-    <?=Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-success'])?>
-</div>
+        <div class="form-group">
+            <?=Html::submitButton('<i class="fas fa-check"></i> บันทึก', ['class' => 'btn btn-success'])?>
+        </div>
 
-<?php ActiveForm::end();?>
+        <?php ActiveForm::end();?>
 
-<?php
+        <?php
 
 $formUploadUrl = Url::to(['/soc/events/form-upload', 'id' => $model->id]);
 $js = <<< JS
