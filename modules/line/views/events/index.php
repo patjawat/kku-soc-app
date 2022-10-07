@@ -32,14 +32,7 @@ $title = "ยังไม่รับเรื่อง";
         <span class="float-right text-muted">45 likes - 2 comments</span>
     </div>
     <div class="card-footer" style="display: none;">
-        <form action="#" method="post">
-            <img class="img-fluid img-circle img-sm" data-cfsrc="../dist/img/user4-128x128.jpg" alt="Alt Text"
-                src="https://adminlte.io/themes/v3/dist/img/user4-128x128.jpg">
-
-            <div class="img-push">
-                <input type="text" class="form-control form-control-sm" placeholder="Press enter to post comment">
-            </div>
-        </form>
+       
     </div>
 
 </div>
