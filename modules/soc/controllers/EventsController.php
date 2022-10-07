@@ -204,8 +204,32 @@ class EventsController extends Controller
         ]);
     }
 
+    private function BroadcastMassage($model){
 
-    private function Callback($model)
+
+         $arrayPostData['messages'][0]['type'] = "text";
+         $arrayPostData['messages'][0]['text'] = '#เหตุ : '.$model->eventType->name."\n".'#ผู้เจ้งเหตุ : '.$model->fname.' '.$model->lname ."\n".'เป็น ('.$model->personType->name.')'."\n".'#ข้อมูลเบื้องต้น : '.$model->orther;
+    
+         $accessToken = "YjWJdP9wvDyfuSnOGB3QPcRY9iDZUjkydzBcXwCB4e6JQGP6JRgufrHP/FhSL/3P9YR1ID09ch6HrWfezByh93J7hd+kgenJPlhebLox9dpw6jszm/tdjfsFfyCdnbpHfwJPXEr9hpHXAPVdnLRMGAdB04t89/1O/w1cDnyilFU=";//copy ข้อความ Channel access token ตอนที่ตั้งค่า
+         $arrayHeader = [];
+         $arrayHeader[] = "Content-Type: application/json";
+         $arrayHeader[] = "Authorization: Bearer {$accessToken}";
+
+        $strUrl = "https://api.line.me/v2/bot/message/broadcast";
+        $ch = curl_init();
+        curl_setopt($ch, CURLOPT_URL,$strUrl);
+        curl_setopt($ch, CURLOPT_HEADER, false);
+        curl_setopt($ch, CURLOPT_POST, true);
+        curl_setopt($ch, CURLOPT_HTTPHEADER, $arrayHeader);
+        curl_setopt($ch, CURLOPT_POSTFIELDS, Json::encode($arrayPostData));
+        curl_setopt($ch, CURLOPT_RETURNTRANSFER,true);
+        curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+        $result = curl_exec($ch);
+        curl_close ($ch);
+    }
+
+
+    private function PushMessage($model)
     {
         // Yii::$app->response->format = Response::FORMAT_JSON;
 
@@ -217,10 +241,8 @@ class EventsController extends Controller
     $arrayPostData['to'] = 'Uf1f8aae531d88418c5755f8cc4ba6dd1';
 
     $arrayPostData['messages'][0]['type'] = "text";
-    $arrayPostData['messages'][0]['text'] = '#ทดสอบเหตุ : '.$model->eventType->name."\n".'#ผู้เจ้งเหตุ : '.$model->fname.' '.$model->lname ."\n".'เป็น ('.$model->personType->name.')'."\n".'#ข้อมูลเบื้องต้น : '.$model->orther;
+    $arrayPostData['messages'][0]['text'] = '#เหตุ : '.$model->eventType->name."\n".'#ผู้เจ้งเหตุ : '.$model->fname.' '.$model->lname ."\n".'เป็น ('.$model->personType->name.')'."\n".'#ข้อมูลเบื้องต้น : '.$model->orther;
     
-
-
     $strUrl = "https://api.line.me/v2/bot/message/push";
     $ch = curl_init();
     curl_setopt($ch, CURLOPT_URL,$strUrl);
@@ -245,6 +267,7 @@ class EventsController extends Controller
 
         ]);
         $model = $this->findModel($id);
+        $this->BroadcastMassage($model);
         return $this->render('success', [
             'model' => $model,
         ]);
