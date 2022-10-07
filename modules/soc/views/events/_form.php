@@ -72,7 +72,15 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 ?>
         <?=$form->field($model, 'department')->textInput(['maxlength' => true])->label('คณะ/หน่วยงาน');?>
 
-        <?=$form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label('วันเวลาเกิดเหตุ')?>
+        <?php
+echo $form->field($model, 'event_date')->widget(DateTimePicker::classname(), [
+    'options' => ['placeholder' => 'เลือกวันเวลาที่เกิดเหตุ ...'],
+    'language' => 'th',
+    'pluginOptions' => [
+        'autoclose' => true
+    ]
+]);
+?>
         <?=$form->field($model, 'event_location_note')->widget(Select2::classname(), [
     'data' => ArrayHelper::map(Category::find()->where(['category_type' => 4])->all(), 'id', 'name'),
     'options' => ['placeholder' => 'เลือก' . $model->getAttributeLabel('event_location_note') . '...', 'multiple' => false],

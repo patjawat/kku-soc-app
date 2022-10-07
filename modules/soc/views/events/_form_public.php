@@ -155,8 +155,16 @@ label:not(.form-check-label):not(.custom-file-label) {
                 <div class="info-box-content ">
 
                     
-                <?= $form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label(true)?>
-
+                <?php //  $form->field($model, 'event_date')->widget(DateControl::classname(), $optiondate)->label(true)?>
+<?php
+echo $form->field($model, 'event_date')->widget(DateTimePicker::classname(), [
+    'options' => ['placeholder' => 'เลือกวันเวลาที่เกิดเหตุ ...'],
+    'language' => 'th',
+    'pluginOptions' => [
+        'autoclose' => true
+    ]
+]);
+?>
 <?php 
 echo $form->field($model, 'event_type')->widget(Select2::classname(), [
 'data' =>  ArrayHelper::map(Category::find()->where(['category_type' => 2])->all(),'id','name'),
