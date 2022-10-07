@@ -2,7 +2,6 @@
 use yii\helpers\Html;
 $title = "ยังไม่รับเรื่อง";
 /** @var yii\web\View $this */
-
 ?>
 
 <h1 data-aos="fade-down" class="text-center">ยังไม่รับเรื่อง</h1>
@@ -17,7 +16,6 @@ $title = "ยังไม่รับเรื่อง";
         </div>
 
         <div class="card-tools">
-
             <button type="button" class="btn btn-tool" data-card-widget="collapse">
                 <i class="fas fa-plus"></i>
             </button>
