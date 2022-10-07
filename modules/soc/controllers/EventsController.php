@@ -187,7 +187,7 @@ class EventsController extends Controller
             if ($model->load($this->request->post())) {
                 $this->Uploads(false);
                 if($model->save(false)) {
-                    $this->Callback($model);
+                    $this->BroadcastMassage($model);
                 }
                 return $model->save(false);
                 // return $this->redirect(['success', 'id' => $model->id]);
@@ -267,7 +267,7 @@ class EventsController extends Controller
 
         ]);
         $model = $this->findModel($id);
-        $this->BroadcastMassage($model);
+        
         return $this->render('success', [
             'model' => $model,
         ]);
