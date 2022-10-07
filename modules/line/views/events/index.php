@@ -4,13 +4,15 @@ $title = "ยังไม่รับเรื่อง";
 /** @var yii\web\View $this */
 
 ?>
-<h1 class="text-center">ยังไม่รับเรื่อง</h1>
+
+<h1 data-aos="fade-down" class="text-center">ยังไม่รับเรื่อง</h1>
+<?php $i =  3; ?>
 <?php foreach ($models as $model):?>
-<div class="card card-widget collapsed-card">
+<div class="card card-widget collapsed-card" data-aos="fade-up" data-aos-delay="<?=($i++)*100?>">
     <div class="card-header">
         <div class="user-block">
 <?=Html::img('@web/img/check_item.png',['class' => 'img-circle','data-cfsrc' => '@web/img/check_item.png']);?>
-            <span class="username"><a href="#"><?=$model->eventType->name;?></a></span>
+            <span class="username"><a href="#"><?=($i++)*10?><?=$model->eventType->name;?></a></span>
             <span class="description">เวลาเกิดเหตุ <?=$model->event_date;?></span>
         </div>
 

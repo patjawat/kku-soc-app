@@ -35,6 +35,9 @@ $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3
           <?= $content ?>
 
         <?php $this->endBody() ?>
+        <script>
+    AOS.init();
+  </script>
     </body>
 </html>
 <?php $this->endPage() ?>

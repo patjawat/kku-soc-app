@@ -21,11 +21,13 @@ class AppAsset extends AssetBundle
     public $baseUrl = '@web';
     public $css = [
         'css/soc-site.css',
+        'aos/aos.css',
         // 'css/style.css',
         // 'vendors/ti-icons/css/themify-icons.css'
     ];
     public $js = [
-  'https://static.line-scdn.net/liff/edge/2/sdk.js'
+  'https://static.line-scdn.net/liff/edge/2/sdk.js',
+  'aos/aos.js',
     ];
     public $depends = [
         'yii\web\YiiAsset',
