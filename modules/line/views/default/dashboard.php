@@ -2,7 +2,7 @@
 $this->title = 'Dashboard';
 use yii\helpers\Html;
 
-$this->title = '<i class="fas fa-tachometer-alt"></i> Dashboard';
+$this->title = 'Dashboard';
 use miloschuman\highcharts\Highcharts;
 $this->params['breadcrumbs'] = [['label' => $this->title]];
 ?>

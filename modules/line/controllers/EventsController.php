@@ -13,4 +13,13 @@ class EventsController extends \yii\web\Controller
         return $this->render('index',['models' => $models]);
     }
 
+
+    public function actionMyevent()
+    {
+        $this->layout = 'main';
+
+        return $this->renderContent('<h1 class="text-center">Soon</h1>');
+    }
+    
+
 }
