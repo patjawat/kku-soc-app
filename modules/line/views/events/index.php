@@ -1,4 +1,5 @@
 <?php
+use yii\helpers\Html;
 $title = "ยังไม่รับเรื่อง";
 /** @var yii\web\View $this */
 
@@ -8,8 +9,7 @@ $title = "ยังไม่รับเรื่อง";
 <div class="card card-widget collapsed-card">
     <div class="card-header">
         <div class="user-block">
-            <img class="img-circle" data-cfsrc="../dist/img/user1-128x128.jpg" alt="User Image"
-                src="https://adminlte.io/themes/v3/dist/img/user1-128x128.jpg">
+<?=Html::img('@web/img/check_item.png',['class' => 'img-circle','data-cfsrc' => '@web/img/check_item.png']);?>
             <span class="username"><a href="#"><?=$model->eventType->name;?></a></span>
             <span class="description">เวลาเกิดเหตุ <?=$model->event_date;?></span>
         </div>
