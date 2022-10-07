@@ -3,6 +3,7 @@
 use app\models\Category;
 use app\modules\usermanager\models\User;
 use kartik\datecontrol\DateControl;
+use kartik\widgets\DateTimePicker;
 use kartik\select2\Select2;
 use kartik\widgets\FileInput;
 use mihaildev\ckeditor\CKEditor;
