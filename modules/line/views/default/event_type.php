@@ -1,11 +1,13 @@
 <?php
 use app\modules\soc\models\Events;
+$i =  10;
 ?>
-<p class="text-center">
+
+<p class="text-center" data-aos="fade-up" data-aos-delay="900">
                 <strong>สถานะการขอยื่น</strong>
             </p>
             <?php foreach (Events::find()->where(['not',['event_type' => null]])->groupBy('event_type')->all() as $model):?>
-            <div class="progress-group">
+            <div class="progress-group" data-aos="fade-up" data-aos-delay="<?=($i++)*100?>">
             <?=$model->eventType ? $model->eventType->name : null;?>
             <?php
             $result = $model->countPercen();
@@ -16,21 +18,4 @@ use app\modules\soc\models\Events;
                 </div>
             </div>
             <?php endforeach;?>
-        
-<!-- 
-            <div class="progress-group">
-            บุคลากร
-                <span class="float-right"><b>75</b>/75</span>
-                <div class="progress progress-sm">
-                    <div class="progress-bar bg-danger" style="width: 75%"></div>
-                </div>
-            </div>
-
-            <div class="progress-group">
-                <span class="progress-text">ภายนอก</span>
-                <span class="float-right"><b>33</b>/75</span>
-                <div class="progress progress-sm">
-                    <div class="progress-bar bg-success" style="width: 60%"></div>
-                </div>
-            </div> -->
 
