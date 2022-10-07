@@ -12,7 +12,7 @@ $title = "ยังไม่รับเรื่อง";
     <div class="card-header">
         <div class="user-block">
 <?=Html::img('@web/img/check_item.png',['class' => 'img-circle','data-cfsrc' => '@web/img/check_item.png']);?>
-            <span class="username"><a href="#"><?=($i++)*10?><?=$model->eventType->name;?></a></span>
+            <span class="username"><?=$model->eventType->name;?></a></span>
             <span class="description">เวลาเกิดเหตุ <?=$model->event_date;?></span>
         </div>
 
