@@ -26,7 +26,7 @@ $title = "ยังไม่รับเรื่อง";
 
     </div>
 
-    <div class="card-body" style="display: none;">
+    <div class="card-body p-0" style="display: none;">
     <?php echo DetailView::widget([
     'model' => $model,
     'responsive' => true,
