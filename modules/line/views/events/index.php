@@ -39,8 +39,8 @@ $title = "ยังไม่รับเรื่อง";
 
 
 <!-- <img id="pictureUrl"> -->
-  <button id="btnLogIn" onclick="logIn()">Log In</button>
-  <button id="btnLogOut" onclick="logOut()">Log Out</button>
+  <!-- <button id="btnLogIn" onclick="logIn()">Log In</button>
+  <button id="btnLogOut" onclick="logOut()">Log Out</button> -->
 
 <?php
 $js = <<< JS
@@ -59,19 +59,22 @@ function logOut() {
     }
     async function main() {
       await liff.init({ liffId: "1657538565-5Az1zNYA" })
-      if (liff.isInClient()) {
-        getUserProfile()
-      } else {
-        if (liff.isLoggedIn()) {
-          getUserProfile()
-          document.getElementById("btnLogIn").style.display = "none"
-          document.getElementById("btnLogOut").style.display = "block"
-        } else {
-          logIn()
-          document.getElementById("btnLogIn").style.display = "block"
-          document.getElementById("btnLogOut").style.display = "none"
-        }
+      if(!liff.isLoggedIn()) {
+        liff.login({ redirectUri: window.location.href })
       }
+      // if (liff.isInClient()) {
+      //   getUserProfile()
+      // } else {
+      //   if (liff.isLoggedIn()) {
+      //     getUserProfile()
+      //     document.getElementById("btnLogIn").style.display = "none"
+      //     document.getElementById("btnLogOut").style.display = "block"
+      //   } else {
+      //     logIn()
+      //     document.getElementById("btnLogIn").style.display = "block"
+      //     document.getElementById("btnLogOut").style.display = "none"
+      //   }
+      // }
     }
     main()
     
