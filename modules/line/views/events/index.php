@@ -22,112 +22,66 @@ $title = "ยังไม่รับเรื่อง";
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
             </button>
         </div>
-        
 
     </div>
 
     <div class="card-body p-0" style="display: none;">
 
-    <div class="alert alert-secondary" role="alert">
-  This is a secondary alert—check it out!
-</div>
-
-
-    <?php echo DetailView::widget([
-    'model' => $model,
-    'responsive' => true,
-    'attributes' => [
-        [
-            'columns' => [
-                [
-                    'attribute' => 'fname',
-                    'displayOnly' => true,
-                    'valueColOptions' => ['style' => 'width:30%'],
-                    'value' => $model->fname . ' ' . $model->lname,
-                ],
-                
-            ],
-            'columns' => [
-              [
-                'attribute' => 'person_type',
-                'format' => 'raw',
-                'valueColOptions' => ['style' => 'width:30%'],
-                'displayOnly' => true,
-                'type' => DetailView::INPUT_TEXT,
-                'value' => $model->personType->name,
-            ],
-            ]
+        <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+          [
+            'attribute' => 'fname',
+            'displayOnly' => true,
+            'valueColOptions' => ['style' => 'width:30%'],
+            'value' => $model->fname.' '.$model->lname,
         ],
-
-        // [
-        //     'columns' => [
-        //         [
-        //             'attribute' => 'phone',
-        //             'displayOnly' => true,
-        //             'valueColOptions' => ['style' => 'width:30%'],
-        //         ],
-        //         [
-        //             'attribute' => 'event_type',
-        //             'format' => 'raw',
-        //             'valueColOptions' => ['style' => 'width:30%'],
-        //             'displayOnly' => true,
-        //             'value' => $model->eventType->name,
-        //         ],
-        //     ],
-        // ],
-        // [
-        //     'columns' => [
-        //         [
-        //             'attribute' => 'fname',
-        //             'displayOnly' => true,
-        //             'valueColOptions' => ['style' => 'width:30%'],
-        //             'format' => 'raw',
-        //             'value' => $model->fname . ' ' . $model->lname,
-        //         ],
-        //         [
-        //             'attribute' => 'event_date',
-        //             'displayOnly' => true,
-        //             'format' => 'raw',
-        //             'type' => DetailView::INPUT_DATE,
-        //             'widgetOptions' => [
-        //                 'pluginOptions' => ['format' => 'yyyy-mm-dd'],
-        //             ],
-        //         ],
-        //     ],
-        // ],
-        // [
-        //     'columns' => [
-
-        //         [
-        //             'attribute' => 'orther',
-        //             'displayOnly' => true,
-        //             'valueColOptions' => ['style' => 'width:30%'],
-        //             'format' => 'raw',
-        //             // 'label' => 'Provincia Nascita'
-        //         ],
-        //         [
-        //             'attribute' => 'orther',
-        //             'displayOnly' => true,
-        //             'valueColOptions' => ['style' => 'width:30%'],
-        //             'format' => 'raw',
-        //             // 'label' => 'Provincia Nascita'
-        //         ],
-        //     ],
-        // ],
-        // [
-        //     'columns' => [
-        //         [
-        //             'attribute' => 'orther',
-        //             'displayOnly' => true,
-        //             'format' => 'raw',
-        //         ],
-        //     ],
-        // ],
-
-        
+        [
+          'attribute' => 'person_type',
+          'format' => 'raw',
+          'valueColOptions' => ['style' => 'width:30%'],
+          'displayOnly' => true,
+          'type' => DetailView::INPUT_TEXT,
+          'value' => $model->personType->name,
+      ],
+      [
+        'attribute' => 'phone',
+        'displayOnly' => true,
+        'valueColOptions' => ['style' => 'width:30%']
     ],
-]);
-?>
+    [
+        'attribute' => 'event_type',
+        'format' => 'raw',
+        'valueColOptions' => ['style' => 'width:30%'],
+        'displayOnly' => true,
+        'value' => $model->eventType->name
+    ],
+  [
+      'attribute' => 'event_date',
+      'displayOnly' => true,
+      'format' => 'raw',
+      'type' => DetailView::INPUT_DATE,
+      'widgetOptions' => [
+          'pluginOptions' => ['format' => 'yyyy-mm-dd']
+      ],
+  ],
+  [
+    'attribute' => 'orther',
+    'displayOnly' => true,
+    'valueColOptions' => ['style' => 'width:30%'],
+    'format' => 'raw',
+    // 'label' => 'Provincia Nascita'
+],
+[
+    'attribute' => 'orther',
+    'displayOnly' => true,
+    'valueColOptions' => ['style' => 'width:30%'],
+    'format' => 'raw',
+    // 'label' => 'Provincia Nascita'
+],
+            'ref',
+        ],
+    ]) ?>
     </div>
 
 </div>
