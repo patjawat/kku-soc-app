@@ -38,7 +38,7 @@ $title = "ยังไม่รับเรื่อง";
 <?php endforeach;?>
 
 
-<img id="pictureUrl">
+<!-- <img id="pictureUrl"> -->
   <button id="btnLogIn" onclick="logIn()">Log In</button>
   <button id="btnLogOut" onclick="logOut()">Log Out</button>
 
