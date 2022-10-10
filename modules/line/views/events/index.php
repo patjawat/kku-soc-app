@@ -1,6 +1,7 @@
 <?php
 use yii\web\View;
 use yii\helpers\Html;
+use kartik\detail\DetailView;
 $title = "ยังไม่รับเรื่อง";
 /** @var yii\web\View $this */
 ?>
