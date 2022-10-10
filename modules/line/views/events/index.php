@@ -27,6 +27,12 @@ $title = "ยังไม่รับเรื่อง";
     </div>
 
     <div class="card-body p-0" style="display: none;">
+
+    <div class="alert alert-secondary" role="alert">
+  This is a secondary alert—check it out!
+</div>
+
+
     <?php echo DetailView::widget([
     'model' => $model,
     'responsive' => true,
@@ -39,80 +45,84 @@ $title = "ยังไม่รับเรื่อง";
                     'valueColOptions' => ['style' => 'width:30%'],
                     'value' => $model->fname . ' ' . $model->lname,
                 ],
-                [
-                    'attribute' => 'person_type',
-                    'format' => 'raw',
-                    'valueColOptions' => ['style' => 'width:30%'],
-                    'displayOnly' => true,
-                    'type' => DetailView::INPUT_TEXT,
-                    'value' => $model->personType->name,
-                ],
+                
             ],
-        ],
-        [
             'columns' => [
-                [
-                    'attribute' => 'phone',
-                    'displayOnly' => true,
-                    'valueColOptions' => ['style' => 'width:30%'],
-                ],
-                [
-                    'attribute' => 'event_type',
-                    'format' => 'raw',
-                    'valueColOptions' => ['style' => 'width:30%'],
-                    'displayOnly' => true,
-                    'value' => $model->eventType->name,
-                ],
+              [
+                'attribute' => 'person_type',
+                'format' => 'raw',
+                'valueColOptions' => ['style' => 'width:30%'],
+                'displayOnly' => true,
+                'type' => DetailView::INPUT_TEXT,
+                'value' => $model->personType->name,
             ],
+            ]
         ],
-        [
-            'columns' => [
-                [
-                    'attribute' => 'fname',
-                    'displayOnly' => true,
-                    'valueColOptions' => ['style' => 'width:30%'],
-                    'format' => 'raw',
-                    'value' => $model->fname . ' ' . $model->lname,
-                ],
-                [
-                    'attribute' => 'event_date',
-                    'displayOnly' => true,
-                    'format' => 'raw',
-                    'type' => DetailView::INPUT_DATE,
-                    'widgetOptions' => [
-                        'pluginOptions' => ['format' => 'yyyy-mm-dd'],
-                    ],
-                ],
-            ],
-        ],
-        [
-            'columns' => [
 
-                [
-                    'attribute' => 'orther',
-                    'displayOnly' => true,
-                    'valueColOptions' => ['style' => 'width:30%'],
-                    'format' => 'raw',
-                    // 'label' => 'Provincia Nascita'
-                ],
-                [
-                    'attribute' => 'orther',
-                    'displayOnly' => true,
-                    'valueColOptions' => ['style' => 'width:30%'],
-                    'format' => 'raw',
-                    // 'label' => 'Provincia Nascita'
-                ],
-            ],
-        ],
-        [
-            'columns' => [
-                [
-                    'attribute' => 'orther',
-                    'displayOnly' => true,
-                    'format' => 'raw',
-                ],
-            ],
-        ],
+        // [
+        //     'columns' => [
+        //         [
+        //             'attribute' => 'phone',
+        //             'displayOnly' => true,
+        //             'valueColOptions' => ['style' => 'width:30%'],
+        //         ],
+        //         [
+        //             'attribute' => 'event_type',
+        //             'format' => 'raw',
+        //             'valueColOptions' => ['style' => 'width:30%'],
+        //             'displayOnly' => true,
+        //             'value' => $model->eventType->name,
+        //         ],
+        //     ],
+        // ],
+        // [
+        //     'columns' => [
+        //         [
+        //             'attribute' => 'fname',
+        //             'displayOnly' => true,
+        //             'valueColOptions' => ['style' => 'width:30%'],
+        //             'format' => 'raw',
+        //             'value' => $model->fname . ' ' . $model->lname,
+        //         ],
+        //         [
+        //             'attribute' => 'event_date',
+        //             'displayOnly' => true,
+        //             'format' => 'raw',
+        //             'type' => DetailView::INPUT_DATE,
+        //             'widgetOptions' => [
+        //                 'pluginOptions' => ['format' => 'yyyy-mm-dd'],
+        //             ],
+        //         ],
+        //     ],
+        // ],
+        // [
+        //     'columns' => [
+
+        //         [
+        //             'attribute' => 'orther',
+        //             'displayOnly' => true,
+        //             'valueColOptions' => ['style' => 'width:30%'],
+        //             'format' => 'raw',
+        //             // 'label' => 'Provincia Nascita'
+        //         ],
+        //         [
+        //             'attribute' => 'orther',
+        //             'displayOnly' => true,
+        //             'valueColOptions' => ['style' => 'width:30%'],
+        //             'format' => 'raw',
+        //             // 'label' => 'Provincia Nascita'
+        //         ],
+        //     ],
+        // ],
+        // [
+        //     'columns' => [
+        //         [
+        //             'attribute' => 'orther',
+        //             'displayOnly' => true,
+        //             'format' => 'raw',
+        //         ],
+        //     ],
+        // ],
 
         
     ],
