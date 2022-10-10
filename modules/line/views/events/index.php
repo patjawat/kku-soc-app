@@ -29,6 +29,15 @@ $title = "ยังไม่รับเรื่อง";
         <button type="button" class="btn btn-default btn-sm"><i class="fas fa-share"></i> Share</button>
         <button type="button" class="btn btn-default btn-sm"><i class="far fa-thumbs-up"></i> Like</button>
         <span class="float-right text-muted">45 likes - 2 comments</span>
+        <?= DetailView::widget([
+        'model' => $model,
+        'attributes' => [
+            'reporter',
+            'result',
+            'backup_to',
+            'note',
+        ],
+    ]) ?>
     </div>
     <div class="card-footer" style="display: none;">
        
