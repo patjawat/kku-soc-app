@@ -16,7 +16,7 @@ $title = "ยังไม่รับเรื่อง";
         <div class="user-block">
             <?=Html::img('@web/img/check_item.png', ['class' => 'img-circle', 'data-cfsrc' => '@web/img/check_item.png']);?>
             <span class="username"><?=$model->eventType->name;?></a></span>
-            <span class="description text-light bg-dark">เวลาเกิดเหตุ <?=$model->event_date;?></span>
+            <span class="description text-light">เวลาเกิดเหตุ <?=$model->event_date;?></span>
         </div>
         <div class="card-tools">
             <button type="button" class="btn btn-tool" data-card-widget="collapse"><i class="fas fa-plus"></i>
@@ -27,61 +27,59 @@ $title = "ยังไม่รับเรื่อง";
 
     <div class="card-body p-0" style="display: none;">
 
-        <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-          [
+        <?=DetailView::widget([
+    'model' => $model,
+    'attributes' => [
+        [
             'attribute' => 'fname',
             'displayOnly' => true,
             'valueColOptions' => ['style' => 'width:30%'],
-            'value' => $model->fname.' '.$model->lname,
+            'value' => $model->fname . ' ' . $model->lname,
         ],
         [
-          'attribute' => 'person_type',
-          'format' => 'raw',
-          'valueColOptions' => ['style' => 'width:30%'],
-          'displayOnly' => true,
-          'type' => DetailView::INPUT_TEXT,
-          'value' => $model->personType->name,
-      ],
-      [
-        'attribute' => 'phone',
-        'displayOnly' => true,
-        'valueColOptions' => ['style' => 'width:30%']
-    ],
-    [
-        'attribute' => 'event_type',
-        'format' => 'raw',
-        'valueColOptions' => ['style' => 'width:30%'],
-        'displayOnly' => true,
-        'value' => $model->eventType->name
-    ],
-  [
-      'attribute' => 'event_date',
-      'displayOnly' => true,
-      'format' => 'raw',
-      'type' => DetailView::INPUT_DATE,
-      'widgetOptions' => [
-          'pluginOptions' => ['format' => 'yyyy-mm-dd']
-      ],
-  ],
-  [
-    'attribute' => 'orther',
-    'displayOnly' => true,
-    'valueColOptions' => ['style' => 'width:30%'],
-    'format' => 'raw',
-    // 'label' => 'Provincia Nascita'
-],
-[
-    'attribute' => 'orther',
-    'displayOnly' => true,
-    'valueColOptions' => ['style' => 'width:30%'],
-    'format' => 'raw',
-    // 'label' => 'Provincia Nascita'
-],
-            'ref',
+            'attribute' => 'person_type',
+            'format' => 'raw',
+            'valueColOptions' => ['style' => 'width:30%'],
+            'displayOnly' => true,
+            'type' => DetailView::INPUT_TEXT,
+            'value' => $model->personType->name,
         ],
-    ]) ?>
+        [
+            'attribute' => 'phone',
+            'displayOnly' => true,
+            'valueColOptions' => ['style' => 'width:30%'],
+        ],
+        [
+            'attribute' => 'event_type',
+            'format' => 'raw',
+            'valueColOptions' => ['style' => 'width:30%'],
+            'displayOnly' => true,
+            'value' => $model->eventType->name,
+        ],
+        [
+            'attribute' => 'event_date',
+            'displayOnly' => true,
+            'format' => 'raw',
+            'type' => DetailView::INPUT_DATE,
+            'widgetOptions' => [
+                'pluginOptions' => ['format' => 'yyyy-mm-dd'],
+            ],
+        ],
+        [
+            'attribute' => 'orther',
+            'displayOnly' => true,
+            'valueColOptions' => ['style' => 'width:30%'],
+            'format' => 'raw',
+            // 'label' => 'Provincia Nascita'
+        ],
+        [
+            'attribute' => 'orther',
+            'displayOnly' => true,
+            'valueColOptions' => ['style' => 'width:30%'],
+            'format' => 'raw',
+        ],
+    ],
+])?>
     </div>
 
 </div>
