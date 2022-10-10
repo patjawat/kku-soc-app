@@ -1,4 +1,5 @@
 <?php
+use yii\web\View;
 use yii\helpers\Html;
 $title = "ยังไม่รับเรื่อง";
 /** @var yii\web\View $this */
@@ -35,3 +36,45 @@ $title = "ยังไม่รับเรื่อง";
 
 </div>
 <?php endforeach;?>
+
+
+<img id="pictureUrl">
+  <button id="btnLogIn" onclick="logIn()">Log In</button>
+  <button id="btnLogOut" onclick="logOut()">Log Out</button>
+
+<?php
+$js = <<< JS
+
+function logOut() {
+      liff.logout()
+      window.location.reload()
+    }
+    function logIn() {
+      liff.login({ redirectUri: window.location.href })
+    }
+    async function getUserProfile() {
+      const profile = await liff.getProfile()
+      document.getElementById("pictureUrl").style.display = "block"
+      document.getElementById("pictureUrl").src = profile.pictureUrl
+    }
+    async function main() {
+      await liff.init({ liffId: "1657538565-5Az1zNYA" })
+      if (liff.isInClient()) {
+        getUserProfile()
+      } else {
+        if (liff.isLoggedIn()) {
+          getUserProfile()
+          document.getElementById("btnLogIn").style.display = "none"
+          document.getElementById("btnLogOut").style.display = "block"
+        } else {
+          logIn()
+          document.getElementById("btnLogIn").style.display = "block"
+          document.getElementById("btnLogOut").style.display = "none"
+        }
+      }
+    }
+    main()
+    
+JS;
+$this->registerJS($js,View::POS_END)
+?>
