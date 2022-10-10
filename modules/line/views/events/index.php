@@ -56,15 +56,15 @@ $title = "ยังไม่รับเรื่อง";
             'displayOnly' => true,
             'value' => $model->eventType->name,
         ],
-        [
-            'attribute' => 'event_date',
-            'displayOnly' => true,
-            'format' => 'raw',
-            'type' => DetailView::INPUT_DATE,
-            'widgetOptions' => [
-                'pluginOptions' => ['format' => 'yyyy-mm-dd'],
-            ],
-        ],
+        // [
+        //     'attribute' => 'event_date',
+        //     'displayOnly' => true,
+        //     'format' => 'raw',
+        //     'type' => DetailView::INPUT_DATE,
+        //     'widgetOptions' => [
+        //         'pluginOptions' => ['format' => 'yyyy-mm-dd'],
+        //     ],
+        // ],
         [
             'attribute' => 'orther',
             'displayOnly' => true,
