@@ -41,7 +41,8 @@ $this->params['breadcrumbs'][] = $this->title;
     position: absolute;
 }
 .file-preview-image{
-    height: 200px;
+    height: 238px;
+    max-height:238px;
 }
 </style>
 
