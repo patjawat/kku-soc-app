@@ -34,9 +34,14 @@ $this->params['breadcrumbs'][] = $this->title;
     position: relative;
     width:200px;
     height:263px;
+    max-height: 263px;
+
 }
 .view-card-id > img {
     position: absolute;
+}
+.file-preview-image{
+    height: 200px;
 }
 </style>
 
