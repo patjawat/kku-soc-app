@@ -25,7 +25,7 @@ $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3
         <!-- <link rel="shortcut icon" href="./img/medico.ico" type="image/x-icon" /> -->
         <!-- <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet"> -->
         <?= Html::csrfMetaTags() ?>
-        <title><?= Html::encode($this->title) ?><?=$this->title ? '' : 'SmartSOC'?></title>
+        <title><?= Html::encode($this->title) ?><?=$this->title ? '' : 'งานเทคโนโลยีความปลอยภัย'?></title>
         <?php $this->head() ?>
     </head>
     <body class="container" style="min-height: 512.391px;">
