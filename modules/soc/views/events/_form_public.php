@@ -54,7 +54,13 @@ label:not(.form-check-label):not(.custom-file-label) {
 <?php
 ?>
 
-<div class="container">
+
+<div class="loading text-center text-light mt-5" style="display:none;">
+<i class="fas fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i>
+<h1 class="text-center">รอสักครู่...</h1>
+</div>
+
+<div class="container container-form">
     <div class="row justify-content-md-center">
         <div class="col-12">
 
@@ -278,6 +284,10 @@ $.ajax({
     url: form.attr('action'),
     data:form.serialize(),
     dataType: "json",
+    beforeSend: async function() {
+        await $('.container-form').hide();
+        await $('.loading').show();
+      },
     success: function (response) {
        if(response){
            saveImage()

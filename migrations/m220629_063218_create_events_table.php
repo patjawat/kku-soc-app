@@ -32,7 +32,7 @@ class m220629_063218_create_events_table extends Migration
             'work_img' => $this->string()->comment('รูปภาพการปฏิบัติการ'),
             'docs' => $this->string()->comment('เอกสารแนบใบคำขอ'),
             'result' => $this->integer()->comment('ผลการให้บริการดูกล้องวงจรปิด'),
-            'note' => $this->string()->comment('รายงานการดำเนินการ'),
+            'note' => $this->text()->comment('รายงานการดำเนินการ'),
             'backup_to' => $this->string()->comment('การขอสำรองข้อมูลให้'),
             'backup_type' => $this->integer()->comment('ประเภทไฟล์ข้อมูล'),
             'reporter' => $this->integer()->comment('ผู้รายงานเหตุ'),
