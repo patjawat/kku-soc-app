@@ -1,13 +1,13 @@
 <?php
 
-namespace app\modules\cctv\controllers;
+namespace app\modules\line\controllers;
 
 use yii\web\Controller;
 
 /**
- * Default controller for the `cctv` module
+ * Default controller for the `line` module
  */
-class DefaultController extends Controller
+class CctvController extends Controller
 {
     /**
      * Renders the index view for the module
@@ -15,7 +15,7 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+        $this->layout = 'main';
         return $this->render('index');
     }
-    
 }
