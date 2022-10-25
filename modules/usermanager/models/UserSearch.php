@@ -16,7 +16,7 @@ class UserSearch extends User
     {
         return [
             [['id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags', 'last_login_at', 'status', 'dep_id', 'occ_id', 'pos_id'], 'integer'],
-            [['username', 'email', 'password_hash', 'auth_key', 'unconfirmed_email', 'registration_ip', 'password_reset_token', 'pname', 'fullname', 'occ_no', 'pos_no', 'role','q'], 'safe'],
+            [['username', 'email', 'password_hash', 'auth_key', 'unconfirmed_email', 'registration_ip', 'password_reset_token', 'pname', 'fullname', 'occ_no', 'pos_no', 'role','q','phone'], 'safe'],
         ];
     }
 
@@ -67,6 +67,7 @@ class UserSearch extends User
             'dep_id' => $this->dep_id,
             'occ_id' => $this->occ_id,
             'pos_id' => $this->pos_id,
+            'phone' => $this->phone,
         ]);
 
         $query->andFilterWhere(['like', 'username', $this->username])

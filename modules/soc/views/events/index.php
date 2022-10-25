@@ -12,6 +12,7 @@ use app\components\SystemHelper;
 use app\components\UserHelper;
 
 
+
 /* @var $this yii\web\View */
 /* @var $searchModel app\models\EventsSearch */
 /* @var $dataProvider yii\data\ActiveDataProvider */
@@ -19,7 +20,7 @@ use app\components\UserHelper;
 $this->title = 'บันทึกเหตการณ์';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-
+ <?php //  Pjax::begin(); ?>
 <style>
     thead th {
     border-bottom-width: 2px;
@@ -27,12 +28,33 @@ $this->params['breadcrumbs'][] = $this->title;
 }
 </style>
 
+<?php
+if ($searchModel->q_date){
+
+    $date_explode = explode(" - ", $searchModel->q_date);
+    $date1 = trim($date_explode[0]);
+    $date2 = trim($date_explode[1]);
+}else{
+    $date1 = '';
+    $date2 = '';
+}
+?>
 <div class="events-index">
-    <p>
+
+
+<div class="d-flex justify-content-between">
+    <div>
         <?= Html::a('<i class="fas fa-plus"></i> สร้างใหม่', ['create'], ['class' => 'btn btn-success']) ?>
+        
+    </div>
+    <div>
+        <?= Html::a('<i class="fas fa-print"></i> พิมพ์รายงาน', ['report','date1' => $date1,'date2' => $date2], ['class' => 'btn btn-primary','data-pjax' => false]) ?>
+    </div>
+  </div>
+    <p>
     </p>
 
-    <?php Pjax::begin(); ?>
+   
     <?php // echo $this->render('_search', ['model' => $searchModel]); ?>
 
     <?= GridView::widget([
@@ -167,6 +189,6 @@ $this->params['breadcrumbs'][] = $this->title;
         ],
     ]); ?>
 
-    <?php Pjax::end(); ?>
+    <?php //  Pjax::end(); ?>
 
 </div>

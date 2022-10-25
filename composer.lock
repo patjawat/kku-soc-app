@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "18edb9fff4dc1fe7b2bea1d9553cd71c",
+    "content-hash": "c2eb052573ce4bd344921d92e49a354d",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -231,7 +231,7 @@
             "version": "3.3.11",
             "source": {
                 "type": "git",
-                "url": "https://github.com/RobinHerbots/Inputmask.git",
+                "url": "git@github.com:RobinHerbots/Inputmask.git",
                 "reference": "5e670ad62f50c738388d4dcec78d2888505ad77b"
             },
             "dist": {
@@ -252,7 +252,7 @@
             "version": "3.6.1",
             "source": {
                 "type": "git",
-                "url": "https://github.com/jquery/jquery-dist.git",
+                "url": "git@github.com:jquery/jquery-dist.git",
                 "reference": "3711efedf0ca2e998cd0417324f717f2e0b828ec"
             },
             "dist": {
@@ -291,7 +291,7 @@
             "version": "v2.1.4",
             "source": {
                 "type": "git",
-                "url": "https://github.com/js-cookie/js-cookie.git",
+                "url": "git@github.com:js-cookie/js-cookie.git",
                 "reference": "8b70250875f7e07445b6a457f9c2474ead4cba44"
             },
             "dist": {
@@ -426,12 +426,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/chillerlan/php-qrcode.git",
-                "reference": "c43715795d0fbcc913a2e9c5f8c757062ce0e8c7"
+                "reference": "c03aafcf183e297128931c40fb425fb40057ea86"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/chillerlan/php-qrcode/zipball/c43715795d0fbcc913a2e9c5f8c757062ce0e8c7",
-                "reference": "c43715795d0fbcc913a2e9c5f8c757062ce0e8c7",
+                "url": "https://api.github.com/repos/chillerlan/php-qrcode/zipball/c03aafcf183e297128931c40fb425fb40057ea86",
+                "reference": "c03aafcf183e297128931c40fb425fb40057ea86",
                 "shasum": ""
             },
             "require": {
@@ -509,7 +509,7 @@
                     "type": "ko_fi"
                 }
             ],
-            "time": "2022-08-09T13:01:31+00:00"
+            "time": "2022-10-05T18:16:47+00:00"
         },
         {
             "name": "chillerlan/php-settings-container",
@@ -616,53 +616,6 @@
                 "source": "https://github.com/lipis/flag-icon-css/tree/3.5.0"
             },
             "time": "2020-06-10T11:53:19+00:00"
-        },
-        {
-            "name": "dastanaron/yii2-dropzone-widget",
-            "version": "dev-master",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/dastanaron/yii2-dropzone-widget.git",
-                "reference": "25d8ddfab987a9749a479132d94a8ca5ed6bf153"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/dastanaron/yii2-dropzone-widget/zipball/25d8ddfab987a9749a479132d94a8ca5ed6bf153",
-                "reference": "25d8ddfab987a9749a479132d94a8ca5ed6bf153",
-                "shasum": ""
-            },
-            "require": {
-                "yiisoft/yii2": "~2.0.0"
-            },
-            "default-branch": true,
-            "type": "yii2-extension",
-            "autoload": {
-                "psr-4": {
-                    "dastanaron\\dropzone\\": ""
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "authors": [
-                {
-                    "name": "dastanaron",
-                    "email": "flow199@yandex.ru"
-                }
-            ],
-            "description": "A widget that uses the well known dropzone library for convenient file uploads. Does not throw scripts into the body of html, connects from its controller",
-            "keywords": [
-                " dropzone",
-                " widget",
-                "extension",
-                "yii2"
-            ],
-            "support": {
-                "issues": "https://github.com/dastanaron/yii2-dropzone-widget/issues",
-                "source": "https://github.com/dastanaron/yii2-dropzone-widget/tree/master"
-            },
-            "time": "2018-01-17T09:15:15+00:00"
         },
         {
             "name": "dektrium/yii2-rbac",
@@ -1663,12 +1616,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/bootstrap-fileinput.git",
-                "reference": "213e0887d254a9c6fb028ff817abd8af7e734e78"
+                "reference": "8af6df403f4c37a6e497361eb9c3caafb8ec4d82"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/213e0887d254a9c6fb028ff817abd8af7e734e78",
-                "reference": "213e0887d254a9c6fb028ff817abd8af7e734e78",
+                "url": "https://api.github.com/repos/kartik-v/bootstrap-fileinput/zipball/8af6df403f4c37a6e497361eb9c3caafb8ec4d82",
+                "reference": "8af6df403f4c37a6e497361eb9c3caafb8ec4d82",
                 "shasum": ""
             },
             "default-branch": true,
@@ -1711,7 +1664,7 @@
             ],
             "support": {
                 "issues": "https://github.com/kartik-v/bootstrap-fileinput/issues",
-                "source": "https://github.com/kartik-v/bootstrap-fileinput/tree/v5.5.1"
+                "source": "https://github.com/kartik-v/bootstrap-fileinput/tree/master"
             },
             "funding": [
                 {
@@ -1719,7 +1672,7 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2022-08-17T07:53:35+00:00"
+            "time": "2022-10-13T13:02:42+00:00"
         },
         {
             "name": "kartik-v/bootstrap-popover-x",
@@ -2590,6 +2543,69 @@
             "time": "2022-06-01T14:05:39+00:00"
         },
         {
+            "name": "kartik-v/yii2-mpdf",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/kartik-v/yii2-mpdf.git",
+                "reference": "6a6506e680e4a07b1781da12bed9c080263f5f4a"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/kartik-v/yii2-mpdf/zipball/6a6506e680e4a07b1781da12bed9c080263f5f4a",
+                "reference": "6a6506e680e4a07b1781da12bed9c080263f5f4a",
+                "shasum": ""
+            },
+            "require": {
+                "mpdf/mpdf": "~8.1"
+            },
+            "default-branch": true,
+            "type": "yii2-extension",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0.x-dev"
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "kartik\\mpdf\\": "src"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "BSD-3-Clause"
+            ],
+            "authors": [
+                {
+                    "name": "Kartik Visweswaran",
+                    "email": "kartikv2@gmail.com",
+                    "homepage": "http://www.krajee.com/"
+                }
+            ],
+            "description": "A Yii2 wrapper component for the mPDF library which generates PDF files from UTF-8 encoded HTML.",
+            "homepage": "https://github.com/kartik-v/yii2-mpdf",
+            "keywords": [
+                "component",
+                "extension",
+                "html",
+                "mpdf",
+                "pdf",
+                "utf8",
+                "yii2"
+            ],
+            "support": {
+                "issues": "https://github.com/kartik-v/yii2-mpdf/issues",
+                "source": "https://github.com/kartik-v/yii2-mpdf/tree/master"
+            },
+            "funding": [
+                {
+                    "url": "https://opencollective.com/yii2-mpdf",
+                    "type": "open_collective"
+                }
+            ],
+            "time": "2022-09-19T18:31:07+00:00"
+        },
+        {
             "name": "kartik-v/yii2-popover-x",
             "version": "dev-master",
             "source": {
@@ -2707,12 +2723,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/kartik-v/yii2-tabs-x.git",
-                "reference": "c968409e2820339b7084890cb018376687fed408"
+                "reference": "20e2a2b41ca43e09574caab408004e5ac4e00a7d"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/kartik-v/yii2-tabs-x/zipball/c968409e2820339b7084890cb018376687fed408",
-                "reference": "c968409e2820339b7084890cb018376687fed408",
+                "url": "https://api.github.com/repos/kartik-v/yii2-tabs-x/zipball/20e2a2b41ca43e09574caab408004e5ac4e00a7d",
+                "reference": "20e2a2b41ca43e09574caab408004e5ac4e00a7d",
                 "shasum": ""
             },
             "require": {
@@ -2755,9 +2771,9 @@
             ],
             "support": {
                 "issues": "https://github.com/kartik-v/yii2-tabs-x/issues",
-                "source": "https://github.com/kartik-v/yii2-tabs-x/tree/v1.2.8"
+                "source": "https://github.com/kartik-v/yii2-tabs-x/tree/v1.2.9"
             },
-            "time": "2021-09-20T06:56:42+00:00"
+            "time": "2022-10-15T11:14:01+00:00"
         },
         {
             "name": "kartik-v/yii2-widget-activeform",
@@ -3971,12 +3987,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/mdmsoft/yii2-admin.git",
-                "reference": "996e789657ebf4a9e1efe204592e8a80955a135f"
+                "reference": "e042ccb87bbc8add5bdefce414d3e62ef9f982b0"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mdmsoft/yii2-admin/zipball/996e789657ebf4a9e1efe204592e8a80955a135f",
-                "reference": "996e789657ebf4a9e1efe204592e8a80955a135f",
+                "url": "https://api.github.com/repos/mdmsoft/yii2-admin/zipball/e042ccb87bbc8add5bdefce414d3e62ef9f982b0",
+                "reference": "e042ccb87bbc8add5bdefce414d3e62ef9f982b0",
                 "shasum": ""
             },
             "require": {
@@ -4026,7 +4042,7 @@
                 "issues": "https://github.com/mdmsoft/yii2-admin/issues",
                 "source": "https://github.com/mdmsoft/yii2-admin"
             },
-            "time": "2022-01-19T09:48:47+00:00"
+            "time": "2022-09-20T03:36:30+00:00"
         },
         {
             "name": "mihaildev/yii2-ckeditor",
@@ -4196,6 +4212,143 @@
             "time": "2021-03-11T18:37:03+00:00"
         },
         {
+            "name": "mpdf/mpdf",
+            "version": "v8.1.2",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/mpdf/mpdf.git",
+                "reference": "a8a22f4874157e490d41b486053a20bec42e182c"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/mpdf/mpdf/zipball/a8a22f4874157e490d41b486053a20bec42e182c",
+                "reference": "a8a22f4874157e490d41b486053a20bec42e182c",
+                "shasum": ""
+            },
+            "require": {
+                "ext-gd": "*",
+                "ext-mbstring": "*",
+                "myclabs/deep-copy": "^1.7",
+                "paragonie/random_compat": "^1.4|^2.0|^9.99.99",
+                "php": "^5.6 || ^7.0 || ~8.0.0 || ~8.1.0",
+                "php-http/message-factory": "^1.0",
+                "psr/http-message": "^1.0",
+                "psr/log": "^1.0 || ^2.0",
+                "setasign/fpdi": "^2.1"
+            },
+            "require-dev": {
+                "mockery/mockery": "^1.3.0",
+                "mpdf/qrcode": "^1.1.0",
+                "squizlabs/php_codesniffer": "^3.5.0",
+                "tracy/tracy": "^2.4",
+                "yoast/phpunit-polyfills": "^1.0"
+            },
+            "suggest": {
+                "ext-bcmath": "Needed for generation of some types of barcodes",
+                "ext-xml": "Needed mainly for SVG manipulation",
+                "ext-zlib": "Needed for compression of embedded resources, such as fonts"
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "Mpdf\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "GPL-2.0-only"
+            ],
+            "authors": [
+                {
+                    "name": "Matěj Humpál",
+                    "role": "Developer, maintainer"
+                },
+                {
+                    "name": "Ian Back",
+                    "role": "Developer (retired)"
+                }
+            ],
+            "description": "PHP library generating PDF files from UTF-8 encoded HTML",
+            "homepage": "https://mpdf.github.io",
+            "keywords": [
+                "pdf",
+                "php",
+                "utf-8"
+            ],
+            "support": {
+                "docs": "http://mpdf.github.io",
+                "issues": "https://github.com/mpdf/mpdf/issues",
+                "source": "https://github.com/mpdf/mpdf"
+            },
+            "funding": [
+                {
+                    "url": "https://www.paypal.me/mpdf",
+                    "type": "custom"
+                }
+            ],
+            "time": "2022-08-15T08:15:09+00:00"
+        },
+        {
+            "name": "myclabs/deep-copy",
+            "version": "1.x-dev",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/myclabs/DeepCopy.git",
+                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/14daed4296fae74d9e3201d2c4925d1acb7aa614",
+                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614",
+                "shasum": ""
+            },
+            "require": {
+                "php": "^7.1 || ^8.0"
+            },
+            "conflict": {
+                "doctrine/collections": "<1.6.8",
+                "doctrine/common": "<2.13.3 || >=3,<3.2.2"
+            },
+            "require-dev": {
+                "doctrine/collections": "^1.6.8",
+                "doctrine/common": "^2.13.3 || ^3.2.2",
+                "phpunit/phpunit": "^7.5.20 || ^8.5.23 || ^9.5.13"
+            },
+            "default-branch": true,
+            "type": "library",
+            "autoload": {
+                "files": [
+                    "src/DeepCopy/deep_copy.php"
+                ],
+                "psr-4": {
+                    "DeepCopy\\": "src/DeepCopy/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "description": "Create deep copies (clones) of your objects",
+            "keywords": [
+                "clone",
+                "copy",
+                "duplicate",
+                "object",
+                "object graph"
+            ],
+            "support": {
+                "issues": "https://github.com/myclabs/DeepCopy/issues",
+                "source": "https://github.com/myclabs/DeepCopy/tree/1.11.0"
+            },
+            "funding": [
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/myclabs/deep-copy",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2022-03-03T13:19:32+00:00"
+        },
+        {
             "name": "npm-asset/animate.css",
             "version": "4.1.1",
             "dist": {
@@ -4221,10 +4374,10 @@
         },
         {
             "name": "npm-asset/sweetalert2",
-            "version": "11.4.29",
+            "version": "11.4.33",
             "dist": {
                 "type": "tar",
-                "url": "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.4.29.tgz"
+                "url": "https://registry.npmjs.org/sweetalert2/-/sweetalert2-11.4.33.tgz"
             },
             "type": "npm-asset",
             "license": [
@@ -4245,34 +4398,29 @@
         },
         {
             "name": "paragonie/random_compat",
-            "version": "dev-master",
+            "version": "v9.99.100",
             "source": {
                 "type": "git",
                 "url": "https://github.com/paragonie/random_compat.git",
-                "reference": "64f3265002e9e181436942aac2fbd482e186dc55"
+                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/64f3265002e9e181436942aac2fbd482e186dc55",
-                "reference": "64f3265002e9e181436942aac2fbd482e186dc55",
+                "url": "https://api.github.com/repos/paragonie/random_compat/zipball/996434e5492cb4c3edcb9168db6fbb1359ef965a",
+                "reference": "996434e5492cb4c3edcb9168db6fbb1359ef965a",
                 "shasum": ""
             },
             "require": {
-                "php": ">=5.2.0"
+                "php": ">= 7"
             },
             "require-dev": {
-                "phpunit/phpunit": "*"
+                "phpunit/phpunit": "4.*|5.*",
+                "vimeo/psalm": "^1"
             },
             "suggest": {
                 "ext-libsodium": "Provides a modern crypto API that can be used to generate random bytes."
             },
-            "default-branch": true,
             "type": "library",
-            "autoload": {
-                "files": [
-                    "lib/random.php"
-                ]
-            },
             "notification-url": "https://packagist.org/downloads/",
             "license": [
                 "MIT"
@@ -4296,30 +4444,36 @@
                 "issues": "https://github.com/paragonie/random_compat/issues",
                 "source": "https://github.com/paragonie/random_compat"
             },
-            "time": "2022-06-19T18:08:39+00:00"
+            "time": "2020-10-15T08:29:30+00:00"
         },
         {
-            "name": "perminder-klair/yii2-dropzone",
+            "name": "php-http/message-factory",
             "version": "dev-master",
             "source": {
                 "type": "git",
-                "url": "https://github.com/perminder-klair/yii2-dropzone.git",
-                "reference": "41e8145d940cc9955011138a9f16ad80e9831423"
+                "url": "https://github.com/php-http/message-factory.git",
+                "reference": "597f30e6dfd32a85fd7dbe58cb47554b5bad910e"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/perminder-klair/yii2-dropzone/zipball/41e8145d940cc9955011138a9f16ad80e9831423",
-                "reference": "41e8145d940cc9955011138a9f16ad80e9831423",
+                "url": "https://api.github.com/repos/php-http/message-factory/zipball/597f30e6dfd32a85fd7dbe58cb47554b5bad910e",
+                "reference": "597f30e6dfd32a85fd7dbe58cb47554b5bad910e",
                 "shasum": ""
             },
             "require": {
-                "yiisoft/yii2": "2.0.*"
+                "php": ">=5.4",
+                "psr/http-message": "^1.0"
             },
             "default-branch": true,
-            "type": "yii2-extension",
+            "type": "library",
+            "extra": {
+                "branch-alias": {
+                    "dev-master": "1.0-dev"
+                }
+            },
             "autoload": {
                 "psr-4": {
-                    "kato\\": ""
+                    "Http\\Message\\": "src/"
                 }
             },
             "notification-url": "https://packagist.org/downloads/",
@@ -4328,22 +4482,24 @@
             ],
             "authors": [
                 {
-                    "name": "Parminder Klair",
-                    "email": "perminder.klair@gmail.com"
+                    "name": "Márk Sági-Kazár",
+                    "email": "mark.sagikazar@gmail.com"
                 }
             ],
-            "description": "DropzoneJs Extention for Yii2",
+            "description": "Factory interfaces for PSR-7 HTTP Message",
+            "homepage": "http://php-http.org",
             "keywords": [
-                "dropzone",
-                "extension",
-                "upload",
-                "yii2"
+                "factory",
+                "http",
+                "message",
+                "stream",
+                "uri"
             ],
             "support": {
-                "issues": "https://github.com/perminder-klair/yii2-dropzone/issues",
-                "source": "https://github.com/perminder-klair/yii2-dropzone/tree/v1.0.1"
+                "issues": "https://github.com/php-http/message-factory/issues",
+                "source": "https://github.com/php-http/message-factory/tree/master"
             },
-            "time": "2015-11-09T11:28:44+00:00"
+            "time": "2018-12-06T18:41:41+00:00"
         },
         {
             "name": "psr/container",
@@ -4606,12 +4762,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/Roave/SecurityAdvisories.git",
-                "reference": "264a5085afd6e127daba3f47751fa971d3c29c3d"
+                "reference": "599b9d6746e56b67b187afed175dd02fb1a288fa"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/264a5085afd6e127daba3f47751fa971d3c29c3d",
-                "reference": "264a5085afd6e127daba3f47751fa971d3c29c3d",
+                "url": "https://api.github.com/repos/Roave/SecurityAdvisories/zipball/599b9d6746e56b67b187afed175dd02fb1a288fa",
+                "reference": "599b9d6746e56b67b187afed175dd02fb1a288fa",
                 "shasum": ""
             },
             "conflict": {
@@ -4632,6 +4788,7 @@
                 "appwrite/server-ce": "<0.11.1|>=0.12,<0.12.2",
                 "area17/twill": "<1.2.5|>=2,<2.5.3",
                 "asymmetricrypt/asymmetricrypt": ">=0,<9.9.99",
+                "awesome-support/awesome-support": "<=6.0.7",
                 "aws/aws-sdk-php": ">=3,<3.2.1",
                 "bagisto/bagisto": "<0.1.5",
                 "barrelstrength/sprout-base-email": "<1.2.7",
@@ -4657,11 +4814,11 @@
                 "cart2quote/module-quotation": ">=4.1.6,<=4.4.5|>=5,<5.4.4",
                 "cartalyst/sentry": "<=2.1.6",
                 "catfan/medoo": "<1.7.5",
-                "centreon/centreon": "<20.10.7",
+                "centreon/centreon": "<21.4.16|>=21.10,<21.10.8|>=22,<22.4.1",
                 "cesnet/simplesamlphp-module-proxystatistics": "<3.1",
                 "codeception/codeception": "<3.1.3|>=4,<4.1.22",
                 "codeigniter/framework": "<=3.0.6",
-                "codeigniter4/framework": "<4.1.9",
+                "codeigniter4/framework": "<4.2.7",
                 "codeigniter4/shield": "= 1.0.0-beta",
                 "codiad/codiad": "<=2.8.4",
                 "composer/composer": "<1.10.26|>=2-alpha.1,<2.2.12|>=2.3,<2.3.5",
@@ -4673,7 +4830,7 @@
                 "contao/core-bundle": "<4.9.18|>=4.10,<4.11.7|>=4.13,<4.13.3|= 4.10.0",
                 "contao/listing-bundle": ">=4,<4.4.8",
                 "contao/managed-edition": "<=1.5",
-                "craftcms/cms": "<3.7.36",
+                "craftcms/cms": "<3.7.55.2|>= 4.0.0-RC1, < 4.2.1",
                 "croogo/croogo": "<3.0.7",
                 "cuyz/valinor": "<0.12",
                 "czproject/git-php": "<4.0.3",
@@ -4692,7 +4849,7 @@
                 "doctrine/mongodb-odm-bundle": ">=2,<3.0.1",
                 "doctrine/orm": ">=2,<2.4.8|>=2.5,<2.5.1|>=2.8.3,<2.8.4",
                 "dolibarr/dolibarr": "<16|= 12.0.5|>= 3.3.beta1, < 13.0.2",
-                "dompdf/dompdf": "<2",
+                "dompdf/dompdf": "<2.0.1",
                 "drupal/core": ">=7,<7.91|>=8,<9.3.19|>=9.4,<9.4.3",
                 "drupal/drupal": ">=7,<7.80|>=8,<8.9.16|>=9,<9.1.12|>=9.2,<9.2.4",
                 "dweeves/magmi": "<=0.7.24",
@@ -4725,7 +4882,7 @@
                 "facade/ignition": "<1.16.15|>=2,<2.4.2|>=2.5,<2.5.2",
                 "facturascripts/facturascripts": "<=2022.8",
                 "feehi/cms": "<=2.1.1",
-                "feehi/feehicms": "<=0.1.3",
+                "feehi/feehicms": "<=2.0.1.1",
                 "fenom/fenom": "<=2.12.1",
                 "filegator/filegator": "<7.8",
                 "firebase/php-jwt": "<2",
@@ -4749,7 +4906,7 @@
                 "gaoming13/wechat-php-sdk": "<=1.10.2",
                 "genix/cms": "<=1.1.11",
                 "getgrav/grav": "<1.7.34",
-                "getkirby/cms": "<3.5.8.1|>=3.6,<3.6.6.1|>=3.7,<3.7.4",
+                "getkirby/cms": "= 3.8.0|<3.5.8.2|>=3.6,<3.6.6.2|>=3.7,<3.7.5.1",
                 "getkirby/panel": "<2.5.14",
                 "getkirby/starterkit": "<=3.7.0.2",
                 "gilacms/gila": "<=1.11.4",
@@ -4809,7 +4966,7 @@
                 "league/commonmark": "<0.18.3",
                 "league/flysystem": "<1.1.4|>=2,<2.1.1",
                 "lexik/jwt-authentication-bundle": "<2.10.7|>=2.11,<2.11.3",
-                "librenms/librenms": "<22.4",
+                "librenms/librenms": "<=22.8",
                 "limesurvey/limesurvey": "<3.27.19",
                 "livehelperchat/livehelperchat": "<=3.91",
                 "livewire/livewire": ">2.2.4,<2.2.6",
@@ -4824,8 +4981,11 @@
                 "matyhtf/framework": "<3.0.6",
                 "mautic/core": "<4.3|= 2.13.1",
                 "mediawiki/core": ">=1.27,<1.27.6|>=1.29,<1.29.3|>=1.30,<1.30.2|>=1.31,<1.31.9|>=1.32,<1.32.6|>=1.32.99,<1.33.3|>=1.33.99,<1.34.3|>=1.34.99,<1.35",
+                "melisplatform/melis-asset-manager": "<5.0.1",
+                "melisplatform/melis-cms": "<5.0.1",
+                "melisplatform/melis-front": "<5.0.1",
                 "mezzio/mezzio-swoole": "<3.7|>=4,<4.3",
-                "microweber/microweber": "<1.3.1",
+                "microweber/microweber": "<=1.3.1",
                 "miniorange/miniorange-saml": "<1.4.3",
                 "mittwald/typo3_forum": "<1.2.1",
                 "modx/revolution": "<= 2.8.3-pl|<2.8",
@@ -4853,7 +5013,7 @@
                 "october/cms": "= 1.1.1|= 1.0.471|= 1.0.469|>=1.0.319,<1.0.469",
                 "october/october": ">=1.0.319,<1.0.466|>=2.1,<2.1.12",
                 "october/rain": "<1.0.472|>=1.1,<1.1.2",
-                "october/system": "<1.0.476|>=1.1,<1.1.12|>=2,<2.2.15",
+                "october/system": "<1.0.476|>=1.1,<1.1.12|>=2,<2.2.34|>=3,<3.0.66",
                 "onelogin/php-saml": "<2.10.4",
                 "oneup/uploader-bundle": "<1.9.3|>=2,<2.1.5",
                 "open-web-analytics/open-web-analytics": "<1.7.4",
@@ -4861,7 +5021,7 @@
                 "openid/php-openid": "<2.3",
                 "openmage/magento-lts": "<19.4.15|>=20,<20.0.13",
                 "orchid/platform": ">=9,<9.4.4",
-                "oro/commerce": ">=5,<5.0.4",
+                "oro/commerce": ">=4.1,<5.0.6",
                 "oro/crm": ">=1.7,<1.7.4|>=3.1,<4.1.17|>=4.2,<4.2.7",
                 "oro/platform": ">=1.7,<1.7.4|>=3.1,<3.1.29|>=4.1,<4.1.17|>=4.2,<4.2.8",
                 "packbackbooks/lti-1-3-php-library": "<5",
@@ -4880,6 +5040,7 @@
                 "phpmailer/phpmailer": "<6.5",
                 "phpmussel/phpmussel": ">=1,<1.6",
                 "phpmyadmin/phpmyadmin": "<5.1.3",
+                "phpmyfaq/phpmyfaq": "<=3.1.7",
                 "phpoffice/phpexcel": "<1.8",
                 "phpoffice/phpspreadsheet": "<1.16",
                 "phpseclib/phpseclib": "<2.0.31|>=3,<3.0.7",
@@ -4888,13 +5049,13 @@
                 "phpwhois/phpwhois": "<=4.2.5",
                 "phpxmlrpc/extras": "<0.6.1",
                 "pimcore/data-hub": "<1.2.4",
-                "pimcore/pimcore": "<10.5.6",
+                "pimcore/pimcore": "<=10.5.6",
                 "pocketmine/bedrock-protocol": "<8.0.2",
                 "pocketmine/pocketmine-mp": "<4.7.2|>= 4.0.0-BETA5, < 4.4.2",
                 "pressbooks/pressbooks": "<5.18",
                 "prestashop/autoupgrade": ">=4,<4.10.1",
                 "prestashop/blockwishlist": ">=2,<2.1.1",
-                "prestashop/contactform": ">1.0.1,<4.3",
+                "prestashop/contactform": ">=1.0.1,<4.3",
                 "prestashop/gamification": "<2.3.2",
                 "prestashop/prestashop": ">=1.6.0.10,<1.7.8.7",
                 "prestashop/productcomments": "<5.0.2",
@@ -5010,6 +5171,7 @@
                 "thelia/thelia": ">=2.1-beta.1,<2.1.3",
                 "theonedemon/phpwhois": "<=4.2.5",
                 "thinkcmf/thinkcmf": "<=5.1.7",
+                "thorsten/phpmyfaq": "<=3.1.7",
                 "tinymce/tinymce": "<5.10",
                 "titon/framework": ">=0,<9.9.99",
                 "topthink/framework": "<=6.0.13",
@@ -5017,7 +5179,7 @@
                 "topthink/thinkphp": "<=3.2.3",
                 "tribalsystems/zenario": "<9.2.55826",
                 "truckersmp/phpwhois": "<=4.3.1",
-                "twig/twig": "<1.38|>=2,<2.14.11|>=3,<3.3.8",
+                "twig/twig": "<1.44.7|>=2,<2.15.3|>=3,<3.4.3",
                 "typo3/cms": ">=6.2,<6.2.30|>=7,<7.6.32|>=8,<8.7.38|>=9,<9.5.29|>=10,<10.4.32|>=11,<11.5.16",
                 "typo3/cms-backend": ">=7,<=7.6.50|>=8,<=8.7.39|>=9,<=9.5.24|>=10,<=10.4.13|>=11,<=11.1",
                 "typo3/cms-core": ">=6.2,<=6.2.56|>=7,<7.6.58|>=8,<8.7.48|>=9,<9.5.37|>=10,<10.4.32|>=11,<11.5.16",
@@ -5048,7 +5210,7 @@
                 "wpanel/wpanel4-cms": "<=4.3.1",
                 "wwbn/avideo": "<=11.6",
                 "yeswiki/yeswiki": "<4.1",
-                "yetiforce/yetiforce-crm": "<6.4",
+                "yetiforce/yetiforce-crm": "<=6.4",
                 "yidashi/yii2cmf": "<=2",
                 "yii2mod/yii2-cms": "<1.9.2",
                 "yiisoft/yii": ">=1.1.14,<1.1.15",
@@ -5121,7 +5283,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-16T22:04:31+00:00"
+            "time": "2022-10-24T19:11:20+00:00"
         },
         {
             "name": "select2/select2",
@@ -5129,12 +5291,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/select2/select2.git",
-                "reference": "5c38f186c98d793c7d396442986191ca05634d0a"
+                "reference": "011fadd96f868fabb370d7bd9d498580af15bfd5"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/select2/select2/zipball/5c38f186c98d793c7d396442986191ca05634d0a",
-                "reference": "5c38f186c98d793c7d396442986191ca05634d0a",
+                "url": "https://api.github.com/repos/select2/select2/zipball/011fadd96f868fabb370d7bd9d498580af15bfd5",
+                "reference": "011fadd96f868fabb370d7bd9d498580af15bfd5",
                 "shasum": ""
             },
             "default-branch": true,
@@ -5174,7 +5336,79 @@
                     "type": "open_collective"
                 }
             ],
-            "time": "2021-11-16T12:24:32+00:00"
+            "time": "2022-09-19T18:26:11+00:00"
+        },
+        {
+            "name": "setasign/fpdi",
+            "version": "v2.3.6",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/Setasign/FPDI.git",
+                "reference": "6231e315f73e4f62d72b73f3d6d78ff0eed93c31"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/Setasign/FPDI/zipball/6231e315f73e4f62d72b73f3d6d78ff0eed93c31",
+                "reference": "6231e315f73e4f62d72b73f3d6d78ff0eed93c31",
+                "shasum": ""
+            },
+            "require": {
+                "ext-zlib": "*",
+                "php": "^5.6 || ^7.0 || ^8.0"
+            },
+            "conflict": {
+                "setasign/tfpdf": "<1.31"
+            },
+            "require-dev": {
+                "phpunit/phpunit": "~5.7",
+                "setasign/fpdf": "~1.8",
+                "setasign/tfpdf": "1.31",
+                "squizlabs/php_codesniffer": "^3.5",
+                "tecnickcom/tcpdf": "~6.2"
+            },
+            "suggest": {
+                "setasign/fpdf": "FPDI will extend this class but as it is also possible to use TCPDF or tFPDF as an alternative. There's no fixed dependency configured."
+            },
+            "type": "library",
+            "autoload": {
+                "psr-4": {
+                    "setasign\\Fpdi\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Jan Slabon",
+                    "email": "jan.slabon@setasign.com",
+                    "homepage": "https://www.setasign.com"
+                },
+                {
+                    "name": "Maximilian Kresse",
+                    "email": "maximilian.kresse@setasign.com",
+                    "homepage": "https://www.setasign.com"
+                }
+            ],
+            "description": "FPDI is a collection of PHP classes facilitating developers to read pages from existing PDF documents and use them as templates in FPDF. Because it is also possible to use FPDI with TCPDF, there are no fixed dependencies defined. Please see suggestions for packages which evaluates the dependencies automatically.",
+            "homepage": "https://www.setasign.com/fpdi",
+            "keywords": [
+                "fpdf",
+                "fpdi",
+                "pdf"
+            ],
+            "support": {
+                "issues": "https://github.com/Setasign/FPDI/issues",
+                "source": "https://github.com/Setasign/FPDI/tree/v2.3.6"
+            },
+            "funding": [
+                {
+                    "url": "https://tidelift.com/funding/github/packagist/setasign/fpdi",
+                    "type": "tidelift"
+                }
+            ],
+            "time": "2021-02-11T11:37:01+00:00"
         },
         {
             "name": "studio-42/elfinder",
@@ -5560,12 +5794,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mailer.git",
-                "reference": "8222e21ebc8df2ebd171fcc7f5561235ef673a34"
+                "reference": "252c9baa1d0912ceb32ed7f8c6fad699a244ebe8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mailer/zipball/8222e21ebc8df2ebd171fcc7f5561235ef673a34",
-                "reference": "8222e21ebc8df2ebd171fcc7f5561235ef673a34",
+                "url": "https://api.github.com/repos/symfony/mailer/zipball/252c9baa1d0912ceb32ed7f8c6fad699a244ebe8",
+                "reference": "252c9baa1d0912ceb32ed7f8c6fad699a244ebe8",
                 "shasum": ""
             },
             "require": {
@@ -5574,12 +5808,13 @@
                 "psr/event-dispatcher": "^1",
                 "psr/log": "^1|^2|^3",
                 "symfony/event-dispatcher": "^5.4|^6.0",
-                "symfony/mime": "^5.4|^6.0",
+                "symfony/mime": "^6.2",
                 "symfony/service-contracts": "^1.1|^2|^3"
             },
             "conflict": {
                 "symfony/http-kernel": "<5.4",
-                "symfony/messenger": "<6.2"
+                "symfony/messenger": "<6.2",
+                "symfony/mime": "<6.2"
             },
             "require-dev": {
                 "symfony/console": "^5.4|^6.0",
@@ -5628,7 +5863,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-02T15:04:41+00:00"
+            "time": "2022-10-18T13:21:06+00:00"
         },
         {
             "name": "symfony/mime",
@@ -5636,12 +5871,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/mime.git",
-                "reference": "adbc367b33c1a60facc0985fcc3877743ac81cea"
+                "reference": "877a042802953e4be7d2b9e171ffde791f3e2ce8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/mime/zipball/adbc367b33c1a60facc0985fcc3877743ac81cea",
-                "reference": "adbc367b33c1a60facc0985fcc3877743ac81cea",
+                "url": "https://api.github.com/repos/symfony/mime/zipball/877a042802953e4be7d2b9e171ffde791f3e2ce8",
+                "reference": "877a042802953e4be7d2b9e171ffde791f3e2ce8",
                 "shasum": ""
             },
             "require": {
@@ -5653,7 +5888,8 @@
                 "egulias/email-validator": "~3.0.0",
                 "phpdocumentor/reflection-docblock": "<3.2.2",
                 "phpdocumentor/type-resolver": "<1.4.0",
-                "symfony/mailer": "<5.4"
+                "symfony/mailer": "<5.4",
+                "symfony/serializer": "<6.2"
             },
             "require-dev": {
                 "egulias/email-validator": "^2.1.10|^3.1",
@@ -5662,7 +5898,7 @@
                 "symfony/dependency-injection": "^5.4|^6.0",
                 "symfony/property-access": "^5.4|^6.0",
                 "symfony/property-info": "^5.4|^6.0",
-                "symfony/serializer": "^5.4|^6.0"
+                "symfony/serializer": "^6.2"
             },
             "type": "library",
             "autoload": {
@@ -5710,7 +5946,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-13T06:17:01+00:00"
+            "time": "2022-10-19T08:20:14+00:00"
         },
         {
             "name": "symfony/polyfill-iconv",
@@ -6369,12 +6605,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/yiisoft/yii2-framework.git",
-                "reference": "6c6568262ada02ca317efa06badad34342008293"
+                "reference": "ea931f37d0522bd1e462de9631a381ed365bed9c"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/6c6568262ada02ca317efa06badad34342008293",
-                "reference": "6c6568262ada02ca317efa06badad34342008293",
+                "url": "https://api.github.com/repos/yiisoft/yii2-framework/zipball/ea931f37d0522bd1e462de9631a381ed365bed9c",
+                "reference": "ea931f37d0522bd1e462de9631a381ed365bed9c",
                 "shasum": ""
             },
             "require": {
@@ -6484,7 +6720,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-16T08:44:07+00:00"
+            "time": "2022-10-16T10:14:01+00:00"
         },
         {
             "name": "yiisoft/yii2-authclient",
@@ -7899,12 +8135,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/FakerPHP/Faker.git",
-                "reference": "42fa8b94cd75c823131a581eb1cf0e24b9a3bbde"
+                "reference": "bc743e9bfa6e42375cbf79c42bbe49f5fef12c2a"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/42fa8b94cd75c823131a581eb1cf0e24b9a3bbde",
-                "reference": "42fa8b94cd75c823131a581eb1cf0e24b9a3bbde",
+                "url": "https://api.github.com/repos/FakerPHP/Faker/zipball/bc743e9bfa6e42375cbf79c42bbe49f5fef12c2a",
+                "reference": "bc743e9bfa6e42375cbf79c42bbe49f5fef12c2a",
                 "shasum": ""
             },
             "require": {
@@ -7959,67 +8195,7 @@
                 "issues": "https://github.com/FakerPHP/Faker/issues",
                 "source": "https://github.com/FakerPHP/Faker/tree/main"
             },
-            "time": "2022-09-13T15:45:34+00:00"
-        },
-        {
-            "name": "myclabs/deep-copy",
-            "version": "1.x-dev",
-            "source": {
-                "type": "git",
-                "url": "https://github.com/myclabs/DeepCopy.git",
-                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614"
-            },
-            "dist": {
-                "type": "zip",
-                "url": "https://api.github.com/repos/myclabs/DeepCopy/zipball/14daed4296fae74d9e3201d2c4925d1acb7aa614",
-                "reference": "14daed4296fae74d9e3201d2c4925d1acb7aa614",
-                "shasum": ""
-            },
-            "require": {
-                "php": "^7.1 || ^8.0"
-            },
-            "conflict": {
-                "doctrine/collections": "<1.6.8",
-                "doctrine/common": "<2.13.3 || >=3,<3.2.2"
-            },
-            "require-dev": {
-                "doctrine/collections": "^1.6.8",
-                "doctrine/common": "^2.13.3 || ^3.2.2",
-                "phpunit/phpunit": "^7.5.20 || ^8.5.23 || ^9.5.13"
-            },
-            "default-branch": true,
-            "type": "library",
-            "autoload": {
-                "files": [
-                    "src/DeepCopy/deep_copy.php"
-                ],
-                "psr-4": {
-                    "DeepCopy\\": "src/DeepCopy/"
-                }
-            },
-            "notification-url": "https://packagist.org/downloads/",
-            "license": [
-                "MIT"
-            ],
-            "description": "Create deep copies (clones) of your objects",
-            "keywords": [
-                "clone",
-                "copy",
-                "duplicate",
-                "object",
-                "object graph"
-            ],
-            "support": {
-                "issues": "https://github.com/myclabs/DeepCopy/issues",
-                "source": "https://github.com/myclabs/DeepCopy/tree/1.11.0"
-            },
-            "funding": [
-                {
-                    "url": "https://tidelift.com/funding/github/packagist/myclabs/deep-copy",
-                    "type": "tidelift"
-                }
-            ],
-            "time": "2022-03-03T13:19:32+00:00"
+            "time": "2022-10-11T07:14:25+00:00"
         },
         {
             "name": "nikic/php-parser",
@@ -8243,12 +8419,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-code-coverage.git",
-                "reference": "9a2f381c52b86ba800975beb4d239a95c69ba3ab"
+                "reference": "74b7413e8d9788df77e296adabd7c1f6ca801a99"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/9a2f381c52b86ba800975beb4d239a95c69ba3ab",
-                "reference": "9a2f381c52b86ba800975beb4d239a95c69ba3ab",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-code-coverage/zipball/74b7413e8d9788df77e296adabd7c1f6ca801a99",
+                "reference": "74b7413e8d9788df77e296adabd7c1f6ca801a99",
                 "shasum": ""
             },
             "require": {
@@ -8312,7 +8488,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-19T05:27:04+00:00"
+            "time": "2022-10-21T12:10:51+00:00"
         },
         {
             "name": "phpunit/php-file-iterator",
@@ -8561,12 +8737,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/phpunit.git",
-                "reference": "c65f6058074435d4cf0d36050d600103bb5af4bf"
+                "reference": "7847a4a920f686db261da1ccc92120800822661f"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/c65f6058074435d4cf0d36050d600103bb5af4bf",
-                "reference": "c65f6058074435d4cf0d36050d600103bb5af4bf",
+                "url": "https://api.github.com/repos/sebastianbergmann/phpunit/zipball/7847a4a920f686db261da1ccc92120800822661f",
+                "reference": "7847a4a920f686db261da1ccc92120800822661f",
                 "shasum": ""
             },
             "require": {
@@ -8655,7 +8831,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-19T05:27:37+00:00"
+            "time": "2022-10-19T10:44:50+00:00"
         },
         {
             "name": "sebastian/cli-parser",
@@ -9518,12 +9694,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/type.git",
-                "reference": "33589696a54e5ae179413ec009d79e44ebe577cd"
+                "reference": "4d34b23933f255b0822758a44272222cac593eb4"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/33589696a54e5ae179413ec009d79e44ebe577cd",
-                "reference": "33589696a54e5ae179413ec009d79e44ebe577cd",
+                "url": "https://api.github.com/repos/sebastianbergmann/type/zipball/4d34b23933f255b0822758a44272222cac593eb4",
+                "reference": "4d34b23933f255b0822758a44272222cac593eb4",
                 "shasum": ""
             },
             "require": {
@@ -9566,7 +9742,7 @@
                     "type": "github"
                 }
             ],
-            "time": "2022-09-19T05:28:34+00:00"
+            "time": "2022-10-01T05:56:17+00:00"
         },
         {
             "name": "sebastian/version",
@@ -9696,12 +9872,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/console.git",
-                "reference": "3f97f6c7b7e26848a90c0c0cfb91eeb2bb8618be"
+                "reference": "ae0727b4b524bebd61096c967d130bd12d6c0f22"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/console/zipball/3f97f6c7b7e26848a90c0c0cfb91eeb2bb8618be",
-                "reference": "3f97f6c7b7e26848a90c0c0cfb91eeb2bb8618be",
+                "url": "https://api.github.com/repos/symfony/console/zipball/ae0727b4b524bebd61096c967d130bd12d6c0f22",
+                "reference": "ae0727b4b524bebd61096c967d130bd12d6c0f22",
                 "shasum": ""
             },
             "require": {
@@ -9787,7 +9963,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-26T13:50:20+00:00"
+            "time": "2022-10-18T13:11:10+00:00"
         },
         {
             "name": "symfony/css-selector",
@@ -10243,12 +10419,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/string.git",
-                "reference": "dc7f440c0602ea360a3a3aa3c8495a9c4ce73277"
+                "reference": "5d8211c95d9a0d913a0ccb02e932c8268ae9d3d3"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/string/zipball/dc7f440c0602ea360a3a3aa3c8495a9c4ce73277",
-                "reference": "dc7f440c0602ea360a3a3aa3c8495a9c4ce73277",
+                "url": "https://api.github.com/repos/symfony/string/zipball/5d8211c95d9a0d913a0ccb02e932c8268ae9d3d3",
+                "reference": "5d8211c95d9a0d913a0ccb02e932c8268ae9d3d3",
                 "shasum": ""
             },
             "require": {
@@ -10321,7 +10497,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-09-02T08:05:40+00:00"
+            "time": "2022-10-17T20:01:40+00:00"
         },
         {
             "name": "symfony/yaml",
@@ -10329,12 +10505,12 @@
             "source": {
                 "type": "git",
                 "url": "https://github.com/symfony/yaml.git",
-                "reference": "7a3aa21ac8ab1a96cc6de5bbcab4bc9fc943b18c"
+                "reference": "e83fe9a72011f07c662da46a05603d66deeeb487"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/symfony/yaml/zipball/7a3aa21ac8ab1a96cc6de5bbcab4bc9fc943b18c",
-                "reference": "7a3aa21ac8ab1a96cc6de5bbcab4bc9fc943b18c",
+                "url": "https://api.github.com/repos/symfony/yaml/zipball/e83fe9a72011f07c662da46a05603d66deeeb487",
+                "reference": "e83fe9a72011f07c662da46a05603d66deeeb487",
                 "shasum": ""
             },
             "require": {
@@ -10396,7 +10572,7 @@
                     "type": "tidelift"
                 }
             ],
-            "time": "2022-08-02T15:52:22+00:00"
+            "time": "2022-10-03T15:15:50+00:00"
         },
         {
             "name": "theseer/tokenizer",
@@ -10722,11 +10898,10 @@
         "kartik-v/yii2-widget-growl": 20,
         "kartik-v/yii2-widget-alert": 20,
         "kartik-v/yii2-bootstrap4-dropdown": 20,
+        "kartik-v/yii2-mpdf": 20,
         "miloschuman/yii2-highcharts-widget": 20,
         "chillerlan/php-qrcode": 20,
-        "yurkinx/yii2-image": 20,
-        "perminder-klair/yii2-dropzone": 20,
-        "dastanaron/yii2-dropzone-widget": 20
+        "yurkinx/yii2-image": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,
@@ -10734,5 +10909,5 @@
         "php": ">=7.4.0"
     },
     "platform-dev": [],
-    "plugin-api-version": "2.2.0"
+    "plugin-api-version": "2.3.0"
 }

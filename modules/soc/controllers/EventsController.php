@@ -20,6 +20,10 @@ use yii\web\UploadedFile;
 use linslin\yii2\curl;
 use yii\helpers\Json;
 
+use kartik\mpdf\Pdf;
+use Mpdf\Config\ConfigVariables;
+use Mpdf\Config\FontVariables;
+
 
 /**
  * EventsController implements the CRUD actions for Events model.
@@ -80,7 +84,7 @@ class EventsController extends Controller
 
         return $this->render('index', [
             'searchModel' => $searchModel,
-            'dataProvider' => $dataProvider,
+            'dataProvider' => $dataProvider
         ]);
     }
 
@@ -611,6 +615,55 @@ class EventsController extends Controller
     }
 
 
+
+    public function actionReport() {
+       $date1 = $this->request->get('date1');
+       $date2 = $this->request->get('date2');
+
+        $searchModel = new EventsSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->query->andFilterWhere(['between', 'created_at', $date1, $date2]);
+
+        $doc_ = ['title' => 'สถิติผู้ขอความอนุเคราะ ห์ดูภาพเหตุการณ', 'patient_form' => ''];
+    
+                $pdf = new Pdf([
+                    'mode' => Pdf::MODE_UTF8,
+                    // A4 paper format
+                    'format' => Pdf::FORMAT_A4,
+                    // portrait orientation
+                    'orientation' => Pdf::ORIENT_PORTRAIT,
+                    // stream to browser inline
+                    'destination' => Pdf::DEST_BROWSER,
+                    // your html content input
+                    'content' => $this->renderPartial('report', ['doc_' => $doc_,'dataProvider' => $dataProvider,'date1' => $date1,'date2' => $date2]),
+                    'cssFile' => '@app/web/css/kv-mpdf-bootstrap.css',
+                    'cssInline' => '.bd{border:1.5px solid; text-align: center;} .ar{text-align:right} .imgbd{border:1px solid}
+                    .pdfhead {height: 3cm;}
+                    .pdfqr{width:3cm;text-align: center;/*border:1px solid #000*/;}
+                    .pdfdetail{width:17cm;/*border:1px solid red;border-spacing:5px;background-color:#ccc;*/}',
+                    'methods' => [
+                        'SetTitle' => $doc_['title'],
+//                        'SetHeader' => $this->renderPartial('../default/opd_header_1', ['model' => $model, 'doc_' => $doc_, 'qrcode' => $qrcode, 'headtype' => 'OPD']),
+                        // 'SetFooter' => ['<table style="font-size: 7pt; width:100%"><tr><td>Print Date :)</td>' . '<td style="text-align:right; width:10%;">Page {PAGENO}</td></tr></table>'],
+                    ],
+                    'marginLeft' => 4, 'marginRight' => 4, 'marginTop' => 5, 'marginBottom' => 10, 'marginFooter' => 5,
+                    'options' => [
+                        'defaultheaderline' => 0, //for header
+                        'defaulfooterline' => 0  //for footer
+                    ],
+                ]);
+                // Fonts Config
+                $defaultConfig = (new ConfigVariables())->getDefaults();
+                $fontDirs = $defaultConfig['fontDir'];
+
+                $defaultFontConfig = (new FontVariables())->getDefaults();
+                $fontData = $defaultFontConfig['fontdata'];
+
+                $pdf->options['fontDir'] = array_merge($fontDirs, [Yii::getAlias('@webroot') . '/fonts',]);
+                $pdf->options['fontdata'] = $fontData + ['angsana' => ['R' => 'Angsana.ttf', 'TTCfontID' => ['R' => 1,],], 'sarabun' => ['R' => 'thsarabunnew-webfont.ttf',],];
+               return $pdf->render();
+       
+    }
 
 
 

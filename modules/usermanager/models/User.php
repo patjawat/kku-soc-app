@@ -47,11 +47,11 @@ class User extends ActiveRecord implements IdentityInterface {
      */
     public function rules() {
         return [
-            //['status', 'required'],
+            
+            [['username', 'phone'], 'required'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
             ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
             ['username', 'unique', 'targetClass' => '\app\modules\usermanager\models\User', 'message' => 'This username has already been taken.'],
             ['username', 'string', 'min' => 2, 'max' => 255],
             ['email', 'filter', 'filter' => 'trim'],
@@ -66,7 +66,9 @@ class User extends ActiveRecord implements IdentityInterface {
             ['confirm_password', 'required'],
             ['confirm_password', 'string', 'min' => 6],
             ['confirm_password', 'compare', 'compareAttribute' => 'password'],
-            [['roles', 'doctor_id', 'fullname','fullname_en','license_number','q', 'old_password'], 'safe'],
+            ['phone', 'string', 'min' => 10, 'max' => 10],
+            [['roles', 'doctor_id', 'fullname','fullname_en','license_number','q', 'old_password','phone'], 'safe'],
+            
         ];
     }
 
@@ -78,7 +80,8 @@ class User extends ActiveRecord implements IdentityInterface {
             'password' => 'รหัสผ่าน',
             'confirm_password' => 'ยืนยันรหัสผ่าน',
             'license_number' => 'เลขใบประกอบฯ',
-            'fullname_en' => 'ชื่อ - สกุลแพทย์(อังกฤษ)'
+            'fullname_en' => 'ชื่อ - สกุลแพทย์(อังกฤษ)',
+            'phone' => 'หมายเลขโทรศัพท์'
         ];
     }
 
