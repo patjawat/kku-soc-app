@@ -290,9 +290,10 @@ class EventsController extends Controller
         $model = $this->findModel($id);
 
         $user = UserHelper::getUser('fullname');
-        if ($model->reporter !== Yii::$app->user->identity->id) {
-            return $this->renderContent('<h1 class="text-center mt-5">' . $user . ' ไม่ใช่ผู้รับเรื่อง</h1>');
-        }
+        // ถ้าไม่ใช่ผู้รับเหตุ
+        // if ($model->reporter !== Yii::$app->user->identity->id) {
+        //     return $this->renderContent('<h1 class="text-center mt-5">' . $user . ' ไม่ใช่ผู้รับเรื่อง</h1>');
+        // }
         SystemHelper::initialsetDataSession($model->ref);
         list($initialPreview, $initialPreviewConfig) = $this->getInitialPreview($model->ref);
 
