@@ -101,7 +101,7 @@ $this->params['breadcrumbs'][] = $this->title;
             [
                 'label' => 'ลายเซ็นต์',
                 'format' => 'raw',
-                'value' => Html::img('@web/signature/'.$model->ref.'.jpg',['style' => 'width:100%'])
+                'value' => Html::img('@web/signature/'.$model->ref.'.jpg',['style' => 'width:50%'])
             ]
            
             
