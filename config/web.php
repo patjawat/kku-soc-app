@@ -17,6 +17,10 @@ $config = [
         'thaiFormatter'=>[
             'class'=>'dixonsatit\thaiYearFormatter\ThaiYearFormatter',
         ],
+        'formatter' => [
+            'class' => 'yii\i18n\Formatter',
+            'nullDisplay' => '-',
+        ],
         'view' => [
             'theme' => [
                 'pathMap' => [

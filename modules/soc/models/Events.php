@@ -206,6 +206,11 @@ class Events extends \yii\db\ActiveRecord
      public function getResultType() {
         return $this->hasOne(Category::className(), ['id' => 'result']);
     }
+
+    public function getLocation() {
+        return $this->hasOne(Category::className(), ['id' => 'event_location_note']);
+    }
+ 
  
      public function getUploads() {
          return $this->hasMany(Uploads::className(), ['ref' => 'ref']);

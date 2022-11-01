@@ -59,229 +59,54 @@ $this->params['breadcrumbs'][] = $this->title;
         ]) ?>
     </p>
 
-
-
-    <?php echo DetailView::widget([
-        'model' => $model,
-        'responsive' => true,
-        'mode' => 'edit',
-        'enableEditMode' => true,
-        'buttons1' => '{update}',
-        'panel' => [
-            'type' => 'primary',
-            'heading' => 'Contratto'
-        ],
-        'attributes' => [
-            [
-                'group'=>true,
-                'label'=>'ข้อมูลเบื้องต้น',
-                'rowOptions'=>['class'=>'table-primary']
-            ],
-            [
-                'columns' => [
-                    [
-                        'attribute' => 'fname',
-                        'displayOnly' => true,
-                        'valueColOptions' => ['style' => 'width:30%'],
-                        'value' => $model->fname.' '.$model->lname,
-                    ],
-                    [
-                        'attribute' => 'person_type',
-                        'format' => 'raw',
-                        'valueColOptions' => ['style' => 'width:30%'],
-                        'displayOnly' => true,
-                        'type' => DetailView::INPUT_TEXT,
-                        'value' => $model->personType->name,
-                    ],
-                ],
-            ],
-            [
-                'columns' => [
-                    [
-                        'attribute' => 'phone',
-                        'displayOnly' => true,
-                        'valueColOptions' => ['style' => 'width:30%']
-                    ],
-                    [
-                        'attribute' => 'event_type',
-                        'format' => 'raw',
-                        'valueColOptions' => ['style' => 'width:30%'],
-                        'displayOnly' => true,
-                        'value' => $model->eventType->name
-                    ],
-                ],
-            ],
-            [
-                'columns' => [
-                    [
-                        'attribute' => 'fname',
-                        'displayOnly' => true,
-                        'valueColOptions' => ['style' => 'width:30%'],
-                        'format' => 'raw',
-                        'value' => $model->fname.' '.$model->lname,
-                    ],
-                    [
-                        'attribute' => 'event_date',
-                        'displayOnly' => true,
-                        'format' => 'raw',
-                        'type' => DetailView::INPUT_DATE,
-                        'widgetOptions' => [
-                            'pluginOptions' => ['format' => 'yyyy-mm-dd']
-                        ],
-                    ],
-                ],
-            ],
-            [
-                'columns' => [
-                    
-                    [
-                        'attribute' => 'orther',
-                        'displayOnly' => true,
-                        'valueColOptions' => ['style' => 'width:30%'],
-                        'format' => 'raw',
-                        // 'label' => 'Provincia Nascita'
-                    ],
-                    [
-                        'attribute' => 'orther',
-                        'displayOnly' => true,
-                        'valueColOptions' => ['style' => 'width:30%'],
-                        'format' => 'raw',
-                        // 'label' => 'Provincia Nascita'
-                    ],
-                ],
-            ],
-            [
-                'columns' => [
-                    [
-                        'attribute' => 'orther',
-                        'displayOnly' => true,
-                        'format' => 'raw',
-                    ],
-                ],
-            ],
-            [
-                'group'=>true,
-                'label'=>'สรุปผล',
-                'rowOptions'=>['class'=>'table-primary']
-            ],
-            [
-                'columns' => [
-                    [
-                        'attribute' => 'note',
-                        'displayOnly' => true,
-                        'format' => 'raw',
-                    ],
-                    [
-                        'attribute' => 'worker',
-                        'displayOnly' => true,
-                        'format' => 'raw',
-                        'value' => $model->id
-                    ],
-                    
-                    
-                ],
-                'columns' => [
-                    [
-                        'attribute' => 'note',
-                        'displayOnly' => true,
-                        'format' => 'raw',
-                    ],
-                    [
-                        'attribute' => 'worker',
-                        'displayOnly' => true,
-                        'format' => 'raw',
-                        'value' => $model->id
-                    ],
-                    
-                ],
-            ],
-        ],
-        ]);
-?>
-
-
-<div class="row">
-<div class="col-8">
-
-<div class="alert alert-info" role="alert">
-        <strong><i class="far fa-edit"></i> ข้อมูลพื้นฐาน</strong>
-    </div>
-
-
-
     <?= DetailView::widget([
         'model' => $model,
         'attributes' => [
+            [
+                'label' => 'วันเวลาแจ้ง',
+                'value' => $model->created_at
+            ],
             'fullname',
-            
             'phone',
-            'department',
+          
             [  
                 'label' => 'ประเภทบุคคล',
                 'value' => $model->personType ? $model->personType->name : ''
             ],
-        ],
-    ]) ?>
-
-<div class="alert alert-info" role="alert">
-        <strong><i class="far fa-edit"></i> รายละเอียดเหตุการ์</strong>
-    </div>
-
-    <?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            [  
-                'label' => 'เหตุการณ์',
+            [
+                'attribute' => 'event_type',
                 'value' => $model->eventType ? $model->eventType->name : ''
             ],
-            'event_date',
-            'event_location_note',
+            'department',
+            [
+                'attribute' => 'event_location_note',
+                'value' => $model->location->name ? $model->location->name : ''
+            ],
             'orther',
-            'work_img',
-            'docs',
-        ],
-    ]) ?>
-
-
-    
-</div>
-<div class="col-4">
-<div class="alert alert-info" role="alert">
-        <strong><i class="fas fa-address-card"></i> บัตรประชาชน</strong>
-    </div>
-    <div class="view-card-id">
-        <?=$model->getIdCart()?>
-    </div>
-    <div class="alert alert-info" role="alert">
-        <strong><i class="fas fa-signature"></i> ลายเซ็นต์</strong>
-    </div>
-    <?=Html::img('@web/signature/'.$model->ref.'.jpg',['style' => 'width:100%'])?>
-</div>
-</div>
-
-
-
-
-
-    <div class="alert alert-info" role="alert">
-    <strong><i class="far fa-edit"></i> สรุปผล</strong>
-</div>
-<?= DetailView::widget([
-        'model' => $model,
-        'attributes' => [
-            'reporter',
-            'result',
-            'backup_to',
+            // [
+            //     'lable' => 'ผู้ร่วมปฏิบัติงาน',
+            //     'value' => $model->ref,
+            // ],
             'note',
+            'backup_to',
+            [
+                'attribute' => 'result',
+                'value' => $model->resultType->name ? $model->resultType->name : ''
+            ],
+            [
+                'label' => 'สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประจำตัวประชาชน/สำเนาบัตรข้าราชการ',
+                'format' => 'raw',
+                'value' => $model->getIdCart()
+            ],
+            [
+                'label' => 'ลายเซ็นต์',
+                'format' => 'raw',
+                'value' => Html::img('@web/signature/'.$model->ref.'.jpg',['style' => 'width:100%'])
+            ]
+           
+            
         ],
     ]) ?>
-
-<div class="alert alert-info" role="alert">
-    <strong><i class="far fa-edit"></i> รูปภาพ/วีดีโอ</strong>
-    <?php
-    // print_r($model->uploads);
-    ?>
-</div>
 
 
 
