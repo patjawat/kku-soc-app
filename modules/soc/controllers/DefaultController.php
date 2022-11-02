@@ -144,12 +144,10 @@ class DefaultController extends Controller
         $objReader = IOFactory::load(Yii::getAlias('@webroot').'/msword/ms_word_test.docx');
         */
 
-        // echo '<p>';
-        // echo Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web').'/msword/ms_word_result.docx'), ['class' => 'btn btn-info']);//สร้าง link download
-        // echo '</p>';
-        //ลองให้ google doc viewer แสดงข้อมูลไฟล์ให้เห็นผ่าน iframe (อาจเพี้ยนๆ บ้าง)
-        // \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        return  '<iframe src="https://docs.google.com/viewer?url='.Url::to(Yii::getAlias('@web').'/msword/ms_word_result.docx', true).'&embedded=true"  style="position: absolute;width:100%; height: 100%;border: none;"></iframe>';
+
+        return '<p>'.Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web').'/msword/ms_word_result.docx'), ['class' => 'btn btn-info']).
+        '</p><iframe src="https://docs.google.com/viewerng/viewer?url='.Url::to(Yii::getAlias('@web').'/msword/ms_word_result.docx', true).'&embedded=true"  style="position: absolute;width:100%; height: 100%;border: none;"></iframe>';
+       
     }
 
 
