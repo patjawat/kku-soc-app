@@ -111,7 +111,7 @@ $config = [
     'as access' => [
         'class' => 'mdm\admin\components\AccessControl',
         'allowActions' => [
-            // '*',
+            '*',
             'special/*',
             'soc/events/user-request',
             'soc/events/save-image',

@@ -23,10 +23,16 @@ class Events extends \yii\db\ActiveRecord
      */
     public $files;
     const UPLOAD_FOLDER='signature';
+    const DOWNLOAD_FOLDER='download';
 
     public static function getUploadPath(){
         return Yii::getAlias('@webroot').'/'.self::UPLOAD_FOLDER.'/';
     }
+
+    public static function getDownloadPath(){
+        return Yii::getAlias('@webroot').'/'.self::DOWNLOAD_FOLDER.'/';
+    }
+    
 
     public $q_date;
 

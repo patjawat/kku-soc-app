@@ -25,33 +25,51 @@ $this->params['breadcrumbs'][] = $this->title;
 \yii\web\YiiAsset::register($this);
 
 ?>
-  <style>
-    .pictures {
-      list-style: none;
-      margin: 0;
-      max-width: 30rem;
-      padding: 0;
-    }
+<style>
+.table-bordered th {
+    border: 1px solid #dee2e6;
+    font-weight: 300;
+}
 
-    .pictures > li {
-      border: 1px solid transparent;
-      float: left;
-      height: calc(100% / 3);
-      margin: 0 -1px -1px 0;
-      overflow: hidden;
-      width: calc(100% / 3);
-    }
+.view-card-id {
+    position: relative;
+    width: 200px;
+    height: 263px;
+    max-height: 263px;
 
-    .pictures > li > img {
-      cursor: zoom-in;
-      width: 100%;
-    }
-  </style>
+}
+
+.view-card-id>img {
+    position: absolute;
+}
+
+.file-preview-image {
+    height: 238px;
+    max-height: 238px;
+}
+</style>
 
 
-  <div class="row">
-  <div class="col-auto mr-auto">
-  <p>
+
+
+<div class="container">
+    <h1>Viewer with custom title</h1>
+    <div id="galley">
+      <ul class="pictures">
+        <li><img data-original="../images/tibet-1.jpg" src="../images/thumbnails/tibet-1.jpg" alt="Cuo Na Lake"></li>
+        <li><img data-original="../images/tibet-2.jpg" src="../images/thumbnails/tibet-2.jpg" alt="Tibetan Plateau"></li>
+        <li><img data-original="../images/tibet-3.jpg" src="../images/thumbnails/tibet-3.jpg" alt="Jokhang Temple"></li>
+        <li><img data-original="../images/tibet-4.jpg" src="../images/thumbnails/tibet-4.jpg" alt="Potala Palace 1"></li>
+        <li><img data-original="../images/tibet-5.jpg" src="../images/thumbnails/tibet-5.jpg" alt="Potala Palace 2"></li>
+        <li><img data-original="../images/tibet-6.jpg" src="../images/thumbnails/tibet-6.jpg" alt="Potala Palace 3"></li>
+        <li><img data-original="../images/tibet-7.jpg" src="../images/thumbnails/tibet-7.jpg" alt="Lhasa River"></li>
+        <li><img data-original="../images/tibet-8.jpg" src="../images/thumbnails/tibet-8.jpg" alt="Namtso 1"></li>
+        <li><img data-original="../images/tibet-9.jpg" src="../images/thumbnails/tibet-9.jpg" alt="Namtso 2"></li>
+      </ul>
+    </div>
+  </div>
+  
+<p>
     <?= $model->reporter == '' ? Html::a('<i class="far fa-edit"></i> รับเรื่อง', ['confirm-job', 'id' => $model->id], ['class' => 'btn btn-info','id' => 'confirm-job']):'' ?>
     <?= $model->reporter == '' ? null : Html::a('<i class="far fa-edit"></i> แก้ไข', ['update', 'id' => $model->id], ['class' => 'btn btn-warning showปป']) ?>
     <?= Html::a('<i class="fas fa-trash"></i> ลบทิ้ง', ['delete', 'id' => $model->id], [
@@ -62,15 +80,6 @@ $this->params['breadcrumbs'][] = $this->title;
             ],
         ]) ?>
 </p>
-
-  </div>
-  <div class="col-auto">
-    <?=Html::a('<i class="far fa-arrow-alt-circle-down"></i> Download',['/soc/default/zip','ref' => $model->ref],['class' => 'btn btn-success','id' => 'download'])?>
-    <!-- <button type="button" class="btn btn-success" onclick="return "><i class="far fa-arrow-alt-circle-down"></i> Download File</button> -->
-  </div>
-</div>
-
-
 
 <?= DetailView::widget([
         'model' => $model,
@@ -123,25 +132,20 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-<div class="row" id="galley">
+<div class="row">
 
 
 
     <?php foreach($model->uploads as $file):?>
-    <?php // if($file->type != 15):?>
-<?php
-   $type = explode('.', $file->file_name);
-   $file_path = SystemHelper::getUploadPath() . $file->ref . '/' . $file->real_filename;
-     $url_path = "/soc/events/image?file_path=$file_path&width=500&height=500";
-    ?>
+    <?php if($file->type != 15):?>
+
     <div class="col-md-3">
-        <div class="card mb-4 box-shadow">
+        <div class="card mb-4 box-shadow" id="images">
             <?php echo $file->viewFile()?>
             <div class="card-body">
                 <div class="d-flex justify-content-between align-items-center">
                     <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary view-img" link="<?=Url::to([''])?>">View</button>
-                        
+                        <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
                         <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
                     </div>
                     <!-- <small class="text-muted">9 mins</small> -->
@@ -151,10 +155,36 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 
-    <?php // endif;?>
+    <?php endif;?>
     <?php endforeach;?>
 </div>
 
+<style>
+    .pictures {
+      list-style: none;
+      margin: 0;
+      max-width: 30rem;
+      padding: 0;
+    }
+
+    .pictures > li {
+      border: 1px solid transparent;
+      float: left;
+      height: calc(100% / 3);
+      margin: 0 -1px -1px 0;
+      overflow: hidden;
+      width: calc(100% / 3);
+    }
+
+    .pictures > li > img {
+      cursor: zoom-in;
+      width: 100%;
+    }
+  </style>
+
+
+  <script src="https://unpkg.com/jquery@3/dist/jquery.slim.min.js" crossorigin="anonymous"></script>
+  <script src="https://unpkg.com/bootstrap@4/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
 
 <?php
 $ConfirmUrl = Url::to(['/soc/events/confirm-job']);
@@ -189,11 +219,8 @@ Swal.fire({
     
 });
 
-
-
-
 window.addEventListener('DOMContentLoaded', function () {
-      var galley = document.getElementById('galley');
+      var galley = document.getElementById('images');
       var viewer = new Viewer(galley, {
         url: 'data-original',
         title: function (image) {
@@ -201,55 +228,6 @@ window.addEventListener('DOMContentLoaded', function () {
         },
       });
     });
-
-
-    $('.view-img').click(function (e) { 
-    e.preventDefault();
-    var url = $(this).attr('link');
-    
-try {
-    $.ajax({
-        type: "get",
-        url: url,
-        dataType: "json",
-        // beforeSend: function() {
-        //     beforLoadModal()
-        // },
-        success: function (response) {
-            console.log(response)
-            
-            $('#main-modal').modal('show');
-            // $('#main-modal-label').html(response.title);
-            // $('.modal-body').html(response.content);
-            $('.modal-body').html('<h1>Hello</h1>');
-            // $('.modal-footer').html(response.footer);
-            // $(".modal-dialog").removeClass('modal-sm');
-            // $(".modal-dialog").addClass('modal-lg');
-            // $('.modal-content').addClass('card-outline card-primary');
-        }
-    });
-} catch (error) {
-    $('#main-modal').modal('show');
-    console.log('Error')
-   
-    
-}
-});
-
-
-
-$('#download').click(function (e) { 
-    e.preventDefault();
-    var url = $(this).attr('href');
-    $.ajax({
-        type: "get",
-        url: url,
-        dataType: "json",
-        success: function (response) {
-            console.log(response)
-        }
-    });
-});
 
 JS;
 $this->registerJs($js,View::POS_END);

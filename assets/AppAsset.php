@@ -22,11 +22,13 @@ class AppAsset extends AssetBundle
     public $css = [
         'css/soc-site.css',
         'aos/aos.css',
+        'viewerjs/viewer.min.css'
         // 'css/style.css',
         // 'vendors/ti-icons/css/themify-icons.css'
     ];
     public $js = [
         'js/soc-main.js',
+        'viewerjs/viewer.min.js',
         // 'sweetalert2/dist/sweetalert2.all.min.js',
         'js/easy.qrcode.min.js',
         '/js-signature/signature_pad.min.js',
