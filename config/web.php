@@ -119,6 +119,7 @@ $config = [
             'uploads/upload-ajax',
             'datecontrol/parse/convert',
             'soc/events/upload-ajax',
+            'soc/soc/default/word',
             // 'liff/*',
             // 'site/*',
             // 'reception/default/index',
