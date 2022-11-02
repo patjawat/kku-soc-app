@@ -53,7 +53,10 @@
         "2amigos/yii2-gallery-widget": "~1.0",
         "wbraganca/yii2-videojs-widget": "~1.0",
         "yurkinx/yii2-image": "dev-master",
-        "linslin/yii2-curl": "*"
+        "linslin/yii2-curl": "*",
+        "kartik-v/yii2-word-report": "@dev",
+        "phpoffice/phpword": "0.19.x-dev",
+        "lesha724/yii2-document-viewer": "*"
 
     },
     "require-dev": {
