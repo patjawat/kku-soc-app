@@ -104,7 +104,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'backup_to',
             [
                 'attribute' => 'result',
-                'value' => $model->resultType->name ? $model->resultType->name : ''
+                'value' => $model->resultType ? $model->resultType->name : ''
             ],
             [
                 'label' => 'สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประจำตัวประชาชน/สำเนาบัตรข้าราชการ',
