@@ -93,7 +93,7 @@ $this->params['breadcrumbs'][] = $this->title;
             'department',
             [
                 'attribute' => 'event_location_note',
-                'value' => $model->location->name ? $model->location->name : ''
+                'value' => $model->location ? $model->location->name : ''
             ],
             'orther',
             // [

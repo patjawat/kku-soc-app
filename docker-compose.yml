@@ -11,7 +11,7 @@ services:
       - mariaDB:db
   
   mariaDB:
-    image: mariadb
+    image: mariadba
     hostname: mariadb
     container_name: mariadb
     restart: always

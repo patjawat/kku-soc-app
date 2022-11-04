@@ -14,6 +14,13 @@ $config = [
         '@npm'   => '@vendor/npm-asset',
     ],
     'components' => [
+        'googleDrive' => [
+            'class' => 'lhs\Yii2FlysystemGoogleDrive',
+            'clientId'     => '62758821779-r261kptonb9so7j0hcd01qbt9ccn11ti.apps.googleusercontent.com',
+            'clientSecret' => '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',
+            // 'refreshToken' => 'xxx YOU REFRESH TOKEN xxx',
+            // 'rootFolderId' => 'xxx ROOT FOLDER ID xxx'
+        ],
         'thaiFormatter'=>[
             'class'=>'dixonsatit\thaiYearFormatter\ThaiYearFormatter',
         ],
@@ -103,7 +110,8 @@ $config = [
         ],
         'device' => [
             'class' => '\i4erkasov\devicedetect\DeviceDetect'
-        ]
+        ],
+
         
     ],
     'modules' => $modules,    

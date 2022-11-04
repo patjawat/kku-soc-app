@@ -188,5 +188,10 @@ class SiteController extends Controller
         $this->layout = 'blank';
    return $this->render('qrcode');
    }
+
+
+   public function actionTest(){
+    return $this->render('test');
+   }
    
 }
