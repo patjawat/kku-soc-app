@@ -1,21 +1,16 @@
 <?php
 
 namespace app\modules\soc\controllers;
-use Yii;
+
 use app\modules\soc\models\Events;
-use yii\helpers\BaseFileHelper;
-use yii\web\Controller;
-use app\models\Uploads;
-use kartik\wordreport\TemplateReport;
-use PhpOffice\PhpWord\IOFactory;
 use PhpOffice\PhpWord\TemplateProcessor;
-use yii\web\Response;
+use PhpOffice\PhpWord\Settings;
+use Yii;
+use yii\helpers\BaseFileHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
-use PhpOffice\PhpWord\PhpWord;
-use PhpOffice\PhpWord\Settings;
-
-
+use yii\web\Controller;
+use yii\web\Response;
 
 /**
  * Default controller for the `cctv` module
@@ -66,8 +61,6 @@ class DefaultController extends Controller
 
     }
 
-
-    
     private function CreateDir($folderName)
     {
         if ($folderName != null) {
@@ -79,76 +72,59 @@ class DefaultController extends Controller
         }
         return;
     }
-
-    // public function actionCreateZip($ref){
-    //     $zip=new \ZipArchive();
-    //     $destination=Yii::getAlias('@webroot').'/'."/filename.zip";
-    //     if($zip->open($destination,\ZIPARCHIVE::CREATE) !== true) {
-    //         return false;
-    //     }
-    //     // $doclist=CUploadedFile::getInstancesByName('files');
-    //     $files = Uploads::find()->where(['ref' =>$ref])->all();
-    //     foreach($files as $thefile)
-    //     {
-    //         $random=rand(11111,99999);
-    //         $filename=$random.$thefile->real_filename;      
-    //         $zip->addFile($thefile->tempname,$filename);
-    //     }
-    //     $zip->close();   
-    // }
-
     public function actionWord()
     {
-        // Settings::setTempDir(Yii::getAlias('@webroot').'/temp/'); //กำหนด folder temp สำหรับ windows server ที่ permission denied temp (อย่ายลืมสร้างใน project ล่ะ)
+        $date1 = $this->request->get('date1');
+        $date2 = $this->request->get('date2');
+
         $templateProcessor = new TemplateProcessor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
-        $templateProcessor->setValue('doc_department', 'สำนักเทคโนโลยีสารสนเทศ');//อัดตัวแปร รายตัว
-        $templateProcessor->setValue(
-            [
-                'doc_no',
-                'doc_date',
-                'doc_title',
-                'doc_to',
-                'doc_detail1',
-                'doc_detail2',
-                'doc_detail3',
-                'doc_name',
-                'doc_position'
-            ],
-            [
-                'ทน1234/2345',
-                '18 กรกฏาคม 2560',
-                'การสร้างระบบออกเอกสารราชการ',
-                'ผู้อำนวยการสถาบันเทคโนโลยีสารสนเทศแห่งชาติ',
-                'เนื่องด้วยการพัฒนาระบบ Web-based Application ในปัจจุบันประสบปัญหาในการสร้างเอกสารราชการ',
-                'กระผมนายมานพ กองอุ่น มีความประสงค์จะพัฒนาระบบการออกเอกสารราชการตามแม่แบบราชการสำหรับใช้งานในระบบ Web-based Application ดังนั้น กระผมจึงพัฒนาตัวอย่างของการออกเอกสารหนังสือราชการ เพื่อเป็นแนวทางให้กับหน่วยงานต่างๆ สามารถนำไปปรับใช้ในระบบ Web-based ของตัวเองได้',
-                'จึงเรียนมาเพื่อโปรดทราบ',
-                'นายมานพ กองอุ่น',
-                'นักเทคโนโลยีสารสนเทศแห่งประเทศไทย'
-            ]);//อัดตัวแปรแบบชุด
+        $templateProcessor->setValue('date1', $date1);
+        $templateProcessor->setValue('date2', $date2);
+
+        $sqlCount  = "SELECT *,(SELECT COUNT(events.id) FROM events WHERE events.event_type = category.id AND events.created_at BETWEEN :date1 AND :date2)  as total 
+        FROM `category`
+        WHERE category.category_type = 2
+        
+        ORDER BY category.id";
+
+        $counts = Yii::$app->db->createCommand($sqlCount)
+        ->bindValue(':date1', $date1)
+        ->bindValue(':date2', $date2)
+        ->queryAll();
+        $templateProcessor->cloneRow('name', sizeof($counts));
+
+        $iCount = 1;
+        foreach($counts as $count){
+                    $templateProcessor->setValue('name#'.$iCount, $count['name']);
+                    $templateProcessor->setValue('total#'.$iCount, $count['total']);
+                    $iCount++;
+                }
+
+        if(isset($date1)){
+            $datas = Events::find()
+            ->where(['between', 'created_at',$date1, $date2 ])->all();
+        }else{
+
+        }
+        
+        $templateProcessor->cloneRow('item', sizeof($datas));
+        $i = 1;
+    foreach($datas as $item){
+    $templateProcessor->setValue('no#'.$i, $i);
+            $templateProcessor->setValue('no#'.$i, $i);
+            $templateProcessor->setValue('item#'.$i, $item->eventType->name);
+            $templateProcessor->setValue('approve#'.$i, $item->created_at);
+            $templateProcessor->setValue('process_time#'.$i, '-');
+            $templateProcessor->setValue('result#'.$i, isset($item->resultType) ? $item->resultType->name : '-');
+            $templateProcessor->setValue('person_type#'.$i, $item->personType->name);
+            $i++;
+        }
+
         $templateProcessor->saveAs(Yii::getAlias('@webroot').'/msword/ms_word_result.docx');//สั่งให้บันทึกข้อมูลลงไฟล์ใหม่
-
-        /*
-        //ตัวอย่างการสร้างไฟล์ ms word แบบไม่มี template
-        $PHPWord = new PHPWord();
-        $PHPWord->setDefaultFontName('TH Sarabun New');
-        $PHPWord->setDefaultFontSize(16);
-
-        $section = $PHPWord->createSection();
-
-        $section->addText('ทดสอบข้อความ');
-        $section->addTextBreak(2);
-
-        $objWriter = IOFactory::createWriter($PHPWord, 'Word2007');
-        $objWriter->save(Yii::getAlias('@webroot').'/msword/ms_word_test.docx');
-
-        $objReader = IOFactory::load(Yii::getAlias('@webroot').'/msword/ms_word_test.docx');
-        */
-
-
-        return '<p>'.Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web').'/msword/ms_word_result.docx'), ['class' => 'btn btn-info']).
-        '</p><iframe src="https://docs.google.com/viewerng/viewer?url='.Url::to(Yii::getAlias('@web').'/msword/ms_word_result.docx', true).'&embedded=true"  style="position: absolute;width:100%; height: 100%;border: none;"></iframe>';
-       
-    }
+        return '<p>' . Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx'), ['class' => 'btn btn-info']) .
+        '</p><iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx', true) . '&embedded=true"  style="position: absolute;width:100%; height: 100%;border: none;"></iframe>';
+   
+        }
 
 
 }
