@@ -96,7 +96,7 @@ class DefaultController extends Controller
         $iCount = 1;
         foreach($counts as $count){
                     $templateProcessor->setValue('name#'.$iCount, $count['name']);
-                    $templateProcessor->setValue('total#'.$iCount, $count['total']);
+                    $templateProcessor->setValue('total#'.$iCount, $count['total'] > 0 ? $count['total'] : '-');
                     $iCount++;
                 }
 
