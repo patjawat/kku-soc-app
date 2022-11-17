@@ -162,6 +162,8 @@ if ($searchModel->q_date){
             ],
             [
                 'header' => 'ระยะเวลาดำเนินการ',
+                'hAlign' => 'center',
+                'vAlign' => 'middle',
                 'value' => function ($model){
                     return $model->CountDate();
                 }
