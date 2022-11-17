@@ -66,7 +66,7 @@ if ($searchModel->q_date){
                 // 'header' => '<i class="fas fa-calendar-week"></i> วันที่รับบริการ',
                 'attribute' => 'q_date',
                 'format' => 'raw',
-                'header' => '<i class="fas fa-calendar-week"></i> วันที่บริการ',
+                'header' => '<i class="fas fa-calendar-week"></i> วันเวลาแจ้ง',
                 'hAlign' => 'center',
                 'vAlign' => 'middle',
                 //'mergeHeader' => true,
@@ -103,9 +103,11 @@ if ($searchModel->q_date){
                     ],
                 ],
                 'value' => function ($model) {
-                    return Yii::$app->formatter->asDate($model->created_at, 'php:Y-m-d');
+                    // return Yii::$app->formatter->asDate($model->created_at, 'php:Y-m-d');
+                    return $model->created_at;
                 },
             ],
+
             [
                 'header' => 'เหตุการณ์',
                 'attribute' => 'event_type',
@@ -157,6 +159,12 @@ if ($searchModel->q_date){
                 ],
                 'filterInputOptions' => ['placeholder' => 'เลือกประเภทบุคลากร', 'multiple' => false], // allows multiple authors to be chosen
                 'format' => 'raw',
+            ],
+            [
+                'header' => 'ระยะเวลาดำเนินการ',
+                'value' => function ($model){
+                    return $model->CountDate();
+                }
             ],
             [
                 'attribute' =>'result',

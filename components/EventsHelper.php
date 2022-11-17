@@ -29,6 +29,19 @@ class EventsHelper extends Component{
         //     return '';
         // }
     }
+
+    // คำนวน วัน เวลา ที่ผ่านมา
+    public static function Duration($begin,$end){
+        $remain=intval(strtotime($end)-strtotime($begin));
+        $wan=floor($remain/86400);
+        $l_wan=$remain%86400;
+        $hour=floor($l_wan/3600);
+        $l_hour=$l_wan%3600;
+        $minute=floor($l_hour/60);
+        $second=$l_hour%60;
+        // return ($wan > 0 ? $wan." วัน " : "").($hour > 0 ? $hour ." ชั่วโมง " : "").($minute > 0 ? $minute ." นาที " : "").$second." วินาที";
+        return ($wan > 0 ? $wan." วัน " : "").($hour > 0 ? $hour ." ชั่วโมง " : "").($minute > 0 ? $minute ." นาที " : "");
+    }
     
 
 }

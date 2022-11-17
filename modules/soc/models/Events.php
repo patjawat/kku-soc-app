@@ -10,6 +10,7 @@ use yii\behaviors\BlameableBehavior;
 use yii\behaviors\TimestampBehavior;
 use yii\behaviors\AttributeBehavior;
 use app\components\SystemHelper;
+use app\components\EventsHelper;
 use app\components\UserHelper;
 use app\models\Uploads;
 use app\models\Category;
@@ -191,6 +192,19 @@ class Events extends \yii\db\ActiveRecord
         $model = User::findOne(['id' => $this->reporter]);
         if($model){
             return $model->fullname;
+        }else{
+            return '-';
+        }
+    }
+
+
+    public function CountDate(){
+       
+        if(isset($this->data_json['result_date']))
+        {
+            $begin = $this->created_at;
+            $end = $this->data_json['result_date'];
+            return EventsHelper::Duration($begin,$end);
         }else{
             return '-';
         }

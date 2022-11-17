@@ -34,8 +34,8 @@ $summnarys = Category::find()->where([
             <td><?=Yii::$app->formatter->asDate($model->created_at, 'php:Y-m-d')?></td>
             <td><?=$model->eventType->name;?></td>
             <td style="text-align:center">-</td>
-            <td style="text-align:center"><?=$model->resultType->name;?></td>
-            <td style="text-align:center"><?=$model->personType->name;?></td>
+            <td style="text-align:center"><?=isset($model->resultType) ? $model->resultType->name : '-';?></td>
+            <td style="text-align:center"><?=isset($model->personType) ? $model->personType->name : '-';?></td>
         </tr>
         <?php endforeach;?>
        

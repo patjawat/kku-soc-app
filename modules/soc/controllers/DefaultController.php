@@ -114,7 +114,7 @@ class DefaultController extends Controller
             $templateProcessor->setValue('no#'.$i, $i);
             $templateProcessor->setValue('item#'.$i, $item->eventType->name);
             $templateProcessor->setValue('approve#'.$i, $item->created_at);
-            $templateProcessor->setValue('process_time#'.$i, '-');
+            $templateProcessor->setValue('process_time#'.$i, $item->CountDate());
             $templateProcessor->setValue('result#'.$i, isset($item->resultType) ? $item->resultType->name : '-');
             $templateProcessor->setValue('person_type#'.$i, $item->personType->name);
             $i++;

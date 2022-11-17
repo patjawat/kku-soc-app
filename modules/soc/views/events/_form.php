@@ -87,7 +87,7 @@ echo $form->field($model, 'event_date')->widget(DateTimePicker::classname(), [
     'options' => ['placeholder' => 'เลือก' . $model->getAttributeLabel('event_location_note') . '...', 'multiple' => false],
 ])->label(true);
 ?>
-        <?=$form->field($model, 'orther')->textArea()?>
+        <?=$form->field($model, 'orther')->textArea(['rows' => 5])?>
 
     </div>
     <div class="col-4">
@@ -131,9 +131,17 @@ echo $form->field($model, 'event_date')->widget(DateTimePicker::classname(), [
                     'options' => ['placeholder' => 'เลือก' . $model->getAttributeLabel('worker') . '...', 'multiple' => true],
                     ])->label(true);
                     ?>
-        <?php echo $form->field($model, 'note')->textarea(['rows' => 5])->label(true) ?>
+        <?php echo $form->field($model, 'note')->textarea(['rows' => 10])->label(true) ?>
         <?=$form->field($model, 'backup_to')->textInput()?>
         <?=$form->field($model, 'result')->inline()->radioList(ArrayHelper::map(Category::find()->where(['category_type' => 5])->all(), 'id', 'name'))->label('ผลดำเนินการ')?>
+        <?=$form->field($model, 'data_json[result_date]')->widget(DateTimePicker::classname(), [
+                'options' => ['placeholder' => 'เลือกวันเวลาดำเนินการเสร็จสิ้น ...'],
+                'language' => 'th',
+                'pluginOptions' => [
+                    'autoclose' => true,
+                ]
+            ])->label('วันเวลาดำเนินการเสร็จสิ้น');
+            ?>
     </div>
     <div class="col-6">
         <?php // $form->field($model, 'note')->widget(CKEditor::className(), ['editorOptions' => ElFinder::ckeditorOptions('elfinder')]) ?>
