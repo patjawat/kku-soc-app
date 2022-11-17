@@ -367,7 +367,7 @@ class EventsController extends Controller
             array_push($initialPreview, SystemHelper::getFileUpload($value->upload_id));
             array_push($initialPreviewConfig, [
                 'caption' => $value->file_name,
-                'width' => '120px',
+                'width' => '300px',
                 'url' => Url::to(['/soc/events/deletefile-ajax']),
                 'key' => $value->upload_id,
             ]);
@@ -388,7 +388,7 @@ class EventsController extends Controller
             array_push($initialPreview, SystemHelper::getFileUpload($value->upload_id));
             array_push($initialPreviewConfig, [
                 'caption' => $value->file_name,
-                'width' => '120px',
+                'width' => '300px',
                 'url' => Url::to(['/soc/events/deletefile-ajax']),
                 'key' => $value->upload_id,
             ]);

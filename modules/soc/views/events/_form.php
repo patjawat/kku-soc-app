@@ -41,6 +41,11 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
     margin-right: 0;
     width: 250px;
 }
+
+.file-zoom-content .file-preview-image {
+    /* max-height: 100%; */
+    width: 100%;
+}
 </style>
 
 <?php $form = ActiveForm::begin([
