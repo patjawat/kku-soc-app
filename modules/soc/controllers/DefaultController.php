@@ -11,6 +11,7 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
+use app\components\Processor;
 
 /**
  * Default controller for the `cctv` module
@@ -77,7 +78,8 @@ class DefaultController extends Controller
         $date1 = $this->request->get('date1');
         $date2 = $this->request->get('date2');
 
-        $templateProcessor = new TemplateProcessor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
+        // $templateProcessor = new TemplateProcessor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
+        $templateProcessor = new Processor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
         $templateProcessor->setValue('date1', $date1);
         $templateProcessor->setValue('date2', $date2);
 
@@ -119,6 +121,9 @@ class DefaultController extends Controller
             $templateProcessor->setValue('person_type#'.$i, $item->personType->name);
             $i++;
         }
+
+        $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/img/avatar.png', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+        $templateProcessor->setImg('img2', ['src' => Yii::getAlias('@webroot') . '/images/cctv.png', 'swh' => 350]);//ที่อยู่รูป frontend/web/images/cell.jpg, swh ความกว้าง/สูง 350
 
         $templateProcessor->saveAs(Yii::getAlias('@webroot').'/msword/ms_word_result.docx');//สั่งให้บันทึกข้อมูลลงไฟล์ใหม่
         return '<p>' . Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx'), ['class' => 'btn btn-info']) .
