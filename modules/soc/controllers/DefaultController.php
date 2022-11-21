@@ -75,6 +75,8 @@ class DefaultController extends Controller
     }
     public function actionWord()
     {
+        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+
         $date1 = $this->request->get('date1');
         $date2 = $this->request->get('date2');
 
