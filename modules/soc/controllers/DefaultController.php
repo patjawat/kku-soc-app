@@ -82,6 +82,10 @@ class DefaultController extends Controller
         $templateProcessor = new Processor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
         $templateProcessor->setValue('date1', $date1);
         $templateProcessor->setValue('date2', $date2);
+        $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/img/avatar.png', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+        $templateProcessor->setImg('img2', ['src' => Yii::getAlias('@webroot') . '/images/cctv.png', 'swh' => 350]);//ที่อยู่รูป frontend/web/images/cell.jpg, swh ความกว้าง/สูง 350
+
+        
 
         $sqlCount  = "SELECT *,(SELECT COUNT(events.id) FROM events WHERE events.event_type = category.id AND events.created_at BETWEEN :date1 AND :date2)  as total 
         FROM `category`
@@ -122,8 +126,6 @@ class DefaultController extends Controller
             $i++;
         }
 
-        $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/img/avatar.png', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
-        $templateProcessor->setImg('img2', ['src' => Yii::getAlias('@webroot') . '/images/cctv.png', 'swh' => 350]);//ที่อยู่รูป frontend/web/images/cell.jpg, swh ความกว้าง/สูง 350
 
         $templateProcessor->saveAs(Yii::getAlias('@webroot').'/msword/ms_word_result.docx');//สั่งให้บันทึกข้อมูลลงไฟล์ใหม่
         return '<p>' . Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx'), ['class' => 'btn btn-info']) .
