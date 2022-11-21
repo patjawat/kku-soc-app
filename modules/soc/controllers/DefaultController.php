@@ -83,7 +83,7 @@ class DefaultController extends Controller
         $templateProcessor->setValue('date1', $date1);
         $templateProcessor->setValue('date2', $date2);
         $templateProcessor->setValue('src1', '/images/cctv.png');
-        $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/img/avatar.png', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+        $templateProcessor->setImg('img1', ['src' => '/img/avatar.png', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
         $templateProcessor->setImg('img2', ['src' => Yii::getAlias('@webroot') . '/images/cctv.png', 'swh' => 350]);//ที่อยู่รูป frontend/web/images/cell.jpg, swh ความกว้าง/สูง 350
 
 
