@@ -11,7 +11,7 @@
 use yii\helpers\Url;
 use yii\web\View;
 $url = Url::to(['/reception/default']);
-echo Url::base(true).'/'.Yii::$app->controller->id.'/'.Yii::$app->controller->action->id;
+echo $qrUrl =  Url::base(true).'/soc/events/user-request';
 
 // echo Yii::$app->homeUrl;
 
