@@ -36,3 +36,4 @@ docker
 var
 docker-compose.ylm
 web/uploads
+web/assets/*
