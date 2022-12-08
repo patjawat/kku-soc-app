@@ -3,11 +3,11 @@ use app\modules\soc\models\Events;
 $i =  10;
 ?>
 
-<p class="text-center" data-aos="fade-up" data-aos-delay="900">
+<p class="text-center">
                 <strong>สถานะการขอยื่น</strong>
             </p>
             <?php foreach (Events::find()->where(['not',['event_type' => null]])->groupBy('event_type')->all() as $model):?>
-            <div class="progress-group" data-aos="fade-up" data-aos-delay="<?=($i++)*100?>">
+            <div class="progress-group">
             <?=$model->eventType ? $model->eventType->name : null;?>
             <?php
             $result = $model->countPercen();

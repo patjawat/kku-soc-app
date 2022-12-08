@@ -92,6 +92,8 @@ echo $form->field($model, 'event_date')->widget(DateTimePicker::classname(), [
     'options' => ['placeholder' => 'เลือก' . $model->getAttributeLabel('event_location_note') . '...', 'multiple' => false],
 ])->label(true);
 ?>
+        <?=$form->field($model, 'data_json[location_other]')->textInput(['maxlength' => true])->label('ระบุสถานที่อื่นๆ');?>
+
         <?=$form->field($model, 'orther')->textArea(['rows' => 5])?>
 
     </div>

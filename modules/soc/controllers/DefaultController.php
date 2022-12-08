@@ -3,14 +3,15 @@
 namespace app\modules\soc\controllers;
 
 use app\modules\soc\models\Events;
-use PhpOffice\PhpWord\TemplateProcessor;
-use PhpOffice\PhpWord\Settings;
+
 use Yii;
 use yii\helpers\BaseFileHelper;
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\Controller;
 use yii\web\Response;
+use PhpOffice\PhpWord\TemplateProcessor;
+use PhpOffice\PhpWord\Settings;
 use app\components\Processor;
 
 /**
@@ -27,40 +28,6 @@ class DefaultController extends Controller
         return $this->render('index');
     }
 
-    public function actionZip($ref)
-    {
-
-        \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        // $this->CreateDir($ref);
-        // $basePath = SystemHelper::getUploadPath().$ref;
-        // $zip = new \ZipArchive();
-        // $opening_zip = $zip->open($basePath);
-
-        // $files = Uploads::find()->where(['ref' =>$ref])->all(); //
-
-        // $datas= [];
-        // $destination="@web/download/filename.zip";
-        // $zip->open($destination, \ZipArchive::CREATE);
-
-        // foreach ($files as $key => $file) {
-        //     $filename = $basePath.$ref.'/'.$file->real_filename;
-        //             if(file_exists($filename)) {
-        //                $zip->addFile($filename);
-        //             }
-        //         }
-        // $zip->close();
-
-        // $zipArchive = new \ZipArchive();
-        // $zipFile = "./example-zip-file.zip";
-        // if ($zipArchive->open($zipFile, \ZipArchive::CREATE) !== true) {
-        //     exit("Unable to open file.");
-        // }
-        // $folder = 'example-folder/';
-        // createZip($zipArchive, $folder);
-        // $zipArchive->close();
-        // return 'Zip file created.';
-
-    }
 
     private function CreateDir($folderName)
     {
@@ -76,7 +43,7 @@ class DefaultController extends Controller
     public function actionWord()
     {
         // \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-
+        Settings::setTempDir(Yii::getAlias('@webroot').'/temp/');
         $date1 = $this->request->get('date1');
         $date2 = $this->request->get('date2');
 
@@ -84,8 +51,10 @@ class DefaultController extends Controller
         $templateProcessor = new Processor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
         $templateProcessor->setValue('date1', $date1);
         $templateProcessor->setValue('date2', $date2);
-        // $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/images/cctv.png');
-        // $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/img/avatar.png', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+        $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg');
+        // $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+        // $templateProcessor->setImageValue('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+        $templateProcessor->setImageValue('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
         // $templateProcessor->setImg('img2', ['src' => Yii::getAlias('@webroot') . '/images/cctv.png', 'swh' => 350]);//ที่อยู่รูป frontend/web/images/cell.jpg, swh ความกว้าง/สูง 350
 
 
@@ -135,6 +104,5 @@ class DefaultController extends Controller
         '</p><iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx', true) . '&embedded=true"  style="position: absolute;width:100%; height: 100%;border: none;"></iframe>';
    
         }
-
 
 }
