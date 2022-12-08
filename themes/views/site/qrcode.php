@@ -11,12 +11,17 @@
 use yii\helpers\Url;
 use yii\web\View;
 $url = Url::to(['/reception/default']);
+echo Url::base(true).'/'.Yii::$app->controller->id.'/'.Yii::$app->controller->action->id;
+
+// echo Yii::$app->homeUrl;
+
+// echo Url::base();
 
 $js = <<< JS
 
 
 var qrcode = new QRCode(document.getElementById("qrcode"), {
-    text: "https://tsd.kku.ac.th/soc/events/user-request",
+    text: "https://tsd.kku.ac.th/app/soc/events/user-request",
     logo: "http://localhost:81/img/logo.png",
     width: 540,
 						height: 540,
