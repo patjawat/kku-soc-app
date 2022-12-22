@@ -16,18 +16,7 @@ if ($model->q_date){
     $date2 = '';
 }
 
-Yii::$app->formatter->locale = 'th-TH';
-$time = time();
 
-?>
-<?php
-$date = new DateTime("2012-07-05 16:43:21", new DateTimeZone('Asia/Bangkok'));
-
-date_default_timezone_set('America/New_York');
-
-echo date("Y-m-d h:iA", $date->format('U'));
-
-// 2012-07-05 10:43AM
 ?>
 
 <?=Yii::$app->thaiFormatter->asDateTime($date1, 'long')?>
