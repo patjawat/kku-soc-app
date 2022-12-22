@@ -7,6 +7,7 @@ $modules = require __DIR__ . '/add_modules.php';
 
 $config = [
     'id' => 'basic',
+    'timeZone' => 'Asia/Bangkok',
     'basePath' => dirname(__DIR__),
     'bootstrap' => ['log'],
     'aliases' => [
