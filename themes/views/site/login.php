@@ -21,6 +21,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
     <img src="https://i.ibb.co/XWdPc2X/wave-01.png" class="wave" data-aos="fade-right" data-aos-delay="500">
     <div class="container">
+        
         <div class="img">
             <img id="band" src="https://i.ibb.co/JvXP8rW/phone.png" data-aos="fade-down" data-aos-delay="1000">
         </div>
@@ -28,27 +29,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
 
-<?php $authAuthChoice = yii\authclient\widgets\AuthChoice::begin(['baseAuthUrl' => ['auth/auth']]); ?>
 
-            <?php foreach ($authAuthChoice->getClients() as $client): ?>
-                <?php
-                switch ($client->getName()){
-                    case 'facebook':
-                        $class = 'primary';
-                        break;
-                    case 'google':
-                        $class = 'danger';
-                        break;
-                    case 'live':
-                        $class = 'warning';
-                        break;
-
-                }
-
-                echo $authAuthChoice->clientLink($client, 'Login with '.ucfirst($client->getName()), ['class' => 'btn btn-'.$class.' btn-block']) ?>
-            <?php endforeach; ?>
-
-        <?php yii\authclient\widgets\AuthChoice::end(); ?>
             <?php
 $form = ActiveForm::begin(['id' => 'form-asset','fieldConfig' => [
 
@@ -59,6 +40,8 @@ $form = ActiveForm::begin(['id' => 'form-asset','fieldConfig' => [
 ],
 ]);
 ?>
+
+
             <img src="https://i.ibb.co/H4f3Hkv/profile.png">
             <!-- <h2 class="title typed-out">กรุณายืนยันตัวตนเพื่อเข้าสู่ระบบ</h2> -->
     <div>
@@ -92,7 +75,15 @@ $form = ActiveForm::begin(['id' => 'form-asset','fieldConfig' => [
                 </div>
             </div>
             <?=Html::submitButton('Login', ['class' => 'btn btn-block btn-primary', 'name' => 'login-button', 'tabindex' => '3'])?>
+   
+<?php $authAuthChoice = yii\authclient\widgets\AuthChoice::begin(['baseAuthUrl' => ['auth/auth']]); ?>
 
+<?php foreach ($authAuthChoice->getClients() as $client): ?>
+    <?php
+    echo $authAuthChoice->clientLink($client, 'Login with '.ucfirst($client->getName()), ['class' => 'btn btn-danger btn-block']) ?>
+<?php endforeach; ?>
+
+<?php yii\authclient\widgets\AuthChoice::end(); ?>
             <a href="#">Forgot Password?</a>
             <?php ActiveForm::end();?>
         </div>
