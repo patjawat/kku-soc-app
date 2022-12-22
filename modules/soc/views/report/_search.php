@@ -20,7 +20,7 @@ Yii::$app->formatter->locale = 'th-TH';
 $time = time();
 
 ?>
-<?=Yii::$app->thaiFormatter->asDateTime($date1, 'medium')?>
+<?=Yii::$app->thaiFormatter->asDateTime($date1, 'long')?>
 <div class="events-search">
 
     <?php $form = ActiveForm::begin([
