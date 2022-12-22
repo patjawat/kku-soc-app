@@ -59,13 +59,15 @@ class ReportController extends \yii\web\Controller
     {
         // \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         // Settings::setTempDir(Yii::getAlias('@webroot').'/temp/');
+        Yii::$app->formatter->locale = 'th_TH';
         $date1 = $this->request->get('date1');
         $date2 = $this->request->get('date2');
-        // echo Yii::$app->formatter->asDateTime($time, 'short');
+        echo Yii::$app->formatter->asDateTime($time, 'short');
         // $templateProcessor = new TemplateProcessor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
         $templateProcessor = new Processor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
-        $templateProcessor->setValue('date1',Yii::$app->thaiFormatter->asDateTime($date1, 'medium'));
-        $templateProcessor->setValue('date2',Yii::$app->thaiFormatter->asDateTime($date2, 'medium'));
+        $templateProcessor->setValue('date1', $date1);
+        $templateProcessor->setValue('date2', $date2);
+        // $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg');
         $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/var/files/zYbRX_a6c1AzcRUvZn4ttI/0bfd40f5f26ed1c268f3fd16384a2dd4.png');
         $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
         // $templateProcessor->setImageValue('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 

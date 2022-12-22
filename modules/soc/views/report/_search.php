@@ -15,6 +15,8 @@ if ($model->q_date){
     $date1 = '';
     $date2 = '';
 }
+
+Yii::$app->formatter->locale = 'th_TH';
 $time = time();
 //$time = '2015-06-03 13:25:17';
 echo Yii::$app->thaiFormatter->asDate($time, 'short')."<br>";
