@@ -163,10 +163,10 @@ class Events extends \yii\db\ActiveRecord
             $file_path = SystemHelper::getUploadPath() . $model->ref . '/' . $model->real_filename;
             $file_ = pathinfo($file_path);
             if (file_exists($file_path)) {
-                $file_path = "/soc/events/image?file_path=$file_path&width=490&height=200";
+                // $file_path = "/soc/events/image?file_path=$file_path&width=490&height=200";
               
                 if (strtolower($file_['extension']) == ('png' || 'jpg')) {
-                    return Html::img($file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
+                    return Html::img('@web/'.$file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
                 }
                 
   
