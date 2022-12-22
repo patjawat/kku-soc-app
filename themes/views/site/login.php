@@ -27,13 +27,8 @@ $this->params['breadcrumbs'][] = $this->title;
         <div class="login-content">
 
 
-<?php $authAuthChoice = yii\authclient\widgets\AuthChoice::begin([
-'baseAuthUrl' => ['site/auth']
-]); ?>
 
-<?php $authAuthChoice = yii\authclient\widgets\AuthChoice::begin([
-                'baseAuthUrl' => ['site/authen']
-            ]); ?>
+<?php $authAuthChoice = yii\authclient\widgets\AuthChoice::begin(['baseAuthUrl' => ['auth/auth']]); ?>
 
             <?php foreach ($authAuthChoice->getClients() as $client): ?>
                 <?php
