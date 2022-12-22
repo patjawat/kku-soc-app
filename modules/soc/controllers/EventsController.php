@@ -158,7 +158,8 @@ class EventsController extends Controller
         ]);
 
         if ($this->request->isPost) {
-            if ($model->load($this->request->post()) && $model->save()) {
+            $model->accept_pdpa = 0;
+            if ($model->load($this->request->post()) && $model->save(false)) {
                 return $this->redirect(['view', 'id' => $model->id]);
             }
         } else {

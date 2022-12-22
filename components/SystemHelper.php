@@ -16,7 +16,8 @@ use yii\helpers\Html;
 class SystemHelper extends Component
 {
 
-    const UPLOAD_FOLDER = '../var/files';
+    // const UPLOAD_FOLDER = '../var/files'; // อันเดิม
+    const UPLOAD_FOLDER = 'uploads';
 
 
     public static function initialDataSession()
@@ -44,75 +45,6 @@ class SystemHelper extends Component
     }
 
     
-    /**
-     * เตรียมเอกสาร HIMS เพื่อใช้งานในระบบ
-     * @param type $hn
-     * @return array
-     */
-    public static function getHimsEmr($hn)
-    {
-        $src = "/var/www/mount/hims-app/reg/" . $hn;
-        $dst = "/var/www/mount/nas-tcds/hims-emr/" . $hn;
-        if (is_dir($src)) {
-            $hims_emr = new HimsEmr($src, $dst);
-            return ['file_' => $hims_emr->file_, 'type_' => $hims_emr->type_];
-        }
-    }
-
-    /**
-     *
-     * @param type $hn
-     * @param type $file_path
-     * @return type
-     */
-    public static function getImagePatientOpdVisit($patient_profile_path)
-    {
-        if (file_exists($patient_profile_path)) {
-            $file_path = "index.php?r=document/default/image&file_path=$patient_profile_path&width=800&height=800";
-            return Html::img($file_path, ['class' => 'profile-user-img', 'style' => 'width: 155px; height: 155px; object-fit: cover;', 'loading' => 'lazy']);
-        }
-        return null;
-    }
-
-    /**
-     * รูปถ่ายผู้รับบริการล่าสุด
-     * @param type $hn
-     * @return string
-     */
-    public static function getImagePatientProfile($hn)
-    {
-        $file_path = self::getImagePatientProfilePath($hn);
-        if (file_exists($file_path)) {
-            $file_path = "index.php?r=document/default/image&file_path=$file_path&width=800&height=800";
-            return Html::img($file_path, ['class' => 'profile-user-img', 'loading' => 'lazy']);
-        } else {
-            //$patient = HisPatient::findOne(['hn' => $hn]);
-            $patient = HisPatient::findOne(['hn' => $hn]);
-            return Html::img($patient->sex == 'F' ? '@web/img/woman.png' : '@web/img/boss.png', ['class' => 'profile-user-img', 'loading' => 'lazy']);
-        }
-    }
-
-    /**
-     * เส้นทางที่เก็บไฟล์รูปถ่ายผู้รับบริการล่าสุด
-     * @param type $hn
-     * @return string
-     */
-    public static function getImagePatientProfilePath($hn)
-    {
-        $model = Documentqr::find()->where(['hn' => $hn, 'document_qr_map_id' => 129, 'print' => '0'])->orderBy(['real_filename' => SORT_DESC, 'create_time' => SORT_DESC])->one();
-        return $model ? self::getUploadPath() . $model->hn . '/' . $model->real_filename : null;
-    }
-
-    /**
-     * Upload Preview Screen
-     * chown www-data
-     * ls -dl /var/www/mount/nas-tcds/tcds-emr/460028
-     * @param int $hn
-     * @param string $real_filename
-     * @return string
-     */
-
-     
 
     public static function getFileUpload($id)
     {
@@ -122,10 +54,10 @@ class SystemHelper extends Component
             $file_path = self::getUploadPath() . $model->ref . '/' . $model->real_filename;
             $file_ = pathinfo($file_path);
             if (file_exists($file_path)) {
-                $file_path = "/soc/events/image?file_path=$file_path&width=2000&height=2000";
+                // $file_path = "/soc/events/image?file_path=$file_path&width=2000&height=2000";
               
                 if (strtolower($file_['extension']) == ('png' || 'jpg')) {
-                    return Html::img($file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
+                    return Html::img('@web/'.$file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
                 }
                 
   

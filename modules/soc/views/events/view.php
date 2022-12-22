@@ -130,23 +130,14 @@ $this->params['breadcrumbs'][] = $this->title;
     <?php foreach($model->uploads as $file):?>
     <?php // if($file->type != 15):?>
 <?php
-   $type = explode('.', $file->file_name);
-   $file_path = SystemHelper::getUploadPath() . $file->ref . '/' . $file->real_filename;
-     $url_path = "/soc/events/image?file_path=$file_path&width=500&height=500";
+  //  $type = explode('.', $file->file_name);
+  //  $file_path = SystemHelper::getUploadPath() . $file->ref . '/' . $file->real_filename;
+  //    $url_path = "/soc/events/image?file_path=$file_path&width=500&height=500";
     ?>
     <div class="col-md-3">
         <div class="card mb-4 box-shadow">
             <?php echo $file->viewFile()?>
-            <div class="card-body">
-                <div class="d-flex justify-content-between align-items-center">
-                    <div class="btn-group">
-                        <button type="button" class="btn btn-sm btn-outline-secondary view-img" link="<?=Url::to([''])?>">View</button>
-                        
-                        <!-- <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button> -->
-                    </div>
-                    <!-- <small class="text-muted">9 mins</small> -->
-                </div>
-            </div>
+            
         </div>
     </div>
 
@@ -195,46 +186,15 @@ Swal.fire({
 window.addEventListener('DOMContentLoaded', function () {
       var galley = document.getElementById('galley');
       var viewer = new Viewer(galley, {
-        url: 'data-original',
+        url: 'src',
         title: function (image) {
+          console.log(image)
           return image.alt + ' (' + (this.index + 1) + '/' + this.length + ')';
         },
       });
     });
 
 
-    $('.view-img').click(function (e) { 
-    e.preventDefault();
-    var url = $(this).attr('link');
-    
-try {
-    $.ajax({
-        type: "get",
-        url: url,
-        dataType: "json",
-        // beforeSend: function() {
-        //     beforLoadModal()
-        // },
-        success: function (response) {
-            console.log(response)
-            
-            $('#main-modal').modal('show');
-            // $('#main-modal-label').html(response.title);
-            // $('.modal-body').html(response.content);
-            $('.modal-body').html('<h1>Hello</h1>');
-            // $('.modal-footer').html(response.footer);
-            // $(".modal-dialog").removeClass('modal-sm');
-            // $(".modal-dialog").addClass('modal-lg');
-            // $('.modal-content').addClass('card-outline card-primary');
-        }
-    });
-} catch (error) {
-    $('#main-modal').modal('show');
-    console.log('Error')
-   
-    
-}
-});
 
 
 
