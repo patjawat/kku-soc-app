@@ -68,7 +68,7 @@ $modules['doctorworkbench'] = ['class' => 'app\modules\doctorworkbench\Doctorwor
 $modules['setsession'] = ['class' => 'app\modules\setsession\SetSession']; //tehnn
 $modules['chiefcomplaint'] = ['class' => 'app\modules\chiefcomplaint\Chiefcomplaint']; //ซักประวัติหน้าห้องตรวจ
 $modules['dmassessment'] = ['class' => 'app\modules_nurse\dmassessment\Dmassessment']; // 
-$modules['usermanager'] = ['class' => 'app\modules\usermanager\Usermanager']; //จัดการผู้ใช้งานระบบ
+$modules['usermanager'] = ['class' => 'app\modules\usermanager\Module']; //จัดการผู้ใช้งานระบบ
 $modules['document'] = ['class' => 'app\modules\document\Document']; // แสดงเอกการ Scan จากระบบ HIM
 $modules['systems'] = ['class' => 'app\modules\systems\Systensettings']; //การตั้งค่ากำหนดการเชื่อม API
 $modules['dashbroad'] = ['class' => 'app\modules\dashbroad\Dashbroad']; //การตั้งค่ากำหนดการเชื่อม API

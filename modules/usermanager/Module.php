@@ -17,7 +17,7 @@ class Module extends \yii\base\Module
      */
     public function init()
     {
-        $this->layout = '@app/modules/vehicle/views/layouts/main';
+        // $this->layout = '@app/modules/vehicle/views/layouts/main';
         parent::init();
 
         // custom initialization code goes here
