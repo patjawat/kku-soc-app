@@ -59,7 +59,6 @@ class ReportController extends \yii\web\Controller
     {
         // \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
         // Settings::setTempDir(Yii::getAlias('@webroot').'/temp/');
-        Yii::$app->formatter->locale = 'th_TH';
         $date1 = $this->request->get('date1');
         $date2 = $this->request->get('date2');
         // echo Yii::$app->formatter->asDateTime($time, 'short');
