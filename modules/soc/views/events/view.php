@@ -128,12 +128,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 
     <?php foreach($model->uploads as $file):?>
-    <?php // if($file->type != 15):?>
-<?php
-  //  $type = explode('.', $file->file_name);
-  //  $file_path = SystemHelper::getUploadPath() . $file->ref . '/' . $file->real_filename;
-  //    $url_path = "/soc/events/image?file_path=$file_path&width=500&height=500";
-    ?>
+    <?php  if($file->type != 15):?>
     <div class="col-md-3">
         <div class="card mb-4 box-shadow">
             <?php echo $file->viewFile()?>
@@ -142,7 +137,7 @@ $this->params['breadcrumbs'][] = $this->title;
     </div>
 
 
-    <?php // endif;?>
+    <?php  endif;?>
     <?php endforeach;?>
 </div>
 
