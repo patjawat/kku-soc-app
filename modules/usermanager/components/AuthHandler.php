@@ -45,20 +45,24 @@ class AuthHandler
                 Yii::$app->user->login($user);
             } else { // signup
                 // if ($email !== null && User::find()->where(['email' => $email])->exists()) {
-                    $userEmail = User::find()->where(['email' => $email])->one();
-
-
+                $userEmail = User::find()->where(['email' => $email])->one();
                 if ($email !== null &&  $userEmail) {
                     // Yii::$app->getSession()->setFlash('error', [
                     //     Yii::t('app', "User with the same email as in {client} account already exists but isn't linked to it. Login using email first to link it.", ['client' => $this->client->getTitle()]),
                     // ]);
+                    if(!$auth){
+                        $newAuth = new Auth([
+                            'user_id' => $userEmail->id,
+                            'source' => $this->client->getId(),
+                            'source_id' => (string)$id,
+                        ]);
+                        $newAuth->save();
+                    }
+
                     Yii::$app->user->login($userEmail);
                 } else {
                     $password = Yii::$app->security->generateRandomString(6);
-                    $newAuth = new Auth([
-                        'source' => $this->client->getId(),
-                        'source_id' => $id,
-                    ]);
+                  
                     $user = new User([
                         'username' => $nickname,
                         'github' => $nickname,
@@ -69,6 +73,7 @@ class AuthHandler
                         'confirm_password' => $password
                         // 'status' => User::STATUS_ACTIVE // make sure you set status properly
                     ]);
+      
                     $user->generateAuthKey();
                     $user->generatePasswordResetToken();
 
@@ -76,6 +81,7 @@ class AuthHandler
 
                     
                     if ($user->save()) {
+
                         // กำหนด role default เป็น  user
                         $auth_assignment = Yii::$app->authManager;
                         $roleUser = $auth_assignment->getRolesByUser($user->id);
