@@ -5,7 +5,17 @@ use yii\helpers\Html;
 use kartik\form\ActiveForm;
 use kartik\daterange\DateRangePicker;
 ?>
+<?php
+if ($model->q_date){
 
+    $date_explode = explode(" - ", $model->q_date);
+    $date1 = trim($date_explode[0]);
+    $date2 = trim($date_explode[1]);
+}else{
+    $date1 = '';
+    $date2 = '';
+}
+?>
 <div class="events-search">
 
     <?php $form = ActiveForm::begin([
@@ -59,7 +69,8 @@ use kartik\daterange\DateRangePicker;
     <div class="form-group" style="margin-top:31px;">
         <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
         <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
-        <?=Html::a('พิมพ์','/soc/report/doc',['class' => 'btn btn-success'])?>
+        <?=Html::a('พิมพ์',['/soc/report/word-style1','date1' => $date1,'date2' => $date2],['class' => 'btn btn-success','target' => '_blank'])?>
+        <?=Html::a('พิมพ์',['/soc/report/word-style2','date1' => $date1,'date2' => $date2],['class' => 'btn btn-success','target' => '_blank'])?>
     </div>
     
     </div>

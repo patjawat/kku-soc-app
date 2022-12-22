@@ -1,27 +1,40 @@
 <?php
 /** @var yii\web\View $this */
 ?>
-<h1>report/indexxxx</h1>
+ <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
-<p>
-    You may change the content of this page by modifying
-    the file <code><?= __FILE__; ?></code>.
-</p>
-<?php
-
-function duration($begin,$end){
-    $remain=intval(strtotime($end)-strtotime($begin));
-    $wan=floor($remain/86400);
-    $l_wan=$remain%86400;
-    $hour=floor($l_wan/3600);
-    $l_hour=$l_wan%3600;
-    $minute=floor($l_hour/60);
-    $second=$l_hour%60;
-    return "ผ่านมาแล้ว ".$wan." วัน ".$hour." ชั่วโมง ".$minute." นาที ".$second." วินาที";
-}
-
-    $begin="2008-01-01 00:00:01"; //  วันที่เริ่มนับ
-    $end=date("Y-m-d H:i:s"); // วันที่สิ้นสุด
-    echo duration($begin,$end); // แสดงผล
-?>
-xxx
+ <table class="table table-light">
+    <thead class="thead-light">
+        <tr>
+            <th>ลำดับ</th>
+            <th>เรื่อง/เหตุการณ์</th>
+            <th>ดำเนินการเมื่อวันที่</th>
+            <th>ระยะเวลาในการดำเนินการ</th>
+            <th>ผลการดำเนินการ</th>
+            <th>ประเภทผู้ขอความอนุเคราะห์</th>
+        </tr>
+    </thead>
+    <tbody>
+        <?php $i = 1;?>
+        <?php if($searchModel->q_date):?>
+        <?php foreach ($dataProvider->getModels() as $model):?>
+        <tr>
+            <td><?=$i++;?></td>
+            <td><?=$model->eventType->name?></td>
+            <td><?=$model->created_at?></td>
+            <td><?=$model->CountDate()?></td>
+            <td><?=isset($model->resultType) ? $model->resultType->name : '-'?></td>
+            <td><?=$model->personType->name?></td>
+        </tr>
+        <?php endforeach;?>
+        <?php endif;?>
+    </tbody>
+ </table>
+ <table class="table table-light">
+    <tbody>
+        <tr>
+            <td></td>
+            <td></td>
+        </tr>
+    </tbody>
+ </table>

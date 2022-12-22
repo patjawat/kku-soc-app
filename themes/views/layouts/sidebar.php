@@ -57,7 +57,7 @@ $module = \Yii::$app->controller->module->id;
                     ['label' => 'Dashboard','url' => ['/site'],'icon' => 'tachometer-alt'],
                     ['label' => 'ลงทะเบียนขอดูกล้อง','url' => ['/soc/events/user-request'],'icon' => 'user-edit'],
                     ['label' => 'บันทึกเหตุหารณ์','url' => ['/soc/events'],'icon' => 'hiking'],
-                    ['label' => 'รายงาน','url' => ['/report'],'icon' => 'chart-line'],
+                    ['label' => 'รายงาน','url' => ['/soc/report'],'icon' => 'chart-line'],
                     ['label' => 'QR-Code','url' => ['/site/qrcode'],'icon' => 'qrcode', 'target' => '_blank'],
                     // ['label' => 'category','url' => ['/category'],'icon' => 'th'],
                     // ['label' => 'step','url' => ['/step'],'icon' => 'th'],
