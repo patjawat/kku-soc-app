@@ -27,7 +27,7 @@ $init = SystemHelper::dataSession();
          }",
         "filereset" => "function() { 
             console.log('filereset');
-            $('#main-modal').modal('toggle');
+            //$('#main-modal').modal('toggle');
 
         }",
         "filechunksuccess" => "function() { 
@@ -36,7 +36,7 @@ $init = SystemHelper::dataSession();
         "filebatchuploadcomplete" => "function() { 
             console.log('Upload File สำเร็จ'); 
             $('#main-modal').modal('toggle');
-            window.location.reload();
+           // window.location.reload();
          }",
     //    "filebeforedelete" => "function() { loadEmrDocumentQR(); }",
        "filepreupload" => "function() { 
