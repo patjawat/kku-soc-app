@@ -7,6 +7,8 @@ use kartik\grid\GridView;
 $this->title = 'ผู้ใช้งานระบบ';
 $this->params['breadcrumbs'][] = $this->title;
 
+$create = Html::a('<i class="fa-solid fa-plus"></i> สร้างใหม่', ['create'], ['class' => 'btn btn-success']);
+
 ?>
 <style>
 #user-grid table thead {
@@ -20,30 +22,21 @@ $this->params['breadcrumbs'][] = $this->title;
 <?php
 $layout = <<< HTML
 <div class="clearfix"></div>
-<div class="card">
-              <div class="card-header">
-                <h3 class="card-title"><i class="fas fa-list-ul"></i> รายการ{$this->title}</h3>
 
-                <div class="card-tools">
-                 <div style="width: 400px;">
-                    {$this->render('_search', ['model' =>$searchModel])}
-                  </div> 
-                </div>
-              </div>
-              <!-- /.card-header -->
-              <div class="card-body table-responsive p-0" style="height: 500px;">
-              {items}
-              </div>
-              <!-- /.card-body -->
-              <div class="card-footer clearfix">
-                <ul class="pagination pagination-sm m-0 float-left">
-                {summary}
-                </ul>
-                <ul class="pagination pagination-sm m-0 float-right">       
-                  {pager}
-                </ul>
-              </div>
-            </div>
+<div class="row justify-content-between">
+    <div class="col-4">
+    <p>
+        {$create}
+    </p>
+    </div>
+    <div class="col-4">
+    {$this->render('_search', ['model' =>$searchModel])}
+    </div>
+  </div>
+  {items}
+  {summary}
+  {pager}
+
 
 HTML;
 

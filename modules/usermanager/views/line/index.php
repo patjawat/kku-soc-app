@@ -22,19 +22,20 @@ function logOut() {
 
     async function getUserProfile() {
       const profile = await liff.getProfile()
-        await getUser();
+        // await getUser();
       $('#line_id').val(profile.userId)
 
     }
     async function main() {
-      await liff.init({ liffId: "1657538565-0ll3l5k4" })
+      await liff.init({ liffId: "1657676585-1qnepdLQ" })
       if (liff.isInClient()) {
         getUserProfile()
         console.log('ss');
       } else {
         if (liff.isLoggedIn()) {
-            console.log("xx")
-          getUserProfile()
+          const profile = await liff.getProfile();
+          await getUser();
+          // getUserProfile()
         //   document.getElementById("btnLogIn").style.display = "none"
         //   document.getElementById("btnLogOut").style.display = "block"
         } else {

@@ -5,6 +5,7 @@ namespace app\modules\usermanager\controllers;
 use Yii;
 use yii\web\Response;
 use app\modules\usermanager\models\User;
+use app\modules\usermanager\models\Auth;
 
 class LineController extends \yii\web\Controller
 {
@@ -19,24 +20,54 @@ class LineController extends \yii\web\Controller
         $this->layout = 'line';
         Yii::$app->response->format = Response::FORMAT_JSON;
         $lineId = $this->request->post('line_id');
+        $userId = Yii::$app->user->id;
         
-        $model = User::findOne(['line_id' => $lineId]);
+        // $model = User::findOne(['line_id' => $lineId]);
+        $auth = Auth::find()->where(['user_id' => $userId,'source_id' => $lineId])->one();
        
-        if(!$model){
-            $userModel = new User();
-
-        
-                return $this->render('checkphone', [
-                    'model' => $userModel,
-                ]);
-        
-            // return $this->renderAjax('register');
+        if(!$auth){
+            $newAuth = new Auth();
+            $newAuth->source = 'line';
+            $newAuth->user_id = $userId;
+            $newAuth->source_id = $lineId;
+            if($newAuth->save(false)){
+                return $this->redirect(['/me']);
+            }
         }else{
-             return $this->renderAjax('profile');
+            return $this->redirect(['/me']);
 
         }
 
     }
+
+
+    public function actionLineAuth(){
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $lineId = $this->request->post('line_id');
+        $auth = Auth::findOne(['source_id' => $lineId]);
+        if($auth){
+            $user = User::findOne($auth->user_id);
+           return Yii::$app->user->login($user);
+            // return $this->redirect(['/vehicle/line']);
+        }else{
+
+        }
+        
+
+    }
+
+    // public function actionAdd()
+    // {
+    //     $this->layout = 'line';
+    //     Yii::$app->response->format = Response::FORMAT_JSON;
+    //     $lineId = $this->request->post('line_id');
+    //     $userId = Yii::$app->user->id;
+        
+    //     $user = User::findOne($userId);
+    //     $user->line;
+       
+
+    // }
 
     public function actionRegisterUser(){
         // if (Yii::$app->request->post()) {

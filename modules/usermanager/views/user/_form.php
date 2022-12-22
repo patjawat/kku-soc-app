@@ -54,6 +54,14 @@ use yii\bootstrap4\ActiveForm;
     background-color: #cce5ff !important;
     border-color: #b8daff !important;
 }
+
+.box-img{
+        position: relative;
+        /* width:500px; */
+    }
+    .box-img > img{
+        width:200px;
+    }
 </style>
 
 <?php $form = ActiveForm::begin([
@@ -67,18 +75,12 @@ use yii\bootstrap4\ActiveForm;
     'layout' => 'horizontal',
 ]); ?>
 
+
 <div class="card shadow mb-5">
     <div class="card-header">
-        <h3 class="card-title"><i class="fas fa-user-edit"></i> แบบฟอร์มผู้ใช้งาน</h3>
+        <h5 class="card-title"><i class="fas fa-user-edit"></i> แบบฟอร์มผู้ใช้งาน</h5>
 
-        <div class="card-tools">
-            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                <i class="fas fa-minus"></i>
-            </button>
-            <button type="button" class="btn btn-tool" data-card-widget="remove">
-                <i class="fas fa-times"></i>
-            </button>
-        </div>
+    
     </div>
     <!-- /.card-header -->
     <div class="card-body p-1">
@@ -96,13 +98,19 @@ use yii\bootstrap4\ActiveForm;
                     <?php //  $form->field($model, 'doctor_id')->textInput(['maxlength' => true]) ?>
                     <?php //  $form->field($model, 'license_number')->textInput(['maxlength' => true]) ?>
                     <?= $form->field($model, 'email')->textInput(['maxlength' => true]) ?>
-                    <?= $form->field($model, 'status')->inline()->radioList($model->getItemStatus()) ?>
-
-
-
+                    
+                    
+                    
                 </div>
+                <div class="col-xs-3 col-sm-3 col-md-3 col-lg-3">
+                    <?= $form->field($model, 'roles')->checkboxList($model->getAllRoles())->label('สิทธิ') ?>
+                    <?= $form->field($model, 'status')->inline()->radioList($model->getItemStatus()) ?>
+</div>
                 <div class="col-xs-6 col-sm-6 col-md-6 col-lg-6">
-                    <?= $form->field($model, 'roles')->checkboxList($model->getAllRoles()) ?>
+                    <div class="box-img text-center img-thumbnail">
+                        <?= Html::img(['/file','id'=>$model->photo]) ?>
+                        <?= $form->field($model,'file')->fileInput(); ?>
+        </div>
                 </div>
             </div>
         </div>

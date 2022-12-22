@@ -92,7 +92,7 @@ class ItemController extends Controller
     public function actionUpdate($id)
     {
         $model = $this->findModel($id);
-        if ($model->load(Yii::$app->getRequest()->post()) && $model->save()) {
+        if ($model->load(Yii::$app->getRequest()->post()) && $model->save(false)) {
             return $this->redirect(['view', 'id' => $model->name]);
         }
 

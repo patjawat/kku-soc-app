@@ -25,6 +25,35 @@ $this->params['breadcrumbs'][] = $this->title;
             <img id="band" src="https://i.ibb.co/JvXP8rW/phone.png" data-aos="fade-down" data-aos-delay="1000">
         </div>
         <div class="login-content">
+
+
+<?php $authAuthChoice = yii\authclient\widgets\AuthChoice::begin([
+'baseAuthUrl' => ['site/auth']
+]); ?>
+
+<?php $authAuthChoice = yii\authclient\widgets\AuthChoice::begin([
+                'baseAuthUrl' => ['site/authen']
+            ]); ?>
+
+            <?php foreach ($authAuthChoice->getClients() as $client): ?>
+                <?php
+                switch ($client->getName()){
+                    case 'facebook':
+                        $class = 'primary';
+                        break;
+                    case 'google':
+                        $class = 'danger';
+                        break;
+                    case 'live':
+                        $class = 'warning';
+                        break;
+
+                }
+
+                echo $authAuthChoice->clientLink($client, 'Login with '.ucfirst($client->getName()), ['class' => 'btn btn-'.$class.' btn-block']) ?>
+            <?php endforeach; ?>
+
+        <?php yii\authclient\widgets\AuthChoice::end(); ?>
             <?php
 $form = ActiveForm::begin(['id' => 'form-asset','fieldConfig' => [
 
@@ -45,6 +74,8 @@ $form = ActiveForm::begin(['id' => 'form-asset','fieldConfig' => [
 <span id="typed"></span>
     </div>
 
+
+    
             
             <div class="input-div one">
                 <div class="i">
@@ -72,6 +103,8 @@ $form = ActiveForm::begin(['id' => 'form-asset','fieldConfig' => [
         </div>
     </div>
 </div>
+
+
 
 <?php
 $js = <<< JS

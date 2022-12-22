@@ -7,6 +7,7 @@ use app\modules\usermanager\components\Helper;
 use Yii;
 use yii\base\Model;
 use yii\helpers\Json;
+use yii\helpers\BaseJson;
 use yii\rbac\Item;
 
 class AuthItem extends Model
@@ -34,7 +35,7 @@ class AuthItem extends Model
             $this->type = $item->type;
             $this->description = $item->description;
             $this->ruleName = $item->ruleName;
-            $this->data = $item->data === null ? null : Json::encode($item->data);
+            $this->data = $item->data === null ? null : BaseJson::encode($item->data);
         }
         parent::__construct($config);
     }
@@ -154,7 +155,7 @@ class AuthItem extends Model
             $this->_item->name = $this->name;
             $this->_item->description = $this->description;
             $this->_item->ruleName = $this->ruleName;
-            $this->_item->data = $this->data === null || $this->data === '' ? null : Json::decode($this->data);
+            $this->_item->data = $this->data === null || $this->data === '' ? null : BaseJson::decode($this->data);
             if ($isNew) {
                 $manager->add($this->_item);
             } else {

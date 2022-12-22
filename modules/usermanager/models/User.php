@@ -8,6 +8,7 @@ use yii\behaviors\TimestampBehavior;
 use yii\db\ActiveRecord;
 use yii\web\IdentityInterface;
 use yii\helpers\ArrayHelper;
+use yii\helpers\Json;
 
 class User extends ActiveRecord implements IdentityInterface {
 
@@ -19,12 +20,8 @@ class User extends ActiveRecord implements IdentityInterface {
     public $roles;
     public $q;
     public $old_password;
+    public $file;
 
-    public function scenarios() {
-        $scenarios = parent::scenarios();
-        $scenarios['registration'] = ['username', 'email'];
-        return $scenarios;
-    }
 
     /**
      * @inheritdoc
@@ -36,11 +33,22 @@ class User extends ActiveRecord implements IdentityInterface {
     /**
      * @inheritdoc
      */
-    public function behaviors() {
+
+    public function behaviors()
+    {
         return [
+            [
+                'class' => 'mdm\upload\UploadBehavior',
+                'attribute' => 'file', // required, use to receive input file
+                'savedAttribute' => 'photo', // optional, use to link model with saved file.
+                'uploadPath' => Yii::getAlias('@webroot').'/uploads/user', // saved directory. default to '@runtime/upload'
+                'autoSave' => true, // when true then uploaded file will be save before ActiveRecord::save()
+                'autoDelete' => true, // when true then uploaded file will deleted before ActiveRecord::delete()
+            ],
             TimestampBehavior::className(),
         ];
     }
+
 
     /**
      * @inheritdoc
@@ -48,7 +56,7 @@ class User extends ActiveRecord implements IdentityInterface {
     public function rules() {
         return [
             
-            [['username', 'phone'], 'required'],
+            [['username'], 'required'],
             ['status', 'default', 'value' => self::STATUS_ACTIVE],
             ['status', 'in', 'range' => [self::STATUS_ACTIVE, self::STATUS_DELETED]],
             ['username', 'filter', 'filter' => 'trim'],
@@ -58,6 +66,7 @@ class User extends ActiveRecord implements IdentityInterface {
             //  ['email', 'required'],
             ['email', 'email'],
             ['email', 'unique', 'targetClass' => '\app\modules\usermanager\models\User', 'message' => 'This email address has already been taken.'],
+            ['phone', 'unique', 'targetClass' => '\app\modules\usermanager\models\User', 'message' => 'This phone has already been taken.'],
             ['password', 'required'],
             ['password', 'string', 'min' => 6],
             ['doctor_id', 'unique'],
@@ -67,9 +76,16 @@ class User extends ActiveRecord implements IdentityInterface {
             ['confirm_password', 'string', 'min' => 6],
             ['confirm_password', 'compare', 'compareAttribute' => 'password'],
             ['phone', 'string', 'min' => 10, 'max' => 10],
-            [['roles', 'doctor_id', 'fullname','fullname_en','license_number','q', 'old_password','phone'], 'safe'],
+            [['roles', 'doctor_id', 'fullname','fullname_en','license_number','q', 'old_password','phone','photo','data_json'], 'safe'],
             
         ];
+    }
+
+
+    public function scenarios() {
+        $scenarios = parent::scenarios();
+        $scenarios['registration'] = ['username', 'email'];
+        return $scenarios;
     }
 
     public function attributeLabels() {
@@ -83,6 +99,20 @@ class User extends ActiveRecord implements IdentityInterface {
             'fullname_en' => 'ชื่อ - สกุลแพทย์(อังกฤษ)',
             'phone' => 'หมายเลขโทรศัพท์'
         ];
+    }
+
+    public function afterFind() {
+        $this->data_json = Json::decode($this->data_json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+        return parent::afterFind();
+    }
+
+    public function beforeSave($insert) {
+        if (parent::beforeSave($insert)) {
+            $this->data_json = Json::encode($this->data_json, JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES);
+            return true;
+        } else {
+            return false;
+        }
     }
 
     /**
@@ -240,8 +270,12 @@ class User extends ActiveRecord implements IdentityInterface {
         $auth = Yii::$app->authManager;
         $roleUser = $auth->getRolesByUser($this->id);
         $auth->revokeAll($this->id);
-        foreach ($this->roles as $key => $roleName) {
-            $auth->assign($auth->getRole($roleName), $this->id);
+        if($this->roles){
+            foreach ($this->roles as $key => $roleName) {
+                $auth->assign($auth->getRole($roleName), $this->id);
+            }
+        }else{
+            $auth->assign($auth->getRole('user'), $this->id);
         }
     }
 

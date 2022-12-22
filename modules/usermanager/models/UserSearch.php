@@ -15,8 +15,8 @@ class UserSearch extends User
     public function rules()
     {
         return [
-            [['id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags', 'last_login_at', 'status', 'dep_id', 'occ_id', 'pos_id'], 'integer'],
-            [['username', 'email', 'password_hash', 'auth_key', 'unconfirmed_email', 'registration_ip', 'password_reset_token', 'pname', 'fullname', 'occ_no', 'pos_no', 'role','q','phone'], 'safe'],
+            [['id', 'confirmed_at', 'blocked_at', 'created_at', 'updated_at', 'flags', 'last_login_at', 'status'], 'integer'],
+            [['username', 'email', 'password_hash', 'auth_key', 'unconfirmed_email', 'registration_ip', 'password_reset_token', 'pname', 'fullname','role','q','phone'], 'safe'],
         ];
     }
 
@@ -64,9 +64,6 @@ class UserSearch extends User
             'flags' => $this->flags,
             'last_login_at' => $this->last_login_at,
             'status' => $this->status,
-            'dep_id' => $this->dep_id,
-            'occ_id' => $this->occ_id,
-            'pos_id' => $this->pos_id,
             'phone' => $this->phone,
         ]);
 
@@ -79,8 +76,6 @@ class UserSearch extends User
             ->andFilterWhere(['like', 'password_reset_token', $this->password_reset_token])
             ->andFilterWhere(['like', 'pname', $this->pname])
             ->andFilterWhere(['like', 'fullname', $this->fullname])
-            ->andFilterWhere(['like', 'occ_no', $this->occ_no])
-            ->andFilterWhere(['like', 'pos_no', $this->pos_no])
             ->andFilterWhere(['like', 'role', $this->role]);
 
         return $dataProvider;
