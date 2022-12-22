@@ -46,6 +46,8 @@ class AuthHandler
             } else { // signup
                 // if ($email !== null && User::find()->where(['email' => $email])->exists()) {
                     $userEmail = User::find()->where(['email' => $email])->one();
+
+
                 if ($email !== null &&  $userEmail) {
                     // Yii::$app->getSession()->setFlash('error', [
                     //     Yii::t('app', "User with the same email as in {client} account already exists but isn't linked to it. Login using email first to link it.", ['client' => $this->client->getTitle()]),
@@ -53,6 +55,10 @@ class AuthHandler
                     Yii::$app->user->login($userEmail);
                 } else {
                     $password = Yii::$app->security->generateRandomString(6);
+                    $newAuth = new Auth([
+                        'source' => $this->client->getId(),
+                        'source_id' => $id,
+                    ]);
                     $user = new User([
                         'username' => $nickname,
                         'github' => $nickname,
