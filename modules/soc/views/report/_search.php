@@ -16,7 +16,6 @@ if ($model->q_date){
     $date2 = '';
 }
 ?>
-<?=Yii::$app->thaiFormatter->asDateTime($date1, 'medium')?>
 <div class="events-search">
 
     <?php $form = ActiveForm::begin([
