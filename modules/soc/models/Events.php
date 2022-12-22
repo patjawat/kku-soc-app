@@ -166,7 +166,7 @@ class Events extends \yii\db\ActiveRecord
                 // $file_path = "/soc/events/image?file_path=$file_path&width=490&height=200";
               
                 if (strtolower($file_['extension']) == ('png' || 'jpg')) {
-                    return Html::img('@web/'.$file_path, ['class' => 'file-preview-image', 'loading' => 'lazy']);
+                    return Html::img('@web/'.$file_path, ['class' => 'file-preview-image', 'loading' => 'lazy','style' => '250px']);
                 }
                 
   
