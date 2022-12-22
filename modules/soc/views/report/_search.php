@@ -16,7 +16,7 @@ if ($model->q_date){
     $date2 = '';
 }
 
-Yii::$app->formatter->locale = 'th_TH';
+Yii::$app->formatter->locale = 'th-TH';
 $time = time();
 
 ?>
