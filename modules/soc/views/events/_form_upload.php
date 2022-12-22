@@ -36,7 +36,7 @@ $init = SystemHelper::dataSession();
         "filebatchuploadcomplete" => "function() { 
             console.log('Upload File สำเร็จ'); 
             $('#main-modal').modal('toggle');
-           // window.location.reload();
+           window.location.reload();
          }",
     //    "filebeforedelete" => "function() { loadEmrDocumentQR(); }",
        "filepreupload" => "function() { 
