@@ -57,12 +57,9 @@ class ReportController extends \yii\web\Controller
 
     public function actionWordStyle1()
     {
-        // \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
-        // Settings::setTempDir(Yii::getAlias('@webroot').'/temp/');
-        Yii::$app->formatter->locale = 'th_TH';
+
         $date1 = $this->request->get('date1');
         $date2 = $this->request->get('date2');
-        echo Yii::$app->formatter->asDateTime($time, 'short');
         // $templateProcessor = new TemplateProcessor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
         $templateProcessor = new Processor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
         $templateProcessor->setValue('date1', $date1);
