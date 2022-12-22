@@ -70,7 +70,7 @@ class DefaultController extends Controller
         ->bindValue(':date1', $date1)
         ->bindValue(':date2', $date2)
         ->queryAll();
-        // $templateProcessor->cloneRow('name', sizeof($counts));
+        $templateProcessor->cloneRow('name', sizeof($counts));
 
         $iCount = 1;
         foreach($counts as $count){
