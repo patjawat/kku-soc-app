@@ -36,7 +36,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 
 .view-cid>img {
     position: absolute;
-    margin-top: -40px;
+    margin-top: 0px;
     margin-left: 0;
     margin-right: 0;
     width: 250px;
