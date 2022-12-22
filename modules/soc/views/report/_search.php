@@ -18,8 +18,6 @@ if ($model->q_date){
 
 
 ?>
-
-<?=Yii::$app->thaiFormatter->asDateTime($date1, 'long')?>
 <div class="events-search">
 
     <?php $form = ActiveForm::begin([
