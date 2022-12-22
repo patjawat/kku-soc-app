@@ -67,8 +67,7 @@ if ($model->q_date){
 
 
     <div class="form-group" style="margin-top:31px;">
-        <?= Html::submitButton('Search', ['class' => 'btn btn-primary']) ?>
-        <?= Html::resetButton('Reset', ['class' => 'btn btn-outline-secondary']) ?>
+        <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
         <?=Html::a('พิมพ์',['/soc/report/word-style1','date1' => $date1,'date2' => $date2],['class' => 'btn btn-success','target' => '_blank'])?>
         <?=Html::a('พิมพ์',['/soc/report/word-style2','date1' => $date1,'date2' => $date2],['class' => 'btn btn-success','target' => '_blank'])?>
     </div>

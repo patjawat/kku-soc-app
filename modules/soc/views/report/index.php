@@ -1,9 +1,7 @@
-<?php
-/** @var yii\web\View $this */
-?>
- <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
- <table class="table table-light">
+<?php echo $this->render('_search', ['model' => $searchModel]); ?>
+
+<table class="table table-light">
     <thead class="thead-light">
         <tr>
             <th>ลำดับ</th>
@@ -16,8 +14,8 @@
     </thead>
     <tbody>
         <?php $i = 1;?>
-        <?php if($searchModel->q_date):?>
-        <?php foreach ($dataProvider->getModels() as $model):?>
+        <?php if ($searchModel->q_date): ?>
+        <?php foreach ($dataProvider->getModels() as $model): ?>
         <tr>
             <td><?=$i++;?></td>
             <td><?=$model->eventType->name?></td>
@@ -29,12 +27,20 @@
         <?php endforeach;?>
         <?php endif;?>
     </tbody>
- </table>
- <table class="table table-light">
-    <tbody>
-        <tr>
-            <td></td>
-            <td></td>
-        </tr>
-    </tbody>
- </table>
+</table>
+<?php if ($searchModel->q_date): ?>
+<div class="row justify-content-start">
+    <div class="col-4">
+        <table class="table table-light">
+            <tbody>
+                <?php foreach ($counts as $count): ?>
+                <tr>
+                    <td><?=$count['name']?></td>
+                    <td><?=$count['total']?></td>
+                </tr>
+                <?php endforeach;?>
+            </tbody>
+        </table>
+    </div>
+</div>
+<?php endif;?>
