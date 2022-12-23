@@ -167,9 +167,9 @@ class ReportController extends \yii\web\Controller
             $templateProcessor->setValue('process_time#'.$i, $item->CountDate());
             $templateProcessor->setValue('result#'.$i, isset($item->resultType) ? $item->resultType->name : '-');
             $templateProcessor->setValue('person_type#'.$i, $item->personType->name);
-            // $templateProcessor->setValue('photo#'.$i, $item->personType->name);
+            $templateProcessor->setValue('photo#'.$i,  $item->ViewPhoto(0));
             // $templateProcessor->setImg('photo#'.$i, ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
-            $templateProcessor->setImg('photo#'.$i, ['src' => Yii::getAlias('@webroot') .'/'. $item->ViewPhoto(0), 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+            // $templateProcessor->setImg('photo#'.$i, ['src' => Yii::getAlias('@webroot') .'/'. $item->ViewPhoto(0), 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
 
             $i++;
         }
