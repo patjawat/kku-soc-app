@@ -43,17 +43,6 @@ if ($searchModel->q_date){
 ?>
 
 
-<?php
-   $model = Uploads::find()->where(['ref' => 'eXVnaa7Wu81_q3_j010bF8'])
-   ->andWhere(['<>', 'type', 15])
-   ->orderBy([
-       'key_short' => SORT_ASC,
-     ])
-   ->all();
-
-   echo $model[0]->upload_id;
-?>
-
 
 <div class="events-index">
 
