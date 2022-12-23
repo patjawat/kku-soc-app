@@ -171,6 +171,8 @@ class ReportController extends \yii\web\Controller
             // $templateProcessor->setImg('photo#'.$i, ['src' => Yii::getAlias('@webroot') . '/uploads-file/PEpHFrzSVf4mZ-vwL4bAU7/e5f901976856dd287b1fc60e91827822.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
           if($item->ViewPhoto(0)){
               $templateProcessor->setImg('photo#'.$i, ['src' => Yii::getAlias('@webroot') .'/'. $item->ViewPhoto(0), 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+            }else{
+                $templateProcessor->setValue('photo#'.$i, '-');
             }
 
             $i++;
