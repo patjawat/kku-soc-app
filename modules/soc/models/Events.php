@@ -209,6 +209,26 @@ class Events extends \yii\db\ActiveRecord
             return '-';
         }
     }
+
+    public function ViewPhoto($number){
+        try {
+        $model = Uploads::find()->where(['ref' => $this->ref])
+            ->andWhere(['<>', 'type', 15])
+            ->orderBy([
+                'key_short' => SORT_ASC,
+              ])
+            ->all();
+            
+            $file_path = SystemHelper::getUploadPath() . $model[$number]->ref . '/' . $model[$number]->real_filename;
+           
+            return $file_path;
+        } catch (\Throwable $th) {
+            //throw $th;
+            return null;
+        }
+
+    }
+
      public function getEventType() {
          return $this->hasOne(Category::className(), ['id' => 'event_type']);
      }

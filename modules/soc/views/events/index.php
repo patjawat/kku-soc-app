@@ -6,10 +6,12 @@ use yii\grid\ActionColumn;
 use kartik\grid\GridView;
 use yii\widgets\Pjax;
 use app\modules\soc\models\Events;
+use app\models\Uploads;
 use app\models\Category;
 use yii\helpers\ArrayHelper;
 use app\components\SystemHelper;
 use app\components\UserHelper;
+
 
 
 
@@ -39,6 +41,20 @@ if ($searchModel->q_date){
     $date2 = '';
 }
 ?>
+
+
+<?php
+   $model = Uploads::find()->where(['ref' => 'eXVnaa7Wu81_q3_j010bF8'])
+   ->andWhere(['<>', 'type', 15])
+   ->orderBy([
+       'key_short' => SORT_ASC,
+     ])
+   ->all();
+
+   echo $model[0]->upload_id;
+?>
+
+
 <div class="events-index">
 
 
