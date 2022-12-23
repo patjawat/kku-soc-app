@@ -500,7 +500,7 @@ class EventsController extends Controller
             $model->reporter = Yii::$app->user->identity->id;
         }
         if ($model->save()) {
-            return $this->redirect(['view', 'id' => $model->id]);
+            return $this->redirect(['update', 'id' => $model->id]);
         }
 
     }

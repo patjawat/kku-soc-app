@@ -16,7 +16,6 @@ $this->params['breadcrumbs'][] = $this->title;
 </style>
 <!-- <div class="typed-out">Web Developer</div> -->
 
-
 <div class="form-login">
 
 

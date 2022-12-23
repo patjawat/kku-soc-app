@@ -119,4 +119,66 @@ class ReportController extends \yii\web\Controller
    
         }
 
+        public function actionWordStyle2()
+    {
+
+        $date1 = $this->request->get('date1');
+        $date2 = $this->request->get('date2');
+        // $templateProcessor = new TemplateProcessor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
+        $templateProcessor = new Processor(Yii::getAlias('@webroot').'/msword/template_in2.docx');//เลือกไฟล์ template ที่เราสร้างไว้
+        $templateProcessor->setValue('date1', $date1);
+        $templateProcessor->setValue('date2', $date2);
+        $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/var/files/zYbRX_a6c1AzcRUvZn4ttI/0bfd40f5f26ed1c268f3fd16384a2dd4.png');
+        $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+
+        $sqlCount  = "SELECT *,(SELECT COUNT(events.id) FROM events WHERE events.event_type = category.id AND events.created_at BETWEEN :date1 AND :date2)  as total 
+        FROM `category`
+        WHERE category.category_type = 2
+        
+        ORDER BY category.id";
+
+        $counts = Yii::$app->db->createCommand($sqlCount)
+        ->bindValue(':date1', $date1)
+        ->bindValue(':date2', $date2)
+        ->queryAll();
+        $templateProcessor->cloneRow('name', sizeof($counts));
+
+        $iCount = 1;
+        foreach($counts as $count){
+                    $templateProcessor->setValue('name#'.$iCount, $count['name']);
+                    $templateProcessor->setValue('total#'.$iCount, $count['total'] > 0 ? $count['total'] : '-');
+                    $iCount++;
+                }
+
+        if(isset($date1)){
+            $datas = Events::find()
+            ->where(['between', 'created_at',$date1, $date2 ])->all();
+        }else{
+
+        }
+        
+        $templateProcessor->cloneRow('item', sizeof($datas));
+        $i = 1;
+    foreach($datas as $item){
+    $templateProcessor->setValue('no#'.$i, $i);
+            $templateProcessor->setValue('no#'.$i, $i);
+            $templateProcessor->setValue('item#'.$i, $item->eventType->name);
+            $templateProcessor->setValue('approve#'.$i, $item->created_at);
+            $templateProcessor->setValue('process_time#'.$i, $item->CountDate());
+            $templateProcessor->setValue('result#'.$i, isset($item->resultType) ? $item->resultType->name : '-');
+            $templateProcessor->setValue('person_type#'.$i, $item->personType->name);
+            // $templateProcessor->setValue('photo#'.$i, $item->personType->name);
+            $templateProcessor->setImg('photo#'.$i, ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+
+            $i++;
+        }
+
+
+        $templateProcessor->saveAs(Yii::getAlias('@webroot').'/msword/ms_word_result2.docx');//สั่งให้บันทึกข้อมูลลงไฟล์ใหม่
+        return '<p>' . Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result2.docx'), ['class' => 'btn btn-info']) .
+        '</p><iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx', true) . '&embedded=true"  style="position: absolute;width:100%; height: 100%;border: none;"></iframe>';
+   
+        }
+
+
 }
