@@ -73,6 +73,14 @@ class ReportController extends \yii\web\Controller
                 $templateProcessor->setValue('process_time#' . $i, $item->CountDate());
                 $templateProcessor->setValue('result#' . $i, isset($item->resultType) ? $item->resultType->name : '-');
                 $templateProcessor->setValue('person_type#' . $i, $item->personType->name);
+
+                $templateProcessor2->setValue('no#' . $i, $i);
+                $templateProcessor2->setValue('no#' . $i, $i);
+                $templateProcessor2->setValue('item#' . $i, $item->eventType->name);
+                $templateProcessor2->setValue('approve#' . $i, $item->created_at);
+                $templateProcessor2->setValue('process_time#' . $i, $item->CountDate());
+                $templateProcessor2->setValue('result#' . $i, isset($item->resultType) ? $item->resultType->name : '-');
+                $templateProcessor2->setValue('person_type#' . $i, $item->personType->name);
                 try {
                     //code...
              
