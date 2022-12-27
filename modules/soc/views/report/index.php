@@ -2,12 +2,12 @@
 use yii\helpers\Url;
 ?>
 <div class="row">
-<div class="col-4">
+<div class="col-3">
 
 <?php echo $this->render('_search', ['model' => $searchModel]); ?>
 
 </div>
-<div class="col-8">
+<div class="col-9">
     
 
 <?php if ($searchModel->q_date): ?>
