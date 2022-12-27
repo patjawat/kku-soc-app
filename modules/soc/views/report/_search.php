@@ -23,13 +23,14 @@ if ($model->q_date){
 
     <?php $form = ActiveForm::begin([
         'action' => ['index'],
+        'id' => 'form-search',
         'method' => 'get',
         'options' => [
             'data-pjax' => 1
         ],
     ]); ?>
 <div class="row">
-<div class="col-3">
+<div class="col-12">
     <?php
     echo $form->field($model, 'q_date', [
         'options'=>['class'=>'drp-container mb-2']
@@ -58,24 +59,20 @@ if ($model->q_date){
                     ],
                     'pluginEvents' => [
                         //"apply.daterangepicker" => "function() { apply_filter('q_date') }",
-                        "apply.daterangepicker" => "function() { $('#my-status').submit() }",
+                        "apply.daterangepicker" => "function() { $('#form-search').submit() }",
                         // 'cancel.daterangepicker'=>"function(ev, picker) {\$('#daterangeinput').val(''); // clear any inputs};"
                         'cancel.daterangepicker' => "function() { console.log('clear') }",
                     ],
     ])->label('ระบุวันที่');
     ?>
       
-</div>
-<div class="col-3">
-
-
-    <div class="form-group" style="margin-top:31px;">
-        <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
+      <div class="form-group" style="margin-top:31px;">
+        <?php //  Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
         <?=Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx'), ['class' => 'btn btn-info'])?>
         <?=Html::a('พิมพ์',['/soc/report/word-style2','date1' => $date1,'date2' => $date2],['class' => 'btn btn-success','target' => '_blank'])?>
     </div>
-    
-    </div>
+</div>
+
 </div>
     <?php ActiveForm::end(); ?>
 
