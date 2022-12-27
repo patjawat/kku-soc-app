@@ -20,25 +20,17 @@ class ReportController extends \yii\web\Controller
     {
         $searchModel = new EventsSearch();
         $dataProvider = $searchModel->search($this->request->queryParams);
+   //*****/ เรียงลำดับวันที่และเวลา
+   $dataProvider->setSort([
+    'defaultOrder' => [
+        'created_at' => SORT_DESC,
+    ],
+]);
 
         if ($searchModel->q_date) { // ค้นตามวันเวลาที่ระบบ
-            $date_explode = explode(" - ", $searchModel->q_date);
-            $date1 = trim($date_explode[0]);
-            $date2 = trim($date_explode[1]);
-            $dataProvider->query->andFilterWhere(['between', 'created_at', $date1, $date2]);
-
-            $sqlCount  = "SELECT *,(SELECT COUNT(events.id) FROM events WHERE events.event_type = category.id AND events.created_at BETWEEN :date1 AND :date2)  as total 
-            FROM `category`
-            WHERE category.category_type = 2
-            
-            ORDER BY category.id";
-    
-            $counts = Yii::$app->db->createCommand($sqlCount)
-            ->bindValue(':date1', $date1)
-            ->bindValue(':date2', $date2)
-            ->queryAll();
-
-       
+            $date1 = $this->request->get('date1');
+        $date2 = $this->request->get('date2');
+        // $templateProcessor = new TemplateProcessor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
         $templateProcessor = new Processor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
         $templateProcessor->setValue('date1', $date1);
         $templateProcessor->setValue('date2', $date2);
@@ -47,6 +39,17 @@ class ReportController extends \yii\web\Controller
         $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
 
 
+        $sqlCount  = "SELECT *,(SELECT COUNT(events.id) FROM events WHERE events.event_type = category.id AND events.created_at BETWEEN :date1 AND :date2)  as total 
+        FROM `category`
+        WHERE category.category_type = 2
+        
+        ORDER BY category.id";
+
+        $counts = Yii::$app->db->createCommand($sqlCount)
+        ->bindValue(':date1', $date1)
+        ->bindValue(':date2', $date2)
+        ->queryAll();
+        $templateProcessor->cloneRow('name', sizeof($counts));
 
         $iCount = 1;
         foreach($counts as $count){
@@ -55,16 +58,17 @@ class ReportController extends \yii\web\Controller
                     $iCount++;
                 }
 
-        if(isset($date1)){
-            $datas = Events::find()
-            ->where(['between', 'created_at',$date1, $date2 ])->all();
-        }else{
+        // if(isset($date1)){
+        //     $datas = Events::find()
+        //     ->where(['between', 'created_at',$date1, $date2 ])->all();
+        // }else{
 
-        }
+        // }
         
-        $templateProcessor->cloneRow('item', sizeof($datas));
+        $templateProcessor->cloneRow('item', sizeof($dataProvider->getModels()));
+        
         $i = 1;
-    foreach($datas as $item){
+    foreach($dataProvider->getModels() as $item){
     $templateProcessor->setValue('no#'.$i, $i);
             $templateProcessor->setValue('no#'.$i, $i);
             $templateProcessor->setValue('item#'.$i, $item->eventType->name);
@@ -79,18 +83,12 @@ class ReportController extends \yii\web\Controller
         $templateProcessor->saveAs(Yii::getAlias('@webroot').'/msword/ms_word_result.docx');//สั่งให้บันทึกข้อมูลลงไฟล์ใหม่
 
     }
-    //*****/ เรียงลำดับวันที่และเวลา
-    $dataProvider->setSort([
-        'defaultOrder' => [
-            'created_at' => SORT_DESC,
-        ],
-    ]);
-
+ 
         
         return $this->render('index', [
             'searchModel' => $searchModel,
             'dataProvider' => $dataProvider,
-            'counts' =>  isset($counts) ? $counts : []
+            // 'counts' =>  isset($counts) ? $counts : []
         ]);
     }
 

@@ -6,7 +6,10 @@ use yii\helpers\Url;
 <!-- <iframe src="https://tsd.kku.ac.th/" width="100%" height="500">
 </iframe> -->
 <?php
+    // print_r($counts);
+    ?>
+<?php
 echo '<iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx', true) . '&embedded=true"  style="position: absolute;width:92%; height: 100%;border: none;"></iframe>';
 ?>
     <?php endif; ?>
-    s
+ 
