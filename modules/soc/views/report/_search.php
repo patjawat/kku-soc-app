@@ -70,7 +70,7 @@ if ($model->q_date){
 
     <div class="form-group" style="margin-top:31px;">
         <?= Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
-        <?=Html::a('พิมพ์',['/soc/report/word-style1','date1' => $date1,'date2' => $date2],['class' => 'btn btn-success','target' => '_blank'])?>
+        <?=Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx'), ['class' => 'btn btn-info'])?>
         <?=Html::a('พิมพ์',['/soc/report/word-style2','date1' => $date1,'date2' => $date2],['class' => 'btn btn-success','target' => '_blank'])?>
     </div>
     
