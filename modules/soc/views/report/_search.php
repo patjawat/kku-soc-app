@@ -65,11 +65,13 @@ if ($model->q_date){
                     ],
     ])->label('ระบุวันที่');
     ?>
+
       
       <div class="form-group" style="margin-top:31px;">
         <?php //  Html::submitButton('ค้นหา', ['class' => 'btn btn-primary']) ?>
-        <?=Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx'), ['class' => 'btn btn-info'])?>
-        <?=Html::a('พิมพ์',['/soc/report/word-style2','date1' => $date1,'date2' => $date2],['class' => 'btn btn-success','target' => '_blank'])?>
+        <?=Html::a('ดาวน์โหลดเอกสาร1', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx'), ['class' => 'btn btn-block btn-primary'])?>
+        <?=Html::a('ดาวน์โหลดเอกสาร-มีภาพประกอบ', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result2.docx'), ['class' => 'btn btn-block btn-primary'])?>
+        <?php // Html::a('พิมพ์',['/soc/report/word-style2','date1' => $date1,'date2' => $date2],['class' => 'btn btn-block btn-success','target' => '_blank'])?>
     </div>
 </div>
 
