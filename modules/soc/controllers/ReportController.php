@@ -46,6 +46,45 @@ class ReportController extends \yii\web\Controller
             ],
         ]);
 
+        $templateProcessor = new Processor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
+        $templateProcessor->setValue('date1', $date1);
+        $templateProcessor->setValue('date2', $date2);
+        // $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg');
+        $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/var/files/zYbRX_a6c1AzcRUvZn4ttI/0bfd40f5f26ed1c268f3fd16384a2dd4.png');
+        $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
+
+        
+
+        $iCount = 1;
+        foreach($counts as $count){
+                    $templateProcessor->setValue('name#'.$iCount, $count['name']);
+                    $templateProcessor->setValue('total#'.$iCount, $count['total'] > 0 ? $count['total'] : '-');
+                    $iCount++;
+                }
+
+        if(isset($date1)){
+            $datas = Events::find()
+            ->where(['between', 'created_at',$date1, $date2 ])->all();
+        }else{
+
+        }
+        
+        $templateProcessor->cloneRow('item', sizeof($datas));
+        $i = 1;
+    foreach($datas as $item){
+    $templateProcessor->setValue('no#'.$i, $i);
+            $templateProcessor->setValue('no#'.$i, $i);
+            $templateProcessor->setValue('item#'.$i, $item->eventType->name);
+            $templateProcessor->setValue('approve#'.$i, $item->created_at);
+            $templateProcessor->setValue('process_time#'.$i, $item->CountDate());
+            $templateProcessor->setValue('result#'.$i, isset($item->resultType) ? $item->resultType->name : '-');
+            $templateProcessor->setValue('person_type#'.$i, $item->personType->name);
+            $i++;
+        }
+
+
+        $templateProcessor->saveAs(Yii::getAlias('@webroot').'/msword/ms_word_result.docx');//สั่งให้บันทึกข้อมูลลงไฟล์ใหม่
+
 
         
         return $this->render('index', [
@@ -67,10 +106,6 @@ class ReportController extends \yii\web\Controller
         // $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg');
         $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/var/files/zYbRX_a6c1AzcRUvZn4ttI/0bfd40f5f26ed1c268f3fd16384a2dd4.png');
         $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
-        // $templateProcessor->setImageValue('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
-        // $templateProcessor->setImageValue('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
-        // $templateProcessor->setImg('img2', ['src' => Yii::getAlias('@webroot') . '/images/cctv.png', 'swh' => 350]);//ที่อยู่รูป frontend/web/images/cell.jpg, swh ความกว้าง/สูง 350
-
 
 
         $sqlCount  = "SELECT *,(SELECT COUNT(events.id) FROM events WHERE events.event_type = category.id AND events.created_at BETWEEN :date1 AND :date2)  as total 
