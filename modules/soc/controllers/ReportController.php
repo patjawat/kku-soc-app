@@ -49,6 +49,7 @@ class ReportController extends \yii\web\Controller
                 ->bindValue(':date2', $date2)
                 ->queryAll();
             $templateProcessor->cloneRow('name', sizeof($counts));
+            $templateProcessor2->cloneRow('name', sizeof($counts));
 
             $iCount = 1;
             foreach ($counts as $count) {
