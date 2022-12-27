@@ -29,14 +29,16 @@ use yii\helpers\Url;
 
                 <h1 id="loading" class="text-center mt-5"> <i class="fas fa-circle-notch fa-spin"></i> กำลังโหลด...</h1>
                 <div id="view-frame">
-                    <?php  echo '<iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx', true) . '&embedded=true"  style="width:98%; height:800px;border: none;"></iframe>';?>
+                    <?php  '<p>' . Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx'), ['class' => 'btn btn-info']) .
+        '</p><iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx', true) . '&embedded=true"  style="position: absolute;width:100%; height: 100%;border: none;"></iframe>';?>
                 </div>
 
             </div>
             <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel"
                 aria-labelledby="custom-content-below-profile-tab">
 
-                <?php  echo '<iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result2.docx', true) . '&embedded=true"  style="width:98%; height:800px;border: none;"></iframe>';?>
+                <?php  '<p>' . Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result2.docx'), ['class' => 'btn btn-info']) .
+        '</p><iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result2.docx', true) . '&embedded=true"  style="position: absolute;width:100%; height: 100%;border: none;"></iframe>';?>
 
             </div>
 
