@@ -38,14 +38,7 @@ class ReportController extends \yii\web\Controller
             ->bindValue(':date2', $date2)
             ->queryAll();
 
-        }
-        //*****/ เรียงลำดับวันที่และเวลา
-        $dataProvider->setSort([
-            'defaultOrder' => [
-                'created_at' => SORT_DESC,
-            ],
-        ]);
-
+       
         $templateProcessor = new Processor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
         $templateProcessor->setValue('date1', $date1);
         $templateProcessor->setValue('date2', $date2);
@@ -53,7 +46,7 @@ class ReportController extends \yii\web\Controller
         $templateProcessor->setValue('src1', Yii::getAlias('@webroot') . '/var/files/zYbRX_a6c1AzcRUvZn4ttI/0bfd40f5f26ed1c268f3fd16384a2dd4.png');
         $templateProcessor->setImg('img1', ['src' => Yii::getAlias('@webroot') . '/images/auth/login-bg.jpg', 'swh' => 150]);//ที่อยู่รูป frontend/web/img/logo.png, swh ความกว้าง/สูง 150 
 
-        
+
 
         $iCount = 1;
         foreach($counts as $count){
@@ -85,6 +78,13 @@ class ReportController extends \yii\web\Controller
 
         $templateProcessor->saveAs(Yii::getAlias('@webroot').'/msword/ms_word_result.docx');//สั่งให้บันทึกข้อมูลลงไฟล์ใหม่
 
+    }
+    //*****/ เรียงลำดับวันที่และเวลา
+    $dataProvider->setSort([
+        'defaultOrder' => [
+            'created_at' => SORT_DESC,
+        ],
+    ]);
 
         
         return $this->render('index', [
