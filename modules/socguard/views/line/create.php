@@ -36,7 +36,7 @@ $('#btn-save').click(function (e) {
   $.ajax({
     type: "post",
     url: '$addUrl',
-    // data: form.serialize(),
+    data: form.serialize(),
     dataType: "json",
     success: function (response) {
       console.log(response)
