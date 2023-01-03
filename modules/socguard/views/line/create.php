@@ -41,12 +41,20 @@ $('#btn-save').click(function (e) {
     beforeSend: function(){
             $('#loading').show();
             $('#warp-content').hide();
-
             $('#awaitLogin').show();
             $('#content-container').hide();
           },
     success: function (response) {
-      console.log(response)
+      $('#loading').hide();
+            $('#warp-content').show();
+            $('#awaitLogin').hide();
+            $('#content-container').show();
+      setTimeout(
+  function() 
+  {
+    //do something special
+    alert('Success');
+  }, 5000);
     }
   });
   
