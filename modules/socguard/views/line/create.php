@@ -25,6 +25,11 @@ $checkMe = Url::to(['/socguard/line-auth/checkme']);
 $addUrl = Url::to(['/socguard/line/add']);
 $js = <<< JS
 
+Swal.fire(
+  'Good job!',
+  'You clicked the button!',
+  'success'
+)
 $('#create-success').hide();
 $('#btn-save').click(function (e) { 
   e.preventDefault();
@@ -45,11 +50,18 @@ $('#btn-save').click(function (e) {
         $('.borrow-create').text(response.msg);
         $('#awaitLogin').hide();
         $('#content-container').show();
+        Swal.fire(
+          'Good job!',
+          'You clicked the button!',
+          'success',
+          timer: 1500
+
+        )
         setTimeout(
           function() 
           {
             liff.closeWindow();
-          }, 3000);
+          }, 2000);
         }
     }
   });
@@ -58,46 +70,46 @@ $('#btn-save').click(function (e) {
 
 $('#loading').show();
 $('#warp-content').hide();
-function runApp() {
-      liff.getProfile().then(profile => {
-        // document.getElementById("pictureUrl").src = profile.pictureUrl;
-        $('#line_id').val(profile.userId)
+// function runApp() {
+//       liff.getProfile().then(profile => {
+//         // document.getElementById("pictureUrl").src = profile.pictureUrl;
+//         $('#line_id').val(profile.userId)
 
-        $.ajax({
-          type: "post",
-          url: "$checkMe",
-          data: {line_id:profile.userId},
-          dataType: "json",
-          beforeSend: function(){
-            $('#loading').show();
-            $('#warp-content').hide();
+//         $.ajax({
+//           type: "post",
+//           url: "$checkMe",
+//           data: {line_id:profile.userId},
+//           dataType: "json",
+//           beforeSend: function(){
+//             $('#loading').show();
+//             $('#warp-content').hide();
 
-            $('#awaitLogin').show();
-            $('#content-container').hide();
-          },
-          success: function (response) {
-            console.log(response);
-            $('#loading').hide();
-            $('#warp-content').show();
-            $('#awaitLogin').hide();
-            $('#content-container').show();
-            if(response == true){
-              liff.closeWindow();
-            }
-          }
-        });
+//             $('#awaitLogin').show();
+//             $('#content-container').hide();
+//           },
+//           success: function (response) {
+//             console.log(response);
+//             $('#loading').hide();
+//             $('#warp-content').show();
+//             $('#awaitLogin').hide();
+//             $('#content-container').show();
+//             if(response == true){
+//               liff.closeWindow();
+//             }
+//           }
+//         });
         
-      }).catch(err => console.error(err));
-    }
+//       }).catch(err => console.error(err));
+//     }
 
-    liff.init({ liffId: "1657785530-Y758y54Q" }, () => {
-      if (liff.isLoggedIn()) {
-        runApp()
-        // getUser();
-      } else {
-        liff.login();
-      }
-    }, err => console.error(err.code, error.message));
+//     liff.init({ liffId: "1657785530-Y758y54Q" }, () => {
+//       if (liff.isLoggedIn()) {
+//         runApp()
+//         // getUser();
+//       } else {
+//         liff.login();
+//       }
+//     }, err => console.error(err.code, error.message));
 
 
 JS;
