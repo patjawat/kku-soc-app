@@ -38,6 +38,13 @@ $('#btn-save').click(function (e) {
     url: '$addUrl',
     data: form.serialize(),
     dataType: "json",
+    beforeSend: function(){
+            $('#loading').show();
+            $('#warp-content').hide();
+
+            $('#awaitLogin').show();
+            $('#content-container').hide();
+          },
     success: function (response) {
       console.log(response)
     }
@@ -46,7 +53,7 @@ $('#btn-save').click(function (e) {
 });
 
 $('#loading').show();
-            $('#warp-content').hide();
+$('#warp-content').hide();
 function runApp() {
       liff.getProfile().then(profile => {
         // document.getElementById("pictureUrl").src = profile.pictureUrl;
@@ -62,7 +69,7 @@ function runApp() {
             $('#warp-content').hide();
 
             $('#awaitLogin').show();
-    $('#content-container').hide();
+            $('#content-container').hide();
           },
           success: function (response) {
             console.log(response);
