@@ -42,6 +42,7 @@ $('#btn-save').click(function (e) {
     success: function (response) {
       if(response == true){
         $('#create-success').show();
+        $('.borrow-create').hide();
         $('#warp-content').html('<h1 class="text-center">ส่งคำขอเบิกสำเร็จ</h1>');
         $('#awaitLogin').hide();
         $('#content-container').show();
