@@ -54,8 +54,6 @@ $('#btn-save').click(function (e) {
           'Good job!',
           'You clicked the button!',
           'success',
-          // 'timer': 1500
-
         )
         setTimeout(
           function() 
