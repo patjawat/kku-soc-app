@@ -25,11 +25,6 @@ $checkMe = Url::to(['/socguard/line-auth/checkme']);
 $addUrl = Url::to(['/socguard/line/add']);
 $js = <<< JS
 
-Swal.fire(
-  'Good job!',
-  'You clicked the button!',
-  'success'
-)
 $('#create-success').hide();
 $('#btn-save').click(function (e) { 
   e.preventDefault();
