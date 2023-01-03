@@ -21,6 +21,7 @@ class User extends ActiveRecord implements IdentityInterface {
     public $q;
     public $old_password;
     public $file;
+    public $line_id;
 
 
     /**
@@ -76,7 +77,7 @@ class User extends ActiveRecord implements IdentityInterface {
             ['confirm_password', 'string', 'min' => 6],
             ['confirm_password', 'compare', 'compareAttribute' => 'password'],
             ['phone', 'string', 'min' => 10, 'max' => 10],
-            [['roles', 'doctor_id', 'fullname','fullname_en','license_number','q', 'old_password','phone','photo','data_json'], 'safe'],
+            [['roles', 'doctor_id', 'fullname','fullname_en','license_number','q', 'old_password','phone','photo','data_json','line_id'], 'safe'],
             
         ];
     }

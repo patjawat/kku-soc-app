@@ -11,6 +11,7 @@ use yii\filters\VerbFilter;
 use app\models\LoginForm;
 use app\models\ContactForm;
 use app\models\Events;
+use app\models\Site;
 use dosamigos\google\maps\LatLng;
 use chillerlan\QRCode\QRCode;
 
@@ -187,6 +188,42 @@ class SiteController extends Controller
             // return '<img src="'.(new QRCode)->render($data).'" alt="QR Code" width="30%"/>';
         }
     
+
+        public function actionConfig()
+    {
+            // \Yii::$app->response->format = \yii\web\Response::FORMAT_JSON;
+            // Site::findOne(['id' => $id])
+        // $model = Site::findOne(['id' => 'info']);
+        // return $model;
+        // $this->layout = '@app/modules/vehicle2/views/layouts/main';
+        // $this->layout = '@app/modules/usermanager/views/layouts/auth';
+        
+        if($this->findModel('info')){
+            $model = $this->findModel('info');
+        }else{
+
+            $model = new Site([
+                'id' => 'info'
+            ]);
+        }
+        if ($model->load(Yii::$app->request->post()) && $model->save(false)) {
+            return $this->redirect(['/site/config']);
+        }else{
+
+            return $this->render('config',[
+                'model' => $model,
+            ]);
+        }
+    }
+
+    protected function findModel($id)
+    {
+        if (($model = Site::findOne(['id' => $id])) !== null) {
+            return $model;
+        }
+
+        throw new NotFoundHttpException('The requested page does not exist.');
+    }
 
     public function actionQrcode(){
         $this->layout = 'blank';

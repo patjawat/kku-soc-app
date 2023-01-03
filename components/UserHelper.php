@@ -7,6 +7,8 @@ use yii\base\Component;
 use yii\helpers\ArrayHelper;
 use app\modules\usermanager\models\User;
 use app\modules\usermanager\models\UserSearch;
+use app\modules\usermanager\models\Auth;
+
 
 class UserHelper extends Component{
     public static function isUserReadyLogin(){
@@ -48,6 +50,20 @@ class UserHelper extends Component{
         }
     }
     
+    public static function getUserByPhone($phone)
+    {
+        $model = User::findOne(['phone' => $phone]);
+        $line = Auth::findOne(['user_id' => $model->id, 'source' => 'line']);
+
+        if ($model) {
+            return [
+                'user' => $model,
+                'line_id' => isset($line) ?  $line->source_id : null,
+            ];
+        } else {
+            return null;
+        }
+    }
 
 }
 

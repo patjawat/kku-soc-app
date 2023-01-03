@@ -78,4 +78,5 @@ $modules['soc'] = ['class' => 'app\modules\soc\Module'];
 $modules['special'] = ['class' => 'app\modules\special\Module'];
 $modules['line'] = ['class' => 'app\modules\line\Module'];
 $modules['cctv'] = ['class' => 'app\modules\cctv\Module'];
+$modules['socguard'] = ['class' => 'app\modules\socguard\Module'];
 return $modules;
