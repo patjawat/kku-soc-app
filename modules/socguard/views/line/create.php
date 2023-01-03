@@ -11,7 +11,7 @@ $this->title = 'เบิกวิทยุ';
 $this->params['breadcrumbs'][] = ['label' => 'Borrows', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<h1 class="text-center" id="create-success">xx</h1>
+<h1 class="text-center text-success" id="create-success">ส่งคำขอเบิกสำเร็จ</h1>
 <div class="borrow-create">
 
     <?= $this->render('_form', [
@@ -50,7 +50,7 @@ $('#btn-save').click(function (e) {
           function() 
           {
             liff.closeWindow();
-          }, 5000);
+          }, 3000);
         }
     }
   });
