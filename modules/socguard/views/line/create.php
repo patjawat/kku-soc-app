@@ -27,6 +27,7 @@ $this->params['breadcrumbs'][] = $this->title;
 
 <?php
 $checkMe = Url::to(['/socguard/line-auth/checkme']);
+$addUrl = Url::to(['/socguard/line/add']);
 $js = <<< JS
 
 $('#btn-save').click(function (e) { 
@@ -34,8 +35,8 @@ $('#btn-save').click(function (e) {
   var form = $('#w0');
   $.ajax({
     type: "post",
-    url: form.attr('action'),
-    data: form.serialize(),
+    url: '$addUrl',
+    // data: form.serialize(),
     dataType: "json",
     success: function (response) {
       console.log(response)

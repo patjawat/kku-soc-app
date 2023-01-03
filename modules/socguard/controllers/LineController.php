@@ -30,6 +30,13 @@ class LineController extends \yii\web\Controller
         ]);
     }
 
+    public function actionAdd()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $model = new Borrow();
+        return $model->save(false);
+    }
+
     public function actionCreate()
     {
         $this->layout = 'line';
