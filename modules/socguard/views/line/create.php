@@ -11,14 +11,9 @@ $this->title = 'เบิกวิทยุ';
 $this->params['breadcrumbs'][] = ['label' => 'Borrows', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+<h1 class="text-center" id="create-success">xx</h1>
 <div class="borrow-create">
 
-    <h1>
-        <?= Html::encode($this->title) ?>
-    
-       
-    </h1>
- 
     <?= $this->render('_form', [
         'model' => $model,
     ]) ?>
@@ -30,6 +25,7 @@ $checkMe = Url::to(['/socguard/line-auth/checkme']);
 $addUrl = Url::to(['/socguard/line/add']);
 $js = <<< JS
 
+$('#create-success').hide();
 $('#btn-save').click(function (e) { 
   e.preventDefault();
   var form = $('#w0');
@@ -39,14 +35,13 @@ $('#btn-save').click(function (e) {
     data: form.serialize(),
     dataType: "json",
     beforeSend: function(){
-            $('#loading').show();
             $('#warp-content').hide();
             $('#awaitLogin').show();
             $('#content-container').hide();
           },
     success: function (response) {
       if(response == true){
-
+        $('#create-success').show();
         $('#warp-content').html('<h1 class="text-center">ส่งคำขอเบิกสำเร็จ</h1>');
         $('#awaitLogin').hide();
         $('#content-container').show();
