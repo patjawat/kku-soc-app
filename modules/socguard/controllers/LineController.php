@@ -49,13 +49,13 @@ class LineController extends \yii\web\Controller
         
         $this->layout = 'line';
 
-        $userId = Yii::$app->user->id;
-        $check = Borrow::findOne([
-            'created_by' => $userId
-        ]);
-        if($check){
-            return $this->renderContent('<h1 class="text-center">ท่านได้ส่งคำขอไปแล้ว</h1>');
-        }
+        // $userId = Yii::$app->user->id;
+        // $check = Borrow::findOne([
+        //     'created_by' => $userId
+        // ]);
+        // if($check){
+        //     return $this->renderContent('<h1 class="text-center">ท่านได้ส่งคำขอไปแล้ว</h1>');
+        // }
         $model = new Borrow();
 
         if ($this->request->isPost) {
