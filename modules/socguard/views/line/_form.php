@@ -12,28 +12,11 @@ use yii\widgets\ActiveForm;
 
     <?php $form = ActiveForm::begin(); ?>
 
+
     <?= $form->field($model, 'item_code')->textInput(['maxlength' => true]) ?>
 
-    <?= $form->field($model, 'product_id')->textInput(['maxlength' => true]) ?>
-
-    <?= $form->field($model, 'data_json')->textarea(['rows' => 6]) ?>
-
-    <?= $form->field($model, 'active')->textInput() ?>
-
-    <?= $form->field($model, 'pull_date')->textInput() ?>
-
-    <?= $form->field($model, 'pull_user_id')->textInput() ?>
-
-    <?= $form->field($model, 'updated_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_at')->textInput() ?>
-
-    <?= $form->field($model, 'created_by')->textInput() ?>
-
-    <?= $form->field($model, 'updated_by')->textInput() ?>
-
     <div class="form-group">
-        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+        <?= Html::submitButton('ยืนยันการเบิก', ['class' => 'btn btn-success','id' => 'btn-save']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>

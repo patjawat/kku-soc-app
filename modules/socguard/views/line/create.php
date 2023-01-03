@@ -34,7 +34,7 @@ $('#btn-save').click(function (e) {
   e.preventDefault();
   var form = $('#w0');
   $.ajax({
-    type: "post",
+    type: "get",
     url: '$addUrl',
     data: form.serialize(),
     dataType: "json",
