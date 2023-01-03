@@ -33,13 +33,29 @@ class LineController extends \yii\web\Controller
     public function actionAdd()
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
+
         $model = new Borrow();
+        if($model->save(false)){
+            return [
+                'status' => true,
+                'msg' => 'ส่งคำขอเบิกเรียบร้อย'
+            ];
+        }
         return $model->save(false);
     }
 
     public function actionCreate()
     {
+        
         $this->layout = 'line';
+
+        $userId = Yii::$app->user->id;
+        $check = Borrow::findOne([
+            'created_by' => $userId
+        ]);
+        if($check){
+            return $this->renderContent('<h1 class="text-center">ท่านได้ส่งคำขอไปแล้ว</h1>');
+        }
         $model = new Borrow();
 
         if ($this->request->isPost) {

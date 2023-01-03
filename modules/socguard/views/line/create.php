@@ -4,13 +4,13 @@ use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
 
-/** @var yii\web\View $this */
-/** @var app\modules\socguard\models\Borrow $model */
 
 $this->title = 'เบิกวิทยุ';
 $this->params['breadcrumbs'][] = ['label' => 'Borrows', 'url' => ['index']];
 $this->params['breadcrumbs'][] = $this->title;
 ?>
+
+
 <h1 class="text-center text-success" id="create-success">ส่งคำขอเบิกสำเร็จ</h1>
 <div class="borrow-create">
 
@@ -40,10 +40,9 @@ $('#btn-save').click(function (e) {
             $('#content-container').hide();
           },
     success: function (response) {
-      if(response == true){
+      if(response.status == true){
         $('#create-success').show();
-        $('.borrow-create').hide();
-        $('#warp-content').html('<h1 class="text-center">ส่งคำขอเบิกสำเร็จ</h1>');
+        $('.borrow-create').text(response.msg);
         $('#awaitLogin').hide();
         $('#content-container').show();
         setTimeout(
