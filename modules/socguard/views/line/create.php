@@ -47,8 +47,7 @@ $('#btn-save').click(function (e) {
     success: function (response) {
       if(response == true){
 
-        $('#loading').hide();
-        $('#warp-content').show();
+        $('#warp-content').html('<h1 class="text-center">ส่งคำขอเบิกสำเร็จ</h1>');
         $('#awaitLogin').hide();
         $('#content-container').show();
         setTimeout(
