@@ -50,11 +50,11 @@ $('#btn-save').click(function (e) {
         $('.borrow-create').text(response.msg);
         $('#awaitLogin').hide();
         $('#content-container').show();
-        Swal.fire(
-          'Good job!',
-          'You clicked the button!',
-          'success',
-        )
+        // Swal.fire(
+        //   'Good job!',
+        //   'You clicked the button!',
+        //   'success',
+        // )
         setTimeout(
           function() 
           {
