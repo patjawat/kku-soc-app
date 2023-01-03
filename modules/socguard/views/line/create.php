@@ -45,16 +45,18 @@ $('#btn-save').click(function (e) {
             $('#content-container').hide();
           },
     success: function (response) {
-      $('#loading').hide();
-            $('#warp-content').show();
-            $('#awaitLogin').hide();
-            $('#content-container').show();
-      setTimeout(
-  function() 
-  {
-    //do something special
-    alert('Success');
-  }, 5000);
+      if(response == true){
+
+        $('#loading').hide();
+        $('#warp-content').show();
+        $('#awaitLogin').hide();
+        $('#content-container').show();
+        setTimeout(
+          function() 
+          {
+            liff.closeWindow();
+          }, 5000);
+        }
     }
   });
   
