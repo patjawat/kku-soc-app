@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "7b01d3e9378a9c995c1cec13c552748e",
+    "content-hash": "dfeb5dcd4ce390e6e36cdc2277c990f5",
     "packages": [
         {
             "name": "2amigos/yii2-gallery-widget",
@@ -4728,6 +4728,89 @@
                 "source": "https://github.com/lesha724/yii2-document-viewer/tree/v0.1.0"
             },
             "time": "2018-11-03T17:45:22+00:00"
+        },
+        {
+            "name": "linecorp/line-bot-sdk",
+            "version": "dev-master",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/line/line-bot-sdk-php.git",
+                "reference": "8106cc8802fb57bc06398139f479ab974493de9e"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/line/line-bot-sdk-php/zipball/8106cc8802fb57bc06398139f479ab974493de9e",
+                "reference": "8106cc8802fb57bc06398139f479ab974493de9e",
+                "shasum": ""
+            },
+            "require": {
+                "ext-curl": "*",
+                "ext-json": "*",
+                "ext-sockets": "*",
+                "php": ">=7.2"
+            },
+            "require-dev": {
+                "orchestra/testbench": "*",
+                "phpmd/phpmd": "2.13.0",
+                "phpstan/phpstan": "1.9.7",
+                "phpunit/phpunit": "^7||^8||^9",
+                "squizlabs/php_codesniffer": "3.7.1"
+            },
+            "default-branch": true,
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "LINE\\Laravel\\LINEBotServiceProvider"
+                    ],
+                    "aliases": {
+                        "LINEBot": "LINE\\Laravel\\Facade\\LINEBot"
+                    }
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "LINE\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "Apache-2.0"
+            ],
+            "authors": [
+                {
+                    "name": "moznion",
+                    "email": "moznion@gmail.com",
+                    "role": "Retired"
+                },
+                {
+                    "name": "Satoru Yoshihara",
+                    "email": "vaduz0@gmail.com",
+                    "role": "Retired"
+                },
+                {
+                    "name": "Satoshi Shibuya",
+                    "email": "satosby@gmail.com",
+                    "role": "Maintainer"
+                },
+                {
+                    "name": "Shunsuke Mori",
+                    "email": "morimorim7180@gmail.com",
+                    "role": "Maintainer"
+                }
+            ],
+            "description": "SDK of the LINE BOT API for PHP",
+            "homepage": "https://github.com/line/line-bot-sdk-php",
+            "keywords": [
+                "bot",
+                "line",
+                "sdk"
+            ],
+            "support": {
+                "issues": "https://github.com/line/line-bot-sdk-php/issues",
+                "source": "https://github.com/line/line-bot-sdk-php/tree/master"
+            },
+            "time": "2023-01-05T00:48:24+00:00"
         },
         {
             "name": "linslin/yii2-curl",
@@ -12393,7 +12476,8 @@
         "chillerlan/php-qrcode": 20,
         "yurkinx/yii2-image": 20,
         "kartik-v/yii2-word-report": 20,
-        "phpoffice/phpword": 20
+        "phpoffice/phpword": 20,
+        "linecorp/line-bot-sdk": 20
     },
     "prefer-stable": false,
     "prefer-lowest": false,

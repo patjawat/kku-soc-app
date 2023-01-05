@@ -1,9 +1,7 @@
 <?php
 
-use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\web\View;
-
 
 $this->title = 'เบิกวิทยุ';
 $this->params['breadcrumbs'][] = ['label' => 'Borrows', 'url' => ['index']];
@@ -11,12 +9,34 @@ $this->params['breadcrumbs'][] = $this->title;
 ?>
 
 
-<h1 class="text-center text-success" id="create-success">ส่งคำขอเบิกสำเร็จ</h1>
-<div class="borrow-create">
+<!-- <h1 class="text-center text-success" id="create-success">ส่งคำขอเบิกสำเร็จ</h1> -->
+<div class="borrow-createx" id="warp-content">
+<?php if($check):?>
+<?php if ($check->active == 0): ?>
+  <h1>สถานะ ขอเบิก</h1>
+  ้<h6><?=$check->created_at?></h6>
+  <?php endif;?>
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+  <?php if ($check->active == 1): ?>
+    <div class="row justify-content-center mt-3">
+      <h1 class="text-center">รหัส : A102</h1>
+      <h6>เบิิกเมื่อ : <?=$check->created_at?></h6>
+  </div>
+  <div class="row justify-content-center mt-3">
+    <button class="btn btn-danger">ส่งคืน</button>
+  </div>
+    <?php endif;?>
+    <?php endif;?>
+
+
+
+<?php if (!$check): ?>
+    <?=$this->render('_form', [
+    'model' => $model,
+])?>
+  
+<?php endif;?>
+
 
 </div>
 
@@ -25,8 +45,8 @@ $checkMe = Url::to(['/socguard/line-auth/checkme']);
 $addUrl = Url::to(['/socguard/line/add']);
 $js = <<< JS
 
-$('#create-success').hide();
-$('#btn-save').click(function (e) { 
+// $('#create-success').hide();
+$('#btn-save').click(function (e) {
   e.preventDefault();
   var form = $('#w0');
   $.ajax({
@@ -45,66 +65,66 @@ $('#btn-save').click(function (e) {
         $('.borrow-create').text(response.msg);
         $('#awaitLogin').hide();
         $('#content-container').show();
-        // Swal.fire(
-        //   'Good job!',
-        //   'You clicked the button!',
-        //   'success',
-        // )
+        Swal.fire(
+          'บันทึกสำเร็จ!',
+          'You clicked the button!',
+          'success',
+        )
         setTimeout(
-          function() 
+          function()
           {
             liff.closeWindow();
           }, 2000);
         }
     }
   });
-  
+
 });
 
-$('#loading').show();
+// $('#loading').show();
 $('#warp-content').hide();
-// function runApp() {
-//       liff.getProfile().then(profile => {
-//         // document.getElementById("pictureUrl").src = profile.pictureUrl;
-//         $('#line_id').val(profile.userId)
+function runApp() {
+      liff.getProfile().then(profile => {
+        // document.getElementById("pictureUrl").src = profile.pictureUrl;
+        $('#line_id').val(profile.userId)
 
-//         $.ajax({
-//           type: "post",
-//           url: "$checkMe",
-//           data: {line_id:profile.userId},
-//           dataType: "json",
-//           beforeSend: function(){
-//             $('#loading').show();
-//             $('#warp-content').hide();
+        $.ajax({
+          type: "post",
+          url: "$checkMe",
+          data: {line_id:profile.userId},
+          dataType: "json",
+          beforeSend: function(){
+            $('#loading').show();
+            $('#warp-content').hide();
 
-//             $('#awaitLogin').show();
-//             $('#content-container').hide();
-//           },
-//           success: function (response) {
-//             console.log(response);
-//             $('#loading').hide();
-//             $('#warp-content').show();
-//             $('#awaitLogin').hide();
-//             $('#content-container').show();
-//             if(response == true){
-//               liff.closeWindow();
-//             }
-//           }
-//         });
-        
-//       }).catch(err => console.error(err));
-//     }
+            $('#awaitLogin').show();
+            $('#content-container').hide();
+          },
+          success: function (response) {
+            console.log(response);
+            $('#loading').hide();
+            $('#warp-content').show();
+            $('#awaitLogin').hide();
+            $('#content-container').show();
+            if(response == true){
+              liff.closeWindow();
+            }
+          }
+        });
 
-//     liff.init({ liffId: "1657785530-Y758y54Q" }, () => {
-//       if (liff.isLoggedIn()) {
-//         runApp()
-//         // getUser();
-//       } else {
-//         liff.login();
-//       }
-//     }, err => console.error(err.code, error.message));
+      }).catch(err => console.error(err));
+    }
+
+    liff.init({ liffId: "1657785530-Y758y54Q" }, () => {
+      if (liff.isLoggedIn()) {
+        runApp()
+        // getUser();
+      } else {
+        liff.login();
+      }
+    }, err => console.error(err.code, error.message));
 
 
 JS;
-$this->registerJs($js,View::POS_END)
+$this->registerJs($js, View::POS_END)
 ?>

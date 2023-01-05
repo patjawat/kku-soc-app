@@ -27,7 +27,7 @@ class Events extends \yii\db\ActiveRecord
     const DOWNLOAD_FOLDER='download';
 
     public static function getUploadPath(){
-        return Yii::getAlias('@webroot').'/'.self::UPLOAD_FOLDER.'/';
+        return cself::UPLOAD_FOLDER.'/';
     }
 
     public static function getDownloadPath(){

@@ -33,6 +33,18 @@ $assetDir = Yii::$app->assetManager->getPublishedUrl('@vendor/almasaeed2010/admi
     </head>
     <body class="container" style="min-height: 512.391px;">
         <?php $this->beginBody() ?>
+
+        <?php
+        Modal::begin([
+            'id' => 'main-modal',
+            'title' => '<h4 class="modal-title"></h4>',
+            // 'size' => 'modal-sm',
+            'footer' => '',
+            'clientOptions' => ['backdrop' => 'static', 'keyboard' => false],
+        ]);
+        Modal::end();
+        ?>
+        
         <?php \dominus77\sweetalert2\Alert::widget(['useSessionFlash' => true]); ?>
         <div id="awaitLogin" style="display:none;margin-top:100px">
             <div   class="d-flex justify-content-center">

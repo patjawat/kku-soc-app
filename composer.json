@@ -58,7 +58,8 @@
         "kartik-v/yii2-word-report": "@dev",
         "phpoffice/phpword": "0.19.x-dev",
         "lesha724/yii2-document-viewer": "*",
-        "la-haute-societe/yii2-flysystem-google-drive": "~1.0.0"
+        "la-haute-societe/yii2-flysystem-google-drive": "~1.0.0",
+        "linecorp/line-bot-sdk": "dev-master"
        
 
     },

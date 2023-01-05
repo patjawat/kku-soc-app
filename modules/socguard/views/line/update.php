@@ -1,21 +1,23 @@
 <?php
 
 use yii\helpers\Html;
+use yii\widgets\ActiveForm;
 
 /** @var yii\web\View $this */
 /** @var app\modules\socguard\models\Borrow $model */
-
-$this->title = 'Update Borrow: ' . $model->id;
-$this->params['breadcrumbs'][] = ['label' => 'Borrows', 'url' => ['index']];
-$this->params['breadcrumbs'][] = ['label' => $model->id, 'url' => ['view', 'id' => $model->id]];
-$this->params['breadcrumbs'][] = 'Update';
+/** @var yii\widgets\ActiveForm $form */
 ?>
-<div class="borrow-update">
 
-    <h1><?= Html::encode($this->title) ?></h1>
+<div class="borrow-form">
 
-    <?= $this->render('_form', [
-        'model' => $model,
-    ]) ?>
+    <?php $form = ActiveForm::begin(); ?>
+
+    <?= $form->field($model, 'product_id')->textInput(['maxlength' => true]) ?>
+
+    <div class="form-group">
+        <?= Html::submitButton('Save', ['class' => 'btn btn-success']) ?>
+    </div>
+
+    <?php ActiveForm::end(); ?>
 
 </div>
