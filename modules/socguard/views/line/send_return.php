@@ -11,7 +11,7 @@ use yii\widgets\Pjax;
 /** @var app\modules\socguard\models\BorrowSearch $searchModel */
 /** @var yii\data\ActiveDataProvider $dataProvider */
 
-$this->title = 'รายการเบิก';
+$this->title = 'ส่งคืน';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
 
@@ -225,7 +225,7 @@ function runApp() {
       }).catch(err => console.error(err));
     }
 
-    liff.init({ liffId: "1657785530-G9evoe9k" }, () => {
+    liff.init({ liffId: "1657785530-Zjn9pnkW" }, () => {
       if (liff.isLoggedIn()) {
         runApp()
         // getUser();

@@ -33,26 +33,37 @@ class LineAuthController extends \yii\web\Controller
 
         $auth = Auth::find()->where(['source_id' => $lineId])->one();
       
-        if ($auth) {
+        // if ($auth && Yii::$app->user->login($auth->user)) {
            
-            LineHelper::setMainMenuSocGuard($lineId);
-            return [
-                'auth' => Yii::$app->user->login($auth->user)
-            ];
-        }else{
-            LineHelper::setRegisterMenuSocGuard($lineId);
-            return false;
-        }
+        //     LineHelper::setMainMenuSocGuard($lineId);
+        //     return [
+        //         'login' => Yii::$app->user->isGuest ? false : true,
+        //         'auth' => $auth
+        //     ];
+        //     return true;
+        // }else{
+        //     LineHelper::setRegisterMenuSocGuard($lineId);
+        //     return false;
+        // }
 
         if (Yii::$app->user->isGuest) {
             if ($auth && Yii::$app->user->login($auth->user)) {
                 LineHelper::setMainMenuSocGuard($lineId);
-                return true;
+                return [
+                    'isLogin' => Yii::$app->user->isGuest ? false : true
+                ];
             } else {
                 LineHelper::setRegisterMenuSocGuard($lineId);
-                return false;
+                return [
+                    'isLogin' => Yii::$app->user->isGuest ? false : true
+                ];
 
             }
+        }else{
+            LineHelper::setMainMenuSocGuard($lineId);
+            return [
+                'isLogin' => Yii::$app->user->isGuest ? false : true
+            ];
         }
     }
 
@@ -83,22 +94,27 @@ class LineAuthController extends \yii\web\Controller
         $user = UserHelper::getUserByPhone($phone);
         
             $auth =  Auth::findOne(['source_id' => $lineId]);
+            // return $auth;
             
             if(!$auth){
+                return 'new auth';
                 $newAuth = new Auth();
                 $newAuth->source = 'line';
                 $newAuth->user_id = $user['user']->id;
                 $newAuth->source_id = $lineId;
                 if($newAuth->save(false)){
-                    $newAuth->save(false);
                     // Yii::$app->user->login($newAuth->user);
                     LineHelper::setMainMenuSocGuard($lineId);
                     return $this->redirect('success');
                 }else{
-                     Yii::$app->user->login($user['user']);
-                     LineHelper::setMainMenuSocGaurd($lineId);
+                     return Yii::$app->user->login($user['user']);
+                     LineHelper::setMainMenuSocGuard($lineId);
                     return $this->redirect('success');
                 }
+            }else{
+                 Yii::$app->user->login($user['user']);
+                     LineHelper::setMainMenuSocGuard($lineId);
+                     return $this->redirect('success');
             }
 
         }

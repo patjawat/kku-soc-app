@@ -55,7 +55,7 @@ $this->title = 'ระบบลงทะเบียน';
   }
   
 </style>
-
+<?php echo $dataProvider->getTotalCount()?>
 <div class="row justify-content-center mt-3" id="warp-content">
 
     <div class="col-10">

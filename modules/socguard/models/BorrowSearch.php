@@ -18,7 +18,7 @@ class BorrowSearch extends Borrow
     {
         return [
             [['id', 'active', 'created_by', 'updated_by'], 'integer'],
-            [['item_code', 'product_id', 'data_json', 'pull_date', 'pull_user_id', 'updated_at', 'created_at'], 'safe'],
+            [['item_code', 'product_id', 'data_json', 'pull_date', 'pull_user_id', 'updated_at', 'created_at','status_id'], 'safe'],
         ];
     }
 
@@ -66,6 +66,7 @@ class BorrowSearch extends Borrow
             'created_at' => $this->created_at,
             'created_by' => $this->created_by,
             'updated_by' => $this->updated_by,
+            'status_id' => $this->status_id,
         ]);
 
         $query->andFilterWhere(['like', 'item_code', $this->item_code])

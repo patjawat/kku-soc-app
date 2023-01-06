@@ -19,7 +19,7 @@ use yii\widgets\ActiveForm;
     ]); ?>
 
     <?= $form->field($model, 'phone')->textInput() ?>
-    <?= $form->field($model, 'line_id')->textInput(['id' => 'line_id'])->label(false); ?>
+    <?= $form->field($model, 'line_id')->hiddenInput(['id' => 'line_id'])->label(false); ?>
     <?php //  $form->field($model, 'line_id')->hiddenInput(['id' => 'line_id'])->label(false); ?>
 
     <div class="d-grid gap-2 col-12 mx-auto">

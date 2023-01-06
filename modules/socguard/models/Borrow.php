@@ -19,8 +19,8 @@ use yii\behaviors\AttributeBehavior;
  * @property string|null $product_id หมายเลขเครื่อง
  * @property string|null $data_json
  * @property int|null $active สถานะ
- * @property string|null $pull_date วันที่รับคืน
- * @property string|null $pull_user_id ผู้รับคืน
+ * @property string|null $approve_date วันที่รับคืน
+ * @property string|null $aapprove_id ผู้รับคืน
  * @property string|null $updated_at
  * @property string $created_at
  * @property int|null $created_by ผู้สร้าง
@@ -65,7 +65,7 @@ class Borrow extends \yii\db\ActiveRecord
         return [
             [['data_json'], 'string'],
             [['active', 'created_by', 'updated_by'], 'integer'],
-            [['pull_date', 'pull_user_id', 'updated_at', 'created_at','push_date'], 'safe'],
+            [['approve_date', 'aapprove_id', 'updated_at', 'created_at','push_date','status_id'], 'safe'],
             [['item_code', 'product_id'], 'string', 'max' => 100],
         ];
     }
@@ -79,14 +79,23 @@ class Borrow extends \yii\db\ActiveRecord
             'id' => 'ID',
             'item_code' => 'รหัสเลขเครื่อง',
             'product_id' => 'หมายเลขเครื่อง',
+            'staus_id' => 'หมายเลขเครื่อง',
             'data_json' => 'Data Json',
             'active' => 'สถานะ',
-            'pull_date' => 'วันที่รับคืน',
-            'pull_user_id' => 'ผู้รับคืน',
+            'approve_date' => 'วันที่รับคืน',
+            'aapprove_id' => 'ผู้รับคืน',
             'updated_at' => 'Updated At',
             'created_at' => 'Created At',
             'created_by' => 'ผู้สร้าง',
             'updated_by' => 'ผู้แก้ไข',
         ];
+    }
+
+    public function getStatus() {
+        return $this->hasOne(BorrowStatus::className(), ['id' => 'status_id']);
+    }
+
+    public function getProduct() {
+        return $this->hasOne(Product::className(), ['id' => 'product_id']);
     }
 }

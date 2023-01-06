@@ -8,6 +8,8 @@ use Yii;
 use yii\db\Expression;
 use yii\web\NotFoundHttpException;
 use yii\web\Response;
+use app\modules\socguard\models\Product;
+use app\modules\socguard\models\ProductSearch;
 
 class LineController extends \yii\web\Controller
 
@@ -18,9 +20,77 @@ class LineController extends \yii\web\Controller
         if ($action->id == 'callback') {
             $this->enableCsrfValidation = false; //ปิดการใช้งาน csrf
         }
+       
+        
 
         return parent::beforeAction($action);
     }
+
+// รายการขอเบิก
+    public function actionIndex()
+    {
+        $this->layout = 'line';
+
+        $searchModel = new BorrowSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->query->where(['status_id' => 1]);
+
+        return $this->render('index', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    //รายการส่งคืน
+    public function actionSendReturn()
+    {
+        $this->layout = 'line';
+
+        $searchModel = new BorrowSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+        $dataProvider->query->where(['status_id' => 3]);
+
+        return $this->render('send_return', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+    }
+
+    public function actionHistory()
+    {
+        $this->layout = 'line';
+return $this->renderContent('<h1>History</h1>');
+        // $searchModel = new BorrowSearch();
+        // $dataProvider = $searchModel->search($this->request->queryParams);
+        // $dataProvider->query->where(['not',['status_id' => 4]]);
+
+        // return $this->render('send_return', [
+        //     'searchModel' => $searchModel,
+        //     'dataProvider' => $dataProvider,
+        // ]);
+    }
+
+    public function actionStore()
+    {
+        $this->layout = 'line';
+        $searchModel = new ProductSearch();
+        $dataProvider = $searchModel->search($this->request->queryParams);
+
+        return $this->render('store', [
+            'searchModel' => $searchModel,
+            'dataProvider' => $dataProvider,
+        ]);
+
+        // $searchModel = new BorrowSearch();
+        // $dataProvider = $searchModel->search($this->request->queryParams);
+        // $dataProvider->query->where(['not',['status_id' => 4]]);
+
+        // return $this->render('send_return', [
+        //     'searchModel' => $searchModel,
+        //     'dataProvider' => $dataProvider,
+        // ]);
+    }
+
 
     private function replyMsg($arrayHeader, $arrayPostData)
     {
@@ -44,7 +114,7 @@ class LineController extends \yii\web\Controller
         Yii::$app->response->statusCode = 200;
         if ($this->request->isPost) {
 
-            $accessToken = "I8Wrppm5TEPvTnL8hvsfRWPFMDME86w9c7mepmtp5j0V23FyuSyIxmjDNGhqJDb5hEtSHMUsZ3PTm+4e5VabAWnyDIMP60blEBeEGH+iK6Z6LwmfweiuqyLfWdag7gwxLuz0iKqyOboW3VUBnD9NPAdB04t89/1O/w1cDnyilFU="; //copy Channel access token ตอนที่ตั้งค่ามาใส่
+            $accessToken = "CGMsehpiB4zpT9UZLIvE8BGTlzyYUWdh+lYbIOxgKeVW3HJhfo4qkWzVRhZMrvGKhEtSHMUsZ3PTm+4e5VabAWnyDIMP60blEBeEGH+iK6bsp5Bo7JjQhLQ+/EaoaFbgYQVO45dsCaOUQUkNy/tZlQdB04t89/1O/w1cDnyilFU="; //copy Channel access token ตอนที่ตั้งค่ามาใส่
 
             $content = file_get_contents('php://input');
             $arrayJson = json_decode($content, true);
@@ -56,10 +126,10 @@ class LineController extends \yii\web\Controller
             //รับข้อความจากผู้ใช้
             $message = $arrayJson['events'][0]['message']['text'];
             #ตัวอย่าง Message Type "Text"
-            if ($message == "สวัสดี") {
+            if ($message == "A") {
                 $arrayPostData['replyToken'] = $arrayJson['events'][0]['replyToken'];
-                $arrayPostData['messages'][0]['type'] = "text";
-                $arrayPostData['messages'][0]['text'] = "สวัสดีจ้าาา";
+                $arrayPostData['actions'][0]['type'] = "url";
+                $arrayPostData['actions'][0]['uri'] = "https://tsd.kku.ac.th/site/login";
                 $this->replyMsg($arrayHeader, $arrayPostData);
             }
 
@@ -107,15 +177,11 @@ class LineController extends \yii\web\Controller
     public function actionView($id)
     {
 
-        Yii::$app->response->format = Response::FORMAT_JSON;
+        // Yii::$app->response->format = Response::FORMAT_JSON;
         $this->layout = 'line';
-
-        return [
-            'title' => 'zz',
-            'content' => $this->renderAjax('view', [
-                'model' => $this->findModel($id),
-            ]),
-        ];
+        return $this->render('view', [
+            'model' => $this->findModel($id),
+        ]);
 
     }
 
@@ -123,7 +189,10 @@ class LineController extends \yii\web\Controller
     {
         Yii::$app->response->format = Response::FORMAT_JSON;
 
-        $model = new Borrow();
+        $model = new Borrow([
+            'active' => 1,
+            'status_id' => 1
+        ]);
         if ($model->save(false)) {
             return [
                 'status' => true,
@@ -131,6 +200,56 @@ class LineController extends \yii\web\Controller
             ];
         }
         return $model->save(false);
+    }
+//รับเครื่องคืน
+    public function actionCheckAccept($id)
+    {
+        $this->layout = 'line';
+
+        $model = $this->findModel($id);
+
+        if ($this->request->isPost && $model->load($this->request->post())) {
+       
+            if($model->status_id == 3){
+                $product = Product::findOne($model->product_id);
+                $product->active = 0;
+                $product->save(false);
+                // $model->approve_date = new Expression('NOW()');
+                $model->status_id = 4;
+                $model->active = 0;
+            }
+            if($model->save(false)){
+                return $this->render('update_success');
+            }
+
+           
+
+        }else{
+            return $this->render('check_accept', [
+                'model' => $model,
+            ]);
+            
+          
+        }
+    }
+    //ส่งคืน
+    public function actionReturnTo()
+    {
+        Yii::$app->response->format = Response::FORMAT_JSON;
+        $userId = Yii::$app->user->id;
+        $model = Borrow::findOne([
+            'created_by' => $userId,
+            'active' => 1,
+            'status_id' => 2
+        ]);
+        if($model){
+            $model->status_id = 3;
+            $model->save(false);
+            return [
+                'status' => true,
+                'msg' => 'ส่งคำขอเบิกเรียบร้อย',
+            ];
+        }
     }
 
     public function actionCreate()
@@ -141,10 +260,9 @@ class LineController extends \yii\web\Controller
         $userId = Yii::$app->user->id;
         $check = Borrow::findOne([
             'created_by' => $userId,
+            'active' => 1
         ]);
-        // if($check){
-        //     return $this->renderContent('<h1 class="text-center">ท่านได้ส่งคำขอไปแล้ว</h1>');
-        // }
+
         $model = new Borrow();
 
         if ($this->request->isPost) {
@@ -172,30 +290,35 @@ class LineController extends \yii\web\Controller
      * @return string|\yii\web\Response
      * @throws NotFoundHttpException if the model cannot be found
      */
+    private function UpdateProduct($id){
+        $model = Product::findOne($id);
+        $model->active = 1;
+        return $model->save();
+
+    }
     public function actionUpdate($id)
     {
+        $this->layout = 'line';
         $model = $this->findModel($id);
 
         if ($this->request->isPost && $model->load($this->request->post())) {
 
-            $model->push_date = new Expression('NOW()');
-            $model->save();
-            return $this->redirect(['view', 'id' => $model->id]);
+            
+            $model->active = 1;
+            if($model->status_id == 1){
+                $model->approve_date = new Expression('NOW()');
+                $model->status_id = 2;
+                $this->UpdateProduct($model->product_id);
+            }
+            if($model->save()){
+                return $this->render('update_success');
+            }
         }
 
-        if ($this->request->isAjax) {
-            Yii::$app->response->format = Response::FORMAT_JSON;
 
-            return [
-                'title' => 'zz',
-                'content' => $this->renderAjax('update', [
-                    'model' => $model,
-                ]),
-            ];
-        }
-        // return $this->render('update', [
-        //     'model' => $model,
-        // ]);
+        return $this->render('update', [
+            'model' => $model,
+        ]);
     }
 
     /**

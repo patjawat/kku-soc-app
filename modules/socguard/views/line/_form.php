@@ -10,13 +10,13 @@ use yii\widgets\ActiveForm;
 
 <div class="row justify-content-center mt-3" id="warp-content">
 <div class="text-center" >
-  <?=Html::img('@web/images/join2.png',['width' => '400px'])?>
+  <?=Html::img('@web/images/join2.png',['width' => '300px'])?>
 </div>
 
     <?php $form = ActiveForm::begin(); ?>
 
     <div class="form-group">
-        <?= Html::submitButton('ยืนยันการเบิก', ['class' => 'btn btn-lg btn-primary','id' => 'btn-save']) ?>
+        <?= Html::submitButton('ยืนยันการเบิก', ['class' => 'btn btn-lg btn-primary','id' => 'btn-save','style' => 'font-size: 3rem;']) ?>
     </div>
 
     <?php ActiveForm::end(); ?>
