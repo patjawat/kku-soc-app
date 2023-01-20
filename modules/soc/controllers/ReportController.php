@@ -37,6 +37,7 @@ class ReportController extends \yii\web\Controller
             $templateProcessor2 = new Processor(Yii::getAlias('@webroot') . '/msword/template_in2.docx'); //เลือกไฟล์ template ที่เราสร้างไว้
             $templateProcessor2->setValue('date1', $date1);
             $templateProcessor2->setValue('date2', $date2);
+            $templateProcessor2->setValue('totalCount', $dataProvider->getTotalCount());
 
             $sqlCount = "SELECT *,(SELECT COUNT(events.id) FROM events WHERE events.event_type = category.id AND events.created_at BETWEEN :date1 AND :date2)  as total
         FROM `category`
