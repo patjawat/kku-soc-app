@@ -33,6 +33,8 @@ class ReportController extends \yii\web\Controller
             $templateProcessor = new Processor(Yii::getAlias('@webroot') . '/msword/template_in.docx'); //เลือกไฟล์ template ที่เราสร้างไว้
             $templateProcessor->setValue('date1', $date1);
             $templateProcessor->setValue('date2', $date2);
+            $templateProcessor->setValue('totalCount', $dataProvider->getTotalCount());
+
 
             $templateProcessor2 = new Processor(Yii::getAlias('@webroot') . '/msword/template_in2.docx'); //เลือกไฟล์ template ที่เราสร้างไว้
             $templateProcessor2->setValue('date1', $date1);
