@@ -212,7 +212,7 @@ class ReportController extends \yii\web\Controller
             $templateProcessor->saveAs(Yii::getAlias('@webroot') . '/msword/ms_word_result.docx'); //สั่งให้บันทึกข้อมูลลงไฟล์ใหม่
             $templateProcessor2->saveAs(Yii::getAlias('@webroot') . '/msword/ms_word_result2.docx'); //สั่งให้บันทึกข้อมูลลงไฟล์ใหม่
             echo '<p>' . Html::a('ดาวน์โหลดเอกสาร', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx'), ['class' => 'btn btn-info']) .' | '.Html::a('ดาวน์โหลดเอกสารมีภาพ', Url::to(Yii::getAlias('@web') . '/msword/ms_word_result2.docx'), ['class' => 'btn btn-info']).
-            '</p><iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx', true) . '&embedded=true"  style="position: absolute;width:100%; height:500px;border: none;"></iframe>';
+            '</p><iframe src="https://docs.google.com/viewerng/viewer?url=' . Url::to(Yii::getAlias('@web') . '/msword/ms_word_result.docx', true) . '&embedded=true"  style="position: absolute;width:100%; height:800px;border: none;"></iframe>';
         }
 
     }
