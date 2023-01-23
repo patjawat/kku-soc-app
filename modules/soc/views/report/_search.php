@@ -22,7 +22,7 @@ if ($model->q_date){
 <div class="events-search">
 
     <?php $form = ActiveForm::begin([
-        'action' => ['index'],
+        'action' => ['word'],
         'id' => 'form-search',
         'method' => 'get',
         'options' => [
