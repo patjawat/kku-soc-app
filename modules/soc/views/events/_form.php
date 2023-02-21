@@ -66,7 +66,15 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
         <div class="alert alert-info" role="alert">
             <strong><i class="far fa-edit"></i> ข้อมูลเบื้องต้น</strong>
         </div>
-
+        <?php
+echo $form->field($model, 'created_at')->widget(DateTimePicker::classname(), [
+    'options' => ['placeholder' => 'เลือกวันเวลาที่แจ้ง...'],
+    'language' => 'th',
+    'pluginOptions' => [
+        'autoclose' => true
+    ]
+])->label('วันเวลาที่แจ้ง');
+?>
         <?=$form->field($model, 'fname')->textInput(['maxlength' => true])->label('ชื่อ-สกุล')?>
         <?=$form->field($model, 'lname')->textInput(['maxlength' => true])->label(true)?>
         <?=$form->field($model, 'phone')->textInput(['maxlength' => true])?>
@@ -77,6 +85,7 @@ $optiondate = ['type' => DateControl::FORMAT_DATETIME, 'language' => 'th'];
 ])->label(true);
 ?>
         <?=$form->field($model, 'department')->textInput(['maxlength' => true])->label('คณะ/หน่วยงาน');?>
+
 
         <?php
 echo $form->field($model, 'event_date')->widget(DateTimePicker::classname(), [
