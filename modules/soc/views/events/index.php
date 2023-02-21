@@ -53,7 +53,7 @@ if ($searchModel->q_date){
         
     </div>
     <div>
-        <?= Html::a('<i class="fas fa-print"></i> พิมพ์รายงาน', ['/soc/default/word','date1' => $date1,'date2' => $date2], ['class' => 'btn btn-primary','data-pjax' => false,'target' => '_blank']) ?>
+        <?php //  Html::a('<i class="fas fa-print"></i> พิมพ์รายงาน', ['/soc/default/word','date1' => $date1,'date2' => $date2], ['class' => 'btn btn-primary','data-pjax' => false,'target' => '_blank']) ?>
     </div>
   </div>
     <p>
