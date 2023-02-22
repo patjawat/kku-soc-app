@@ -23,7 +23,7 @@ if ($model->q_date){
 ?>
 
 <?php
-$sql = "SELECT concat(DATE_FORMAT(created_at, '%Y-%m-21'),' ถึง ',DATE_FORMAT(created_at, '%Y-%m-20') + INTERVAL 1 MONTH) as date_name, concat(DATE_FORMAT(created_at, '%Y-%m-21'),' - ',DATE_FORMAT(created_at, '%Y-%m-20')) as date_val, DATE_FORMAT(created_at, '%Y-%m-21 00:00:00') as date_begin,(DATE_FORMAT(created_at, '%Y-%m-20 00:00:00') + INTERVAL 1 MONTH) as date_end FROM events GROUP BY DATE_FORMAT(created_at, '%Y-%m') ORDER by created_at desc;";
+$sql = "SELECT concat(DATE_FORMAT(created_at, '%Y-%m-21'),' ถึง ',DATE_FORMAT(created_at, '%Y-%m-20') + INTERVAL 1 MONTH) as date_name, concat(DATE_FORMAT(created_at, '%Y-%m-21'),' - ',DATE_FORMAT(created_at, '%Y-%m-20')+ INTERVAL 1 MONTH) as date_val, DATE_FORMAT(created_at, '%Y-%m-21 00:00:00') as date_begin,(DATE_FORMAT(created_at, '%Y-%m-20 00:00:00') + INTERVAL 1 MONTH) as date_end FROM events GROUP BY DATE_FORMAT(created_at, '%Y-%m') ORDER by created_at desc;";
 $query = Yii::$app->db->createCommand($sql)->queryAll();
 $date = ArrayHelper::map($query,'date_val','date_name');
 ?>

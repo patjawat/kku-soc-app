@@ -134,7 +134,6 @@ class ReportController extends \yii\web\Controller
             $date2 = trim($date_explode[1]);
             $dataProvider->query->andFilterWhere(['between', 'created_at', $date1, ($date2.' 23:59:00')]);
 
-
             // $templateProcessor = new TemplateProcessor(Yii::getAlias('@webroot').'/msword/template_in.docx');//เลือกไฟล์ template ที่เราสร้างไว้
             $templateProcessor = new Processor(Yii::getAlias('@webroot') . '/msword/template_in.docx'); //เลือกไฟล์ template ที่เราสร้างไว้
             $templateProcessor->setValue('date1', $date1);
