@@ -154,7 +154,7 @@ class ReportController extends \yii\web\Controller
 
             $counts = Yii::$app->db->createCommand($sqlCount)
                 ->bindValue(':date1', $date1)
-                ->bindValue(':date2', $date2)
+                ->bindValue(':date2', $date2.' 23:59:00')
                 ->queryAll();
             $templateProcessor->cloneRow('name', sizeof($counts));
             $templateProcessor2->cloneRow('name', sizeof($counts));
