@@ -97,7 +97,7 @@ $this->params['breadcrumbs'][] = $this->title;
                 'value' => function ($model) {
 
                   if($model->event_location_note == 97){
-                    return ($model->location ? $model->location->name : '').'... &nbsp;(<code>'.$model->data_json['location_other'].'</code>)';
+                    return ($model->location ? $model->location->name : '').'... &nbsp;(<code>&nbsp;'.$model->data_json['location_other'].'&nbsp;</code>)';
                   }else{
                     return ($model->location ? $model->location->name : '').$model->event_location_note;
                   }
