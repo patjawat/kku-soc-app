@@ -3,8 +3,8 @@
 use yii\helpers\Html;
 use yii\web\View;
 use yii\helpers\Url;
-// use kartik\widgets\DetailView;
-use kartik\detail\DetailView;
+use yii\widgets\DetailView;
+// use kartik\detail\DetailView;
 use edofre\markerclusterer\Map;
 use edofre\markerclusterer\Marker;
 use app\components\SystemHelper;
@@ -93,8 +93,18 @@ $this->params['breadcrumbs'][] = $this->title;
             'department',
             [
                 'attribute' => 'event_location_note',
-                'value' => $model->location ? $model->location->name : ''
+                'format' => 'raw',
+                'value' => function ($model) {
+
+                  if($model->event_location_note == 97){
+                    return ($model->location ? $model->location->name : '').'... &nbsp;(<code>'.$model->event_location_note.$model->data_json['location_other'].'</code>)';
+                  }else{
+                    return ($model->location ? $model->location->name : '').$model->event_location_note;
+                  }
+                  // return $model->event_location_note;
+                }
             ],
+            
             'orther',
             // [
             //     'lable' => 'ผู้ร่วมปฏิบัติงาน',
