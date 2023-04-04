@@ -6,7 +6,8 @@ use edofre\markerclusterer\Marker;
 
 $this->title = 'Dashboard';
 ?>
-<div class="card">
+
+<div class="card shadow">
 <div class="card-header">
     จุดเกิดเหตุ
 </div>

@@ -17,6 +17,7 @@
  }
  ?>
 
+<div class="card shadow">
 <?php 
 
 echo miloschuman\highcharts\Highcharts::widget([
@@ -77,3 +78,4 @@ echo miloschuman\highcharts\Highcharts::widget([
 ]);
 
 ?>
+</div>

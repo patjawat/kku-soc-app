@@ -15,6 +15,7 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
     margin-bottom: 20px;
     position: relative;
 }
+
 </style>
 <div class="container-fluid">
 
@@ -27,6 +28,8 @@ $this->params['breadcrumbs'] = [['label' => $this->title]];
             'markers' => $markers
         ]);?>
         <?=$this->render('linechart');?>
+        <?php // $this->render('order_list');?>
+
     </div>
     <div class="col-md-4">
         
