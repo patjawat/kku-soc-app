@@ -32,7 +32,6 @@
 }
 
  ?>
-<div style="height:1000px;">
 
 <?php 
 echo miloschuman\highcharts\Highcharts::widget([
@@ -74,4 +73,3 @@ echo miloschuman\highcharts\Highcharts::widget([
 
 ?>
 
-</div>
