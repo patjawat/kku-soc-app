@@ -6,6 +6,12 @@ use edofre\markerclusterer\Marker;
 
 $this->title = 'Dashboard';
 ?>
+<div class="card">
+<div class="card-header">
+    จุดเกิดเหตุ
+</div>
+    <div class="card-body">
+
 <?php
 
 $map = new Map([
@@ -49,4 +55,7 @@ $map->zoom = $map->getMarkersFittingZoom() - 1;
     <div class="col-sm-12 text-center">
         <?= $map->display(); ?>
     </div>
+</div>
+
+</div>
 </div>
