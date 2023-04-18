@@ -29,7 +29,8 @@ $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3
         <title><?= Html::encode($this->title) ?>:Hr</title>
         <?php $this->head() ?>
     </head>
-    <body style="min-height: 512.391px;background:#6b59d3;" class="layout-top-nav layout-navbar-fixed">
+
+    <body style="min-height: 512.391px;background-image: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%)" class="layout-top-nav layout-navbar-fixed">
         <?php $this->beginBody() ?>
         <?php \dominus77\sweetalert2\Alert::widget(['useSessionFlash' => true]); ?>
         <nav class="main-header navbar navbar-expand navbar-light navbar-white">
@@ -37,7 +38,7 @@ $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3
   <a href="../../index3.html" class="navbar-brand">
     <?=Html::img('@web/images/logo.png',['class' => 'brand-image img-circle elevation-3','style' => 'width: 58px;'])?>
 
-<span class="brand-text font-weight-light">KKU-SOC</span>
+<span class="brand-text font-weight-light"> KKU-SOC</span>
 </a>
 
   </div>
