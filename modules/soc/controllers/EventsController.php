@@ -193,7 +193,7 @@ class EventsController extends Controller
                 $this->Uploads(false);
                 if($model->save(false)) {
                     //ส่ง messages line
-                    // $this->BroadcastMassage($model);
+                    $this->BroadcastMassage($model);
                 }
                 return $model->save(false);
                 // return $this->redirect(['success', 'id' => $model->id]);
