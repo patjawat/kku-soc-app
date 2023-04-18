@@ -72,6 +72,7 @@ label:not(.form-check-label):not(.custom-file-label) {
 }
 .form-control:focus{
     background-color: #dee2e6;
+    transition: 0.3s;
 
 }
 
