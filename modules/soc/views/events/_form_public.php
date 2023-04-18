@@ -9,6 +9,7 @@ use kartik\datecontrol\DateControl;
 use kartik\widgets\Select2;
 use kartik\widgets\FileInput;
 use buttflattery\formwizard\FormWizard;
+use yii\web\View;
 
 use app\models\Category;
 $this->title = 'ลงทะเบียน';
@@ -50,12 +51,46 @@ label:not(.form-check-label):not(.custom-file-label) {
     background-color: #d1ecf1;
     border-color: #bee5eb;
 }
+
+.form-control {
+    display: block;
+    font-family: Prompt;
+    width: 100%;
+    height: calc(4.25rem + 2px);
+    /* height: 73px; */
+    padding: 0.375rem 0.75rem;
+    font-size: 1.5rem;
+    font-weight: 400;
+    line-height: 1.5;
+    color: #495057;
+    background-color: #ececec;
+    background-clip: padding-box;
+    border: none;
+    border-radius: 0.25rem;
+    box-shadow: none;
+    transition: border-color .15s ease-in-out,box-shadow .15s ease-in-out;
+}
+.form-control:focus{
+    background-color: #dee2e6;
+
+}
+
+label:not(.form-check-label):not(.custom-file-label) {
+    font-weight: 400 !important;
+    font-size: 1.5rem;
+    font-family: Prompt;
+}
+
+.file-caption-name{
+    font-size: 22px;
+    height: 38px;
+}
 </style>
 <?php
 ?>
 
 
-<div class="loading text-center text-light mt-5" style="display:none;">
+<div class="loading text-center text-light mt-5" style="display:none;" >
 <i class="fas fa-spinner fa-spin fa-3x fa-fw margin-bottom"></i>
 <h1 class="text-center">รอสักครู่...</h1>
 </div>
@@ -310,12 +345,28 @@ $.ajax({
     },
     dataType: "json",
     success: function (response) {
+        endJob()
         console.log(response)
     }
 });
 }
 
 
+function endJob() {
+    
+    $('.loading > h1').html('บันทึกสำเร็จ');
+    $('.loading > i').hide();
+
+    Swal.fire(
+        'บันทึกสำเร็จ!',
+        'You clicked the button!',
+        'success'
+        )
+
+ }
+
+
+
 JS;
-$this->registerJs($js);
+$this->registerJs($js,View::POS_END);
 ?>

@@ -24,14 +24,25 @@ $publishedRes = Yii::$app->assetManager->publish('@vendor/hail812/yii2-adminlte3
         <!-- <link rel="icon" href="./img/medico.ico" type="image/x-icon" /> -->
         <!-- <link rel="shortcut icon" href="./img/medico.ico" type="image/x-icon" /> -->
         <!-- <link href="https://fonts.googleapis.com/css?family=Kanit" rel="stylesheet"> -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <?= Html::csrfMetaTags() ?>
         <title><?= Html::encode($this->title) ?>:Hr</title>
         <?php $this->head() ?>
     </head>
-    <body class="container" style="min-height: 512.391px;background:#6b59d3;">
+    <body style="min-height: 512.391px;background:#6b59d3;" class="layout-top-nav layout-navbar-fixed">
         <?php $this->beginBody() ?>
         <?php \dominus77\sweetalert2\Alert::widget(['useSessionFlash' => true]); ?>
+        <nav class="main-header navbar navbar-expand navbar-light navbar-white">
+  <div class="container">
+  <a href="../../index3.html" class="navbar-brand">
+    <?=Html::img('@web/images/logo.png',['class' => 'brand-image img-circle elevation-3','style' => 'width: 58px;'])?>
 
+<span class="brand-text font-weight-light">KKU-SOC</span>
+</a>
+
+  </div>
+</nav>
+<!-- /.navbar -->
           <?= $content ?>
 
         <?php $this->endBody() ?>
