@@ -326,6 +326,7 @@ $.ajax({
     success: function (response) {
        if(response){
            saveImage()
+           endJob()
        }
     }
 });
@@ -345,7 +346,7 @@ $.ajax({
     },
     dataType: "json",
     success: function (response) {
-        endJob()
+       
         console.log(response)
     }
 });
