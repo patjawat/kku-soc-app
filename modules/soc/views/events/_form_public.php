@@ -122,9 +122,9 @@ label:not(.form-check-label):not(.custom-file-label) {
 
                     <?= $form->field($model, 'phone')->textInput(['maxlength' => true]) ?>
 
-                    <label class="control-label" for="upload_files[]"> สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประจำตัวประชาชน/สำเนาบัตรข้าราชการ </label>
+                    <!-- <label class="control-label" for="upload_files[]"> สำเนาบัตรประจำตัวนักศึกษา/สำเนาบัตรประจำตัวประชาชน/สำเนาบัตรข้าราชการ </label> -->
                         <div>
-                            <?php echo  FileInput::widget([
+                            <?php   FileInput::widget([
                                     'name' => 'upload_ajax[]',
                                     'options' => ['multiple' => true,'accept' => ['image/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
                                         'pluginOptions' => [
@@ -150,9 +150,9 @@ label:not(.form-check-label):not(.custom-file-label) {
 
             <div class="info-box shadow-sm">
                 <div class="info-box-content">
-            <label class="control-label" for="upload_files[]"> เอกสารอื่นๆหรือหลักฐานที่เกี่ยวข้อง เช่น ใบบันทึกแจ้งความ </label>
+            <!-- <label class="control-label" for="upload_files[]"> เอกสารอื่นๆหรือหลักฐานที่เกี่ยวข้อง เช่น ใบบันทึกแจ้งความ </label> -->
                         <div>
-                            <?php echo  FileInput::widget([
+                            <?php  FileInput::widget([
                                     'name' => 'upload_ajax[]',
                                     'options' => ['multiple' => true,'accept' => ['image/*']], //'accept' => 'image/*' หากต้องเฉพาะ image
                                         'pluginOptions' => [
